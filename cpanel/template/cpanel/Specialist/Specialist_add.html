@@ -1,0 +1,271 @@
+{% extends "cpanel/Base.html" %}
+ {% load staticfiles %} 
+ {% block content %}
+ <!-- Part One -->
+<div class="page-bar">
+    <div class="page-title-breadcrumb">
+        <div class="pull-left">
+            <div class="page-title">
+                Add Specialist
+            </div>
+        </div>
+        <ol class="breadcrumb page-breadcrumb pull-right">
+            <li>
+                <i class="fa fa-home">
+                </i>
+                <a class="parent-item" href="index.html">
+                    Home
+                </a>
+                <i class="fa fa-angle-right">
+                </i>
+            </li>
+            <li class="active">
+                Add Specialist
+            </li>
+        </ol>
+    </div>
+</div>
+<!-- End Part One -->
+<!-- Part Two -->
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card-box">
+            <div class="card-head">
+                <header>
+                    Basic Information
+                </header>
+                <button class="mdl-button mdl-js-button mdl-button--icon pull-right" data-upgraded=",MaterialButton" id="panel-button">
+                    <i class="material-icons">
+                        more_vert
+                    </i>
+                </button>
+                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" data-mdl-for="panel-button">
+                    <li class="mdl-menu__item">
+                        <i class="material-icons">
+                            assistant_photo
+                        </i>
+                        Action
+                    </li>
+                    <li class="mdl-menu__item">
+                        <i class="material-icons">
+                            print
+                        </i>
+                        Another action
+                    </li>
+                    <li class="mdl-menu__item">
+                        <i class="material-icons">
+                            favorite
+                        </i>
+                        Something else
+                        here
+                    </li>
+                </ul>
+            </div>
+            <form method='POST' enctype="multipart/form-data" id="add_form"> {% csrf_token %}
+                <div class="card-body row">
+                    <!-- Your Field Goes Here... -->
+                    <div class="col-lg-12 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <input class="mdl-textfield__input" type="text" name="national_number" />
+                            <label class="mdl-textfield__label">
+                                National Number
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <input class="mdl-textfield__input" type="text" name="stakeholder_name" />
+                            <label class="mdl-textfield__label">
+                                First Name
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <input class="mdl-textfield__input" type="text" name="stakeholder_last_name" />
+                            <label class="mdl-textfield__label">
+                                Last Name
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width" id="password_main_div">
+                            <input class="mdl-textfield__input" id="txtPwd" type="password" name="password" />
+                            <label class="mdl-textfield__label" id="password_main">
+                                Password
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width" id="password_confirm_div">
+                            <input class="mdl-textfield__input" id="txtConfirmPwd" type="password" name="password" />
+                            <label class="mdl-textfield__label" id="password_Confirm">
+                                Confirm Password
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 p-t-20">
+                        <input class="floating-label mdl-textfield__input" id="date" placeholder="Birth Date" type="text" name="birthday" />
+                    </div>
+                    <div class="col-lg-12 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
+                            <input class="mdl-textfield__input" id="gender" readonly="" tabindex="-1" type="text" value="" name="gender" />
+                            <label class="pull-right margin-0" for="gender">
+                                <i class="mdl-icon-toggle__label material-icons">
+                                    keyboard_arrow_down
+                                </i>
+                            </label>
+                            <label class="mdl-textfield__label" for="gender">
+                                Gender
+                            </label>
+                            <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu" data-mdl-for="gender">
+                                <li class="mdl-menu__item" data-val="Male">
+                                    Male
+                                </li>
+                                <li class="mdl-menu__item" data-val="Female">
+                                    Female
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <input class="mdl-textfield__input" id="txtemail" type="email" name="email" />
+                            <label class="mdl-textfield__label">
+                                Email
+                            </label>
+                            <span class="mdl-textfield__error">
+                                Enter Valid Email Address!
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
+                            <input class="mdl-textfield__input" id="list2" readonly="" tabindex="-1" type="text" value="" name="marital_status" />
+                            <label class="pull-right margin-0" for="list2">
+                                <i class="mdl-icon-toggle__label material-icons">
+                                    keyboard_arrow_down
+                                </i>
+                            </label>
+                            <label class="mdl-textfield__label" for="list2">
+                                Marital Status
+                            </label>
+                            <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu" data-mdl-for="list2">
+                                <li class="mdl-menu__item" data-val="Single">
+                                    Single
+                                </li>
+                                <li class="mdl-menu__item" data-val="Married">
+                                    Married
+                                </li>
+                                <li class="mdl-menu__item" data-val="Widow">
+                                    Widow
+                                </li>
+                                <li class="mdl-menu__item" data-val="Divorced">
+                                    Divorced
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <input class="mdl-textfield__input" type="text" name="nationality" />
+                            <label class="mdl-textfield__label">
+                                Nationality
+                            </label>
+                        </div>
+                    </div>
+            
+		           
+		                    <div class="col-lg-12 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield txt-full-width">
+                            <textarea class="mdl-textfield__input" id="text7" rows="4" name="cv"></textarea>
+                            <label class="mdl-textfield__label" for="text7">
+                                Bio
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 p-t-20" id="Phone">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <input class="mdl-textfield__input" id="text5" pattern="-?[0-9]*(\.[0-9]+)?" type="text" name="Phone" />
+                            <label class="mdl-textfield__label" for="text5">
+                                Mobile Number
+                            </label>
+                            <span class="mdl-textfield__error">
+                                Number required!
+                            </span>
+                        </div>
+                        <div align="right">
+                            <button class="btn btn-skype waves-effect waves-light" type="button" onclick="phone_add()">
+                                <i class="fa fa-plus">
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                       
+
+                    <div class="col-lg-12 p-t-20" id="Address">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <input class="mdl-textfield__input" id="text5" pattern="*" type="text" name="address" />
+                            <label class="mdl-textfield__label" for="text5">
+                                Address
+                            </label>
+                            <span class="mdl-textfield__error">
+                                Address required!
+                            </span>
+                        </div>
+                        <div align="right">
+                            <button class="btn btn-skype waves-effect waves-light" type="button" onclick="address_add()">
+                                <i class="fa fa-plus">
+                                </i>
+                            </button>
+                        </div>
+                    </div>
+                     <div class="col-lg-12 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <input class="mdl-textfield__input" type="text" name="specialization" />
+                            <label class="mdl-textfield__label">
+                                Specializations
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-12 p-t-20">
+                        <span>Hide:</span>
+                        <label style="display: inline; margin-left: 10px;" class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-8" id="switch_label">
+                            <input class="mdl-switch__input" id="switch-8" type="checkbox" name="hide" />
+                        </label>
+                    </div>
+                    <div class="col-lg-12 p-t-20">
+                        <div class="Neon Neon-theme-dragdropbox">
+                            <input style="z-index: 999; opacity: 0; width: 320px; height: 250px; position: absolute; right: 0px; left: 0px; margin-right: auto; margin-left: auto;" name="image" id="filer_input2" type="file" accept="image/*" onchange="image_upload()">
+                            <div class="Neon-input-dragDrop">
+                                <div class="Neon-input-inner">
+                                    <div class="Neon-input-icon" id="image_placeholder"><i class="fa fa-file-image-o"></i></div>
+                                    <div class="Neon-input-text">
+                                        <h3 id="image_text">Drag&amp;Drop image here</h3> <span style="display:inline-block; margin: 15px 0">or</span>
+                                    </div><a class="Neon-input-choose-btn blue">Browse Files</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 
+				    
+					</div>
+                    <div class="col-lg-12 p-t-20 text-center">
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-pink" type="submit">
+                            Submit
+                        </button>
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default" type="button" id="add_form_Cancel_button">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- End Part Two -->
+
+
+ {% endblock content %}

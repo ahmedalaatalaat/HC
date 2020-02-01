@@ -1,0 +1,152 @@
+{% extends "cpanel/Base.html" %}
+{% load staticfiles %}
+{% block content %}
+<!-- Part One -->
+<div class="page-bar">
+    <div class="page-title-breadcrumb">
+        <div class="pull-left">
+            <div class="page-title">
+                Doctor List
+            </div>
+        </div>
+        <ol class="breadcrumb page-breadcrumb pull-right">
+            <li>
+                <i class="fa fa-home">
+                </i>
+                <a class="parent-item" href="index.html">
+                    Home
+                </a>
+                <i class="fa fa-angle-right">
+                </i>
+            </li>
+            <li>
+                <a class="parent-item" href="">
+                    Doctors
+                </a>
+                <i class="fa fa-angle-right">
+                </i>
+            </li>
+            <li class="active">
+                Doctor List
+            </li>
+        </ol>
+    </div>
+</div>
+<!-- End Part One -->
+<!-- Part Two -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="tabbable-line">
+            <div class="tab-content">
+                <div class="tab-pane active fontawesome-demo" id="tab1">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card card-topline-red">
+                                <div class="card-head">
+                                    <header>
+                                    </header>
+                                    <div class="tools">
+                                        <a class="fa fa-repeat btn-color box-refresh" href="javascript:;">
+                                        </a>
+                                        <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <div class="btn-group">
+                                                <a class="btn btn-info" href="add_doctor_material.html" id="addRow">
+                                                    Add New
+                                                    <i class="fa fa-plus">
+                                                    </i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="table-scrollable">
+                                        <table class="table table-hover table-checkable order-column full-width" id="example4">
+                                            <thead>
+                                                <tr>
+                                <th>
+                                </th>
+                                <th>
+                                    Name
+                                </th>
+                                <th>
+                                    Specialization
+                                </th>
+                                <th>
+                                    Title
+                                </th>
+                                <th>
+                                    Mobile
+                                </th>
+                                <th>
+                                    Email
+                                </th>
+                                <th>
+                                    Joining Date
+                                </th>
+                                <th>
+                                    Action
+                                </th>
+                            </tr>
+</thead>
+<tbody>
+{% for doctor in doctors %}
+<tr class="odd gradeX">
+    <td class="patient-img">
+        <img src="{{doctor.physician_nn.image.url}}">
+    </td>
+    <td>
+        Dr.{{doctor.physician_nn.stakeholder_name | capfirst}} {{ doctor.physician_nn.stakeholder_last_name | capfirst}}
+    </td>
+    <td class="left">
+        {% for specialization in doctor.get_Specialization %} {{specialization.get_value}} {% endfor %}
+    </td>
+    <td class="left">
+        {{doctor.title}}
+    </td>
+    <td>
+        {% for number in doctor.get_phone %}
+        <a href="tel:{{doctor.phone}}">
+            {{number.phone}}
+        </a>
+        {% endfor %}
+    </td>
+    <td>
+        <a href="mailto:{{doctor.physician_nn.email}}">
+            {{doctor.physician_nn.email}}
+        </a>
+    </td>
+    <td class="left">
+        {{ doctor.physician_nn.created_at|date:"F d, Y"}}
+    </td>
+    <td>
+        <a class="btn btn-primary btn-xs" href="edit_doctor.html">
+            <i class="fa fa-pencil">
+            </i>
+        </a>
+        <a class="btn btn-danger btn-xs" href="javasctipt()">
+            <i class="fa fa-trash-o">
+            </i>
+        </a>
+    </td>
+</tr>
+{% endfor %}
+</tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Part Two -->
+
+{% endblock content%}

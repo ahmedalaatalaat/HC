@@ -1,0 +1,187 @@
+{% extends "cpanel/Base.html" %}
+{% load staticfiles %}
+{% block content %}
+<!-- Part One -->
+<div class="page-bar">
+    <div class="page-title-breadcrumb">
+        <div class="pull-left">
+            <div class="page-title">
+                Add Insurance Company
+            </div>
+        </div>
+        <ol class="breadcrumb page-breadcrumb pull-right">
+            <li>
+                <i class="fa fa-home">
+                </i>
+                <a class="parent-item" href="index.html">
+                    Home
+                </a>
+                <i class="fa fa-angle-right">
+                </i>
+            </li>
+            <li class="active">
+                Add Insurance Company
+            </li>
+        </ol>
+    </div>
+</div>
+<!-- End Part One -->
+<!-- Part Two -->
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card-box">
+            <div class="card-head">
+                <header>
+                    Basic Information
+                </header>
+                <button class="mdl-button mdl-js-button mdl-button--icon pull-right" data-upgraded=",MaterialButton" id="panel-button">
+                    <i class="material-icons">
+                        more_vert
+                    </i>
+                </button>
+                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" data-mdl-for="panel-button">
+                    <li class="mdl-menu__item">
+                        <i class="material-icons">
+                            assistant_photo
+                        </i>
+                        Action
+                    </li>
+                    <li class="mdl-menu__item">
+                        <i class="material-icons">
+                            print
+                        </i>
+                        Another action
+                    </li>
+                    <li class="mdl-menu__item">
+                        <i class="material-icons">
+                            favorite
+                        </i>
+                        Something else
+                        here
+                    </li>
+                </ul>
+            </div>
+            <form method='POST' enctype="multipart/form-data" id="add_form"> {% csrf_token %}
+             <div class="card-body row">
+        <div class="col-lg-12 p-t-20">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                <input class="mdl-textfield__input" id="name" type="text" name="company_name" />
+                <label class="mdl-textfield__label">
+             Insurance company Name
+            </label>
+            </div>
+        </div>
+        <div class="col-lg-12 p-t-20">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                <input class="mdl-textfield__input" id="txt7" type="text" name="company_id" />
+                <label class="mdl-textfield__label">
+              Company ID
+             </label>
+            </div>
+        </div>
+       <!-- Phone Input -->
+<div class="col-lg-12 p-t-20" id="Phone">
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+        <input class="mdl-textfield__input" id="text5" pattern="-?[0-9]*(\.[0-9]+)?" type="text" name="FieldName" autocomplete="off" />
+        <label class="mdl-textfield__label" for="text5">
+            Mobile Number
+        </label>
+        <span class="mdl-textfield__error">
+            Number required!
+        </span>
+    </div>
+    <div align="right">
+        <button class="btn btn-skype waves-effect waves-light" type="button" onclick="phone_add()">
+            <i class="fa fa-plus">
+            </i>
+        </button>
+    </div>
+</div>
+        <!-- DropDown Menu -->
+<div class="col-lg-12 p-t-20">
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
+        <input class="mdl-textfield__input" id="YourValue" readonly="" tabindex="-1" type="text" value="" name="type" />
+        <label class="pull-right margin-0" for="insuranc_type">
+            <i class="mdl-icon-toggle__label material-icons">
+                keyboard_arrow_down
+            </i>
+        </label>
+        <label class="mdl-textfield__label" for="insuranc_type">
+            Company Type
+        </label>
+        <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu" data-mdl-for="YourValue">
+            <li class="mdl-menu__item" data-val="govermental">
+                Govermental
+            </li>
+             <li class="mdl-menu__item" data-val="private">
+                Private
+            </li>
+             <li class="mdl-menu__item" data-val="charity">
+                Charity
+            </li>
+        </ul>
+    </div>
+</div>
+
+        <!-- Address Input -->
+<div class="col-lg-12 p-t-20" id="Address">
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+        <input class="mdl-textfield__input" id="text_address" pattern="*" type="text" name="FieldName" autocomplete="off" />
+        <label class="mdl-textfield__label" for="text_address">
+            Address
+        </label>
+        <span class="mdl-textfield__error">
+            Address required!
+        </span>
+    </div>
+    <div align="right">
+        <button class="btn btn-skype waves-effect waves-light" type="button" onclick="address_add()">
+            <i class="fa fa-plus">
+            </i>
+        </button>
+    </div>
+</div>
+
+        <div class="col-lg-12 p-t-20">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                <input class="mdl-textfield__input" id="txtemail" type="email" name="email" />
+                <label class="mdl-textfield__label">
+             Email
+            </label>
+                <span class="mdl-textfield__error">
+             Enter Valid Email Address!
+            </span>
+            </div>
+        </div>
+
+        <div class="col-lg-12 p-t-20">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                <input class="mdl-textfield__input" id="txt8" type="text" name="fax" />
+                <label class="mdl-textfield__label">
+             Fax
+            </label>
+            </div>
+        </div>
+
+        <div class="col-lg-12 p-t-20">
+            <div class="col-lg-12 p-t-20 text-center">
+                <button class="btn btn-circle btn-success" type="submit">
+             Submit!
+            </button>
+                <button class="btn btn-circle btn-danger" type="reset">
+             Cancel
+            </button>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content%}

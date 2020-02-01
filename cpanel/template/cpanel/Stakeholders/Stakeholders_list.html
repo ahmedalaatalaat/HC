@@ -1,0 +1,146 @@
+{% extends "cpanel/Base.html" %}
+ {% load staticfiles %} 
+ {% block content %}
+<!-- Part One -->
+<div class="page-bar">
+    <div class="page-title-breadcrumb">
+        <div class="pull-left">
+            <div class="page-title">
+                Stakeholder List
+            </div>
+        </div>
+        <ol class="breadcrumb page-breadcrumb pull-right">
+            <li>
+                <i class="fa fa-home">
+                </i>
+                <a class="parent-item" href="index.html">
+                    Home
+                </a>
+                <i class="fa fa-angle-right">
+                </i>
+            </li>
+            <li>
+                <a class="parent-item" href="">
+                    Stakeholders
+                </a>
+                <i class="fa fa-angle-right">
+                </i>
+            </li>
+            <li class="active">
+                Stakeholder List
+            </li>
+        </ol>
+    </div>
+</div>
+<!-- End Part One -->
+<!-- Part Two -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="tabbable-line">
+            <div class="tab-content">
+                <div class="tab-pane active fontawesome-demo" id="tab1">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card card-topline-red">
+                                <div class="card-head">
+                                    <header>
+                                    </header>
+                                    <div class="tools">
+                                        <a class="fa fa-repeat btn-color box-refresh" href="javascript:;">
+                                        </a>
+                                        <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <div class="btn-group">
+                                                <a class="btn btn-info" href="add_doctor_material.html" id="addRow">
+                                                    Add New
+                                                    <i class="fa fa-plus">
+                                                    </i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="table-scrollable">
+                                        <table class="table table-hover table-checkable order-column full-width" id="example4">
+                                            <thead>
+                                                 <tr>
+                                <th>
+                                </th>
+                                <th>
+                                    Name
+                                </th>
+                                <th>
+                                    Gender
+                                </th>
+                                <th>
+                                    Mobile
+                                </th>
+                                <th>
+                                    Nationality
+                                </th>
+                                <th>
+                                    Joining Date
+                                </th>
+                                <th>
+                                    Action
+                                </th>
+                            </tr>
+                                            </thead>
+                                            <tbody>
+                                               {% for stakeholder in stakeholders %}
+                            <tr class="odd gradeX">
+                                <td class="patient-img">
+                                    <img src="{{stakeholder.image.url}}">
+
+                                </td>
+                                <td>
+                                    <p>{{stakeholder.stakeholder_name}} {{ stakeholder.stakeholder_last_name | capfirst}}</p>
+                                </td>
+                                <td class="left">
+                                    <p>{{stakeholder.gender}}
+                                </td>
+                                <td class="left">
+                                    <p> {% for phone in stakeholder.get_phone %}<a href="tel:{{phone.phone}}"> {{phone.phone}} </a>{% endfor %}</p>
+                                </td>
+                                <td class="left">
+                                    <p>{{ stakeholder.nationality }}</p>
+                                </td>
+                                <td class="left">
+                                    <p> {{ stakeholder.created_at|date:"F d, Y"}}
+                                        <p>
+                                </td>
+                                <form method="POST" action=""> {% csrf_token %}
+                                    <td>
+                                        <a class="btn btn-primary btn-xs" href="../edit_stakeholders/?nn={{instance.national_number}}">
+                                            <i class="fa fa-pencil">
+                        </i>
+                                        </a>
+
+
+                                        <button name="delete_btn" class="btn btn-danger btn-xs" type="submit" value="{{instance.national_number}}">
+                                        
+                        <i class="fa fa-trash-o">
+                        </i>
+                       </button>
+                                    </td>
+                                </form>
+                            </tr>
+                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Part Two -->
+ {% endblock content %}
