@@ -4,7 +4,7 @@ from main.utils import get_object_or_none
 # Enumeration Values
 Gender = [('Male', 'Male'), ('Female', 'Female')]
 
-Stakeholder_Type = [('Admin', 'Admin'), ('Patient', 'Patient'), ('Physician', 'Physician'), ('Nurse', 'Nurse'), ('Paramedic', 'Paramedic'), ('Pharmist', 'Pharmist'), ('Specialist', 'Specialist'), ('Clerk', 'Clerk'), ('Editors', 'Editors')]
+Stakeholder_Type = [('Admin', 'Admin'), ('Clerk', 'Clerk'), ('Editors', 'Editors')]
 
 Marital_Status = [('Single', 'Single'), ('Married', 'Married'), ('Widow', 'Widow'), ('Divorced', 'Divorced')]
 

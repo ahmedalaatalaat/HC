@@ -21,7 +21,7 @@ $('#add_form').submit(function (e) {
             $('#image_text').html('Drag&amp;Drop files here');
         },
         error: function (error_data) {
-            if(error_data.responseText != 'This doctor data is already stored'){
+            if(error_data.responseText == 'This doctor data is already stored'){
                 var message = error_data.responseText
             }
             else{

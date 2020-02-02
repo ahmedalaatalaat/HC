@@ -8,10 +8,14 @@ from .models import *
 def Doctor_add(request):
     if request.is_ajax():
         if request.method == 'POST':
+            print(request.POST)
             if get_object_or_none(Physician, physician_nn=request.POST.get('national_number')):
                 return HttpResponseNotFound("This doctor data is already stored")
 
+            # data preprocessing
             hide = True if request.POST.get('hide') == 'on' else False
+            date = request.POST.get('birthday').split('-')
+            date = f'{date[2]}-{date[0]}-{date[1]}'
 
             stakeholder = get_object_or_none(Stakeholders, national_number=request.POST.get('national_number'))
             if not stakeholder:
@@ -20,7 +24,7 @@ def Doctor_add(request):
                     national_number=request.POST.get('national_number'),
                     stakeholder_last_name=request.POST.get('stakeholder_last_name'),
                     password=request.POST.get('password'),
-                    birthday=request.POST.get('birthday'),
+                    birthday=date,
                     gender=request.POST.get('gender'),
                     email=request.POST.get('email'),
                     marital_status=request.POST.get('marital_status'),
@@ -29,11 +33,17 @@ def Doctor_add(request):
                     image=request.FILES.get('image')
                 )
 
-            Physician.objects.create(
+            physician = Physician.objects.create(
                 physician_nn=stakeholder,
                 title=request.POST.get('title'),
                 hide=hide
             )
+
+            for specialization in request.POST.getlist('specialization'):
+                PhysicianSpecialization.objects.create(
+                    physician_nn=physician,
+                    specialization=specialization
+                )
 
             for phone in request.POST.getlist('Phone'):
                 StakeholdersPhones.objects.create(
@@ -167,6 +177,17 @@ def Specialist_list(request):
 
 # Specialization Views
 def Specialization_add(request):
+    if request.is_ajax():
+        if request.method == 'POST':
+            if get_object_or_none(Specialization, specialization_id=request.POST.get('specialization_id')):
+                return HttpResponseNotFound("This Specialization data is already stored")
+            hide = True if request.POST.get('hide') == 'on' else False
+            Specialization.objects.create(
+                specialization_id=request.POST.get('specialization_id'),
+                name=request.POST.get('name'),
+                hide=hide
+            )
+            return HttpResponse()
     return render(request, 'cpanel/Specializations/Specialization_add.html')
 
 
@@ -303,7 +324,7 @@ def Hospital_list(request):
 
 # Physician Hospital Working Time Views
 def Physician_Hospital_Working_Time_add(request):
-    return render(request, 'cpanel/Hospital/Physician_Hospital_working_time_add.html'
+    return render(request, 'cpanel/Hospital/Physician_Hospital_working_time_add.html')
 
 
 def Physician_Hospital_Working_Time_edit(request):
@@ -311,8 +332,8 @@ def Physician_Hospital_Working_Time_edit(request):
 
 
 def Physician_Hospital_Working_Time_list(request):
-    physician_hospital_working_times=PhysicianHospitalWorkingTime.objects.all()
-    context={
+    physician_hospital_working_times = PhysicianHospitalWorkingTime.objects.all()
+    context = {
         "physician_hospital_working_times": physician_hospital_working_times,
     }
     return render(request, 'cpanel/Hospital/Physician_Hospital_working_time_list.html', context)
@@ -328,8 +349,8 @@ def Insurance_Company_edit(request):
 
 
 def Insurance_Company_list(request):
-    insurance_companies=InsuranceCompanies.objects.all()
-    context={
+    insurance_companies = InsuranceCompanies.objects.all()
+    context = {
         "insurance_companies": insurance_companies,
     }
     return render(request, 'cpanel/Insurance Company/Insurance_Company_list.html', context)
@@ -345,8 +366,8 @@ def Insurance_Type_edit(request):
 
 
 def Insurance_Type_list(request):
-    insurance_types=InsuranceTypes.objects.all()
-    context={
+    insurance_types = InsuranceTypes.objects.all()
+    context = {
         "insurance_types": insurance_types,
     }
     return render(request, 'cpanel/Insurance Company/Insurance_Type_list.html', context)

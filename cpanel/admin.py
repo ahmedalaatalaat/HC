@@ -5,3 +5,4 @@ from .models import *
 
 admin.site.register(Physician)
 admin.site.register(Stakeholders)
+admin.site.register(Specialization)
