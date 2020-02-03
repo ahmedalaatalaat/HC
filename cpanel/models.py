@@ -12,7 +12,7 @@ Blood_Type = [('O+', 'O+'), ('O-', 'O-'), ('A+', 'A+'), ('A-', 'A-'), ('B+', 'B+
 
 Physician_Title = [("Professor", "Professor"), ("Lecturer", "Lecturer"), ("Consultant", "Consultant"), ("Specialist", "Specialist")]
 
-Patient_Visitation_Type = [('Normal', 'Normal'), ('Consultation', 'Consultation'), ('Operation', 'Operation'), ('ER', 'ER')]
+Patient_Visitation_Type = [('Normal', 'Normal'), ('Consultation', 'Consultation'), ('Operation', 'Operation'), ('ER', 'ER'), ('Other', 'Other')]
 
 Patient_Disease_Priority = [('Very High', 'Very High'), ('High', 'High'), ('Medium', 'Medium'), ('Low', 'Low')]
 
@@ -87,6 +87,7 @@ class Patient(models.Model):
     chronic_diseases_name = models.CharField(db_column='Chronic_Diseases_Name', max_length=255, blank=True, null=True)
     chronic_diseases_type = models.CharField(db_column='Chronic_Diseases_Type', max_length=255, blank=True, null=True)
     blood_type = models.CharField(db_column='Blood_Type', max_length=3, blank=True, null=True, choices=Blood_Type)
+    hide = models.BooleanField(default=False)
 
     class Meta:
         db_table = 'patient'
@@ -94,7 +95,7 @@ class Patient(models.Model):
         verbose_name_plural = 'Patients'
 
     def __str__(self):
-        return (self.patient_nn)
+        return (self.patient_nn.national_number)
 
     @property
     def get_phone(self):
@@ -121,7 +122,7 @@ class PatientRelativesPhones(models.Model):
         verbose_name_plural = 'Patient Relatives Phones'
 
     def __str__(self):
-        return self.patient_nn
+        return str(self.patient_nn)
 
 
 class Physician(models.Model):
@@ -266,7 +267,7 @@ class Pharmacist(models.Model):
         verbose_name_plural = 'Pharmacists'
 
     def __str__(self):
-        return self.pharmacist_nn
+        return str(self.pharmacist_nn)
 
     def get_phone(self):
         return StakeholdersPhones.objects.filter(national_number=self.pharmacist_nn)
@@ -319,7 +320,7 @@ class MedicalInstitutions(models.Model):
 
     @property
     def get_address(self):
-        return MedicalInstitutionsAdress.objects.filter(institution=self.institution_id)
+        return MedicalInstitutionsAddress.objects.filter(institution=self.institution_id)
 
 
 class MedicalInstitutionsPhone(models.Model):
@@ -336,7 +337,7 @@ class MedicalInstitutionsPhone(models.Model):
         return self.institution
 
 
-class MedicalInstitutionsAdress(models.Model):
+class MedicalInstitutionsAddress(models.Model):
     institution = models.ForeignKey(MedicalInstitutions, models.DO_NOTHING, db_column='Institution_ID')
     address = models.CharField(db_column='Adress', max_length=360)
 
@@ -370,7 +371,7 @@ class Labs(models.Model):
 
     @property
     def get_address(self):
-        return MedicalInstitutionsAdress.objects.filter(institution=self.lab)
+        return MedicalInstitutionsAddress.objects.filter(institution=self.lab)
 
     @property
     def get_A_R(self):
@@ -414,7 +415,7 @@ class Clinic(models.Model):
 
     @property
     def get_address(self):
-        return MedicalInstitutionsAdress.objects.filter(institution=self.clinic)
+        return MedicalInstitutionsAddress.objects.filter(institution=self.clinic)
 
 
 class Pharmacy(models.Model):
@@ -434,7 +435,7 @@ class Pharmacy(models.Model):
 
     @property
     def get_address(self):
-        return MedicalInstitutionsAdress.objects.filter(institution=self.pharmacy)
+        return MedicalInstitutionsAddress.objects.filter(institution=self.pharmacy)
 
     def __str__(self):
         return str(self.pharmacy)
@@ -460,7 +461,7 @@ class Hospital(models.Model):
 
     @property
     def get_address(self):
-        return MedicalInstitutionsAdress.objects.filter(institution=self.hospital)
+        return MedicalInstitutionsAddress.objects.filter(institution=self.hospital)
 
     def __str__(self):
         return str(self.hospital)
@@ -484,7 +485,7 @@ class InsuranceCompanies(models.Model):
         verbose_name_plural = 'Insurance Companies'
 
     def __str__(self):
-        return self.company_id
+        return str(self.company_id)
 
     @property
     def get_phone(self):
@@ -536,7 +537,7 @@ class InsuranceTypes(models.Model):
         verbose_name_plural = 'Insurance Types'
 
     def __str__(self):
-        return self.type_id
+        return str(self.type_id)
 
 
 # -- ** Other Tables ** --
@@ -612,7 +613,7 @@ class PhysicianHospitalWorkingTime(models.Model):
         verbose_name_plural = 'Physician Hospital Working Times'
 
     def __str__(self):
-        return self.physician_nn
+        return str(self.physician_nn)
 
 
 class PhysicianClinicWorkingTime(models.Model):

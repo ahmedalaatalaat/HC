@@ -63,60 +63,42 @@
             </div>
             <form method='POST' enctype="multipart/form-data" id="add_form"> {% csrf_token %}
                 <div class="card-body row">
-        <div class="col-lg-12 p-t-20">
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                <input class="mdl-textfield__input" name="name" id="txtname" type="text" />
-                <label class="mdl-textfield__label">
-             Name
-            </label>
-            </div>
-        </div>
-
-        
-
-        <div class="col-lg-12 p-t-20">
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                <input class="mdl-textfield__input" id="txtname" name="ic_id" type="text" />
-                <label class="mdl-textfield__label">
-              Insurance Company ID
-            </label>
-            </div>
-        </div>
-
-
-
-
-    
-    </div>
-    <div class="col-lg-12 p-t-20">
-        <div class="col-lg-12 p-t-20 text-center">
-
-            <div class="col-lg-12 p-t-20 text-center">
-                <button class="btn btn-circle btn-success" type="submit">
-             Submit!
-            </button>
-                <button class="btn btn-circle btn-danger" type="reset">
-             Cancel
-            </button>
-            </div>
-        </div>
-    </div>
-
-
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-
-
-    </div>
-    </div>
-    </div>
-    </div>
+                    <div class="col-lg-12 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <input class="mdl-textfield__input" name="type_name" id="txtname" type="text" />
+                            <label class="mdl-textfield__label">
+                                Name
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <input class="mdl-textfield__input" id="txtname" name="company" type="text" />
+                            <label class="mdl-textfield__label">
+                                Insurance Company ID
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 p-t-20">
+                        <span>Hide:</span>
+                        <label style="display: inline; margin-left: 10px;" class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-8" id="switch_label">
+                            <input class="mdl-switch__input" id="switch-8" type="checkbox" name="hide" />
+                        </label>
+                    </div>
+                </div>
+                <div class="col-lg-12 p-t-20">
+                    <div class="col-lg-12 p-t-20 text-center">
+                        <div class="col-lg-12 p-t-20 text-center">
+                            <button class="btn btn-circle btn-success" type="submit">
+                                Submit!
+                            </button>
+                            <button class="btn btn-circle btn-danger" type="reset">
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
-</div>
-{% endblock content%}
+</div> {% endblock content%}

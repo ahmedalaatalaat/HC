@@ -1,7 +1,7 @@
 {% extends "cpanel/Base.html" %}
- {% load staticfiles %} 
- {% block content %}
- <!-- Part One -->
+{% load staticfiles %}
+{% block content %}
+<!-- Part One -->
 <div class="page-bar">
     <div class="page-title-breadcrumb">
         <div class="pull-left">
@@ -61,157 +61,140 @@
                     </li>
                 </ul>
             </div>
-            <form method='POST' enctype="multipart/form-data" id="add_form">
-
+            <form method='POST' enctype="multipart/form-data" id="add_form">{% csrf_token %}
+                <div class="col-lg-12 p-t-20">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                        <input class="mdl-textfield__input" id="Fax" name="patient_nn" required type="text" />
+                        <label class="mdl-textfield__label">
+                            Patient National Number
+                        </label>
+                    </div>
+                </div>
+                <div class="col-lg-12 p-t-20">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                        <input class="mdl-textfield__input" id="Fax" name="physician_nn" required maxlength="20" type="text" />
+                        <label class="mdl-textfield__label">
+                            Physician National Number
+                        </label>
+                    </div>
+                </div>
+                <div class="col-lg-12 p-t-20">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width" id="datetime_add">
+                        <input class="form_datetime mdl-textfield__input" type="text" name="date_time" reuqired autocomplete="off" onfocusout="datetime_val()" />
+                        <label class="mdl-textfield__label">
+                            Visitation Date & Time
+                        </label>
+                    </div>
+                </div>
+                <div class="card-body row">
                     <div class="col-lg-12 p-t-20">
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                <input class="mdl-textfield__input" id="Fax" name="p_nn" required type="text" />
-                <label class="mdl-textfield__label">
-            Patient National Number
-            </label>
-            </div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <input class="mdl-textfield__input" required maxlength="360" name="diagnouse" id="txtdiagnouse" type="text" />
+                            <label class="mdl-textfield__label">
+                                Diagnouse
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield txt-full-width">
+                            <textarea class="mdl-textfield__input" id="text7" rows="4" required name="physician_comments"></textarea>
+                            <label class="mdl-textfield__label" for="text7">
+                                Comments
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield txt-full-width">
+                            <textarea class="mdl-textfield__input" id="text7" rows="4" required name="prescription"></textarea>
+                            <label class="mdl-textfield__label" for="text7">
+                                Prescription
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
+                            <input class="mdl-textfield__input" required id="sample2" readonly="" tabindex="-1" type="text" value="Medium" name="disease_priority" />
+                            <label class="pull-right margin-0" for="sample2">
+                                <i class="mdl-icon-toggle__label material-icons">
+                                    keyboard_arrow_down
+                                </i>
+                            </label>
+                            <label class="mdl-textfield__label" for="sample2">
+                                Patient Disease Priority
+                            </label>
+                            <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu" data-mdl-for="sample2">
+                                <li class="mdl-menu__item" data-val="Very High">
+                                    Very High
+                                </li>
+                                <li class="mdl-menu__item" data-val="High">
+                                    High
+                                </li>
+                                <li class="mdl-menu__item" data-val="Medium">
+                                    Medium
+                                </li>
+                                <li class="mdl-menu__item" data-val="Low">
+                                    Low
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
+                            <input class="mdl-textfield__input" required id="list3" readonly="" tabindex="-1" type="text" value="Normal" name="visitation_type" />
+                            <label class="pull-right margin-0" for="list3">
+                                <i class="mdl-icon-toggle__label material-icons">
+                                    keyboard_arrow_down
+                                </i>
+                            </label>
+                            <label class="mdl-textfield__label" for="list3">
+                                Patient Visitation Type
+                            </label>
+                            <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu" data-mdl-for="list3">
+                                <li class="mdl-menu__item" data-val="Normal">
+                                    Normal
+                                </li>
+                                <li class="mdl-menu__item" data-val="Consultation">
+                                    Consultation
+                                </li>
+                                <li class="mdl-menu__item" data-val="Operation">
+                                    Operation
+                                </li>
+                                <li class="mdl-menu__item" data-val="ER">
+                                    ER
+                                </li>
+                                <li class="mdl-menu__item" data-val="Other">
+                                    Other
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <input class="mdl-textfield__input" id="txt5" name="analysis_radiology" maxlength="360" required type="text" />
+                            <label class="mdl-textfield__label">
+                                Analysis and Radiology
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 p-t-20">
+                        <div class="col-lg-12 p-t-20 text-center">
+                            <div class="col-lg-12 p-t-20 text-center">
+                                <button class="btn btn-circle btn-success" type="submit">
+                                    Submit!
+                                </button>
+                                <button class="btn btn-circle btn-danger" type="reset">
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </div>
-        <div class="col-lg-12 p-t-20">
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                <input class="mdl-textfield__input" id="Fax" name="py_nn" required maxlength="20" type="text" />
-                <label class="mdl-textfield__label">
-             Physician National Number
-             </label>
-            </div>
-        </div>
-<div class="col-lg-12 p-t-20">
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width" id="datetime_add">
-        <input class="form_datetime mdl-textfield__input" type="text" name="FieldName" reuqired autocomplete="off" onfocusout="datetime_val()" />
-        <label class="mdl-textfield__label">
-            Visitation Date & Time
-        </label>
     </div>
 </div>
-
-    <div class="card-body row">
-        <div class="col-lg-12 p-t-20">
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                <input class="mdl-textfield__input" required maxlength="360" name="Diagnouse" id="txtdiagnouse" type="text" />
-                <label class="mdl-textfield__label">
-             Diagnouse
-            </label>
-            </div>
-        </div>
-
- 
-          <div class="col-lg-12 p-t-20">
-            <div class="mdl-textfield mdl-js-textfield txt-full-width">
-                <textarea class="mdl-textfield__input" id="text7" rows="4" required name="prescription"></textarea>
-                <label class="mdl-textfield__label" for="text7">
-             Comments
-            </label>
-            </div>
-        </div>
-
-        <div class="col-lg-12 p-t-20">
-            <div class="mdl-textfield mdl-js-textfield txt-full-width">
-                <textarea class="mdl-textfield__input" id="text7" rows="4" required name="prescription"></textarea>
-                <label class="mdl-textfield__label" for="text7">
-             Prescription
-            </label>
-            </div>
-        </div>
-
-
-        <div class="col-lg-12 p-t-20">
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
-                        <input class="mdl-textfield__input" required id="sample2" readonly="" tabindex="-1" type="text" value="Medium" name="Patient_Disease_Priority" />
-                        <label class="pull-right margin-0" for="sample2">
-             <i class="mdl-icon-toggle__label material-icons">
-              keyboard_arrow_down
-             </i>
-            </label>
-                        <label class="mdl-textfield__label" for="sample2">
-             Patient Disease Priority
-            </label>
-                        <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu" data-mdl-for="sample2">
-                            <li class="mdl-menu__item" data-val="DE">
-                                Very High
-                            </li>
-                            <li class="mdl-menu__item" data-val="BY">
-                                High
-                            </li>
-                            <li class="mdl-menu__item" data-val="BY">
-                                Medium
-                            </li>
-                            <li class="mdl-menu__item" data-val="BY">
-                                Low
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-
-
-                                <div class="col-lg-12 p-t-20">
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
-                        <input class="mdl-textfield__input" required id="list3" readonly="" tabindex="-1" type="text" value="Normal" name="Patient_Visitation_Type" />
-                        <label class="pull-right margin-0" for="list3">
-             <i class="mdl-icon-toggle__label material-icons">
-              keyboard_arrow_down
-             </i>
-            </label>
-                        <label class="mdl-textfield__label" for="list3">
-            Patient Visitation Type 
-            </label>
-                        <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu" data-mdl-for="list3">
-                            <li class="mdl-menu__item" data-val="DE">
-                                Normal
-                            </li>
-                            <li class="mdl-menu__item" data-val="BY">
-                                Consultation
-                            </li>
-                            <li class="mdl-menu__item" data-val="BY">
-                                Operation
-                            </li>
-                            <li class="mdl-menu__item" data-val="BY">
-                                ER
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-        <div class="col-lg-12 p-t-20">
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                <input class="mdl-textfield__input" id="txt5" name="a_r" maxlength="350" required type="text" />
-                <label class="mdl-textfield__label">
-             Analysis and Radiology
-            </label>
-            </div>
-        </div>
-
- 
-
-
-        <!----------------------------------------------->
-
-        <div class="col-lg-12 p-t-20">
-            <div class="col-lg-12 p-t-20 text-center">
-
-                <div class="col-lg-12 p-t-20 text-center">
-                    <button class="btn btn-circle btn-success" type="submit">
-             Submit!
-            </button>
-                    <button class="btn btn-circle btn-danger" type="reset">
-             Cancel
-            </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-    </div>
-    </div>
-            </form>
-        </div>
-    </div>
+</form>
+</div>
+</div>
 </div>
 <!-- End Part Two -->
-
-
- {% endblock content %}
+{% endblock content %}

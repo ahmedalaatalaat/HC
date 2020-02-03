@@ -1,5 +1,6 @@
 var phone_no = 0;
 var address_no = 0;
+var relatives_phone_no = 0;
 $('#add_form').submit(function (e) {
     e.preventDefault();
     if($('#txtPwd').val() == $('#txtConfirmPwd').val()){
@@ -83,6 +84,33 @@ function phone_add(){
 
 function phone_delete(num){
     $('#phone_' + num).remove();
+}
+
+function relatives_phone_add(){
+    relatives_phone_no += 1
+    $('#relatives_Phone').append(`
+    <div id="relatives_phone_`+ relatives_phone_no +`">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+            <input class="mdl-textfield__input" id="text5" pattern="-?[0-9]*(\.[0-9]+)?" type="text" name="relatives_phones" placeholder="Relatives Phone Number"/>
+            <label class="mdl-textfield__label" for="text5">
+            </label>
+            <span class="mdl-textfield__error">
+                Number required!
+            </span>
+        </div>
+        <div align = "right">
+            <button class="btn btn-skype waves-effect waves-light" type="button" onclick="relatives_phone_add()">
+                <i class="fa fa-plus"></i>
+            </button>
+            <button class = "btn btn-pinterest waves-effect waves-light" type = "button" onclick = "relatives_phone_delete(`+ relatives_phone_no +`)">
+                <i class="fa fa-trash-o"></i>
+            </button>
+        </div>
+    </div>`);
+}
+
+function relatives_phone_delete(num){
+    $('#relatives_phone_' + num).remove();
 }
 
 function address_add(){

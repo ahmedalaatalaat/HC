@@ -1,7 +1,7 @@
 {% extends "cpanel/Base.html" %}
- {% load staticfiles %} 
- {% block content %}
- <!-- Part One -->
+{% load staticfiles %}
+{% block content %}
+<!-- Part One -->
 <div class="page-bar">
     <div class="page-title-breadcrumb">
         <div class="pull-left">
@@ -105,7 +105,12 @@
                         </div>
                     </div>
                     <div class="col-lg-12 p-t-20">
-                        <input class="floating-label mdl-textfield__input" id="date" placeholder="Birth Date" type="text" name="birthday" />
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width" id="date_add">
+                            <input class="mdl-textfield__input" type="text" name="birthday" autocomplete="off" id="dp1" onfocusout="date_val()" />
+                            <label class="mdl-textfield__label">
+                                Birthday
+                            </label>
+                        </div>
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
@@ -174,9 +179,7 @@
                             </label>
                         </div>
                     </div>
-            
-		           
-		                    <div class="col-lg-12 p-t-20">
+                    <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield txt-full-width">
                             <textarea class="mdl-textfield__input" id="text7" rows="4" name="cv"></textarea>
                             <label class="mdl-textfield__label" for="text7">
@@ -184,7 +187,6 @@
                             </label>
                         </div>
                     </div>
-
                     <div class="col-lg-12 p-t-20" id="Phone">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                             <input class="mdl-textfield__input" id="text5" pattern="-?[0-9]*(\.[0-9]+)?" type="text" name="Phone" />
@@ -202,8 +204,6 @@
                             </button>
                         </div>
                     </div>
-                       
-
                     <div class="col-lg-12 p-t-20" id="Address">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                             <input class="mdl-textfield__input" id="text5" pattern="*" type="text" name="address" />
@@ -221,25 +221,21 @@
                             </button>
                         </div>
                     </div>
-                   <!-- multiselect -->
-<div class="col-lg-12 p-t-20">
-    <label style="color: #999999">Pharmacist Specializations</label>
-    <select class="form-control" multiple="multiple" id="my-select" style="height:150px" name="pharmacist_specialization">
-        <option>Academic Pharmacist</option>
-        <option>Community Pharmacist</option>
-        <option>Clinical Pharmacist</option>
-        <option>Hospital Quality Assurance Pharmacist</option>
-        <option>Medical translation</option>
-        <option>Medical Representative</option>
-        <option>Oncology Pharmacist </option>
-        <option>Pharmaceutical</option>
-        <option>Research Pharmacist</option>
-
-    </select>
-</div>
-
-
-                    
+                    <!-- multiselect -->
+                    <div class="col-lg-12 p-t-20">
+                        <label style="color: #999999">Pharmacist Specializations</label>
+                        <select class="form-control" multiple="multiple" id="my-select" style="height:150px" name="pharmacist_specialization">
+                            <option>Academic Pharmacist</option>
+                            <option>Community Pharmacist</option>
+                            <option>Clinical Pharmacist</option>
+                            <option>Hospital Quality Assurance Pharmacist</option>
+                            <option>Medical translation</option>
+                            <option>Medical Representative</option>
+                            <option>Oncology Pharmacist </option>
+                            <option>Pharmaceutical</option>
+                            <option>Research Pharmacist</option>
+                        </select>
+                    </div>
                     <div class="col-lg-12 p-t-20">
                         <span>Hide:</span>
                         <label style="display: inline; margin-left: 10px;" class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-8" id="switch_label">
@@ -259,23 +255,19 @@
                             </div>
                         </div>
                     </div>
-                 
-				    
-					</div>
-                    <div class="col-lg-12 p-t-20 text-center">
-                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-pink" type="submit">
-                            Submit
-                        </button>
-                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default" type="button" id="add_form_Cancel_button">
-                            Cancel
-                        </button>
-                    </div>
                 </div>
-            </form>
+                <div class="col-lg-12 p-t-20 text-center">
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-pink" type="submit">
+                        Submit
+                    </button>
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default" type="button" id="add_form_Cancel_button">
+                        Cancel
+                    </button>
+                </div>
         </div>
+        </form>
     </div>
 </div>
+</div>
 <!-- End Part Two -->
-
-
- {% endblock content %}
+{% endblock content %}

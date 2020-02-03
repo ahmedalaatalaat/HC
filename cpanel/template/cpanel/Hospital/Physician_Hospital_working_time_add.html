@@ -62,90 +62,73 @@
                 </ul>
             </div>
             <form method='POST' enctype="multipart/form-data" id="add_form"> {% csrf_token %}
-                <div class="col-lg-12 p-t-20">
-                <div class="col-lg-12 p-t-20">
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                <input class="mdl-textfield__input" name="NN" id="txtfee" type="text" />
-                <label class="mdl-textfield__label">
-    National Number
-    </label>
-            </div>
-
-            <div class="col-lg-12 p-t-20">
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                    <input class="mdl-textfield__input" name="H_ID" id="txtfee" type="text" />
-                    <label class="mdl-textfield__label">
-        Hospital ID
-        </label>
-                </div>
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                    <input class="mdl-textfield__input" name="fee" id="txtfee" type="text" />
-                    <label class="mdl-textfield__label">
-Fee
-</label>
-                </div>
-            </div>
-            <div class="col-lg-12 p-t-20">
-    <label style="color: #999999">Working Days</label>
-    <select class="form-control" multiple="multiple" id="my-select" style="height:150px" name="WorkingDays">
-        <option>Saturday</option>
-        <option>Sunday</option>
-        <option>Monday</option>
-        <option>Tuseday</option>
-        <option>Wednesday</option>
-        <option>Thursday</option>
-        <option>Friday</option>
-    </select>
-</div>
-
-           
-
-
-          <div class="col-lg-12 p-t-20">
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-        <input class="mdl-textfield__input" type="time" name="FieldName" value="13:30" />
-        <label class="mdl-textfield__label">
-            Start Time
-        </label>
-    </div>
-</div>
-     <div class="col-lg-12 p-t-20">
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-        <input class="mdl-textfield__input" type="time" name="FieldName" value="13:30" />
-        <label class="mdl-textfield__label">
-            End time
-        </label>
-    </div>
-</div>
-
-            <div class="col-lg-12 p-t-20">
-                <div class="col-lg-12 p-t-20 text-center">
-
-                    <div class="col-lg-12 p-t-20 text-center">
-                        <button class="btn btn-circle btn-success" type="submit">
-Submit!
-</button>
-                        <button class="btn btn-circle btn-danger" type="reset">
-Cancel
-</button>
+                <div class="card-body row">
+                    <div class="col-lg-12 p-t-20">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                        <input class="mdl-textfield__input" name="physician_nn" id="txtfee" type="text" />
+                        <label class="mdl-textfield__label">
+                            Physician National Number
+                        </label>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    </div>
-    </div>
-
-
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-
+                <div class="col-lg-12 p-t-20">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                        <input class="mdl-textfield__input" name="hospital" id="txtfee" type="text" />
+                        <label class="mdl-textfield__label">
+                            Hospital ID
+                        </label>
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                        <input class="mdl-textfield__input" name="fee" id="txtfee" type="text" />
+                        <label class="mdl-textfield__label">
+                            Fee
+                        </label>
+                    </div>
+                </div>
+                <div class="col-lg-12 p-t-20">
+                    <label style="color: #999999">Working Days</label>
+                    <select class="form-control" multiple="multiple" id="my-select" style="height:150px" name="week_day">
+                        <option>Saturday</option>
+                        <option>Sunday</option>
+                        <option>Monday</option>
+                        <option>Tuseday</option>
+                        <option>Wednesday</option>
+                        <option>Thursday</option>
+                        <option>Friday</option>
+                    </select>
+                </div>
+                <div class="col-lg-12 p-t-20">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                        <input class="mdl-textfield__input" type="time" name="start_time" value="13:30" />
+                        <label class="mdl-textfield__label">
+                            Start Time
+                        </label>
+                    </div>
+                </div>
+                <div class="col-lg-12 p-t-20">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                        <input class="mdl-textfield__input" type="time" name="end_time" value="13:30" />
+                        <label class="mdl-textfield__label">
+                            End Time
+                        </label>
+                    </div>
+                </div>
+                <div class="col-lg-12 p-t-20">
+                    <div class="col-lg-12 p-t-20 text-center">
+                        <div class="col-lg-12 p-t-20 text-center">
+                            <button class="btn btn-circle btn-success" type="submit">
+                                Submit!
+                            </button>
+                            <button class="btn btn-circle btn-danger" type="reset">
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                </div>
             </form>
         </div>
     </div>
 </div>
+<!-- End Part Two -->
 {% endblock content%}

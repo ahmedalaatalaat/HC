@@ -92,22 +92,21 @@
 					</div>
 
 					<div class="col-lg-12 p-t-20">
-					    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-					        <input class="mdl-textfield__input" type="text" name="password" required maxlength="50" />
-					        <label class="mdl-textfield__label">
-					            Password
-					        </label>
-					    </div>
-					</div>
-
-					<div class="col-lg-12 p-t-20">
-					    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-					        <input class="mdl-textfield__input" type="text" name="password_Confirm" required maxlength="50" />
-					        <label class="mdl-textfield__label">
-					           Confirm Password
-					        </label>
-					    </div>
-					</div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+        <input class="mdl-textfield__input" id="txtPwd" type="password" name="FieldName" />
+        <label class="mdl-textfield__label">
+            Password
+        </label>
+    </div>
+</div>
+<div class="col-lg-12 p-t-20">
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+        <input class="mdl-textfield__input" id="txtConfirmPwd" type="password" name="FieldName" />
+        <label class="mdl-textfield__label">
+            Confirm Password
+        </label>
+    </div>
+</div>
 
 					<div class="col-lg-12 p-t-20">
 					    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width" id="date_add">
@@ -116,8 +115,8 @@
 					            Birth Day
 					        </label>
 					    </div>
-					</div>  
-					
+					</div>
+
 					<div class="col-lg-12 p-t-20">
 					    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
 					        <input class="mdl-textfield__input" id="gender" readonly="" tabindex="-1" type="text" value="" name="gender" require maxlength="6" />
@@ -235,7 +234,7 @@
 
                     <div class="col-lg-12 p-t-20">
 					    <label style="color: #999999">Specialization</label>
-					    <select class="form-control" multiple="multiple" id="my-select" style="height:150px" name="specialization" required maxlength="120" >
+					    <select class="form-control" multiple="multiple" id="my-select" style="height:150px" name="specialization" maxlength="120" >
 					        <option>Dermatology (Skin)</option>
 					        <option>Dentistry (Teeth)</option>
 					        <option>Psychiatry (Mental, Emotional or Behavioral Disorders)</option>

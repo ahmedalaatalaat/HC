@@ -75,6 +75,57 @@ def Doctor_list(request):
 
 # Patient Views
 def Patient_add(request):
+    if request.is_ajax():
+        if request.method == 'POST':
+            if get_object_or_none(Patient, patient_nn=request.POST.get('national_number')):
+                return HttpResponseNotFound("This Patient data is already stored")
+
+            hide = True if request.POST.get('hide') == 'on' else False
+
+            stakeholder = get_object_or_none(Stakeholders, national_number=request.POST.get('national_number'))
+            if not stakeholder:
+                date = request.POST.get('birthday').split('-')
+                date = f'{date[2]}-{date[0]}-{date[1]}'
+                stakeholder = Stakeholders.objects.create(
+                    stakeholder_name=request.POST.get('stakeholder_name'),
+                    national_number=request.POST.get('national_number'),
+                    stakeholder_last_name=request.POST.get('stakeholder_last_name'),
+                    password=request.POST.get('password'),
+                    birthday=date,
+                    gender=request.POST.get('gender'),
+                    email=request.POST.get('email'),
+                    marital_status=request.POST.get('marital_status'),
+                    nationality=request.POST.get('nationality'),
+                    cv=request.POST.get('cv'),
+                    image=request.FILES.get('image')
+                )
+
+            print(hide)
+            patient = Patient.objects.create(
+                patient_nn=stakeholder,
+                blood_type=request.POST.get('blood_type'),
+                chronic_diseases_name=request.POST.get('chronic_diseases_name'),
+                chronic_diseases_type=request.POST.get('chronic_diseases_type'),
+                hide=hide
+            )
+
+            for phone in request.POST.getlist('Phone'):
+                StakeholdersPhones.objects.create(
+                    national_number=stakeholder,
+                    phone=phone
+                )
+            for phone in request.POST.getlist('relatives_phones'):
+                PatientRelativesPhones.objects.create(
+                    patient_nn=patient,
+                    phone=phone
+                )
+            for address in request.POST.getlist('address'):
+                StakeholdersAddress.objects.create(
+                    national_number=stakeholder,
+                    address=address
+                )
+
+            return HttpResponse()
     return render(request, 'cpanel/Patient/Patient_add.html')
 
 
@@ -92,6 +143,35 @@ def Patient_list(request):
 
 # Patient History Views
 def Patient_history_add(request):
+    if request.is_ajax():
+        if request.method == 'POST':
+
+            hide = True if request.POST.get('hide') == 'on' else False
+
+            if not get_object_or_none(Patient, patient_nn=request.POST.get('patient_nn')):
+                return HttpResponseNotFound("This Patient national number not exist")
+            else:
+                patient = get_object_or_none(Patient, patient_nn=request.POST.get('patient_nn'))
+
+            if not get_object_or_none(Physician, physician_nn=request.POST.get('physician_nn')):
+                return HttpResponseNotFound("This physician national number not exist")
+            else:
+                physician = get_object_or_none(Physician, physician_nn=request.POST.get('physician_nn'))
+
+            patienthistory = PatientHistory.objects.create(
+                patient_nn=patient,
+                physician_nn=physician,
+                date_time=request.POST.get('date_time'),
+                visitation_type=request.POST.get('visitation_type'),
+                prescription=request.POST.get('prescription'),
+                physician_comments=request.POST.get('physician_comments'),
+                diagnouse=request.POST.get('diagnouse'),
+                analysis_radiology=request.POST.get('analysis_radiology'),
+                disease_priority=request.POST.get('disease_priority'),
+                hide=hide
+            )
+
+            return HttpResponse()
     return render(request, 'cpanel/Patient/Patient_History_add.html')
 
 
@@ -109,6 +189,54 @@ def Patient_history_list(request):
 
 # Nurse Views
 def Nurse_add(request):
+    if request.is_ajax():
+        if request.method == 'POST':
+            if get_object_or_none(Nurse, nurse_nn=request.POST.get('national_number')):
+                return HttpResponseNotFound("This Nurse data is already stored")
+
+            hide = True if request.POST.get('hide') == 'on' else False
+
+            stakeholder = get_object_or_none(Stakeholders, national_number=request.POST.get('national_number'))
+            if not stakeholder:
+                date = request.POST.get('birthday').split('-')
+                date = f'{date[2]}-{date[0]}-{date[1]}'
+                stakeholder = Stakeholders.objects.create(
+                    stakeholder_name=request.POST.get('stakeholder_name'),
+                    national_number=request.POST.get('national_number'),
+                    stakeholder_last_name=request.POST.get('stakeholder_last_name'),
+                    password=request.POST.get('password'),
+                    birthday=date,
+                    gender=request.POST.get('gender'),
+                    email=request.POST.get('email'),
+                    marital_status=request.POST.get('marital_status'),
+                    nationality=request.POST.get('nationality'),
+                    cv=request.POST.get('cv'),
+                    image=request.FILES.get('image')
+                )
+
+            nurse = Nurse.objects.create(
+                nurse_nn=stakeholder,
+                hide=hide
+            )
+
+            for phone in request.POST.getlist('Phone'):
+                StakeholdersPhones.objects.create(
+                    national_number=stakeholder,
+                    phone=phone
+                )
+
+            for address in request.POST.getlist('address'):
+                StakeholdersAddress.objects.create(
+                    national_number=stakeholder,
+                    address=address
+                )
+            for specialization in request.POST.getlist('specialization'):
+                NurseSpecialization.objects.create(
+                    nurse_nn=nurse,
+                    specialization=specialization
+                )
+
+            return HttpResponse()
     return render(request, 'cpanel/Nurse/Nurse_add.html')
 
 
@@ -126,6 +254,51 @@ def Nurse_list(request):
 
 # Paramedic Views
 def Paramedic_add(request):
+    if request.is_ajax():
+        if request.method == 'POST':
+            if get_object_or_none(Paramedic, paramedic_nn=request.POST.get('national_number')):
+                return HttpResponseNotFound("This Paramedic data is already stored")
+
+            hide = True if request.POST.get('hide') == 'on' else False
+
+            stakeholder = get_object_or_none(Stakeholders, national_number=request.POST.get('national_number'))
+            if not stakeholder:
+                date = request.POST.get('birthday').split('-')
+                date = f'{date[2]}-{date[0]}-{date[1]}'
+                stakeholder = Stakeholders.objects.create(
+                    stakeholder_name=request.POST.get('stakeholder_name'),
+                    national_number=request.POST.get('national_number'),
+                    stakeholder_last_name=request.POST.get('stakeholder_last_name'),
+                    password=request.POST.get('password'),
+                    birthday=date,
+                    gender=request.POST.get('gender'),
+                    email=request.POST.get('email'),
+                    marital_status=request.POST.get('marital_status'),
+                    nationality=request.POST.get('Nationality'),
+                    cv=request.POST.get('cv'),
+                    image=request.FILES.get('image')
+                )
+
+            paramedic = Paramedic.objects.create(
+                paramedic_nn=stakeholder,
+                ambulance_palte_number=request.POST.get('ambulance_palte_number'),
+                hide=hide
+            )
+
+            for phone in request.POST.getlist('phone'):
+                StakeholdersPhones.objects.create(
+                    national_number=stakeholder,
+                    phone=phone
+                )
+
+            for address in request.POST.getlist('address'):
+                StakeholdersAddress.objects.create(
+                    national_number=stakeholder,
+                    address=address
+                )
+
+            return HttpResponse()
+
     return render(request, 'cpanel/Paramedic/Paramedic_add.html')
 
 
@@ -143,6 +316,54 @@ def Paramedic_list(request):
 
 # Paramedic Views
 def Pharmacist_add(request):
+    if request.is_ajax():
+        if request.method == 'POST':
+            if get_object_or_none(Pharmacist, pharmacist_nn=request.POST.get('national_number')):
+                return HttpResponseNotFound("This Pharmacist data is already stored")
+
+            hide = True if request.POST.get('hide') == 'on' else False
+
+            stakeholder = get_object_or_none(Stakeholders, national_number=request.POST.get('national_number'))
+            if not stakeholder:
+                date = request.POST.get('birthday').split('-')
+                date = f'{date[2]}-{date[0]}-{date[1]}'
+                stakeholder = Stakeholders.objects.create(
+                    stakeholder_name=request.POST.get('stakeholder_name'),
+                    national_number=request.POST.get('national_number'),
+                    stakeholder_last_name=request.POST.get('stakeholder_last_name'),
+                    password=request.POST.get('password'),
+                    birthday=date,
+                    gender=request.POST.get('gender'),
+                    email=request.POST.get('email'),
+                    marital_status=request.POST.get('marital_status'),
+                    nationality=request.POST.get('nationality'),
+                    cv=request.POST.get('cv'),
+                    image=request.FILES.get('image')
+                )
+
+            pharmacist = Pharmacist.objects.create(
+                pharmacist_nn=stakeholder,
+                hide=hide
+            )
+
+            for phone in request.POST.getlist('Phone'):
+                StakeholdersPhones.objects.create(
+                    national_number=stakeholder,
+                    phone=phone
+                )
+
+            for address in request.POST.getlist('address'):
+                StakeholdersAddress.objects.create(
+                    national_number=stakeholder,
+                    address=address
+                )
+            for specialization in request.POST.getlist('pharmacist_specialization'):
+                PharmacistSpecialization.objects.create(
+                    pharmacist_nn=pharmacist,
+                    specialization=specialization
+                )
+
+            return HttpResponse()
     return render(request, 'cpanel/Pharmacist/Pharmacist_add.html')
 
 
@@ -160,6 +381,54 @@ def Pharmacist_list(request):
 
 # Specialist Views
 def Specialist_add(request):
+    if request.is_ajax():
+        if request.method == 'POST':
+            if get_object_or_none(Specialist, specialist_nn=request.POST.get('national_number')):
+                return HttpResponseNotFound("This Specialist data is already stored")
+
+            hide = True if request.POST.get('hide') == 'on' else False
+
+            stakeholder = get_object_or_none(Stakeholders, national_number=request.POST.get('national_number'))
+            if not stakeholder:
+                date = request.POST.get('birthday').split('-')
+                date = f'{date[2]}-{date[0]}-{date[1]}'
+                stakeholder = Stakeholders.objects.create(
+                    stakeholder_name=request.POST.get('stakeholder_name'),
+                    national_number=request.POST.get('national_number'),
+                    stakeholder_last_name=request.POST.get('stakeholder_last_name'),
+                    password=request.POST.get('password'),
+                    birthday=date,
+                    gender=request.POST.get('gender'),
+                    email=request.POST.get('email'),
+                    marital_status=request.POST.get('marital_status'),
+                    nationality=request.POST.get('nationality'),
+                    cv=request.POST.get('cv'),
+                    image=request.FILES.get('image')
+                )
+
+            specialist = Specialist.objects.create(
+                specialist_nn=stakeholder,
+                hide=hide
+            )
+
+            for phone in request.POST.getlist('Phone'):
+                StakeholdersPhones.objects.create(
+                    national_number=stakeholder,
+                    phone=phone
+                )
+
+            for address in request.POST.getlist('address'):
+                StakeholdersAddress.objects.create(
+                    national_number=stakeholder,
+                    address=address
+                )
+            for specialization in request.POST.getlist('specialization'):
+                SpecialistSpecialization.objects.create(
+                    specialist_nn=specialist,
+                    specialization=specialization
+                )
+
+            return HttpResponse()
     return render(request, 'cpanel/Specialist/Specialist_add.html')
 
 
@@ -205,6 +474,43 @@ def Specialization_list(request):
 
 # Stakeholder Views
 def Stakeholder_add(request):
+    if request.is_ajax():
+        if request.method == 'POST':
+            if get_object_or_none(Stakeholders, national_number=request.POST.get('national_number')):
+                return HttpResponseNotFound("This Stakeholder data is already stored")
+
+            hide = True if request.POST.get('hide') == 'on' else False
+
+            stakeholder = get_object_or_none(Stakeholders, national_number=request.POST.get('national_number'))
+            if not stakeholder:
+                stakeholder = Stakeholders.objects.create(
+                    stakeholder_name=request.POST.get('stakeholder_name'),
+                    national_number=request.POST.get('national_number'),
+                    stakeholder_last_name=request.POST.get('stakeholder_last_name'),
+                    password=request.POST.get('password'),
+                    birthday=request.POST.get('birthday'),
+                    gender=request.POST.get('gender'),
+                    email=request.POST.get('email'),
+                    marital_status=request.POST.get('marital_status'),
+                    nationality=request.POST.get('nationality'),
+                    cv=request.POST.get('cv'),
+                    image=request.FILES.get('image'),
+                    stakeholder_type=request.POST.get('stakeholder_type'),
+                )
+
+            for phone in request.POST.getlist('Phone'):
+                StakeholdersPhones.objects.create(
+                    national_number=stakeholder,
+                    phone=phone
+                )
+
+            for address in request.POST.getlist('address'):
+                StakeholdersAddress.objects.create(
+                    national_number=stakeholder,
+                    address=address
+                )
+
+            return HttpResponse()
     return render(request, 'cpanel/Stakeholders/Stakeholders_add.html')
 
 
@@ -222,6 +528,43 @@ def Stakeholder_list(request):
 
 # Clinic Views
 def Clinic_add(request):
+    if request.is_ajax():
+        if request.method == 'POST':
+            if get_object_or_none(Clinic, clinic=request.POST.get('clinic')):
+                return HttpResponseNotFound("This Clinic data is already stored")
+
+            hide = True if request.POST.get('hide') == 'on' else False
+            ER = True if request.POST.get('er_availability') == 'on' else False
+
+            Medical_Institutions = MedicalInstitutions.objects.create(
+                institution_id=request.POST.get('institution_id'),
+                image=request.FILES.get('image'),
+                institution_name=request.POST.get('institution_name'),
+                hide=hide,
+            )
+
+            for phone in request.POST.getlist('Phone'):
+                MedicalInstitutionsPhone.objects.create(
+                    institution=Medical_Institutions,
+                    phone=phone
+                )
+
+            for address in request.POST.getlist('address'):
+                MedicalInstitutionsAddress.objects.create(
+                    institution=Medical_Institutions,
+                    address=address
+                )
+            print(request.POST.get('er_availability'))
+            Clinic.objects.create(
+                clinic=request.POST.get('clinic'),
+                email=request.POST.get('email'),
+                fax=request.POST.get('fax'),
+                er_availability=ER,
+                hide=hide,
+            )
+
+            return HttpResponse()
+
     return render(request, 'cpanel/Clinic/Clinic_add.html')
 
 
@@ -239,6 +582,46 @@ def Clinic_list(request):
 
 # Pharmacy Views
 def Pharmacy_add(request):
+    if request.is_ajax():
+        if request.method == 'POST':
+            if get_object_or_none(Pharmacy, pharmacy=request.POST.get('lab')):
+                return HttpResponseNotFound("This Pharmacy data is already stored")
+
+            hide = True if request.POST.get('hide') == 'on' else False
+
+            Medical_Institutions = MedicalInstitutions.objects.create(
+                institution_id=request.POST.get('institution_id'),
+                image=request.FILES.get('image'),
+                institution_name=request.POST.get('institution_name'),
+                hide=hide,
+            )
+
+            for phone in request.POST.getlist('Phone'):
+                MedicalInstitutionsPhone.objects.create(
+                    institution=Medical_Institutions,
+                    phone=phone
+                )
+
+            for address in request.POST.getlist('address'):
+                MedicalInstitutionsAddress.objects.create(
+                    institution=Medical_Institutions,
+                    address=address
+                )
+
+            owner = get_object_or_none(Pharmacist, pharmacist_nn=request.POST.get('owner'))
+            print(request.POST.get('owner'))
+            if not owner:
+                return HttpResponseNotFound("This Pharmacist data is not stored")
+
+            Pharmacy.objects.create(
+                pharmacy=request.POST.get('pharmacy'),
+                pharmacy_type=request.POST.get('pharmacy_type'),
+                owner=owner,
+                hide=hide,
+            )
+
+            return HttpResponse()
+
     return render(request, 'cpanel/Pharmacy/Pharmacy_add.html')
 
 
@@ -256,7 +639,42 @@ def Pharmacy_list(request):
 
 # Lab Views
 def Lab_add(request):
-    return render(request, 'cpanel/Lab/Lab_list.html')
+    if request.is_ajax():
+        if request.method == 'POST':
+            if get_object_or_none(Labs, lab=request.POST.get('lab')):
+                return HttpResponseNotFound("This lab data is already stored")
+
+            hide = True if request.POST.get('hide') == 'on' else False
+
+            Medical_Institutions = MedicalInstitutions.objects.create(
+                institution_id=request.POST.get('institution_id'),
+                image=request.FILES.get('image'),
+                institution_name=request.POST.get('institution_name'),
+                hide=hide,
+            )
+
+            for phone in request.POST.getlist('Phone'):
+                MedicalInstitutionsPhone.objects.create(
+                    institution=Medical_Institutions,
+                    phone=phone
+                )
+
+            for address in request.POST.getlist('address'):
+                MedicalInstitutionsAddress.objects.create(
+                    institution=Medical_Institutions,
+                    address=address
+                )
+
+            Labs.objects.create(
+                lab=request.POST.get('lab'),
+                email=request.POST.get('email'),
+                fax=request.POST.get('fax'),
+                hide=hide,
+            )
+
+            return HttpResponse()
+
+    return render(request, 'cpanel/Lab/Labs_add.html')
 
 
 def Lab_edit(request):
@@ -273,6 +691,34 @@ def Lab_list(request):
 
 # Medical Institution Views
 def Medical_Institution_add(request):
+    if request.is_ajax():
+        if request.method == 'POST':
+            if get_object_or_none(MedicalInstitutions, institution_id=request.POST.get('institution_id')):
+                return HttpResponseNotFound("This Medical Institutions data is already stored")
+
+            hide = True if request.POST.get('hide') == 'on' else False
+
+            Medical_Institutions = MedicalInstitutions.objects.create(
+                institution_id=request.POST.get('institution_id'),
+                image=request.FILES.get('image'),
+                institution_name=request.POST.get('institution_name'),
+                hide=hide,
+            )
+
+            for phone in request.POST.getlist('Phone'):
+                MedicalInstitutionsPhone.objects.create(
+                    institution=Medical_Institutions,
+                    phone=phone
+                )
+
+            for address in request.POST.getlist('address'):
+                MedicalInstitutionsAddress.objects.create(
+                    institution=Medical_Institutions,
+                    address=address
+                )
+
+            return HttpResponse()
+
     return render(request, 'cpanel/Medical Institutions/Medical_institution_add.html')
 
 
@@ -290,6 +736,41 @@ def Medical_Institution_list(request):
 
 # Physician Clinic Working Time Views
 def Physician_Clinic_Working_Time_add(request):
+    if request.is_ajax():
+        if request.method == 'POST':
+            physician = get_object_or_none(Physician, physician_nn=request.POST.get('physician_nn'))
+            if not physician:
+                return HttpResponseNotFound("This doctor data is not stored")
+
+            clinic = get_object_or_none(Clinic, clinic=request.POST.get('clinic'))
+            if not clinic:
+                return HttpResponseNotFound("This clinic data is not stored")
+
+            for day in request.POST.getlist('week_day'):
+                work_day = PhysicianClinicWorkingTime.objects.filter(
+                    physician_nn=physician,
+                    clinic=clinic,
+                    week_day=day,
+                    start_time=request.POST.get('start_time'),
+                    end_time=request.POST.get('end_time')
+                )
+                if work_day.count():
+                    return HttpResponseNotFound("This working day data is already stored you can go to working days edit")
+
+            hide = True if request.POST.get('hide') == 'on' else False
+
+            for day in request.POST.getlist('week_day'):
+                PhysicianClinicWorkingTime.objects.create(
+                    physician_nn=physician,
+                    clinic=clinic,
+                    week_day=day,
+                    start_time=request.POST.get('start_time'),
+                    end_time=request.POST.get('end_time'),
+                    fee=request.POST.get('fee'),
+                    hide=hide,
+                )
+            return HttpResponse()
+
     return render(request, 'cpanel/Clinic/Physician_Clinic_working_time_add.html')
 
 
@@ -307,6 +788,45 @@ def Physician_Clinic_Working_Time_list(request):
 
 # Hospital Views
 def Hospital_add(request):
+    if request.is_ajax():
+        if request.method == 'POST':
+            if get_object_or_none(Hospital, hospital=request.POST.get('hospital')):
+                return HttpResponseNotFound("This hospital data is already stored")
+
+            hide = True if request.POST.get('hide') == 'on' else False
+            ER = True if request.POST.get('er_availability') == 'on' else False
+
+            Medical_Institutions = MedicalInstitutions.objects.create(
+                institution_id=request.POST.get('institution_id'),
+                image=request.FILES.get('image'),
+                institution_name=request.POST.get('institution_name'),
+                hide=hide,
+            )
+
+            for phone in request.POST.getlist('Phone'):
+                MedicalInstitutionsPhone.objects.create(
+                    institution=Medical_Institutions,
+                    phone=phone
+                )
+
+            for address in request.POST.getlist('address'):
+                MedicalInstitutionsAddress.objects.create(
+                    institution=Medical_Institutions,
+                    address=address
+                )
+
+            Hospital.objects.create(
+                hospital=request.POST.get('hospital'),
+                email=request.POST.get('email'),
+                fax=request.POST.get('fax'),
+                er_availability=ER,
+                hospital_type=request.POST.get('hospital_type'),
+                manager=request.POST.get('manager'),
+                hide=hide,
+            )
+
+            return HttpResponse()
+
     return render(request, 'cpanel/Hospital/Hospital_add.html')
 
 
@@ -324,6 +844,40 @@ def Hospital_list(request):
 
 # Physician Hospital Working Time Views
 def Physician_Hospital_Working_Time_add(request):
+    if request.is_ajax():
+        if request.method == 'POST':
+            physician = get_object_or_none(Physician, physician_nn=request.POST.get('physician_nn'))
+            if not physician:
+                return HttpResponseNotFound("This doctor data is not stored")
+
+            hospital = get_object_or_none(Hospital, hospital=request.POST.get('hospital'))
+            if not hospital:
+                return HttpResponseNotFound("This hospital data is not stored")
+
+            for day in request.POST.getlist('week_day'):
+                work_day = PhysicianHospitalWorkingTime.objects.filter(
+                    physician_nn=physician,
+                    hospital=hospital,
+                    week_day=day,
+                    start_time=request.POST.get('start_time'),
+                    end_time=request.POST.get('end_time')
+                )
+                if work_day.count():
+                    return HttpResponseNotFound("This working day data is already stored you can go to working days edit")
+
+            hide = True if request.POST.get('hide') == 'on' else False
+
+            for day in request.POST.getlist('week_day'):
+                PhysicianHospitalWorkingTime.objects.create(
+                    physician_nn=physician,
+                    hospital=hospital,
+                    week_day=day,
+                    start_time=request.POST.get('start_time'),
+                    end_time=request.POST.get('end_time'),
+                    fee=request.POST.get('fee'),
+                    hide=hide,
+                )
+            return HttpResponse()
     return render(request, 'cpanel/Hospital/Physician_Hospital_working_time_add.html')
 
 
@@ -341,6 +895,35 @@ def Physician_Hospital_Working_Time_list(request):
 
 # Insurance Company Views
 def Insurance_Company_add(request):
+    if request.is_ajax():
+        if request.method == 'POST':
+            if get_object_or_none(InsuranceCompanies, company_id=request.POST.get('company_id')):
+                return HttpResponseNotFound("This Insurance Company data is already stored")
+
+            hide = True if request.POST.get('hide') == 'on' else False
+
+            company = InsuranceCompanies.objects.create(
+                company_id=request.POST.get('company_id'),
+                email=request.POST.get('email'),
+                fax=request.POST.get('fax'),
+                company_name=request.POST.get('company_name'),
+                company_type=request.POST.get('company_type'),
+                hide=hide
+            )
+
+            for phone in request.POST.getlist('phone'):
+                InsuranceCompaniesPhone.objects.create(
+                    company=company,
+                    phone=phone
+                )
+
+            for address in request.POST.getlist('address'):
+                InsuranceCompaniesAddress.objects.create(
+                    company=company,
+                    address=address
+                )
+
+            return HttpResponse()
     return render(request, 'cpanel/Insurance Company/Insurance_Company_add.html')
 
 
@@ -358,6 +941,23 @@ def Insurance_Company_list(request):
 
 # Insurance Type Views
 def Insurance_Type_add(request):
+    if request.is_ajax():
+        if request.method == 'POST':
+            company = get_object_or_none(InsuranceCompanies, company_id=request.POST.get('company'))
+            if not company:
+                return HttpResponseNotFound("This Insurance Company data is not stored")
+
+            if InsuranceTypes.objects.filter(company=company, type_name=request.POST.get('type_name')).count():
+                return HttpResponseNotFound("This Insurance Type data is already stored")
+
+            hide = True if request.POST.get('hide') == 'on' else False
+            InsuranceTypes.objects.create(
+                company=company,
+                type_name=request.POST.get('type_name'),
+                hide=hide
+            )
+            return HttpResponse()
+
     return render(request, 'cpanel/Insurance Company/Insurance_Type_add.html')
 
 

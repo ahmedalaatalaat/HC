@@ -1,7 +1,7 @@
 {% extends "cpanel/Base.html" %}
- {% load staticfiles %} 
- {% block content %}
- <!-- Part One -->
+{% load staticfiles %}
+{% block content %}
+<!-- Part One -->
 <div class="page-bar">
     <div class="page-title-breadcrumb">
         <div class="pull-left">
@@ -74,7 +74,7 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" type="text" maxlength="255"  name="stakeholder_name" />
+                            <input class="mdl-textfield__input" type="text" maxlength="255" name="stakeholder_name" />
                             <label class="mdl-textfield__label">
                                 First Name
                             </label>
@@ -105,7 +105,12 @@
                         </div>
                     </div>
                     <div class="col-lg-12 p-t-20">
-                        <input class="floating-label mdl-textfield__input" id="date" placeholder="Birth Date" type="text" name="birthday" />
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width" id="date_add">
+                            <input class="mdl-textfield__input" type="text" name="birthday" autocomplete="off" id="dp1" onfocusout="date_val()" />
+                            <label class="mdl-textfield__label">
+                                Birthday
+                            </label>
+                        </div>
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
@@ -174,120 +179,109 @@
                             </label>
                         </div>
                     </div>
-            
-		            <div class="col-lg-12 p-t-20">
-		   		 	<div class="mdl-textfield mdl-js-textfield 	mdl-textfield--floating-label txt-full-width">
-		      	  <input class="mdl-textfield__input" type="text" required maxlength="100" name="chronic_diseases_name" />
-		      	  <label class="mdl-textfield__label">
-		            Chronic diseases name
-		      		  </label>
-		  			  </div>
-					</div>
-					  <div class="col-lg-12 p-t-20">
-		   		 	<div class="mdl-textfield mdl-js-textfield 	mdl-textfield--floating-label txt-full-width">
-		      	  <input class="mdl-textfield__input" type="text" required maxlength="100" name="chronic_diseases_type" />
-		      	  <label class="mdl-textfield__label">
-		            Chronic diseases type
-		      		  </label>
-		  			  </div>
-					</div>
-					 <!-----------radio blood button ------------>
-
-            <div class="col-lg-12 p-t-20">
-                <div>
-                    <div class="card-box">
-                        <div class="card-head">
-                            <header>
-                                Blood type
-                            </header>
-                        </div>
-                        <div class="card-body ">
-
-                            <table class="col-lg-12 p-t-20">
-                                <tr>
-                                    <td class="p-r-20 p-b-20">
-                                        A+
-                                    </td>
-                                    <td class="p-r-20 p-b-20">
-                                        A-
-                                    </td>
-                                    <td class="p-r-20 p-b-20">
-                                        O+
-                                    </td>
-                                    <td class="p-r-20 p-b-20">
-                                        O-
-                                    </td>
-                                    <td class="p-r-20 p-b-20">
-                                        B+
-                                    </td>
-                                    <td class="p-r-20 p-b-20">
-                                        B-
-                                    </td>
-                                    <td class="p-r-20 p-b-20">
-                                        AB+
-                                    </td>
-                                    <td class="p-r-20 p-b-20">
-                                        AB-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label class="mdl-radio mdl-js-radio" for="option1">
-                          <input checked="" class="mdl-radio__button" id="option1"  type="radio" value="A+" name="blood_type" />
-            
-                         </label>
-                                    </td>
-                                    <td>
-                                        <label class="mdl-radio mdl-js-radio" for="option2">
-                          <input checked="" class="mdl-radio__button" id="option2" value="A-"name="blood_type" type="radio"/>
-            
-                         </label>
-                                    </td>
-                                    <td>
-                                        <label class="mdl-radio mdl-js-radio" for="option3">
-                          <input checked="" class="mdl-radio__button" id="option3" value="O+"name="blood_type" type="radio"/>
-            
-                         </label>
-                                    </td>
-                                    <td>
-                                        <label class="mdl-radio mdl-js-radio" for="option4">
-                          <input checked="" class="mdl-radio__button" id="option4" value="O-"name="blood_type" type="radio"/>
-            
-                         </label>
-                                    </td>
-                                    <td>
-                                        <label class="mdl-radio mdl-js-radio" for="option5">
-                          <input checked="" class="mdl-radio__button" id="option5" value="B+"name="blood_type" type="radio"/>
-            
-                         </label>
-                                    </td>
-                                    <td>
-                                        <label class="mdl-radio mdl-js-radio" for="option6">
-                          <input checked="" class="mdl-radio__button" id="option6" value="B-"name="blood_type" type="radio"/>
-            
-                         </label>
-                                    </td>
-                                    <td>
-                                        <label class="mdl-radio mdl-js-radio" for="option7">
-                          <input checked="" class="mdl-radio__button" id="option7" value="AB+"name="blood_type" type="radio"/>
-            
-                         </label>
-                                    </td>
-                                    <td>
-                                        <label class="mdl-radio mdl-js-radio" for="option8">
-                          <input checked="" class="mdl-radio__button" id="option8"value="AB-" name="blood_type" type="radio"/>
-            
-                         </label>
-                                    </td>
-                                </tr>
-                            </table>
+                    <div class="col-lg-12 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield  mdl-textfield--floating-label txt-full-width">
+                            <input class="mdl-textfield__input" type="text" required maxlength="100" name="chronic_diseases_name" />
+                            <label class="mdl-textfield__label">
+                                Chronic diseases name
+                            </label>
                         </div>
                     </div>
-                </div>
-            </div>
-            <!--------------('O+', 'O-', 'A+', 'A-', 'B+', 'B-', 'AB+', 'AB-')------------------>
-            <!-------------chronic d form ---------------------->
-		                    <div class="col-lg-12 p-t-20">
+                    <div class="col-lg-12 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield  mdl-textfield--floating-label txt-full-width">
+                            <input class="mdl-textfield__input" type="text" required maxlength="100" name="chronic_diseases_type" />
+                            <label class="mdl-textfield__label">
+                                Chronic diseases type
+                            </label>
+                        </div>
+                    </div>
+                    <!-----------radio blood button ------------>
+                    <div class="col-lg-12 p-t-20">
+                        <div>
+                            <div class="card-box">
+                                <div class="card-head">
+                                    <header>
+                                        Blood type
+                                    </header>
+                                </div>
+                                <div class="card-body ">
+                                    <table class="col-lg-12 p-t-20">
+                                        <tr>
+                                            <td class="p-r-20 p-b-20">
+                                                A+
+                                            </td>
+                                            <td class="p-r-20 p-b-20">
+                                                A-
+                                            </td>
+                                            <td class="p-r-20 p-b-20">
+                                                O+
+                                            </td>
+                                            <td class="p-r-20 p-b-20">
+                                                O-
+                                            </td>
+                                            <td class="p-r-20 p-b-20">
+                                                B+
+                                            </td>
+                                            <td class="p-r-20 p-b-20">
+                                                B-
+                                            </td>
+                                            <td class="p-r-20 p-b-20">
+                                                AB+
+                                            </td>
+                                            <td class="p-r-20 p-b-20">
+                                                AB-
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="mdl-radio mdl-js-radio" for="option1">
+                                                    <input checked="" class="mdl-radio__button" id="option1" type="radio" value="A+" name="blood_type" />
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <label class="mdl-radio mdl-js-radio" for="option2">
+                                                    <input checked="" class="mdl-radio__button" id="option2" value="A-" name="blood_type" type="radio" />
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <label class="mdl-radio mdl-js-radio" for="option3">
+                                                    <input checked="" class="mdl-radio__button" id="option3" value="O+" name="blood_type" type="radio" />
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <label class="mdl-radio mdl-js-radio" for="option4">
+                                                    <input checked="" class="mdl-radio__button" id="option4" value="O-" name="blood_type" type="radio" />
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <label class="mdl-radio mdl-js-radio" for="option5">
+                                                    <input checked="" class="mdl-radio__button" id="option5" value="B+" name="blood_type" type="radio" />
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <label class="mdl-radio mdl-js-radio" for="option6">
+                                                    <input checked="" class="mdl-radio__button" id="option6" value="B-" name="blood_type" type="radio" />
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <label class="mdl-radio mdl-js-radio" for="option7">
+                                                    <input checked="" class="mdl-radio__button" id="option7" value="AB+" name="blood_type" type="radio" />
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <label class="mdl-radio mdl-js-radio" for="option8">
+                                                    <input checked="" class="mdl-radio__button" id="option8" value="AB-" name="blood_type" type="radio" />
+                                                </label>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--------------('O+', 'O-', 'A+', 'A-', 'B+', 'B-', 'AB+', 'AB-')------------------>
+                    <!-------------chronic d form ---------------------->
+                    <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield txt-full-width">
                             <textarea class="mdl-textfield__input" id="text7" rows="4" name="cv"></textarea>
                             <label class="mdl-textfield__label" for="text7">
@@ -295,7 +289,6 @@
                             </label>
                         </div>
                     </div>
-
                     <div class="col-lg-12 p-t-20" id="Phone">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                             <input class="mdl-textfield__input" required maxlength="25" id="text5" pattern="-?[0-9]*(\.[0-9]+)?" type="text" name="Phone" />
@@ -313,18 +306,18 @@
                             </button>
                         </div>
                     </div>
-                        <div class="col-lg-12 p-t-20" id="Phone">
-				    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-				        <input class="mdl-textfield__input" maxlength="25" id="text5" pattern="-?[0-9]*(\.[0-9]+)?" type="text" name="Relatives_Phones" autocomplete="off" />
-				        <label class="mdl-textfield__label" for="text5">
-				            Relatives Phone Numbers
-				        </label>
-				        <span class="mdl-textfield__error">
-				            Number required!
-				        </span>
-				    </div>
-				    <div align="right">
-                            <button class="btn btn-skype waves-effect waves-light" type="button" onclick="phone_add()">
+                    <div class="col-lg-12 p-t-20" id="relatives_Phone">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <input class="mdl-textfield__input" maxlength="25" id="text4" pattern="-?[0-9]*(\.[0-9]+)?" type="text" name="relatives_phones" autocomplete="off" />
+                            <label class="mdl-textfield__label" for="text5">
+                                Relatives Phone Number
+                            </label>
+                            <span class="mdl-textfield__error">
+                                Number required!
+                            </span>
+                        </div>
+                        <div align="right">
+                            <button class="btn btn-skype waves-effect waves-light" type="button" onclick="relatives_phone_add()">
                                 <i class="fa fa-plus">
                                 </i>
                             </button>
@@ -347,7 +340,6 @@
                             </button>
                         </div>
                     </div>
-                    
                     <div class="col-lg-12 p-t-20">
                         <span>Hide:</span>
                         <label style="display: inline; margin-left: 10px;" class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-8" id="switch_label">
@@ -367,23 +359,19 @@
                             </div>
                         </div>
                     </div>
-                 
-				    
-					</div>
-                    <div class="col-lg-12 p-t-20 text-center">
-                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-pink" type="submit">
-                            Submit
-                        </button>
-                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default" type="button" id="add_form_Cancel_button">
-                            Cancel
-                        </button>
-                    </div>
                 </div>
-            </form>
+                <div class="col-lg-12 p-t-20 text-center">
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-pink" type="submit">
+                        Submit
+                    </button>
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default" type="button" id="add_form_Cancel_button">
+                        Cancel
+                    </button>
+                </div>
         </div>
+        </form>
     </div>
 </div>
+</div>
 <!-- End Part Two -->
-
-
- {% endblock content %}
+{% endblock content %}
