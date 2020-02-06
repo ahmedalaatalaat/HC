@@ -66,6 +66,49 @@ def Doctor_edit(request, NN):
     stakeholder_numbers = stakeholder.get_phone
     stakeholder_address = stakeholder.get_address
     doctor = get_object_or_404(Physician, physician_nn=NN)
+    if request.is_ajax():
+        if request.method == "POST":
+            '''
+            'Phone': ['123', '011', '012'],
+            'address': ['123', 'sub', 'sub-sub'],'''
+            # Your Edit code goes Here
+
+            # data preprocessing
+            hide = True if request.POST.get('hide') == 'on' else False
+            date = request.POST.get('birthday').split('-')
+            date = f'{date[2]}-{date[0]}-{date[1]}'
+
+            stakeholder.national_number = request.POST.get('national_number')
+            stakeholder.stakeholder_name = request.POST.get('stakeholder_name')
+            stakeholder.stakeholder_last_name = request.POST.get('stakeholder_last_name')
+            stakeholder.birthday = date
+            stakeholder.gender = request.POST.get('gender')
+            stakeholder.email = request.POST.get('email')
+            stakeholder.marital_status = request.POST.get('marital_status')
+            stakeholder.nationality = request.POST.get('nationality')
+            stakeholder.cv = request.POST.get('cv')
+            stakeholder.hide = hide
+
+            # Handle image
+            if request.FILES.get('image'):
+                stakeholder.image = request.FILES.get('image')
+
+            # Handle password
+            if request.POST.get('password'):
+                if request.POST.getlsit('password')[0] == stakeholder.password:
+                    stakeholder.password = request.POST.getlist('password')[1]
+
+            # Handle phone
+            old_numbers = stakeholder_numbers
+            for number in request.POST.getlist('phone'):
+                if number in old_numbers:
+                    old_numbers.remove(number)
+                else:
+                    StakeholdersPhones.objects.create(
+                        national_number=stakeholder,
+                        phone=number
+                    )
+
     context = {
         'stakeholder': stakeholder,
         'main_phone': stakeholder_numbers[0],
