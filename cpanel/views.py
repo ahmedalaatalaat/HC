@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from main.utils import get_object_or_none
 from django.http import HttpResponse, HttpResponseNotFound
 from .models import *
@@ -61,8 +61,20 @@ def Doctor_add(request):
     return render(request, 'cpanel/Doctor/Doctor_add.html')
 
 
-def Doctor_edit(request):
-    pass
+def Doctor_edit(request, NN):
+    stakeholder = get_object_or_404(Stakeholders, national_number=NN)
+    stakeholder_numbers = stakeholder.get_phone
+    stakeholder_address = stakeholder.get_address
+    doctor = get_object_or_404(Physician, physician_nn=NN)
+    context = {
+        'stakeholder': stakeholder,
+        'main_phone': stakeholder_numbers[0],
+        'phones': stakeholder_numbers[1:],
+        'main_address': stakeholder_address[0],
+        'address': stakeholder_address[1:],
+        'doctor': doctor,
+    }
+    return render(request, 'cpanel/Doctor/Doctor_edit.html', context)
 
 
 def Doctor_list(request):
@@ -129,7 +141,7 @@ def Patient_add(request):
     return render(request, 'cpanel/Patient/Patient_add.html')
 
 
-def Patient_edit(request):
+def Patient_edit(request, NN):
     pass
 
 
@@ -175,7 +187,7 @@ def Patient_history_add(request):
     return render(request, 'cpanel/Patient/Patient_History_add.html')
 
 
-def Patient_history_edit(request):
+def Patient_history_edit(request, NN):
     pass
 
 
@@ -240,7 +252,7 @@ def Nurse_add(request):
     return render(request, 'cpanel/Nurse/Nurse_add.html')
 
 
-def Nurse_edit(request):
+def Nurse_edit(request, NN):
     pass
 
 
@@ -302,7 +314,7 @@ def Paramedic_add(request):
     return render(request, 'cpanel/Paramedic/Paramedic_add.html')
 
 
-def Paramedic_edit(request):
+def Paramedic_edit(request, NN):
     pass
 
 
@@ -367,7 +379,7 @@ def Pharmacist_add(request):
     return render(request, 'cpanel/Pharmacist/Pharmacist_add.html')
 
 
-def Pharmacist_edit(request):
+def Pharmacist_edit(request, NN):
     pass
 
 
@@ -432,7 +444,7 @@ def Specialist_add(request):
     return render(request, 'cpanel/Specialist/Specialist_add.html')
 
 
-def Specialist_edit(request):
+def Specialist_edit(request, NN):
     pass
 
 
@@ -460,7 +472,7 @@ def Specialization_add(request):
     return render(request, 'cpanel/Specializations/Specialization_add.html')
 
 
-def Specialization_edit(request):
+def Specialization_edit(request, id):
     pass
 
 
@@ -514,7 +526,7 @@ def Stakeholder_add(request):
     return render(request, 'cpanel/Stakeholders/Stakeholders_add.html')
 
 
-def Stakeholder_edit(request):
+def Stakeholder_edit(request, NN):
     pass
 
 
@@ -568,7 +580,7 @@ def Clinic_add(request):
     return render(request, 'cpanel/Clinic/Clinic_add.html')
 
 
-def Clinic_edit(request):
+def Clinic_edit(request, id):
     pass
 
 
@@ -625,7 +637,7 @@ def Pharmacy_add(request):
     return render(request, 'cpanel/Pharmacy/Pharmacy_add.html')
 
 
-def Pharmacy_edit(request):
+def Pharmacy_edit(request, id):
     pass
 
 
@@ -677,7 +689,7 @@ def Lab_add(request):
     return render(request, 'cpanel/Lab/Labs_add.html')
 
 
-def Lab_edit(request):
+def Lab_edit(request, id):
     pass
 
 
@@ -722,7 +734,7 @@ def Medical_Institution_add(request):
     return render(request, 'cpanel/Medical Institutions/Medical_institution_add.html')
 
 
-def Medical_Institution_edit(request):
+def Medical_Institution_edit(request, id):
     pass
 
 
@@ -830,7 +842,7 @@ def Hospital_add(request):
     return render(request, 'cpanel/Hospital/Hospital_add.html')
 
 
-def Hospital_edit(request):
+def Hospital_edit(request, id):
     pass
 
 
@@ -927,7 +939,7 @@ def Insurance_Company_add(request):
     return render(request, 'cpanel/Insurance Company/Insurance_Company_add.html')
 
 
-def Insurance_Company_edit(request):
+def Insurance_Company_edit(request, id):
     pass
 
 
@@ -961,7 +973,7 @@ def Insurance_Type_add(request):
     return render(request, 'cpanel/Insurance Company/Insurance_Type_add.html')
 
 
-def Insurance_Type_edit(request):
+def Insurance_Type_edit(request, id):
     pass
 
 

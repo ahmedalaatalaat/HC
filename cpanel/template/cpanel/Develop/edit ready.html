@@ -1,0 +1,55 @@
+<!--After Address-->
+{% for address in address%}
+<div id="address_{{forloop.counter}}_{{address}}">
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+        <input autocomplete="new-password" class="mdl-textfield__input" type="text" name="address" placeholder="Address" value="{{address.address}}" />
+        <label class="mdl-textfield__label">
+        </label>
+        <span class="mdl-textfield__error">
+            Address required!
+        </span>
+    </div>
+    <div align="right">
+        <button class="btn btn-skype waves-effect waves-light" type="button" onclick="address_add()">
+            <i class="fa fa-plus"></i>
+        </button>
+        <button class="btn btn-pinterest waves-effect waves-light" type="button" onclick="address_delete('{{forloop.counter}}_{{address}}')">
+            <i class="fa fa-trash-o"></i>
+        </button>
+    </div>
+</div>
+{% endfor %}
+<!-- new hide change input only-->
+<input class="mdl-switch__input" id="switch-8" type="checkbox" name="hide" {% if doctor.hide%}checked {%endif%} />
+<!-- Before password -->
+<div class="col-lg-12 p-t-20">
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width" id="password_main_div">
+        <input class="mdl-textfield__input" type="password" name="password" />
+        <label class="mdl-textfield__label">
+            Old Password
+        </label>
+    </div>
+</div>
+<!-- After Phone -->
+{% for number in phones%}
+<div id="phone_{{forloop.counter}}_{{number}}">
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+        <input class="mdl-textfield__input" id="text5" pattern="-?[0-9]*(\.[0-9]+)?" type="text" name="Phone" placeholder="Mobile Number" value="{{number.phone}}" />
+        <label class="mdl-textfield__label" for="text5">
+        </label>
+        <span class="mdl-textfield__error">
+            Number required!
+        </span>
+    </div>
+    <div align="right">
+        <button class="btn btn-skype waves-effect waves-light" type="button" onclick="phone_add()">
+            <i class="fa fa-plus"></i>
+        </button>
+        <button class="btn btn-pinterest waves-effect waves-light" type="button" onclick="phone_delete('{{forloop.counter}}_{{number}}')">
+            <i class="fa fa-trash-o"></i>
+        </button>
+    </div>
+</div>
+{% endfor %}
+<!-- After Image -->
+<div align="center"><a href="{{stakeholder.image.url}}" target="_blank">view image</a></div>
