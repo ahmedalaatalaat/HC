@@ -22,7 +22,7 @@ $('#add_form').submit(function (e) {
             $('#image_text').html('Drag&amp;Drop files here');
         },
         error: function (error_data) {
-            if(error_data.responseText == 'This doctor data is already stored'){
+            if(error_data.responseText.includes('already stored')){
                 var message = error_data.responseText
             }
             else{
@@ -64,7 +64,7 @@ function phone_add(){
     $('#Phone').append(`
     <div id="phone_`+ phone_no +`">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-            <input class="mdl-textfield__input" id="text5" pattern="-?[0-9]*(\.[0-9]+)?" type="text" name="Phone" placeholder="Mobile Number"/>
+            <input class="mdl-textfield__input" id="text5" pattern="-?[0-9]*(\.[0-9]+)?" type="text" name="Phone" placeholder="Mobile Number" required autocomplete="nope"/>
             <label class="mdl-textfield__label" for="text5">
             </label>
             <span class="mdl-textfield__error">
@@ -91,7 +91,7 @@ function relatives_phone_add(){
     $('#relatives_Phone').append(`
     <div id="relatives_phone_`+ relatives_phone_no +`">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-            <input class="mdl-textfield__input" id="text5" pattern="-?[0-9]*(\.[0-9]+)?" type="text" name="relatives_phones" placeholder="Relatives Phone Number"/>
+            <input class="mdl-textfield__input" id="text5" pattern="-?[0-9]*(\.[0-9]+)?" type="text" name="relatives_phones" placeholder="Relatives Phone Number" required autocomplete="nope"/>
             <label class="mdl-textfield__label" for="text5">
             </label>
             <span class="mdl-textfield__error">
@@ -118,7 +118,7 @@ function address_add(){
     $('#Address').append(`
         <div id="address_`+ address_no +`">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                <input class="mdl-textfield__input" type="text" name="address" placeholder="Address" />
+                <input class="mdl-textfield__input" type="text" name="address" placeholder="Address" required autocomplete="nope"/>
                 <label class="mdl-textfield__label">
                 </label>
                 <span class="mdl-textfield__error">
@@ -153,4 +153,58 @@ function datetime_val(){
     }
 }
 
-// $('#my-select').multiSelect();
+MaterialTextfield.prototype.checkValidity = function () {
+    var CLASS_VALIDITY_INIT = "validity-init";
+    if (this.input_ && this.input_.validity && this.input_.validity.valid) {
+        this.element_.classList.remove(this.CssClasses_.IS_INVALID);
+    } else {
+
+        if (this.input_ && this.input_.value.length > 0) {
+            this.element_.classList.add(this.CssClasses_.IS_INVALID);
+        }
+        else if(this.input_ && this.input_.value.length === 0)
+        {
+            if(this.input_.classList.contains(CLASS_VALIDITY_INIT))
+            {
+                this.element_.classList.add(this.CssClasses_.IS_INVALID);
+            }
+        }
+
+
+    }
+
+    if(this.input_.length && !this.input_.classList.contains(CLASS_VALIDITY_INIT))
+    {
+        this.input_.classList.add(CLASS_VALIDITY_INIT);
+    }
+};
+
+function delete_item(id){
+    swal({
+        title: "Are you sure?",
+        text: "Do you want to delete " + id,
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#dc3545",
+        confirmButtonText: "Yes, delete it!",
+        closeOnConfirm: false
+    }, function () {
+        $.ajax({
+            method: 'POST',
+            url: window.location.href,
+            data: {
+                id: id,
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            },
+            success: function (data) {
+                $('#' + id).remove();
+                swal("Deleted!", id + " has been deleted.", "success");
+            }
+        });
+
+    });
+}
+
+function delete_model(){
+    $("#Deleteitem").modal();
+}

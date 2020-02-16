@@ -61,11 +61,11 @@ ROOT_URLCONF = 'main.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, "template"),
-                 os.path.join(BASE_DIR, "cpanel/template"),
-                 os.path.join(BASE_DIR, "diagnostic/template"),
-                 os.path.join(BASE_DIR, "vezeeta/template"),
-                 os.path.join(BASE_DIR, "website/template")],
+        'DIRS': [
+            os.path.join(BASE_DIR, "cpanel/template"),
+            os.path.join(BASE_DIR, "diagnostic/template"),
+            os.path.join(BASE_DIR, "vezeeta/template"),
+            os.path.join(BASE_DIR, "website/template")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -143,7 +143,6 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
     os.path.join(BASE_DIR, "cpanel/static"),
     os.path.join(BASE_DIR, "diagnostic/static"),
     os.path.join(BASE_DIR, "vezeeta/static"),

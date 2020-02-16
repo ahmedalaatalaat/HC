@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from . import autodb
 
 
 app_name = 'cpanel'
@@ -77,4 +78,7 @@ urlpatterns = [
     path('medical_institution_add/', views.Medical_Institution_add, name='lab_add'),
     path('medical_institution_edit/<id>/', views.Medical_Institution_edit, name='lab_edit'),
     path('medical_institution_list/', views.Medical_Institution_list, name='lab_list'),
+    # Data Entery Automation
+    path('add_groups/', autodb.group_add),
+    path('add_specialization/', autodb.specialization_add)
 ]

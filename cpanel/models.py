@@ -1,5 +1,6 @@
 from django.db import models
 from main.utils import get_object_or_none
+from django.contrib.auth.models import User
 
 # Enumeration Values
 Gender = [('Male', 'Male'), ('Female', 'Female')]
@@ -24,18 +25,18 @@ class Stakeholders(models.Model):
     national_number = models.CharField(max_length=20, db_column='National_Number', primary_key=True)
     stakeholder_name = models.CharField(db_column='Stakeholder_Name', max_length=255, blank=True, null=True)
     stakeholder_last_name = models.CharField(db_column='Stakeholder_Last_Name', max_length=255, blank=True, null=True)
-    password = models.CharField(db_column='Password', max_length=50, blank=True, null=True)
     birthday = models.DateField(db_column='Birthday', blank=True, null=True)
     gender = models.CharField(db_column='Gender', max_length=6, blank=True, null=True, choices=Gender)
     stakeholder_type = models.CharField(db_column='Stakeholder_Type', max_length=10, blank=True, null=True, choices=Stakeholder_Type)
     email = models.CharField(db_column='Email', max_length=320, blank=True, null=True)
     marital_status = models.CharField(db_column='Marital_Status', max_length=8, blank=True, null=True, choices=Marital_Status)
-    image = models.ImageField(default=None, upload_to='Stakeholder/images', db_column='Image', blank=True, null=True)  # new
+    image = models.ImageField(default='avatar.jpg', upload_to='Stakeholder/images', db_column='Image', blank=True, null=True)  # new
     nationality = models.CharField(db_column='Nationality', max_length=255, blank=True, null=True)
     cv = models.CharField(db_column='cv', max_length=500, blank=True, null=True)  # new
     created_at = models.DateTimeField(auto_now_add=True)  # new
     updated_at = models.DateTimeField(auto_now=True)  # new
     hide = models.BooleanField(default=False)
+    user = models.OneToOneField(User, models.DO_NOTHING, db_column="user")
 
     class Meta:
         db_table = 'stakeholders'
@@ -305,6 +306,7 @@ class MedicalInstitutions(models.Model):
     hide = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)  # new
     updated_at = models.DateTimeField(auto_now=True)  # new
+    user = models.OneToOneField(User, models.DO_NOTHING, db_column="user")
 
     class Meta:
         db_table = 'medical_institutions'
@@ -334,7 +336,7 @@ class MedicalInstitutionsPhone(models.Model):
         verbose_name_plural = 'Medical Institution Phones'
 
     def __str__(self):
-        return self.institution
+        return str(self.institution)
 
 
 class MedicalInstitutionsAddress(models.Model):
@@ -478,6 +480,7 @@ class InsuranceCompanies(models.Model):
     hide = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)  # new
     updated_at = models.DateTimeField(auto_now=True)  # new
+    user = models.OneToOneField(User, models.DO_NOTHING, db_column="user")
 
     class Meta:
         db_table = 'insurance_companies'
@@ -553,7 +556,7 @@ class Specialization(models.Model):
         verbose_name_plural = 'Specializations'
 
     def __str__(self):
-        return str(self.specialization_id)
+        return str(self.name)
 
 
 # -- ** Associated Tables ** --
