@@ -6,7 +6,7 @@
     <div class="page-title-breadcrumb">
         <div class="pull-left">
             <div class="page-title">
-                Add Patient
+                Edit Patient
             </div>
         </div>
         <ol class="breadcrumb page-breadcrumb pull-right">
@@ -20,7 +20,7 @@
                 </i>
             </li>
             <li class="active">
-                Add Patient
+                Edit Patient
             </li>
         </ol>
     </div>
@@ -40,7 +40,7 @@
                     <!-- Your Field Goes Here... -->
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" required type="text" name="national_number" />
+                            <input class="mdl-textfield__input" required type="text" name="national_number" value="{{stakeholder.national_number}}" readonly />
                             <label class="mdl-textfield__label">
                                 National Number
                             </label>
@@ -48,7 +48,7 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" type="text" maxlength="255" required name="stakeholder_name" />
+                            <input class="mdl-textfield__input" type="text" maxlength="255" name="stakeholder_name" value="{{stakeholder.stakeholder_name}}" required />
                             <label class="mdl-textfield__label">
                                 First Name
                             </label>
@@ -56,7 +56,7 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" type="text" required maxlength="255" name="stakeholder_last_name" />
+                            <input class="mdl-textfield__input" type="text" required maxlength="255" name="stakeholder_last_name" value="{{stakeholder.stakeholder_last_name}}" />
                             <label class="mdl-textfield__label">
                                 Last Name
                             </label>
@@ -64,15 +64,23 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width" id="password_main_div">
-                            <input class="mdl-textfield__input" id="txtPwd" required maxlength="50" type="password" name="password" />
+                            <input class="mdl-textfield__input" type="password" name="password" />
+                            <label class="mdl-textfield__label">
+                                Old Password
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width" id="password_main_div">
+                            <input class="mdl-textfield__input" id="txtPwd" maxlength="50" type="password" name="password" />
                             <label class="mdl-textfield__label" id="password_main">
-                                Password
+                                New Password
                             </label>
                         </div>
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width" id="password_confirm_div">
-                            <input class="mdl-textfield__input" maxlength="50" required id="txtConfirmPwd" type="password" name="password" />
+                            <input class="mdl-textfield__input" maxlength="50" id="txtConfirmPwd" type="password" name="password" />
                             <label class="mdl-textfield__label" id="password_Confirm">
                                 Confirm Password
                             </label>
@@ -80,7 +88,7 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width" id="date_add">
-                            <input class="mdl-textfield__input" type="text" name="birthday" autocomplete="off" id="dp1" onfocusout="date_val()" />
+                            <input class="mdl-textfield__input" type="text" name="birthday" autocomplete="off" id="dp1" onfocusout="date_val()" value="{{stakeholder.birthday|date:"m-d-Y"}}" />
                             <label class="mdl-textfield__label">
                                 Birthday
                             </label>
@@ -88,7 +96,7 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
-                            <input class="mdl-textfield__input" id="gender" readonly="" required tabindex="-1" type="text" value="" name="gender" />
+                            <input class="mdl-textfield__input" id="gender" readonly="" required tabindex="-1" type="text" value="{{stakeholder.gender}}" name="gender" />
                             <label class="pull-right margin-0" for="gender">
                                 <i class="mdl-icon-toggle__label material-icons">
                                     keyboard_arrow_down
@@ -109,7 +117,7 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" id="txtemail" maxlength="320" type="email" name="email" />
+                            <input class="mdl-textfield__input" id="txtemail" maxlength="320" type="email" name="email" value="{{stakeholder.email}}" />
                             <label class="mdl-textfield__label">
                                 Email
                             </label>
@@ -120,7 +128,7 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
-                            <input class="mdl-textfield__input" id="list2" readonly="" tabindex="-1" type="text" value="" name="marital_status" />
+                            <input class="mdl-textfield__input" id="list2" readonly="" tabindex="-1" type="text" value="{{stakeholder.marital_status}}" name="marital_status" />
                             <label class="pull-right margin-0" for="list2">
                                 <i class="mdl-icon-toggle__label material-icons">
                                     keyboard_arrow_down
@@ -147,7 +155,7 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" maxlength="100" type="text" name="nationality" />
+                            <input class="mdl-textfield__input" maxlength="100" type="text" name="nationality" value="{{stakeholder.nationality}}" />
                             <label class="mdl-textfield__label">
                                 Nationality
                             </label>
@@ -155,7 +163,7 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield  mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" type="text" maxlength="100" name="chronic_diseases_name" />
+                            <input class="mdl-textfield__input" type="text" maxlength="100" name="chronic_diseases_name" value="{{patient.chronic_diseases_name}}" />
                             <label class="mdl-textfield__label">
                                 Chronic diseases name
                             </label>
@@ -163,7 +171,7 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield  mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" type="text" maxlength="100" name="chronic_diseases_type" />
+                            <input class="mdl-textfield__input" type="text" maxlength="100" name="chronic_diseases_type" value="{{patient.chronic_diseases_type}}" />
                             <label class="mdl-textfield__label">
                                 Chronic diseases type
                             </label>
@@ -208,42 +216,42 @@
                                         <tr>
                                             <td>
                                                 <label class="mdl-radio mdl-js-radio" for="option1">
-                                                    <input class="mdl-radio__button" id="option1" type="radio" value="A+" name="blood_type" />
+                                                    <input class="mdl-radio__button" id="option1" type="radio" value="A+" {% if patient.blood_type == 'A+' %}checked{%endif%} name="blood_type" />
                                                 </label>
                                             </td>
                                             <td>
                                                 <label class="mdl-radio mdl-js-radio" for="option2">
-                                                    <input class="mdl-radio__button" id="option2" value="A-" name="blood_type" type="radio" />
+                                                    <input class="mdl-radio__button" id="option2" value="A-" {% if patient.blood_type == 'A-' %}checked {%endif%} name="blood_type" type="radio" />
                                                 </label>
                                             </td>
                                             <td>
                                                 <label class="mdl-radio mdl-js-radio" for="option3">
-                                                    <input class="mdl-radio__button" id="option3" value="O+" name="blood_type" type="radio" />
+                                                    <input class="mdl-radio__button" id="option3" value="O+" {% if patient.blood_type == 'O+' %}checked {%endif%} name="blood_type" type="radio" />
                                                 </label>
                                             </td>
                                             <td>
                                                 <label class="mdl-radio mdl-js-radio" for="option4">
-                                                    <input class="mdl-radio__button" id="option4" value="O-" name="blood_type" type="radio" />
+                                                    <input class="mdl-radio__button" id="option4" value="O-" {% if patient.blood_type == 'O-' %}checked {%endif%} name="blood_type" type="radio" />
                                                 </label>
                                             </td>
                                             <td>
                                                 <label class="mdl-radio mdl-js-radio" for="option5">
-                                                    <input class="mdl-radio__button" id="option5" value="B+" name="blood_type" type="radio" />
+                                                    <input class="mdl-radio__button" id="option5" value="B+" {% if patient.blood_type == 'B+' %}checked {%endif%} name="blood_type" type="radio" />
                                                 </label>
                                             </td>
                                             <td>
                                                 <label class="mdl-radio mdl-js-radio" for="option6">
-                                                    <input class="mdl-radio__button" id="option6" value="B-" name="blood_type" type="radio" />
+                                                    <input class="mdl-radio__button" id="option6" value="B-" {% if patient.blood_type == 'B-' %}checked {%endif%} name="blood_type" type="radio" />
                                                 </label>
                                             </td>
                                             <td>
                                                 <label class="mdl-radio mdl-js-radio" for="option7">
-                                                    <input class="mdl-radio__button" id="option7" value="AB+" name="blood_type" type="radio" />
+                                                    <input class="mdl-radio__button" id="option7" value="AB+" {% if patient.blood_type == 'AB+' %}checked {%endif%} name="blood_type" type="radio" />
                                                 </label>
                                             </td>
                                             <td>
                                                 <label class="mdl-radio mdl-js-radio" for="option8">
-                                                    <input class="mdl-radio__button" id="option8" value="AB-" name="blood_type" type="radio" />
+                                                    <input class="mdl-radio__button" id="option8" value="AB-" {% if patient.blood_type == 'AB-' %}checked {%endif%} name="blood_type" type="radio" />
                                                 </label>
                                             </td>
                                         </tr>
@@ -254,7 +262,7 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield txt-full-width">
-                            <textarea class="mdl-textfield__input" id="text7" rows="4" name="cv"></textarea>
+                            <textarea class="mdl-textfield__input" id="text7" rows="4" name="cv">{{stakeholder.cv}}</textarea>
                             <label class="mdl-textfield__label" for="text7">
                                 Bio
                             </label>
@@ -262,7 +270,7 @@
                     </div>
                     <div class="col-lg-12 p-t-20" id="phone">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" required maxlength="25" id="text5" pattern="-?[0-9]*(\.[0-9]+)?" type="text" name="phone" autocomplete="nope" />
+                            <input class="mdl-textfield__input" required maxlength="25" id="text5" pattern="-?[0-9]*(\.[0-9]+)?" type="text" name="phone" value="{{main_phone}}" />
                             <label class="mdl-textfield__label" for="text5">
                                 Mobile Number
                             </label>
@@ -276,10 +284,30 @@
                                 </i>
                             </button>
                         </div>
+                        {% for number in phones%}
+                        <div id="phone_{{forloop.counter}}_{{number}}">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                <input class="mdl-textfield__input" id="text5" pattern="-?[0-9]*(\.[0-9]+)?" type="text" name="phone" placeholder="Mobile Number" value="{{number.phone}}" required />
+                                <label class="mdl-textfield__label" for="text5">
+                                </label>
+                                <span class="mdl-textfield__error">
+                                    Number required!
+                                </span>
+                            </div>
+                            <div align="right">
+                                <button class="btn btn-skype waves-effect waves-light" type="button" onclick="phone_add()">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                                <button class="btn btn-pinterest waves-effect waves-light" type="button" onclick="phone_delete('{{forloop.counter}}_{{number}}')">
+                                    <i class="fa fa-trash-o"></i>
+                                </button>
+                            </div>
+                        </div>
+                        {% endfor %}
                     </div>
                     <div class="col-lg-12 p-t-20" id="relatives_phone">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" maxlength="25" id="text4" pattern="-?[0-9]*(\.[0-9]+)?" type="text" name="relatives_phones" required autocomplete="nope" />
+                            <input class="mdl-textfield__input" maxlength="25" id="text4" pattern="-?[0-9]*(\.[0-9]+)?" type="text" name="relatives_phones" autocomplete="off" value="{{main_relative_phone}}" required />
                             <label class="mdl-textfield__label" for="text5">
                                 Relatives phone Number
                             </label>
@@ -293,10 +321,30 @@
                                 </i>
                             </button>
                         </div>
+                        {% for number in relative_phones%}
+                        <div id="relatives_phone_{{forloop.counter}}_{{number}}">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                <input class="mdl-textfield__input" id="text5" pattern="-?[0-9]*(\.[0-9]+)?" type="text" name="relatives_phones" placeholder="Relatives phone Number" required autocomplete="nope" value="{{number.phone}}" />
+                                <label class="mdl-textfield__label" for="text5">
+                                </label>
+                                <span class="mdl-textfield__error">
+                                    Number required!
+                                </span>
+                            </div>
+                            <div align="right">
+                                <button class="btn btn-skype waves-effect waves-light" type="button" onclick="relatives_phone_add()">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                                <button class="btn btn-pinterest waves-effect waves-light" type="button" onclick="relatives_phone_delete('{{forloop.counter}}_{{number}}')">
+                                    <i class="fa fa-trash-o"></i>
+                                </button>
+                            </div>
+                        </div>
+                        {% endfor %}
                     </div>
                     <div class="col-lg-12 p-t-20" id="Address">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" maxlength="320" required id="text5" type="text" name="address" autocomplete="nope" />
+                            <input class="mdl-textfield__input" maxlength="320" required id="text5" type="text" name="address" value="{{main_address}}" />
                             <label class="mdl-textfield__label" for="text5">
                                 Address
                             </label>
@@ -310,11 +358,31 @@
                                 </i>
                             </button>
                         </div>
+                        {% for address in address%}
+                        <div id="address_{{forloop.counter}}_{{address}}">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                <input autocomplete="new-password" class="mdl-textfield__input" type="text" name="address" placeholder="Address" value="{{address.address}}" required />
+                                <label class="mdl-textfield__label">
+                                </label>
+                                <span class="mdl-textfield__error">
+                                    Address required!
+                                </span>
+                            </div>
+                            <div align="right">
+                                <button class="btn btn-skype waves-effect waves-light" type="button" onclick="address_add()">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                                <button class="btn btn-pinterest waves-effect waves-light" type="button" onclick="address_delete('{{forloop.counter}}_{{address}}')">
+                                    <i class="fa fa-trash-o"></i>
+                                </button>
+                            </div>
+                        </div>
+                        {% endfor %}
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <span>Hide:</span>
                         <label style="display: inline; margin-left: 10px;" class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-8" id="switch_label">
-                            <input class="mdl-switch__input" id="switch-8" type="checkbox" name="hide" />
+                            <input class="mdl-switch__input" id="switch-8" type="checkbox" name="hide" {% if patient.hide%}checked {%endif%} />
                         </label>
                     </div>
                     <div class="col-lg-12 p-t-20">
@@ -328,6 +396,7 @@
                                     </div><a class="Neon-input-choose-btn blue">Browse Files</a>
                                 </div>
                             </div>
+                            <div align="center"><a href="{{stakeholder.image.url}}" target="_blank">view image</a></div>
                         </div>
                     </div>
                 </div>

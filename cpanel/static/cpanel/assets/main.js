@@ -61,7 +61,7 @@ function image_upload() {
 
 function phone_add() {
     phone_no += 1
-    $('#Phone').append(`
+    $('#phone').append(`
     <div id="phone_` + phone_no + `">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
             <input class="mdl-textfield__input" id="text5" pattern="-?[0-9]*(\.[0-9]+)?" type="text" name="phone" placeholder="Mobile Number" required autocomplete="nope"/>
@@ -88,10 +88,10 @@ function phone_delete(num) {
 
 function relatives_phone_add() {
     relatives_phone_no += 1
-    $('#relatives_Phone').append(`
+    $('#relatives_phone').append(`
     <div id="relatives_phone_` + relatives_phone_no + `">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-            <input class="mdl-textfield__input" id="text5" pattern="-?[0-9]*(\.[0-9]+)?" type="text" name="relatives_phones" placeholder="Relatives Phone Number" required autocomplete="nope"/>
+            <input class="mdl-textfield__input" id="text5" pattern="-?[0-9]*(\.[0-9]+)?" type="text" name="relatives_phones" placeholder="Relatives phone Number" required autocomplete="nope"/>
             <label class="mdl-textfield__label" for="text5">
             </label>
             <span class="mdl-textfield__error">
