@@ -85,10 +85,17 @@ def Doctor_add(request):
 
 
 def Doctor_edit(request, NN):
+    # Passed Data
+    specializations = Specialization.objects.all()
     stakeholder = get_object_or_404(Stakeholders, national_number=NN)
     stakeholder_numbers = stakeholder.get_phone
     stakeholder_address = stakeholder.get_address
     doctor = get_object_or_404(Physician, physician_nn=NN)
+    doctor_specializations = [i.get_value() for i in doctor.get_Specialization]
+
+    print(request.POST)
+
+    # Data Editing
     if request.is_ajax():
         if request.method == "POST":
             # data preprocessing
@@ -96,6 +103,7 @@ def Doctor_edit(request, NN):
             date = request.POST.get('birthday').split('-')
             date = f'{date[2]}-{date[0]}-{date[1]}'
 
+            # Handle stakeholder
             stakeholder.national_number = request.POST.get('national_number')
             stakeholder.stakeholder_name = request.POST.get('stakeholder_name')
             stakeholder.stakeholder_last_name = request.POST.get('stakeholder_last_name')
@@ -105,13 +113,13 @@ def Doctor_edit(request, NN):
             stakeholder.marital_status = request.POST.get('marital_status')
             stakeholder.nationality = request.POST.get('nationality')
             stakeholder.cv = request.POST.get('cv')
-            stakeholder.hide = hide
 
-            # Handle image
+            # Handle stakeholder image
             if request.FILES.get('image'):
                 stakeholder.image = request.FILES.get('image')
 
             stakeholder.save()
+
             # Handle password
             if request.POST.get('password'):
                 user = get_object_or_none(User, username=stakeholder)
@@ -120,36 +128,68 @@ def Doctor_edit(request, NN):
                     user.save()
 
             # Handle phone
-            # old_numbers = stakeholder_numbers
-            # for number in request.POST.getlist('phone'):
-            #     if number in old_numbers:
-            #         old_numbers.remove(number)
-            #     else:
-            #         StakeholdersPhones.objects.create(
-            #             national_number=stakeholder,
-            #             phone=number
-            #         )
+            old_numbers = [i.phone for i in stakeholder_numbers]
+            for number in request.POST.getlist('phone'):
+                if number in old_numbers:
+                    old_numbers.remove(number)
+                else:
+                    StakeholdersPhones.objects.create(
+                        national_number=stakeholder,
+                        phone=number
+                    )
+            delete_phones = [i for i in stakeholder_numbers if i.phone in old_numbers]
+            for instance in delete_phones:
+                instance.delete()
 
             # Handle address
-            # old_address = stakeholder_address
-            # for address in request.POST.getlist('address'):
-            #     if address in old_address:
-            #         old_address.remove(address)
-            #     else:
-            #         StakeholdersAddress.objects.create(
-            #             national_number=stakeholder,
-            #             address=address
-            #         )
-            # delete the rest
-            # for address in old_address:
+            old_address = [i.address for i in stakeholder_address]
+            for address in request.POST.getlist('address'):
+                if address in old_address:
+                    old_address.remove(address)
+                else:
+                    print("create new: " + address)
+                    StakeholdersAddress.objects.create(
+                        national_number=stakeholder,
+                        address=address
+                    )
+            delete_address = [i for i in stakeholder_address if i.address in old_address]
+            for instance in delete_address:
+                instance.delete()
+
+            # Handle Doctor
+            doctor.hide = hide
+            doctor.title = request.POST.get('title')
+
+            doctor.save()
+
+            # Handle Specialization
+            old_specializations = doctor_specializations
+            for specialization in request.POST.getlist('specialization'):
+                if specialization in old_specializations:
+                    old_specializations.remove(specialization)
+                else:
+                    specialization = get_object_or_none(specializations, name=specialization)
+                    PhysicianSpecialization.objects.create(
+                        physician_nn=doctor,
+                        specialization=specialization
+                    )
+
+            delete_specializations = [i for i in specializations if i.name in old_specializations]
+            for instance in delete_specializations:
+                PhysicianSpecialization.objects.all().filter(
+                    physician_nn=doctor,
+                    specialization=instance
+                ).delete()
 
     context = {
         'stakeholder': stakeholder,
-        'main_phone': stakeholder_numbers[0],
+        'main_phone': stakeholder_numbers[0].phone,
         'phones': stakeholder_numbers[1:],
-        'main_address': stakeholder_address[0],
+        'main_address': stakeholder_address[0].address,
         'address': stakeholder_address[1:],
+        'specializations': specializations,
         'doctor': doctor,
+        'doctor_specializations': doctor_specializations,
     }
     return render(request, 'cpanel/Doctor/Doctor_edit.html', context)
 

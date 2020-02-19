@@ -64,7 +64,7 @@ function phone_add() {
     $('#Phone').append(`
     <div id="phone_` + phone_no + `">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-            <input class="mdl-textfield__input" id="text5" pattern="-?[0-9]*(\.[0-9]+)?" type="text" name="Phone" placeholder="Mobile Number" required autocomplete="nope"/>
+            <input class="mdl-textfield__input" id="text5" pattern="-?[0-9]*(\.[0-9]+)?" type="text" name="phone" placeholder="Mobile Number" required autocomplete="nope"/>
             <label class="mdl-textfield__label" for="text5">
             </label>
             <span class="mdl-textfield__error">
