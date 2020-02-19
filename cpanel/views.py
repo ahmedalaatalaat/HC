@@ -46,6 +46,7 @@ def Doctor_add(request):
                 )
                 if request.FILES.get('image'):
                     stakeholder.image = request.FILES.get('image')
+                    stakeholder.save()
             else:
                 group = Group.objects.get(name='Physician')
                 group.user_set.add(stakeholder.user)
@@ -110,32 +111,35 @@ def Doctor_edit(request, NN):
             if request.FILES.get('image'):
                 stakeholder.image = request.FILES.get('image')
 
+            stakeholder.save()
             # Handle password
             if request.POST.get('password'):
-                if request.POST.getlsit('password')[0] == stakeholder.password:
-                    stakeholder.password = request.POST.getlist('password')[1]
+                user = get_object_or_none(User, username=stakeholder)
+                if user.check_password(request.POST.getlist('password')[0]):
+                    user.set_password(request.POST.getlist('password')[1])
+                    user.save()
 
             # Handle phone
-            old_numbers = stakeholder_numbers
-            for number in request.POST.getlist('phone'):
-                if number in old_numbers:
-                    old_numbers.remove(number)
-                else:
-                    StakeholdersPhones.objects.create(
-                        national_number=stakeholder,
-                        phone=number
-                    )
+            # old_numbers = stakeholder_numbers
+            # for number in request.POST.getlist('phone'):
+            #     if number in old_numbers:
+            #         old_numbers.remove(number)
+            #     else:
+            #         StakeholdersPhones.objects.create(
+            #             national_number=stakeholder,
+            #             phone=number
+            #         )
 
             # Handle address
-            old_address = stakeholder_address
-            for address in request.POST.getlist('address'):
-                if address in old_address:
-                    old_address.remove(address)
-                else:
-                    StakeholdersAddress.objects.create(
-                        national_number=stakeholder,
-                        address=address
-                    )
+            # old_address = stakeholder_address
+            # for address in request.POST.getlist('address'):
+            #     if address in old_address:
+            #         old_address.remove(address)
+            #     else:
+            #         StakeholdersAddress.objects.create(
+            #             national_number=stakeholder,
+            #             address=address
+            #         )
             # delete the rest
             # for address in old_address:
 
