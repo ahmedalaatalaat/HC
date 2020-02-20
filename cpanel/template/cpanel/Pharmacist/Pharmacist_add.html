@@ -34,39 +34,13 @@
                 <header>
                     Basic Information
                 </header>
-                <button class="mdl-button mdl-js-button mdl-button--icon pull-right" data-upgraded=",MaterialButton" id="panel-button">
-                    <i class="material-icons">
-                        more_vert
-                    </i>
-                </button>
-                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" data-mdl-for="panel-button">
-                    <li class="mdl-menu__item">
-                        <i class="material-icons">
-                            assistant_photo
-                        </i>
-                        Action
-                    </li>
-                    <li class="mdl-menu__item">
-                        <i class="material-icons">
-                            print
-                        </i>
-                        Another action
-                    </li>
-                    <li class="mdl-menu__item">
-                        <i class="material-icons">
-                            favorite
-                        </i>
-                        Something else
-                        here
-                    </li>
-                </ul>
             </div>
             <form method='POST' enctype="multipart/form-data" id="add_form"> {% csrf_token %}
                 <div class="card-body row">
                     <!-- Your Field Goes Here... -->
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" type="text" name="national_number" />
+                            <input class="mdl-textfield__input" type="text" name="national_number" required />
                             <label class="mdl-textfield__label">
                                 National Number
                             </label>
@@ -74,7 +48,7 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" type="text" name="stakeholder_name" />
+                            <input class="mdl-textfield__input" type="text" name="stakeholder_name" required />
                             <label class="mdl-textfield__label">
                                 First Name
                             </label>
@@ -82,7 +56,7 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" type="text" name="stakeholder_last_name" />
+                            <input class="mdl-textfield__input" type="text" name="stakeholder_last_name" required />
                             <label class="mdl-textfield__label">
                                 Last Name
                             </label>
@@ -90,7 +64,7 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width" id="password_main_div">
-                            <input class="mdl-textfield__input" id="txtPwd" type="password" name="password" />
+                            <input class="mdl-textfield__input" id="txtPwd" type="password" name="password" required />
                             <label class="mdl-textfield__label" id="password_main">
                                 Password
                             </label>
@@ -98,7 +72,7 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width" id="password_confirm_div">
-                            <input class="mdl-textfield__input" id="txtConfirmPwd" type="password" name="password" />
+                            <input class="mdl-textfield__input" id="txtConfirmPwd" type="password" name="password" required />
                             <label class="mdl-textfield__label" id="password_Confirm">
                                 Confirm Password
                             </label>
@@ -187,9 +161,9 @@
                             </label>
                         </div>
                     </div>
-                    <div class="col-lg-12 p-t-20" id="Phone">
+                    <div class="col-lg-12 p-t-20" id="phone">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" id="text5" pattern="-?[0-9]*(\.[0-9]+)?" type="text" name="Phone" />
+                            <input class="mdl-textfield__input" id="text5" pattern="-?[0-9]*(\.[0-9]+)?" type="text" name="phone" required autocomplete="nope" />
                             <label class="mdl-textfield__label" for="text5">
                                 Mobile Number
                             </label>
@@ -206,7 +180,7 @@
                     </div>
                     <div class="col-lg-12 p-t-20" id="Address">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" id="text5" pattern="*" type="text" name="address" />
+                            <input class="mdl-textfield__input" id="text5" type="text" name="address" required autocomplete="nope" />
                             <label class="mdl-textfield__label" for="text5">
                                 Address
                             </label>

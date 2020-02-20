@@ -6,7 +6,7 @@
     <div class="page-title-breadcrumb">
         <div class="pull-left">
             <div class="page-title">
-                Add Pharmacist
+                Edit Pharmacist
             </div>
         </div>
         <ol class="breadcrumb page-breadcrumb pull-right">
@@ -20,7 +20,7 @@
                 </i>
             </li>
             <li class="active">
-                Add Pharmacist
+                Edit Pharmacist
             </li>
         </ol>
     </div>
@@ -34,39 +34,13 @@
                 <header>
                     Basic Information
                 </header>
-                <button class="mdl-button mdl-js-button mdl-button--icon pull-right" data-upgraded=",MaterialButton" id="panel-button">
-                    <i class="material-icons">
-                        more_vert
-                    </i>
-                </button>
-                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" data-mdl-for="panel-button">
-                    <li class="mdl-menu__item">
-                        <i class="material-icons">
-                            assistant_photo
-                        </i>
-                        Action
-                    </li>
-                    <li class="mdl-menu__item">
-                        <i class="material-icons">
-                            print
-                        </i>
-                        Another action
-                    </li>
-                    <li class="mdl-menu__item">
-                        <i class="material-icons">
-                            favorite
-                        </i>
-                        Something else
-                        here
-                    </li>
-                </ul>
             </div>
             <form method='POST' enctype="multipart/form-data" id="add_form"> {% csrf_token %}
                 <div class="card-body row">
                     <!-- Your Field Goes Here... -->
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" type="text" name="national_number" value="{{stakeholder.national_number}}" />
+                            <input class="mdl-textfield__input" type="text" name="national_number" value="{{stakeholder.national_number}}" required readonly />
                             <label class="mdl-textfield__label">
                                 National Number
                             </label>
@@ -74,7 +48,7 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" type="text" name="stakeholder_name" value="{{stakeholder.stakeholder_name}}" />
+                            <input class="mdl-textfield__input" type="text" name="stakeholder_name" value="{{stakeholder.stakeholder_name}}" required />
                             <label class="mdl-textfield__label">
                                 First Name
                             </label>
@@ -82,7 +56,7 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" type="text" name="stakeholder_last_name" value="{{stakeholder.stakeholder_last_name}}" />
+                            <input class="mdl-textfield__input" type="text" name="stakeholder_last_name" value="{{stakeholder.stakeholder_last_name}}" required />
                             <label class="mdl-textfield__label">
                                 Last Name
                             </label>
@@ -114,7 +88,7 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width" id="date_add">
-                            <input class="mdl-textfield__input" type="text" name="birthday" autocomplete="off" id="dp1" onfocusout="date_val()" value="{{stakeholder.birthday}}" />
+                            <input class="mdl-textfield__input" type="text" name="birthday" autocomplete="off" id="dp1" onfocusout="date_val()" value="{{stakeholder.birthday|date:"m-d-Y"}}" />
                             <label class="mdl-textfield__label">
                                 Birthday
                             </label>
@@ -189,15 +163,15 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield txt-full-width">
-                            <textarea class="mdl-textfield__input" id="text7" rows="4" name="cv">{{stakeholder.nationality}}</textarea>
+                            <textarea class="mdl-textfield__input" id="text7" rows="4" name="cv">{{stakeholder.cv}}</textarea>
                             <label class="mdl-textfield__label" for="text7">
                                 Bio
                             </label>
                         </div>
                     </div>
-                    <div class="col-lg-12 p-t-20" id="Phone">
+                    <div class="col-lg-12 p-t-20" id="phone">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" id="text5" pattern="-?[0-9]*(\.[0-9]+)?" type="text" name="Phone" value="{{main_phone}}" />
+                            <input class="mdl-textfield__input" id="text5" pattern="-?[0-9]*(\.[0-9]+)?" type="text" name="phone" value="{{main_phone}}" required autocomplete="nope" />
                             <label class="mdl-textfield__label" for="text5">
                                 Mobile Number
                             </label>
@@ -214,7 +188,7 @@
                         {% for number in phones%}
                         <div id="phone_{{forloop.counter}}_{{number}}">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                <input class="mdl-textfield__input" id="text5" pattern="-?[0-9]*(\.[0-9]+)?" type="text" name="Phone" placeholder="Mobile Number" value="{{number.phone}}" />
+                                <input class="mdl-textfield__input" id="text5" pattern="-?[0-9]*(\.[0-9]+)?" type="text" name="phone" placeholder="Mobile Number" value="{{number.phone}}" required autocomplete="nope" />
                                 <label class="mdl-textfield__label" for="text5">
                                 </label>
                                 <span class="mdl-textfield__error">
@@ -234,7 +208,7 @@
                     </div>
                     <div class="col-lg-12 p-t-20" id="Address">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" id="text5" pattern="*" type="text" name="address" value="{{main_address}}" />
+                            <input class="mdl-textfield__input" id="text5" pattern="*" type="text" name="address" value="{{main_address}}" required autocomplete="nope" />
                             <label class="mdl-textfield__label" for="text5">
                                 Address
                             </label>
@@ -251,7 +225,7 @@
                         {% for address in address%}
                         <div id="address_{{forloop.counter}}_{{address}}">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                <input autocomplete="new-password" class="mdl-textfield__input" type="text" name="address" placeholder="Address" value="{{address.address}}" />
+                                <input autocomplete="nope" class="mdl-textfield__input" type="text" name="address" placeholder="Address" value="{{address.address}}" required />
                                 <label class="mdl-textfield__label">
                                 </label>
                                 <span class="mdl-textfield__error">
@@ -267,20 +241,21 @@
                                 </button>
                             </div>
                         </div>
+                        {% endfor %}
                     </div>
                     <!-- multiselect -->
                     <div class="col-lg-12 p-t-20">
                         <label style="color: #999999">Pharmacist Specializations</label>
                         <select class="form-control" multiple="multiple" id="my-select" style="height:150px" name="pharmacist_specialization" value="{{pharmacist.pharmacist_specialization}}">
-                            <option>Academic Pharmacist</option>
-                            <option>Community Pharmacist</option>
-                            <option>Clinical Pharmacist</option>
-                            <option>Hospital Quality Assurance Pharmacist</option>
-                            <option>Medical translation</option>
-                            <option>Medical Representative</option>
-                            <option>Oncology Pharmacist </option>
-                            <option>Pharmaceutical</option>
-                            <option>Research Pharmacist</option>
+                            <option {% if 'Academic Pharmacist' in pharmacist_specialization%}selected{% endif %}>Academic Pharmacist</option>
+                            <option {% if 'Community Pharmacist' in pharmacist_specialization%}selected{% endif %}>Community Pharmacist</option>
+                            <option {% if 'Clinical Pharmacist' in pharmacist_specialization%}selected{% endif %}>Clinical Pharmacist</option>
+                            <option {% if 'Hospital Quality Assurance Pharmacist' in pharmacist_specialization%}selected{% endif %}>Hospital Quality Assurance Pharmacist</option>
+                            <option {% if 'Medical translation' in pharmacist_specialization%}selected{% endif %}>Medical translation</option>
+                            <option {% if 'Medical Representative' in pharmacist_specialization%}selected{% endif %}>Medical Representative</option>
+                            <option {% if 'Oncology Pharmacist' in pharmacist_specialization%}selected{% endif %}>Oncology Pharmacist</option>
+                            <option {% if 'Pharmaceutical' in pharmacist_specialization%}selected{% endif %}>Pharmaceutical</option>
+                            <option {% if 'Research Pharmacist' in pharmacist_specialization%}selected{% endif %}>Research Pharmacist</option>
                         </select>
                     </div>
                     <div class="col-lg-12 p-t-20">

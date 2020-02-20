@@ -265,9 +265,8 @@ class Pharmacist(models.Model):
 
     @property
     def get_Specialization(self):
-        x = Pharmacist.objects.get(pk=self.pharmacist_nn)
-        x._state.db
-        return PharmacistSpecialization.objects.filter(pharmacist_nn=x)
+        pharmacist = get_object_or_none(Pharmacist, pharmacist_nn=self.pharmacist_nn)
+        return PharmacistSpecialization.objects.filter(pharmacist_nn=pharmacist)
 
 
 class PharmacistSpecialization(models.Model):
@@ -281,7 +280,10 @@ class PharmacistSpecialization(models.Model):
         verbose_name_plural = 'Pharmacist Specializations'
 
     def __str__(self):
-        return self.pharmacist_nn
+        return str(self.pharmacist_nn)
+
+    def get_value(self):
+        return self.specialization
 
 
 # -- ** Medical Institutions And Related Tables ** --
