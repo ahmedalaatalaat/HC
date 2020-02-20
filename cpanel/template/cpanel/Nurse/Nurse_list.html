@@ -1,6 +1,6 @@
 {% extends "cpanel/Base.html" %}
- {% load staticfiles %} 
- {% block content %}
+{% load staticfiles %}
+{% block content %}
 <!-- Part One -->
 <div class="page-bar">
     <div class="page-title-breadcrumb">
@@ -56,7 +56,7 @@
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6 col-xs-6">
                                             <div class="btn-group">
-                                                <a class="btn btn-info" href="add_doctor_material.html" id="addRow">
+                                                <a class="btn btn-info" href="{% url 'cpanel:nurse_add' %}" id="addRow">
                                                     Add New
                                                     <i class="fa fa-plus">
                                                     </i>
@@ -68,78 +68,70 @@
                                         <table class="table table-hover table-checkable order-column full-width" id="example4">
                                             <thead>
                                                 <tr>
-                                <th>
-                                </th>
-                                <th>
-                                    Name
-                                </th>
-                               
-                                <th>
-                                    Specialization
-                                </th>
-                                
-                                <th>
-                                    Mobile
-                                </th>
-                                <th>
-                                    Email
-                                </th>
-                                <th>
-                                    Joining Date
-                                </th>
-                                <th>
-                                    Action
-                                </th>
-                            </tr>
+                                                    <th>
+                                                    </th>
+                                                    <th>
+                                                        NN
+                                                    </th>
+                                                    <th>
+                                                        Name
+                                                    </th>
+                                                    <th>
+                                                        Specialization
+                                                    </th>
+                                                    <th>
+                                                        Mobile
+                                                    </th>
+                                                    <th>
+                                                        Email
+                                                    </th>
+                                                    <th>
+                                                        Action
+                                                    </th>
+                                                </tr>
                                             </thead>
                                             <tbody>
                                                 {% for nurse in nurses %}
-                            <tr class="odd gradeX">
-                               <td class="patient-img">
-                                        <img src="{{nurse.nurse_nn.image.url}}">
-                                </td>
-                                <td>
-                                    <p>{{nurse.nurse_nn.stakeholder_name}} {{ nurse.nurse_nn.stakeholder_last_name | capfirst}}</p>
-                                </td>
-                                <td class="left">
-                                    <p>{% for specialization in nurse.get_Specialization %} {{specialization.specialization}} 
-                                    {% endfor %}
-                                </p>
-                                </td>
-                                <td class="left">
-                                    <p>{% for phone in nurse.get_phone %} 
-                                        <a href="tel:{{phone.phone}}"> {{phone.phone}}
-                                         </a>{% endfor %}
-                                     </p>
-                                </td>
-
-                                <td class="left">
-                                    <a href="mailto:{{ nurse.nurse_nn.email }}">
-                                        <p>{{ nurse.nurse_nn.email }}
-                                            <p>
-                                    </a>
-                                </td>
-                                <td class="left">
-                                    <p> {{ nurse.nurse_nn.created_at|date:"F d, Y"}}
-                                        <p>
-                                </td>
-                                <form method="POST" action=""> {% csrf_token %}
-                                    <td>
-                                        <a class="btn btn-primary btn-xs" href="../edit_nurse/?nn={{instance.nurse_nn}}" >
-                                            <i class="fa fa-pencil">
-                        </i>
-                                        </a>
-
-
-                                        <button name="delete_btn" class="btn btn-danger btn-xs" type="submit" value="{{instance.nurse_nn}}">
-                                        
-                        <i class="fa fa-trash-o">
-                        </i>
-                       </button>
-                                    </td>
-                                </form>
-                            </tr>
-                            {% endfor %}
+                                                <tr class="odd gradeX" id="{{nurse}}">
+                                                    <td class="patient-img">
+                                                        <img src="{{nurse.nurse_nn.image.url}}">
+                                                    </td>
+                                                    <td>
+                                                        {{nurse}}
+                                                    </td>
+                                                    <td>
+                                                        <p>{{nurse.nurse_nn.stakeholder_name}} {{ nurse.nurse_nn.stakeholder_last_name | capfirst}}</p>
+                                                    </td>
+                                                    <td class="left">
+                                                        <p>{% for specialization in nurse.get_Specialization %} {{specialization.specialization}}<br />
+                                                            {% endfor %}
+                                                        </p>
+                                                    </td>
+                                                    <td class="left">
+                                                        <p>{% for phone in nurse.get_phone %}
+                                                            <a href="tel:{{phone.phone}}"> {{phone.phone}}
+                                                            </a><br />{% endfor %}
+                                                        </p>
+                                                    </td>
+                                                    <td class="left">
+                                                        <a href="mailto:{{ nurse.nurse_nn.email }}">
+                                                            <p>{{ nurse.nurse_nn.email }}
+                                                                <p>
+                                                        </a>
+                                                    </td>
+                                                    <form method="POST" action=""> {% csrf_token %}
+                                                        <td>
+                                                            <a class="btn btn-primary btn-xs" href="{% url 'cpanel:nurse_edit' nurse %}">
+                                                                <i class="fa fa-pencil">
+                                                                </i>
+                                                            </a>
+                                                            <a class="btn btn-danger btn-xs" onclick="delete_item({{nurse}})">
+                                                                <i class="fa fa-trash-o"></i>
+                                                            </a>
+                                                        </td>
+                                                    </form>
+                                                </tr>
+                                                {% endfor %}
                                             </tbody>
                                         </table>
                                     </div>
@@ -153,4 +145,4 @@
     </div>
 </div>
 <!-- End Part Two -->
- {% endblock content %}
+{% endblock content %}

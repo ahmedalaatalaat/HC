@@ -168,9 +168,8 @@ class Nurse(models.Model):
 
     @property
     def get_Specialization(self):
-        x = Nurse.objects.get(pk=self.nurse_nn)
-        x._state.db
-        return NurseSpecialization.objects.filter(nurse_nn=x)
+        nurse = get_object_or_none(Nurse, nurse_nn=self.nurse_nn)
+        return NurseSpecialization.objects.filter(nurse_nn=nurse)
 
     @property
     def get_phone(self):
@@ -179,20 +178,6 @@ class Nurse(models.Model):
     @property
     def get_address(self):
         return StakeholdersAddress.objects.filter(national_number=self.nurse_nn)
-
-
-class NurseSpecialization(models.Model):
-    nurse_nn = models.ForeignKey(Nurse, models.DO_NOTHING, db_column='Nurse_NN')
-    specialization = models.CharField(db_column='Specialization', max_length=120)
-
-    class Meta:
-        db_table = 'nurse_specialization'
-        unique_together = (('nurse_nn', 'specialization'),)
-        verbose_name = 'Nurse Specialization'
-        verbose_name_plural = 'Nurse Specializations'
-
-    def __str__(self):
-        return str(self.nurse_nn)
 
 
 class Paramedic(models.Model):
@@ -818,6 +803,23 @@ class PhysicianSpecialization(models.Model):
 
     def __str__(self):
         return str(self.physician_nn)
+
+    def get_value(self):
+        return self.specialization.name
+
+
+class NurseSpecialization(models.Model):
+    nurse_nn = models.ForeignKey(Nurse, models.DO_NOTHING, db_column='Nurse_NN')
+    specialization = models.ForeignKey(Specialization, models.DO_NOTHING, db_column='Specialization_ID')
+
+    class Meta:
+        db_table = 'nurse_specialization'
+        unique_together = (('nurse_nn', 'specialization'),)
+        verbose_name = 'Nurse Specialization'
+        verbose_name_plural = 'Nurse Specializations'
+
+    def __str__(self):
+        return str(self.nurse_nn)
 
     def get_value(self):
         return self.specialization.name

@@ -12,7 +12,7 @@ if request.method == 'POST':
 # Delete
 # Delete the button tag
 '''
-<a class="btn btn-danger btn-xs" onclick="delete_item({{doctor.physician_nn}})">
+<a class="btn btn-danger btn-xs" onclick="delete_item({{StakeholderType}})">
     <i class="fa fa-trash-o"></i>
 </a>
 '''
