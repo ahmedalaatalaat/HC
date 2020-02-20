@@ -212,13 +212,12 @@ class Specialist(models.Model):
         verbose_name_plural = 'Specialists'
 
     def __str__(self):
-        return self.specialist_nn
+        return str(self.specialist_nn)
 
     @property
     def get_Specialization(self):
-        x = Specialist.objects.get(pk=self.specialist_nn)
-        x._state.db
-        return SpecialistSpecialization.objects.filter(specialist_nn=x)
+        specialist = get_object_or_none(Specialist, specialist_nn=self.specialist_nn)
+        return SpecialistSpecialization.objects.filter(specialist_nn=specialist)
 
     @property
     def get_phone(self):
@@ -240,7 +239,10 @@ class SpecialistSpecialization(models.Model):
         verbose_name_plural = 'Specialist Specializations'
 
     def __str__(self):
-        return self.specialist_nn
+        return str(self.specialist_nn)
+
+    def get_value(self):
+        return str(self.specialization)
 
 
 class Pharmacist(models.Model):

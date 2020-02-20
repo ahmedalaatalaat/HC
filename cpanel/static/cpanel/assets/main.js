@@ -1,6 +1,7 @@
 var phone_no = 0;
 var address_no = 0;
 var relatives_phone_no = 0;
+var specialization_no = 0;
 $('#add_form').submit(function(e) {
     e.preventDefault();
     if ($('#txtPwd').val() == $('#txtConfirmPwd').val()) {
@@ -131,7 +132,7 @@ function address_add() {
                 </button>
                 <button class = "btn btn-pinterest waves-effect waves-light" type = "button" onclick = "address_delete(` + address_no + `)">
                 <i class="fa fa-trash-o"></i>
-            </button>
+                </button>
             </div>
         </div>`);
 }
@@ -203,4 +204,30 @@ function delete_item(id) {
 
 function delete_model() {
     $("#Deleteitem").modal();
+}
+
+
+function specialization_add() {
+    specialization_no += 1;
+    $('#Specializations').append(`
+        <div id="specialization_` + specialization_no + `">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                <input class="mdl-textfield__input" type="text" name="specialization" placeholder="Specialization" autocomplete="nope" required/>
+                <label class="mdl-textfield__label">
+                </label>
+            </div>
+            <div align="right">
+                <button class="btn btn-skype waves-effect waves-light" type="button" onclick="specialization_add()">
+                    <i class="fa fa-plus">
+                    </i>
+                </button>
+                <button class = "btn btn-pinterest waves-effect waves-light" type = "button" onclick = "specialization_delete(` + specialization_no + `)">
+                    <i class="fa fa-trash-o"></i>
+                    </button>
+            </div>
+        </div>`);
+}
+
+function specialization_delete(num) {
+    $('#specialization_' + num).remove();
 }

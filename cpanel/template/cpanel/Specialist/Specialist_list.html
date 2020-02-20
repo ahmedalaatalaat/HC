@@ -1,6 +1,6 @@
 {% extends "cpanel/Base.html" %}
- {% load staticfiles %} 
- {% block content %}
+{% load staticfiles %}
+{% block content %}
 <!-- Part One -->
 <div class="page-bar">
     <div class="page-title-breadcrumb">
@@ -56,7 +56,7 @@
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6 col-xs-6">
                                             <div class="btn-group">
-                                                <a class="btn btn-info" href="add_doctor_material.html" id="addRow">
+                                                <a class="btn btn-info" href="{% url 'cpanel:specialist_add' %}" id="addRow">
                                                     Add New
                                                     <i class="fa fa-plus">
                                                     </i>
@@ -67,76 +67,67 @@
                                     <div class="table-scrollable">
                                         <table class="table table-hover table-checkable order-column full-width" id="example4">
                                             <thead>
-                                                      <tr>
-                                <th>
-                                </th>
-                                <th>
-                                    Name
-                                </th>
-                               
-                                <th>
-                                    Specialization
-                                </th>
-                                
-                                <th>
-                                    Mobile
-                                </th>
-                                <th>
-                                    Email
-                                </th>
-                                <th>
-                                    Joining Date
-                                </th>
-                                <th>
-                                    Action
-                                </th>
-                            </tr>
-                        </thead>
-<tbody>
-    {% for specialist in specialists %}
-                            <tr class="odd gradeX">
-                                       <td class="patient-img">
-                                    <img src="{{specialist.specialist_nn.image.url}}">
-                                </td>
-                                <td>
-                                    <p>{{specialist.specialist_nn.stakeholder_name}} {{ instaspecialistnce.specialist_nn.stakeholder_last_name }}</p>
-                                </td>
-                                <td class="left">
-                                    
-                                    <p> {% for specialization in specialist.get_Specialization %} {{specialization.specialization}} {% endfor %}</p>
-                                </td>
-                                <td class="left">
-                                    <p> {% for phone in specialist.get_phone %}
-                                    <a href="tel:{{phone.phone}}"> {{phone.phone}}</a> {% endfor %}</p>
-                                </td>
-
-                                <td class="left">
-                                    <a href="mailto:{{ instance.specialist_nn.email }}">
-                                        <p>{{ specialist.specialist_nn.email }}
-                                            <p>
-                                    </a>
-                                </td>
-                                <td class="left">
-                                    <p> {{ specialist.specialist_nn.created_at|date:"F d, Y"}}
-                                        <p>
-                                </td>
-                                <form method="POST" action=""> {% csrf_token %}
-                                    <td>
-                                        <a class="btn btn-primary btn-xs" href="../edit_specialist/?nn={{instance.specialist_nn}}" >
-                                            <i class="fa fa-pencil">
-                        </i>
-                                        </a>
-
-
-                                        <button name="delete_btn" class="btn btn-danger btn-xs" type="submit" value="{{instance.specialist_nn}}">
-                                        
-                        <i class="fa fa-trash-o">
-                        </i>
-                       </button>
-                                    </td>
-                                </form>
-                            </tr>
-                            {% endfor %}
+                                                <tr>
+                                                    <th>
+                                                    </th>
+                                                    <th>
+                                                        National Number
+                                                    </th>
+                                                    <th>
+                                                        Name
+                                                    </th>
+                                                    <th>
+                                                        Specialization
+                                                    </th>
+                                                    <th>
+                                                        Mobile
+                                                    </th>
+                                                    <th>
+                                                        Email
+                                                    </th>
+                                                    <th>
+                                                        Action
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for specialist in specialists %}
+                                                <tr class="odd gradeX" id="{{specialist}}">
+                                                    <td class="patient-img">
+                                                        <img src="{{specialist.specialist_nn.image.url}}">
+                                                    </td>
+                                                    <td>
+                                                        {{specialist}}
+                                                    </td>
+                                                    <td>
+                                                        <p>{{specialist.specialist_nn.stakeholder_name}} {{ instaspecialistnce.specialist_nn.stakeholder_last_name }}</p>
+                                                    </td>
+                                                    <td class="left">
+                                                        <p> {% for specialization in specialist.get_Specialization %} {{specialization.specialization}} <br />{% endfor %}</p>
+                                                    </td>
+                                                    <td class="left">
+                                                        <p> {% for phone in specialist.get_phone %}
+                                                            <a href="tel:{{phone.phone}}"> {{phone.phone}}</a> <br />{% endfor %}</p>
+                                                    </td>
+                                                    <td class="left">
+                                                        <a href="mailto:{{ instance.specialist_nn.email }}">
+                                                            <p>{{ specialist.specialist_nn.email }}
+                                                                <p>
+                                                        </a>
+                                                    </td>
+                                                    <form method="POST" action=""> {% csrf_token %}
+                                                        <td>
+                                                            <a class="btn btn-primary btn-xs" href="{% url 'cpanel:specialist_edit' specialist %}">
+                                                                <i class="fa fa-pencil">
+                                                                </i>
+                                                            </a>
+                                                            <a class="btn btn-danger btn-xs" onclick="delete_item({{specialist}})">
+                                                                <i class="fa fa-trash-o"></i>
+                                                            </a>
+                                                        </td>
+                                                    </form>
+                                                </tr>
+                                                {% endfor %}
                                             </tbody>
                                         </table>
                                     </div>
@@ -150,8 +141,4 @@
     </div>
 </div>
 <!-- End Part Two -->
-
-
-
-
- {%endblock content%}
+{%endblock content%}
