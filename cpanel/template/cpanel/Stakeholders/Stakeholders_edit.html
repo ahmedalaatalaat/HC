@@ -5,7 +5,7 @@
     <div class="page-title-breadcrumb">
         <div class="pull-left">
             <div class="page-title">
-                Add Stackholder
+                Edit Stackholder
             </div>
         </div>
         <ol class="breadcrumb page-breadcrumb pull-right">
@@ -19,7 +19,7 @@
                 </i>
             </li>
             <li class="active">
-                Add Stackholder
+                Edit Stackholder
             </li>
         </ol>
     </div>
@@ -37,7 +37,7 @@
                     <!-- Your Field Goes Here... -->
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" type="text" name="national_number" required maxlength="20" />
+                            <input class="mdl-textfield__input" type="text" name="national_number" required maxlength="20" value="{{stakeholder.national_number}}" />
                             <label class="mdl-textfield__label">
                                 National Number
                             </label>
@@ -45,7 +45,7 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" type="text" name="stakeholder_name" required maxlength="255" />
+                            <input class="mdl-textfield__input" type="text" name="stakeholder_name" required maxlength="255" value="{{stakeholder.stakeholder_name}}" />
                             <label class="mdl-textfield__label">
                                 First Name
                             </label>
@@ -53,15 +53,23 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" type="text" name="stakeholder_last_name" required maxlength="255" />
+                            <input class="mdl-textfield__input" type="text" name="stakeholder_last_name" required maxlength="255" value="{{stakeholder.stakeholder_last_name}}" />
                             <label class="mdl-textfield__label">
                                 Last Name
                             </label>
                         </div>
                     </div>
                     <div class="col-lg-12 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width" id="password_main_div">
+                            <input class="mdl-textfield__input" type="password" name="password" />
+                            <label class="mdl-textfield__label">
+                                Old Password
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" id="txtPwd" type="password" name="password" required />
+                            <input class="mdl-textfield__input" id="txtPwd" type="password" name="password" />
                             <label class="mdl-textfield__label">
                                 Password
                             </label>
@@ -69,7 +77,7 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" id="txtConfirmPwd" type="password" name="password" required />
+                            <input class="mdl-textfield__input" id="txtConfirmPwd" type="password" name="password" />
                             <label class="mdl-textfield__label">
                                 Confirm Password
                             </label>
@@ -77,7 +85,7 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width" id="date_add">
-                            <input class="mdl-textfield__input" type="text" name="birthday" autocomplete="off" id="dp1" onfocusout="date_val()" />
+                            <input class="mdl-textfield__input" type="text" name="birthday" autocomplete="off" id="dp1" onfocusout="date_val()" value="{{stakeholder.birthday|date:"m-d-Y"}}" />
                             <label class="mdl-textfield__label">
                                 Birth Day
                             </label>
@@ -85,7 +93,7 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
-                            <input class="mdl-textfield__input" id="gender" readonly="" tabindex="-1" type="text" value="" name="gender" required maxlength="6" />
+                            <input class="mdl-textfield__input" id="gender" readonly="" tabindex="-1" type="text" value="{{stakeholder.gender}}" name="gender" required maxlength="6" />
                             <label class="pull-right margin-0" for="gender">
                                 <i class="mdl-icon-toggle__label material-icons">
                                     keyboard_arrow_down
@@ -106,7 +114,7 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" id="txtemail" type="email" name="email" maxlength="320" />
+                            <input class="mdl-textfield__input" id="txtemail" type="email" name="email" maxlength="320" value="{{stakeholder.email}}" />
                             <label class="mdl-textfield__label">
                                 Email
                             </label>
@@ -117,7 +125,7 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
-                            <input class="mdl-textfield__input" id="marital_status" readonly="" tabindex="-1" type="text" value="" name="marital_status" />
+                            <input class="mdl-textfield__input" id="marital_status" readonly="" tabindex="-1" type="text" value="{{stakeholder.marital_status}}" name="marital_status" />
                             <label class="pull-right margin-0" for="marital_status">
                                 <i class="mdl-icon-toggle__label material-icons">
                                     keyboard_arrow_down
@@ -144,7 +152,7 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" type="text" name="nationality" maxlength="255" />
+                            <input class="mdl-textfield__input" type="text" name="nationality" maxlength="255" value="{{stakeholder.nationality}}" />
                             <label class="mdl-textfield__label">
                                 Nationality
                             </label>
@@ -152,7 +160,7 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield txt-full-width">
-                            <textarea class="mdl-textfield__input" id="text7" rows="4" name="cv"></textarea>
+                            <textarea class="mdl-textfield__input" id="text7" rows="4" name="cv">{{stakeholder.cv}}</textarea>
                             <label class="mdl-textfield__label" for="text7">
                                 Bio
                             </label>
@@ -160,7 +168,7 @@
                     </div>
                     <div class="col-lg-12 p-t-20" id="phone">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" id="text5" pattern="-?[0-9]*(\.[0-9]+)?" type="text" name="phone" required maxlength="25" autocomplete="nope" />
+                            <input class="mdl-textfield__input" id="text5" pattern="-?[0-9]*(\.[0-9]+)?" type="text" name="phone" required maxlength="25" value="{{main_phone}}" />
                             <label class="mdl-textfield__label" for="text5">
                                 Mobile Number
                             </label>
@@ -174,10 +182,30 @@
                                 </i>
                             </button>
                         </div>
+                        {% for number in phones%}
+                        <div id="phone_{{forloop.counter}}_{{number}}">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                <input class="mdl-textfield__input" id="text5" pattern="-?[0-9]*(\.[0-9]+)?" type="text" name="phone" placeholder="Mobile Number" value="{{number.phone}}" required />
+                                <label class="mdl-textfield__label" for="text5">
+                                </label>
+                                <span class="mdl-textfield__error">
+                                    Number required!
+                                </span>
+                            </div>
+                            <div align="right">
+                                <button class="btn btn-skype waves-effect waves-light" type="button" onclick="phone_add()">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                                <button class="btn btn-pinterest waves-effect waves-light" type="button" onclick="phone_delete('{{forloop.counter}}_{{number}}')">
+                                    <i class="fa fa-trash-o"></i>
+                                </button>
+                            </div>
+                        </div>
+                        {% endfor %}
                     </div>
                     <div class="col-lg-12 p-t-20" id="Address">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" id="text5" type="text" name="address" required maxlength="360" autocomplete="nope" />
+                            <input class="mdl-textfield__input" id="text5" type="text" name="address" required maxlength="360" value="{{main_address}}" />
                             <label class="mdl-textfield__label" for="text5">
                                 Address
                             </label>
@@ -191,10 +219,30 @@
                                 </i>
                             </button>
                         </div>
+                        {% for address in address%}
+                        <div id="address_{{forloop.counter}}_{{address}}">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                <input autocomplete="nope" class="mdl-textfield__input" type="text" name="address" placeholder="Address" value="{{address.address}}" required />
+                                <label class="mdl-textfield__label">
+                                </label>
+                                <span class="mdl-textfield__error">
+                                    Address required!
+                                </span>
+                            </div>
+                            <div align="right">
+                                <button class="btn btn-skype waves-effect waves-light" type="button" onclick="address_add()">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                                <button class="btn btn-pinterest waves-effect waves-light" type="button" onclick="address_delete('{{forloop.counter}}_{{address}}')">
+                                    <i class="fa fa-trash-o"></i>
+                                </button>
+                            </div>
+                        </div>
+                        {% endfor %}
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
-                            <input class="mdl-textfield__input" id="Stakeholder_Type" readonly="" tabindex="-1" type="text" value="" name="stakeholder_type" />
+                            <input class="mdl-textfield__input" id="Stakeholder_Type" readonly="" tabindex="-1" type="text" value="{{stakeholder.stakeholder_type}}" name="stakeholder_type" />
                             <label class="pull-right margin-0" for="Stakeholder_Type">
                                 <i class="mdl-icon-toggle__label material-icons">
                                     keyboard_arrow_down
@@ -219,21 +267,19 @@
                     <div class="col-lg-12 p-t-20">
                         <span>Hide:</span>
                         <label style="display: inline; margin-left: 10px;" class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-8" id="switch_label">
-                            <input class="mdl-switch__input" id="switch-8" type="checkbox" name="hide" />
-                        </label>
-                    </div>
-                    <div class="col-lg-12 p-t-20">
-                        <div class="Neon Neon-theme-dragdropbox">
-                            <input style="z-index: 999; opacity: 0; width: 320px; height: 250px; position: absolute; right: 0px; left: 0px; margin-right: auto; margin-left: auto;" name="image" id="filer_input2" type="file" accept="image/*" onchange="image_upload()">
-                            <div class="Neon-input-dragDrop">
-                                <div class="Neon-input-inner">
-                                    <div class="Neon-input-icon" id="image_placeholder"><i class="fa fa-file-image-o"></i></div>
-                                    <div class="Neon-input-text">
-                                        <h3 id="image_text">Drag&amp;Drop image here</h3> <span style="display:inline-block; margin: 15px 0">or</span>
-                                    </div><a class="Neon-input-choose-btn blue">Browse Files</a>
+                            <input class="mdl-switch__input" id="switch-8" type="checkbox" name="hide" {% if stakeholder.hide%}checked {%endif%} </label> </div> <div class="col-lg-12 p-t-20">
+                            <div class="Neon Neon-theme-dragdropbox">
+                                <input style="z-index: 999; opacity: 0; width: 320px; height: 250px; position: absolute; right: 0px; left: 0px; margin-right: auto; margin-left: auto;" name="image" id="filer_input2" type="file" accept="image/*" onchange="image_upload()">
+                                <div class="Neon-input-dragDrop">
+                                    <div class="Neon-input-inner">
+                                        <div class="Neon-input-icon" id="image_placeholder"><i class="fa fa-file-image-o"></i></div>
+                                        <div class="Neon-input-text">
+                                            <h3 id="image_text">Drag&amp;Drop image here</h3> <span style="display:inline-block; margin: 15px 0">or</span>
+                                        </div><a class="Neon-input-choose-btn blue">Browse Files</a>
+                                    </div>
                                 </div>
+                                <div align="center"><a href="{{stakeholder.image.url}}" target="_blank">view image</a></div>
                             </div>
-                        </div>
                     </div>
                     <div class="col-lg-12 p-t-20 text-center">
                         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-pink" type="submit">
