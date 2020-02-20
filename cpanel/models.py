@@ -30,7 +30,7 @@ class Stakeholders(models.Model):
     stakeholder_type = models.CharField(db_column='Stakeholder_Type', max_length=10, blank=True, null=True, choices=Stakeholder_Type)
     email = models.CharField(db_column='Email', max_length=320, blank=True, null=True)
     marital_status = models.CharField(db_column='Marital_Status', max_length=8, blank=True, null=True, choices=Marital_Status)
-    image = models.ImageField(default='avatar.jpg', upload_to='Stakeholder/images', db_column='Image', blank=True, null=True)  # new
+    image = models.ImageField(default='avatar.jpg', upload_to='Stakeholder/images', db_column='Image', blank=True, null=True)
     nationality = models.CharField(db_column='Nationality', max_length=255, blank=True, null=True)
     cv = models.CharField(db_column='cv', max_length=500, blank=True, null=True)  # new
     created_at = models.DateTimeField(auto_now_add=True)  # new
@@ -191,7 +191,7 @@ class Paramedic(models.Model):
         verbose_name_plural = 'Paramedics'
 
     def __str__(self):
-        return self.paramedic_nn
+        return str(self.paramedic_nn)
 
     @property
     def get_phone(self):
