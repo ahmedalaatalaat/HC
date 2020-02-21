@@ -4,8 +4,8 @@
 # Remove image from stakeholder.create
 # Add after
 if request.FILES.get('image'):
-    stakeholder.image = request.FILES.get('image')
-    stakeholder.save()
+    Medical_Institutions.image = request.FILES.get('image')
+    Medical_Institutions.save()
 # -------------------------------------------------------
 # inside if not stakeholder:
 # Add User to django

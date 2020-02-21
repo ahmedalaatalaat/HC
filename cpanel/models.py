@@ -290,7 +290,7 @@ class PharmacistSpecialization(models.Model):
 
 class MedicalInstitutions(models.Model):
     institution_id = models.IntegerField(db_column='ID', primary_key=True)
-    image = models.ImageField(upload_to='Medical_Institutions/images', db_column='Image', blank=True, null=True)
+    image = models.ImageField(default='image.png', upload_to='Medical_Institutions/images', db_column='Image', blank=True, null=True)
     institution_name = models.CharField(db_column='Institution_Name', max_length=120, blank=True, null=True)
     hide = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)  # new
@@ -339,7 +339,7 @@ class MedicalInstitutionsAddress(models.Model):
         verbose_name_plural = 'Medical Institution Addresses'
 
     def __str__(self):
-        return self.institution
+        return str(self.institution)
 
 
 class Labs(models.Model):
