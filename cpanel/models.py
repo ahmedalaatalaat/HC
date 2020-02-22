@@ -852,7 +852,7 @@ class ClinicSpecialization(models.Model):
         verbose_name_plural = 'Clinic Specializations'
 
     def __str__(self):
-        return self.clinic
+        return str(self.clinic)
 
 
 # -- ## Insurance Deals Relations ##

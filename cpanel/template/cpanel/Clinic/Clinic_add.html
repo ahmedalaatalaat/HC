@@ -34,59 +34,46 @@
                 <header>
                     Basic Information
                 </header>
-                <button class="mdl-button mdl-js-button mdl-button--icon pull-right" data-upgraded=",MaterialButton" id="panel-button">
-                    <i class="material-icons">
-                        more_vert
-                    </i>
-                </button>
-                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" data-mdl-for="panel-button">
-                    <li class="mdl-menu__item">
-                        <i class="material-icons">
-                            assistant_photo
-                        </i>
-                        Action
-                    </li>
-                    <li class="mdl-menu__item">
-                        <i class="material-icons">
-                            print
-                        </i>
-                        Another action
-                    </li>
-                    <li class="mdl-menu__item">
-                        <i class="material-icons">
-                            favorite
-                        </i>
-                        Something else
-                        here
-                    </li>
-                </ul>
             </div>
             <form method='POST' enctype="multipart/form-data" id="add_form"> {% csrf_token %}
                 <div class="card-body row">
                     <!-- Your Field Goes Here... -->
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" type="number" required name="institution_id" />
+                            <input class="mdl-textfield__input" type="number" required name="institution_id" min="0" />
                             <label class="mdl-textfield__label">
                                 Clinic ID
                             </label>
                         </div>
                     </div>
-
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" type="text" maxlength="120" required  name="institution_name" />
+                            <input class="mdl-textfield__input" type="text" maxlength="120" required name="institution_name" />
                             <label class="mdl-textfield__label">
                                 Clinic Name
                             </label>
                         </div>
                     </div>
-
-
+                    <div class="col-lg-12 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <input class="mdl-textfield__input" id="txtPwd" type="password" name="password" required />
+                            <label class="mdl-textfield__label">
+                                Password
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <input class="mdl-textfield__input" id="txtConfirmPwd" type="password" name="password" required />
+                            <label class="mdl-textfield__label">
+                                Confirm Password
+                            </label>
+                        </div>
+                    </div>
                     <!-- Email Field -->
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" id="txtemail" maxlength="320"  required type="email" name="email" />
+                            <input class="mdl-textfield__input" id="txtemail" maxlength="320" type="email" name="email" />
                             <label class="mdl-textfield__label">
                                 Email
                             </label>
@@ -95,19 +82,17 @@
                             </span>
                         </div>
                     </div>
-
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" type="text" maxlength="25" pattern="-?[0-9]*(\.[0-9]+)?" name="institution_name" />
+                            <input class="mdl-textfield__input" type="text" maxlength="25" pattern="-?[0-9]*(\.[0-9]+)?" name="fax" />
                             <label class="mdl-textfield__label">
                                 Fax
                             </label>
                         </div>
                     </div>
-
-                    <div class="col-lg-12 p-t-20" id="Phone">
+                    <div class="col-lg-12 p-t-20" id="phone">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" id="text5" maxlength="25" required  pattern="-?[0-9]*(\.[0-9]+)?" type="text" name="phone" autocomplete="off" />
+                            <input class="mdl-textfield__input" id="text5" maxlength="25" required pattern="-?[0-9]*(\.[0-9]+)?" type="text" name="phone" autocomplete="off" />
                             <label class="mdl-textfield__label" for="text5">
                                 Mobile Number
                             </label>
@@ -122,12 +107,11 @@
                             </button>
                         </div>
                     </div>
-
                     <div class="col-lg-12 p-t-20" id="Address">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" id="text_address" maxlength="360" required  pattern="*" type="text" name="address" autocomplete="off" />
+                            <input class="mdl-textfield__input" id="text_address" maxlength="360" required type="text" name="address" autocomplete="off" />
                             <label class="mdl-textfield__label" for="text_address">
-                                Address 
+                                Address
                             </label>
                             <span class="mdl-textfield__error">
                                 Address required!
@@ -140,10 +124,18 @@
                             </button>
                         </div>
                     </div>
+                    <div class="col-lg-12 p-t-20">
+                        <label style="color: #999999">Specialization</label>
+                        <select class="form-control" multiple="multiple" id="my-select" style="height:150px" name="specialization">
+                            {% for specialization in specializations%}
+                            <option>{{specialization}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
                     <!-- Checkbox -->
                     <div class="col-lg-12 p-t-20">
                         <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1">
-                            <input checked="" class="mdl-checkbox__input" id="checkbox-1" type="checkbox" name="er_availability" />
+                            <input class="mdl-checkbox__input" id="checkbox-1" type="checkbox" name="er_availability" />
                             <span class="mdl-checkbox__label">
                                 ER availability
                             </span>

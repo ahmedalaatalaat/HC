@@ -46,6 +46,18 @@ def Doctor_add(request):
                 if request.FILES.get('image'):
                     stakeholder.image = request.FILES.get('image')
                     stakeholder.save()
+
+                for phone in request.POST.getlist('phone'):
+                    StakeholdersPhones.objects.create(
+                        national_number=stakeholder,
+                        phone=phone
+                    )
+
+                for address in request.POST.getlist('address'):
+                    StakeholdersAddress.objects.create(
+                        national_number=stakeholder,
+                        address=address
+                    )
             else:
                 group = Group.objects.get(name='Physician')
                 group.user_set.add(stakeholder.user)
@@ -61,18 +73,6 @@ def Doctor_add(request):
                 PhysicianSpecialization.objects.create(
                     physician_nn=physician,
                     specialization=specialty
-                )
-
-            for phone in request.POST.getlist('phone'):
-                StakeholdersPhones.objects.create(
-                    national_number=stakeholder,
-                    phone=phone
-                )
-
-            for address in request.POST.getlist('address'):
-                StakeholdersAddress.objects.create(
-                    national_number=stakeholder,
-                    address=address
                 )
 
             return HttpResponse()
@@ -240,6 +240,18 @@ def Patient_add(request):
                 if request.FILES.get('image'):
                     stakeholder.image = request.FILES.get('image')
                     stakeholder.save()
+
+                for address in request.POST.getlist('address'):
+                    StakeholdersAddress.objects.create(
+                        national_number=stakeholder,
+                        address=address
+                    )
+
+                for phone in request.POST.getlist('phone'):
+                    StakeholdersPhones.objects.create(
+                        national_number=stakeholder,
+                        phone=phone
+                    )
             else:
                 group = Group.objects.get(name='Patient')
                 group.user_set.add(stakeholder.user)
@@ -252,20 +264,10 @@ def Patient_add(request):
                 hide=hide
             )
 
-            for phone in request.POST.getlist('phone'):
-                StakeholdersPhones.objects.create(
-                    national_number=stakeholder,
-                    phone=phone
-                )
             for phone in request.POST.getlist('relatives_phones'):
                 PatientRelativesPhones.objects.create(
                     patient_nn=patient,
                     phone=phone
-                )
-            for address in request.POST.getlist('address'):
-                StakeholdersAddress.objects.create(
-                    national_number=stakeholder,
-                    address=address
                 )
 
             return HttpResponse()
@@ -479,6 +481,18 @@ def Nurse_add(request):
                 if request.FILES.get('image'):
                     stakeholder.image = request.FILES.get('image')
                     stakeholder.save()
+
+                for phone in request.POST.getlist('phone'):
+                    StakeholdersPhones.objects.create(
+                        national_number=stakeholder,
+                        phone=phone
+                    )
+
+                for address in request.POST.getlist('address'):
+                    StakeholdersAddress.objects.create(
+                        national_number=stakeholder,
+                        address=address
+                    )
             else:
                 group = Group.objects.get(name='Nurse')
                 group.user_set.add(stakeholder.user)
@@ -487,18 +501,6 @@ def Nurse_add(request):
                 nurse_nn=stakeholder,
                 hide=hide
             )
-
-            for phone in request.POST.getlist('phone'):
-                StakeholdersPhones.objects.create(
-                    national_number=stakeholder,
-                    phone=phone
-                )
-
-            for address in request.POST.getlist('address'):
-                StakeholdersAddress.objects.create(
-                    national_number=stakeholder,
-                    address=address
-                )
 
             for specialization in request.POST.getlist('specialization'):
                 specialty = get_object_or_none(Specialization, name=specialization)
@@ -669,6 +671,18 @@ def Paramedic_add(request):
                     stakeholder.image = request.FILES.get('image')
                     stakeholder.save()
 
+                for phone in request.POST.getlist('phone'):
+                    StakeholdersPhones.objects.create(
+                        national_number=stakeholder,
+                        phone=phone
+                    )
+
+                for address in request.POST.getlist('address'):
+                    StakeholdersAddress.objects.create(
+                        national_number=stakeholder,
+                        address=address
+                    )
+
             else:
                 group = Group.objects.get(name='Paramedic')
                 group.user_set.add(stakeholder.user)
@@ -678,18 +692,6 @@ def Paramedic_add(request):
                 ambulance_palte_number=request.POST.get('ambulance_palte_number'),
                 hide=hide
             )
-
-            for phone in request.POST.getlist('phone'):
-                StakeholdersPhones.objects.create(
-                    national_number=stakeholder,
-                    phone=phone
-                )
-
-            for address in request.POST.getlist('address'):
-                StakeholdersAddress.objects.create(
-                    national_number=stakeholder,
-                    address=address
-                )
 
             return HttpResponse()
 
@@ -829,6 +831,18 @@ def Pharmacist_add(request):
                     stakeholder.image = request.FILES.get('image')
                     stakeholder.save()
 
+                for phone in request.POST.getlist('phone'):
+                    StakeholdersPhones.objects.create(
+                        national_number=stakeholder,
+                        phone=phone
+                    )
+
+                for address in request.POST.getlist('address'):
+                    StakeholdersAddress.objects.create(
+                        national_number=stakeholder,
+                        address=address
+                    )
+
             else:
                 group = Group.objects.get(name='Pharmacist')
                 group.user_set.add(stakeholder.user)
@@ -838,17 +852,6 @@ def Pharmacist_add(request):
                 hide=hide
             )
 
-            for phone in request.POST.getlist('phone'):
-                StakeholdersPhones.objects.create(
-                    national_number=stakeholder,
-                    phone=phone
-                )
-
-            for address in request.POST.getlist('address'):
-                StakeholdersAddress.objects.create(
-                    national_number=stakeholder,
-                    address=address
-                )
             for specialization in request.POST.getlist('pharmacist_specialization'):
                 PharmacistSpecialization.objects.create(
                     pharmacist_nn=pharmacist,
@@ -1007,6 +1010,18 @@ def Specialist_add(request):
                 if request.FILES.get('image'):
                     stakeholder.image = request.FILES.get('image')
                     stakeholder.save()
+
+                for phone in request.POST.getlist('phone'):
+                    StakeholdersPhones.objects.create(
+                        national_number=stakeholder,
+                        phone=phone
+                    )
+
+                for address in request.POST.getlist('address'):
+                    StakeholdersAddress.objects.create(
+                        national_number=stakeholder,
+                        address=address
+                    )
             else:
                 group = Group.objects.get(name='Specialist')
                 group.user_set.add(stakeholder.user)
@@ -1016,17 +1031,6 @@ def Specialist_add(request):
                 hide=hide
             )
 
-            for phone in request.POST.getlist('phone'):
-                StakeholdersPhones.objects.create(
-                    national_number=stakeholder,
-                    phone=phone
-                )
-
-            for address in request.POST.getlist('address'):
-                StakeholdersAddress.objects.create(
-                    national_number=stakeholder,
-                    address=address
-                )
             for specialization in request.POST.getlist('specialization'):
                 SpecialistSpecialization.objects.create(
                     specialist_nn=specialist,
@@ -1218,21 +1222,21 @@ def Stakeholder_add(request):
                     stakeholder.image = request.FILES.get('image')
                     stakeholder.save()
 
+                for phone in request.POST.getlist('phone'):
+                    StakeholdersPhones.objects.create(
+                        national_number=stakeholder,
+                        phone=phone
+                    )
+
+                for address in request.POST.getlist('address'):
+                    StakeholdersAddress.objects.create(
+                        national_number=stakeholder,
+                        address=address
+                    )
+
             else:
                 group = Group.objects.get(name='Stakeholder')
                 group.user_set.add(stakeholder.user)
-
-            for phone in request.POST.getlist('phone'):
-                StakeholdersPhones.objects.create(
-                    national_number=stakeholder,
-                    phone=phone
-                )
-
-            for address in request.POST.getlist('address'):
-                StakeholdersAddress.objects.create(
-                    national_number=stakeholder,
-                    address=address
-                )
 
             return HttpResponse()
     return render(request, 'cpanel/Stakeholders/Stakeholders_add.html')
@@ -1329,6 +1333,8 @@ def Stakeholder_list(request):
 
 # Clinic Views
 def Clinic_add(request):
+    specializations = Specialization.objects.all()
+    print(request.POST)
     if request.is_ajax():
         if request.method == 'POST':
             if get_object_or_none(Clinic, clinic=request.POST.get('clinic')):
@@ -1337,35 +1343,66 @@ def Clinic_add(request):
             hide = True if request.POST.get('hide') == 'on' else False
             ER = True if request.POST.get('er_availability') == 'on' else False
 
-            Medical_Institutions = MedicalInstitutions.objects.create(
-                institution_id=request.POST.get('institution_id'),
-                image=request.FILES.get('image'),
-                institution_name=request.POST.get('institution_name'),
-                hide=hide,
-            )
-
-            for phone in request.POST.getlist('phone'):
-                MedicalInstitutionsphone.objects.create(
-                    institution=Medical_Institutions,
-                    phone=phone
+            medical_institution = get_object_or_none(MedicalInstitutions, institution_id=request.POST.get('institution_id'))
+            if not medical_institution:
+                # Add User to django
+                user = User.objects.create_user(
+                    username=request.POST.get('institution_id'),
+                    password=request.POST.get('password')
                 )
 
-            for address in request.POST.getlist('address'):
-                MedicalInstitutionsAddress.objects.create(
-                    institution=Medical_Institutions,
-                    address=address
+                # Add user to the group
+                group = Group.objects.get(name='Clinic')
+                group.user_set.add(user)
+
+                medical_institution = MedicalInstitutions.objects.create(
+                    institution_id=request.POST.get('institution_id'),
+                    institution_name=request.POST.get('institution_name'),
+                    user=user
                 )
-            Clinic.objects.create(
-                clinic=request.POST.get('clinic'),
+
+                if request.FILES.get('image'):
+                    medical_institution.image = request.FILES.get('image')
+                    medical_institution.save()
+
+                for phone in request.POST.getlist('phone'):
+                    MedicalInstitutionsPhone.objects.create(
+                        institution=medical_institution,
+                        phone=phone
+                    )
+
+                for address in request.POST.getlist('address'):
+                    MedicalInstitutionsAddress.objects.create(
+                        institution=medical_institution,
+                        address=address
+                    )
+
+            else:
+                group = Group.objects.get(name='Clinic')
+                group.user_set.add(medical_institution.user)
+
+            clinic = Clinic.objects.create(
+                clinic=medical_institution,
                 email=request.POST.get('email'),
                 fax=request.POST.get('fax'),
                 er_availability=ER,
-                hide=hide,
+                hide=hide
             )
+
+            for specialization in request.POST.getlist('specialization'):
+                specialty = get_object_or_none(Specialization, name=specialization)
+                ClinicSpecialization.objects.create(
+                    clinic=clinic,
+                    specialization=specialty
+                )
 
             return HttpResponse()
 
-    return render(request, 'cpanel/Clinic/Clinic_add.html')
+    context = {
+        'specializations': specializations
+    }
+
+    return render(request, 'cpanel/Clinic/Clinic_add.html', context)
 
 
 def Clinic_edit(request, id):
@@ -1373,7 +1410,13 @@ def Clinic_edit(request, id):
 
 
 def Clinic_list(request):
-    clinics = Clinic.objects.all()
+    clinics = Clinic.objects.all().filter(hide=False)
+    if request.method == 'POST':
+        clinic = get_object_or_none(Clinic, clinic=request.POST.get('id'))
+        if clinic:
+            clinic.hide = True
+            clinic.save()
+
     context = {
         "clinics": clinics,
     }
@@ -1467,21 +1510,21 @@ def Lab_add(request):
                     medical_institution.image = request.FILES.get('image')
                     medical_institution.save()
 
+                for phone in request.POST.getlist('phone'):
+                    MedicalInstitutionsPhone.objects.create(
+                        institution=medical_institution,
+                        phone=phone
+                    )
+
+                for address in request.POST.getlist('address'):
+                    MedicalInstitutionsAddress.objects.create(
+                        institution=medical_institution,
+                        address=address
+                    )
+
             else:
                 group = Group.objects.get(name='Lab')
                 group.user_set.add(medical_institution.user)
-
-            for phone in request.POST.getlist('phone'):
-                MedicalInstitutionsPhone.objects.create(
-                    institution=medical_institution,
-                    phone=phone
-                )
-
-            for address in request.POST.getlist('address'):
-                MedicalInstitutionsAddress.objects.create(
-                    institution=medical_institution,
-                    address=address
-                )
 
             lab = Labs.objects.create(
                 lab=medical_institution,
@@ -1638,21 +1681,21 @@ def Medical_Institution_add(request):
                     medical_institution.image = request.FILES.get('image')
                     medical_institution.save()
 
+                for phone in request.POST.getlist('phone'):
+                    MedicalInstitutionsPhone.objects.create(
+                        institution=medical_institution,
+                        phone=phone
+                    )
+
+                for address in request.POST.getlist('address'):
+                    MedicalInstitutionsAddress.objects.create(
+                        institution=medical_institution,
+                        address=address
+                    )
+
             else:
                 group = Group.objects.get(name='Medical Institution')
                 group.user_set.add(medical_institution.user)
-
-            for phone in request.POST.getlist('phone'):
-                MedicalInstitutionsPhone.objects.create(
-                    institution=medical_institution,
-                    phone=phone
-                )
-
-            for address in request.POST.getlist('address'):
-                MedicalInstitutionsAddress.objects.create(
-                    institution=medical_institution,
-                    address=address
-                )
 
             return HttpResponse()
 

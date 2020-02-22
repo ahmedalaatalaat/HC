@@ -1,6 +1,6 @@
 {% extends "cpanel/Base.html" %}
- {% load staticfiles %} 
- {% block content %}
+{% load staticfiles %}
+{% block content %}
 <!-- Part One -->
 <div class="page-bar">
     <div class="page-title-breadcrumb">
@@ -56,7 +56,7 @@
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6 col-xs-6">
                                             <div class="btn-group">
-                                                <a class="btn btn-info" href="add_doctor_material.html" id="addRow">
+                                                <a class="btn btn-info" href="{% url 'cpanel:clinic_add' %}" id="addRow">
                                                     Add New
                                                     <i class="fa fa-plus">
                                                     </i>
@@ -67,85 +67,88 @@
                                     <div class="table-scrollable">
                                         <table class="table table-hover table-checkable order-column full-width" id="example4">
                                             <thead>
-                                                 <tr>
+                                                <tr>
                                                     <th></th>
-
-
-                                <th>
-                                    Name
-                                </th>
-                                <th>
-                                    er_availability
-                                </th>
-                                <th>
-                                    address
-                                </th>
-                                <th>
-                                    Mobile
-                                </th>
-                                <th>
-                                    Fax
-                                </th>
-                                <th>
-                                    Email
-                                </th>
-
-                                <th>
-                                    Joining Date
-                                </th>
-                                <th>
-                                    Action
-                                </th>
-                            </tr>
+                                                    <th>
+                                                        ID
+                                                    </th>
+                                                    <th>
+                                                        Name
+                                                    </th>
+                                                    <th>
+                                                        er_availability
+                                                    </th>
+                                                    <th>
+                                                        address
+                                                    </th>
+                                                    <th>
+                                                        Mobile
+                                                    </th>
+                                                    <th>
+                                                        Fax
+                                                    </th>
+                                                    <th>
+                                                        Joining Date
+                                                    </th>
+                                                    <th>
+                                                        Action
+                                                    </th>
+                                                </tr>
                                             </thead>
                                             <tbody>
-                                             {% for clinic in clinics %}
-                            <tr class="odd gradeX">
-                                <td class="patient-img"><img src="{{clinic.clinic.image.url}}"></td>
-                                <td >
-                                    <p>{{clinic.clinic.institution_name| capfirst}} </p>
-                                </td>
-                                <td class="left">
-                                    <p> {{clinic.er_availability}}</p>
-                                </td>
-                                <td class="left">
-                                    <p> {% for address in clinic.get_address %} {{address.address}} {% endfor %}</p>
-                                </td>
-                                <td class="left">
-                                    <p>{% for phone in clinic.get_phone %} <a href="tel:{{phone.phone}}">{{phone.phone}}</a> {% endfor %}</p>
-                                </td>
-                                <td class="left">
-                                    <p>{{clinic.fax}}</p>
-                                </td>
-                                <td class="left">
-                                    <p><a href="mailto:{{clinic.email}}">{{clinic.email}}</a></p>
-                                </td>
-
-
-
-
-                                <td class="left">
-                                    <p>
-                                        {{ clinic.clinic.created_at|date:"F d, Y"}}
-                                        <p>
-                                </td>
-                                <form method="POST" action=""> {% csrf_token %}
-                                    <td>
-                                        <a class="btn btn-primary btn-xs" href="../edit_clinic/?nn={{instance.clinic}}">
-                                            <i class="fa fa-pencil">
-                        </i>
-                                        </a>
-
-
-                                        <button name="delete_btn" class="btn btn-danger btn-xs" type="submit" value="{{instance.clinic}}">
-                                        
-                        <i class="fa fa-trash-o">
-                        </i>
-                       </button>
-                                    </td>
-                                </form>
-                            </tr>
-                            {% endfor %}
+                                                {% for clinic in clinics %}
+                                                <tr class="odd gradeX" id="{{clinic}}">
+                                                    <td class="patient-img">
+                                                        {% if clinic.clinic.image %}
+                                                        <img src="{{clinic.clinic.image.url}}">
+                                                        {% endif %}
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            {{clinic}}
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <p>{{clinic.clinic.institution_name| capfirst}} </p>
+                                                    </td>
+                                                    <td class="left">
+                                                        <p>
+                                                            {% if clinic.er_availability is True%}
+                                                            Yes
+                                                            {% elif clinic.er_availability is False %}
+                                                            No
+                                                            {% else %}
+                                                            Unknown
+                                                            {% endif %}
+                                                        </p>
+                                                    </td>
+                                                    <td class="left">
+                                                        <p> {% for address in clinic.get_address %} {{address.address}} <br />{% endfor %}</p>
+                                                    </td>
+                                                    <td class="left">
+                                                        <p>{% for phone in clinic.get_phone %} <a href="tel:{{phone.phone}}">{{phone.phone}}</a> <br />{% endfor %}</p>
+                                                    </td>
+                                                    <td class="left">
+                                                        <p>{{clinic.fax}}</p>
+                                                    </td>
+                                                    <td class="left">
+                                                        <p>
+                                                            {{ clinic.clinic.created_at|date:"F d, Y"}}
+                                                            <p>
+                                                    </td>
+                                                    <form method="POST" action=""> {% csrf_token %}
+                                                        <td>
+                                                            <a class="btn btn-primary btn-xs" href="{% url 'cpanel:clinic_edit' clinic %}">
+                                                                <i class="fa fa-pencil">
+                                                                </i>
+                                                            </a>
+                                                            <a class="btn btn-danger btn-xs" onclick="delete_item({{clinic}})">
+                                                                <i class="fa fa-trash-o"></i>
+                                                            </a>
+                                                        </td>
+                                                    </form>
+                                                </tr>
+                                                {% endfor %}
                                             </tbody>
                                         </table>
                                     </div>
@@ -159,4 +162,4 @@
     </div>
 </div>
 <!-- End Part Two -->
- {% endblock content %}
+{% endblock content %}
