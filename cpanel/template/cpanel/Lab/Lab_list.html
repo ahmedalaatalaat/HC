@@ -1,6 +1,6 @@
 {% extends "cpanel/Base.html" %}
- {% load staticfiles %} 
- {% block content %}
+{% load staticfiles %}
+{% block content %}
 <!-- Part One -->
 <div class="page-bar">
     <div class="page-title-breadcrumb">
@@ -56,7 +56,7 @@
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6 col-xs-6">
                                             <div class="btn-group">
-                                                <a class="btn btn-info" href="add_doctor_material.html" id="addRow">
+                                                <a class="btn btn-info" href="{% url 'cpanel:lab_add' %}" id="addRow">
                                                     Add New
                                                     <i class="fa fa-plus">
                                                     </i>
@@ -67,77 +67,67 @@
                                     <div class="table-scrollable">
                                         <table class="table table-hover table-checkable order-column full-width" id="example4">
                                             <thead>
-                                               <tr>
-
-                                <th>
-
-                                </th>
-                                <th>
-                                    Name
-                                </th>
-                                <th>
-                                    Analysis And Radiology
-                                </th>
-                                <th>
-                                    address
-                                </th>
-                                <th>
-                                    Mobile
-                                </th>
-
-                                <th>
-                                    Joining Date
-                                </th>
-                                <th>
-                                    Action
-                                </th>
-                            </tr>
+                                                <tr>
+                                                    <th>
+                                                    </th>
+                                                    <th>
+                                                        ID
+                                                    </th>
+                                                    <th>
+                                                        Name
+                                                    </th>
+                                                    <th>
+                                                        Analysis And Radiology
+                                                    </th>
+                                                    <th>
+                                                        Mobile
+                                                    </th>
+                                                    <th>
+                                                        Joining Date
+                                                    </th>
+                                                    <th>
+                                                        Action
+                                                    </th>
+                                                </tr>
                                             </thead>
                                             <tbody>
-                                            {% for lab in labs %}
-                            <tr class="odd gradeX">
-                                <td>
-
-
-                                </td>
-                                <td>
-                                    <p>{{lab.lab.institution_name| capfirst}} </p>
-                                </td>
-                                <td class="left">
-                                    <p> {% for A_R in lab.get_A_R %} {{A_R.analysis_and_radiology}} {% endfor %}</p>
-                                </td>
-                                <td class="left">
-                                    <p> {% for address in lab.get_address %} {{address.address}} {% endfor %}</p>
-                                </td>
-                                <td class="left">
-                                    <p>{% for phone in lab.get_phone %}<a href="tel:{{phone.phone}}"> {{phone.phone}}</a> {% endfor %}</p>
-                                </td>
-
-
-
-
-                                <td class="left">
-                                    <p>
-                                        {{ lab.lab.created_at|date:"F d, Y"}}
-                                        <p>
-                                </td>
-                                <form method="POST" action=""> {% csrf_token %}
-                                    <td>
-                                        <a class="btn btn-primary btn-xs" href="../edit_lab/?nn={{instance.lab}}">
-                                            <i class="fa fa-pencil">
-                        </i>
-                                        </a>
-
-
-                                        <button name="delete_btn" class="btn btn-danger btn-xs" type="submit" value="{{instance.lab}}">
-                                        
-                        <i class="fa fa-trash-o">
-                        </i>
-                       </button>
-                                    </td>
-                                </form>
-                            </tr>
-                            {% endfor %}
+                                                {% for lab in labs %}
+                                                <tr class="odd gradeX" id="{{lab}}">
+                                                    <td class="patient-img">
+                                                        {% if lab.lab.image %}
+                                                        <img src="{{lab.lab.image.url}}">
+                                                        {% endif %}
+                                                    </td>
+                                                    <td>
+                                                        {{lab}}
+                                                    </td>
+                                                    <td>
+                                                        <p>{{lab.lab.institution_name| capfirst}} </p>
+                                                    </td>
+                                                    <td class="left">
+                                                        <p> {% for A_R in lab.get_A_R %} {{A_R.analysis_and_radiology}} <br />{% endfor %}</p>
+                                                    </td>
+                                                    <td class="left">
+                                                        <p>{% for phone in lab.get_phone %}<a href="tel:{{phone.phone}}"> {{phone.phone}}</a> <br />{% endfor %}</p>
+                                                    </td>
+                                                    <td class="left">
+                                                        <p>
+                                                            {{ lab.lab.created_at|date:"F d, Y"}}
+                                                            <p>
+                                                    </td>
+                                                    <form method="POST" action=""> {% csrf_token %}
+                                                        <td>
+                                                            <a class="btn btn-primary btn-xs" href="{% url 'cpanel:lab_edit' lab %}">
+                                                                <i class="fa fa-pencil">
+                                                                </i>
+                                                            </a>
+                                                            <a class="btn btn-danger btn-xs" onclick="delete_item({{lab}})">
+                                                                <i class="fa fa-trash-o"></i>
+                                                            </a>
+                                                        </td>
+                                                    </form>
+                                                </tr>
+                                                {% endfor %}
                                             </tbody>
                                         </table>
                                     </div>
@@ -151,4 +141,4 @@
     </div>
 </div>
 <!-- End Part Two -->
- {% endblock content %}
+{% endblock content %}

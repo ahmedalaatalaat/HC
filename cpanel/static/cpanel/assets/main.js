@@ -2,6 +2,7 @@ var phone_no = 0;
 var address_no = 0;
 var relatives_phone_no = 0;
 var specialization_no = 0;
+var analysis_and_radiology_no = 0;
 $('#add_form').submit(function(e) {
     e.preventDefault();
     if ($('#txtPwd').val() == $('#txtConfirmPwd').val()) {
@@ -223,11 +224,41 @@ function specialization_add() {
                 </button>
                 <button class = "btn btn-pinterest waves-effect waves-light" type = "button" onclick = "specialization_delete(` + specialization_no + `)">
                     <i class="fa fa-trash-o"></i>
-                    </button>
+                </button>
             </div>
         </div>`);
 }
 
 function specialization_delete(num) {
     $('#specialization_' + num).remove();
+}
+
+
+function analysis_and_radiology_add(){
+    analysis_and_radiology_no += 1;
+    $('#Analysis_and_Radiology').append(`
+        <div id="analysis_and_radiology_` + analysis_and_radiology_no + `">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                <input class="mdl-textfield__input" id="text_analysis_and_radiology" maxlength="25" required type="text" name="analysis_and_radiology" autocomplete="no" placeholder="Analysis And Radiology"/>
+                <label class="mdl-textfield__label" for="text_analysis_and_radiology">
+                </label>
+                <span class="mdl-textfield__error">
+                    Analysis And Radiology required!
+                </span>
+            </div>
+            <div align="right">
+                <button class="btn btn-skype waves-effect waves-light" type="button" onclick="analysis_and_radiology_add()">
+                    <i class="fa fa-plus">
+                    </i>
+                </button>
+                <button class = "btn btn-pinterest waves-effect waves-light" type = "button" onclick = "analysis_and_radiology_delete(` + analysis_and_radiology_no + `)">
+                <i class="fa fa-trash-o"></i>
+                </button>
+            </div>
+        </div>
+        `);
+}
+
+function analysis_and_radiology_delete(num) {
+    $('#analysis_and_radiology_' + num).remove();
 }

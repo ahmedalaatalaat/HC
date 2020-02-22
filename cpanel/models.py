@@ -354,7 +354,7 @@ class Labs(models.Model):
         verbose_name_plural = 'Labs'
 
     def __str__(self):
-        return self.lab
+        return str(self.lab)
 
     @property
     def get_phone(self):
@@ -365,10 +365,8 @@ class Labs(models.Model):
         return MedicalInstitutionsAddress.objects.filter(institution=self.lab)
 
     @property
-    def get_A_R(self):
-        x = Labs.objects.get(pk=self.lab)
-        x._state.db
-        return LabsAnalysisAndRadiology.objects.filter(lab=x)
+    def get_analysis_radiology(self):
+        return LabsAnalysisAndRadiology.objects.filter(lab=self)
 
 
 class LabsAnalysisAndRadiology(models.Model):
@@ -382,7 +380,7 @@ class LabsAnalysisAndRadiology(models.Model):
         verbose_name_plural = 'Labs Analysis And Radiology'
 
     def __str__(self):
-        return self.lab
+        return str(self.lab)
 
 
 class Clinic(models.Model):

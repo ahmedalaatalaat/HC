@@ -42,7 +42,6 @@ if request.is_ajax():
 
         # Handle stakeholder
         institution.institution_name = request.POST.get('institution_name')
-        institution.hide = hide
 
         # Handle stakeholder image
         if request.FILES.get('image'):

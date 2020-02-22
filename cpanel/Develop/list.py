@@ -16,3 +16,12 @@ if request.method == 'POST':
     <i class="fa fa-trash-o"></i>
 </a>
 '''
+
+# img
+'''
+<td class="patient-img">
+    {% if medical_institution.image %}
+    <img src="{{medical_institution.image.url}}">
+    {% endif %}
+</td>
+'''

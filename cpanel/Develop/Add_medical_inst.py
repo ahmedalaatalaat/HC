@@ -44,11 +44,13 @@ return HttpResponse()
 
 # Replace All Phone with phones
 # Remove the three dots in the header
+# Add required and autocomplete='nope'
+# Add min="0" to the id field
 # Add Password
 '''
 <div class="col-lg-12 p-t-20">
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-        <input class="mdl-textfield__input" id="txtPwd" type="password" name="password" />
+        <input class="mdl-textfield__input" id="txtPwd" type="password" name="password" required/>
         <label class="mdl-textfield__label">
             Password
         </label>
@@ -56,7 +58,7 @@ return HttpResponse()
 </div>
 <div class="col-lg-12 p-t-20">
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-        <input class="mdl-textfield__input" id="txtConfirmPwd" type="password" name="password" />
+        <input class="mdl-textfield__input" id="txtConfirmPwd" type="password" name="password" required/>
         <label class="mdl-textfield__label">
             Confirm Password
         </label>
