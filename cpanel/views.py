@@ -1334,7 +1334,6 @@ def Stakeholder_list(request):
 # Clinic Views
 def Clinic_add(request):
     specializations = Specialization.objects.all()
-    print(request.POST)
     if request.is_ajax():
         if request.method == 'POST':
             if get_object_or_none(Clinic, clinic=request.POST.get('clinic')):
@@ -1406,7 +1405,104 @@ def Clinic_add(request):
 
 
 def Clinic_edit(request, id):
-    pass
+    specializations = Specialization.objects.all()
+    institution = get_object_or_404(MedicalInstitutions, institution_id=id)
+    institution_numbers = institution.get_phone
+    institution_address = institution.get_address
+    clinic = get_object_or_404(Clinic, clinic=id)
+    clinic_specializations = [i.specialization for i in clinic.get_Specialization]
+
+    if request.is_ajax():
+        if request.method == "POST":
+            # data preprocessing
+            hide = True if request.POST.get('hide') == 'on' else False
+            ER = True if request.POST.get('er_availability') == 'on' else False
+
+            # Handle stakeholder
+            institution.institution_name = request.POST.get('institution_name')
+
+            # Handle stakeholder image
+            if request.FILES.get('image'):
+                institution.image = request.FILES.get('image')
+
+            institution.save()
+
+            # Handle password
+            if request.POST.get('password'):
+                user = get_object_or_none(User, username=institution)
+                if user.check_password(request.POST.getlist('password')[0]):
+                    user.set_password(request.POST.getlist('password')[1])
+                    user.save()
+
+            # Handle phone
+            old_numbers = [i.phone for i in institution_numbers]
+            for number in request.POST.getlist('phone'):
+                if number in old_numbers:
+                    old_numbers.remove(number)
+                else:
+                    MedicalInstitutionsPhone.objects.create(
+                        institution=institution,
+                        phone=number
+                    )
+            delete_phones = [i for i in institution_numbers if i.phone in old_numbers]
+            for instance in delete_phones:
+                instance.delete()
+
+            # Handle address
+            old_address = [i.address for i in institution_address]
+            for address in request.POST.getlist('address'):
+                if address in old_address:
+                    old_address.remove(address)
+                else:
+                    MedicalInstitutionsAddress.objects.create(
+                        institution=institution,
+                        address=address
+                    )
+            delete_address = [i for i in institution_address if i.address in old_address]
+            for instance in delete_address:
+                instance.delete()
+
+            # Clinic Handle
+            clinic.email = request.POST.get('email')
+            clinic.fax = request.POST.get('fax')
+            clinic.er_availability = ER
+            clinic.hide = hide
+
+            clinic.save()
+
+            # Handle Specialization
+            old_specializations = [str(i) for i in clinic_specializations]
+
+            for specialization in request.POST.getlist('specialization'):
+                if specialization in old_specializations:
+                    old_specializations.remove(specialization)
+                else:
+                    specialization = get_object_or_none(specializations, name=specialization)
+                    ClinicSpecialization.objects.create(
+                        clinic=clinic,
+                        specialization=specialization
+                    )
+
+            delete_specializations = [i for i in clinic_specializations if str(i) in old_specializations]
+            for instance in delete_specializations:
+                ClinicSpecialization.objects.all().filter(
+                    clinic=clinic,
+                    specialization=instance
+                ).delete()
+
+    context = {
+        'institution': institution,
+        'main_phone': institution_numbers[0].phone,
+        'phones': institution_numbers[1:],
+        'main_address': institution_address[0].address,
+        'address': institution_address[1:],
+        'clinic': clinic,
+        'specializations': specializations,
+        'clinic_specializations': clinic_specializations
+
+    }
+
+    return render(request, 'cpanel/Clinic/Clinic_edit.html', context)
 
 
 def Clinic_list(request):

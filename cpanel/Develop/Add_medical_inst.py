@@ -21,21 +21,21 @@ if not medical_institution:
         medical_institution.image = request.FILES.get('image')
         medical_institution.save()
 
+    for phone in request.POST.getlist('phone'):
+        MedicalInstitutionsPhone.objects.create(
+            institution=medical_institution,
+            phone=phone
+        )
+
+    for address in request.POST.getlist('address'):
+        MedicalInstitutionsAddress.objects.create(
+            institution=medical_institution,
+            address=address
+        )
+
 else:
     group = Group.objects.get(name='MedicalInstitutions')
     group.user_set.add(medical_institution.user)
-
-for phone in request.POST.getlist('phone'):
-    MedicalInstitutionsPhone.objects.create(
-        institution=medical_institution,
-        phone=phone
-    )
-
-for address in request.POST.getlist('address'):
-    MedicalInstitutionsAddress.objects.create(
-        institution=medical_institution,
-        address=address
-    )
 
 return HttpResponse()
 

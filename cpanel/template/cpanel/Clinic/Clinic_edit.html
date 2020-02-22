@@ -34,59 +34,54 @@
                 <header>
                     Basic Information
                 </header>
-                <button class="mdl-button mdl-js-button mdl-button--icon pull-right" data-upgraded=",MaterialButton" id="panel-button">
-                    <i class="material-icons">
-                        more_vert
-                    </i>
-                </button>
-                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" data-mdl-for="panel-button">
-                    <li class="mdl-menu__item">
-                        <i class="material-icons">
-                            assistant_photo
-                        </i>
-                        Action
-                    </li>
-                    <li class="mdl-menu__item">
-                        <i class="material-icons">
-                            print
-                        </i>
-                        Another action
-                    </li>
-                    <li class="mdl-menu__item">
-                        <i class="material-icons">
-                            favorite
-                        </i>
-                        Something else
-                        here
-                    </li>
-                </ul>
             </div>
             <form method='POST' enctype="multipart/form-data" id="add_form"> {% csrf_token %}
                 <div class="card-body row">
                     <!-- Your Field Goes Here... -->
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" type="number" required name="institution_id" value="{{institution.institution_id}}" />
+                            <input class="mdl-textfield__input" type="number" required name="institution_id" value="{{institution.institution_id}}" readonly />
                             <label class="mdl-textfield__label">
                                 Clinic ID
                             </label>
                         </div>
                     </div>
-
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" type="text" maxlength="120" required  name="institution_name" value="{{institution.institution_name}}"/>
+                            <input class="mdl-textfield__input" type="text" maxlength="120" required name="institution_name" value="{{institution.institution_name}}" />
                             <label class="mdl-textfield__label">
                                 Clinic Name
                             </label>
                         </div>
                     </div>
-
-
+                    <div class="col-lg-12 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width" id="password_main_div">
+                            <input class="mdl-textfield__input" type="password" name="password" />
+                            <label class="mdl-textfield__label">
+                                Old Password
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <input class="mdl-textfield__input" id="txtPwd" type="password" name="password" />
+                            <label class="mdl-textfield__label">
+                                Password
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <input class="mdl-textfield__input" id="txtConfirmPwd" type="password" name="password" />
+                            <label class="mdl-textfield__label">
+                                Confirm Password
+                            </label>
+                        </div>
+                    </div>
                     <!-- Email Field -->
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" id="txtemail" maxlength="320"  required type="email" name="email"  value="{{clinic.email}}"/>
+                            <input class="mdl-textfield__input" id="txtemail" maxlength="320" type="email" name="email" value="{{clinic.email}}" />
                             <label class="mdl-textfield__label">
                                 Email
                             </label>
@@ -95,21 +90,35 @@
                             </span>
                         </div>
                     </div>
-
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" type="text" maxlength="25" pattern="-?[0-9]*(\.[0-9]+)?" name="institution_name" value="{{clinic.fax}}" />
+                            <input class="mdl-textfield__input" type="text" maxlength="25" pattern="-?[0-9]*(\.[0-9]+)?" name="fax" value="{{clinic.fax}}" />
                             <label class="mdl-textfield__label">
                                 Fax
                             </label>
                         </div>
                     </div>
-
-                  <div class="col-lg-12 p-t-20" id="Phone">
+                    <div class="col-lg-12 p-t-20" id="phone">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <input class="mdl-textfield__input" id="text5" maxlength="25" required pattern="-?[0-9]*(\.[0-9]+)?" type="text" name="phone" autocomplete="off" value="{{main_phone}}" />
+                            <label class="mdl-textfield__label" for="text5">
+                                Mobile Number
+                            </label>
+                            <span class="mdl-textfield__error">
+                                Number required!
+                            </span>
+                        </div>
+                        <div align="right">
+                            <button class="btn btn-skype waves-effect waves-light" type="button" onclick="phone_add()">
+                                <i class="fa fa-plus">
+                                </i>
+                            </button>
+                        </div>
+                        {% for number in phones%}
+                        <div id="phone_{{forloop.counter}}_{{number}}">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                <input class="mdl-textfield__input" id="text5" maxlength="25" required pattern="-?[0-9]*(\.[0-9]+)?" type="text" name="phone" autocomplete="off" value="{{main_phone.phone}}" />
+                                <input class="mdl-textfield__input" id="text5" pattern="-?[0-9]*(\.[0-9]+)?" type="text" name="phone" placeholder="Mobile Number" value="{{number.phone}}" required autocomplete="nope" />
                                 <label class="mdl-textfield__label" for="text5">
-                                    Mobile Number
                                 </label>
                                 <span class="mdl-textfield__error">
                                     Number required!
@@ -117,37 +126,36 @@
                             </div>
                             <div align="right">
                                 <button class="btn btn-skype waves-effect waves-light" type="button" onclick="phone_add()">
-                                    <i class="fa fa-plus">
-                                    </i>
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                                <button class="btn btn-pinterest waves-effect waves-light" type="button" onclick="phone_delete('{{forloop.counter}}_{{number}}')">
+                                    <i class="fa fa-trash-o"></i>
                                 </button>
                             </div>
-                        
-                        {% for number in phones%}
-    <div id="phone_{{forloop.counter}}_{{number}}">
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-            <input class="mdl-textfield__input" id="text5" pattern="-?[0-9]*(\.[0-9]+)?" type="text" name="Phone" placeholder="Mobile Number" value="{{number.phone}}" />
-            <label class="mdl-textfield__label" for="text5">
-            </label>
-            <span class="mdl-textfield__error">
-                Number required!
-            </span>
-        </div>
-        <div align="right">
-            <button class="btn btn-skype waves-effect waves-light" type="button" onclick="phone_add()">
-                <i class="fa fa-plus"></i>
-            </button>
-            <button class="btn btn-pinterest waves-effect waves-light" type="button" onclick="phone_delete('{{forloop.counter}}_{{number}}')">
-                <i class="fa fa-trash-o"></i>
-            </button>
-        </div>
-    </div>
-    {% endfor %}</div>
-
-                        <div class="col-lg-12 p-t-20" id="Address">
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="col-lg-12 p-t-20" id="Address">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <input class="mdl-textfield__input" id="text_address" maxlength="360" required type="text" name="address" autocomplete="off" value="{{main_address}}" />
+                            <label class="mdl-textfield__label" for="text_address">
+                                Address
+                            </label>
+                            <span class="mdl-textfield__error">
+                                Address required!
+                            </span>
+                        </div>
+                        <div align="right">
+                            <button class="btn btn-skype waves-effect waves-light" type="button" onclick="address_add()">
+                                <i class="fa fa-plus">
+                                </i>
+                            </button>
+                        </div>
+                        {% for address in address%}
+                        <div id="address_{{forloop.counter}}_{{address}}">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                <input class="mdl-textfield__input" id="text_address" maxlength="360" required pattern="*" type="text" name="address" autocomplete="off" value="{{main_address.address}}" />
-                                <label class="mdl-textfield__label" for="text_address">
-                                    Address 
+                                <input autocomplete="new-password" class="mdl-textfield__input" type="text" name="address" placeholder="Address" value="{{address.address}}" required />
+                                <label class="mdl-textfield__label">
                                 </label>
                                 <span class="mdl-textfield__error">
                                     Address required!
@@ -155,32 +163,24 @@
                             </div>
                             <div align="right">
                                 <button class="btn btn-skype waves-effect waves-light" type="button" onclick="address_add()">
-                                    <i class="fa fa-plus">
-                                    </i>
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                                <button class="btn btn-pinterest waves-effect waves-light" type="button" onclick="address_delete('{{forloop.counter}}_{{address}}')">
+                                    <i class="fa fa-trash-o"></i>
                                 </button>
                             </div>
-                            {% for address in address%}
-    <div id="address_{{forloop.counter}}_{{address}}">
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-            <input autocomplete="new-password" class="mdl-textfield__input" type="text" name="address" placeholder="Address" value="{{address.address}}" />
-            <label class="mdl-textfield__label">
-            </label>
-            <span class="mdl-textfield__error">
-                Address required!
-            </span>
-        </div>
-        <div align="right">
-            <button class="btn btn-skype waves-effect waves-light" type="button" onclick="address_add()">
-                <i class="fa fa-plus"></i>
-            </button>
-            <button class="btn btn-pinterest waves-effect waves-light" type="button" onclick="address_delete('{{forloop.counter}}_{{address}}')">
-                <i class="fa fa-trash-o"></i>
-            </button>
-        </div>
-    </div>
-    {% endfor %}
                         </div>
-                             <!-- Checkbox -->
+                        {% endfor %}
+                    </div>
+                    <div class="col-lg-12 p-t-20">
+                        <label style="color: #999999">Specialization</label>
+                        <select class="form-control" multiple="multiple" id="my-select" style="height:150px" name="specialization">
+                            {% for specialization in specializations%}
+                            <option {% if specialization in clinic_specializations%}selected{%endif%}>{{specialization}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <!-- Checkbox -->
                     <div class="col-lg-12 p-t-20">
                         <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1">
                             <input {% if clinic.er_availability%}checked {%endif%} class="mdl-checkbox__input" id="checkbox-1" type="checkbox" name="er_availability" />

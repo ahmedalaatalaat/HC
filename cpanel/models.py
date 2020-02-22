@@ -406,6 +406,10 @@ class Clinic(models.Model):
     def get_address(self):
         return MedicalInstitutionsAddress.objects.filter(institution=self.clinic)
 
+    @property
+    def get_Specialization(self):
+        return ClinicSpecialization.objects.filter(clinic=self)
+
 
 class Pharmacy(models.Model):
     pharmacy = models.OneToOneField(MedicalInstitutions, models.DO_NOTHING, db_column='Pharmacy_ID', primary_key=True)
