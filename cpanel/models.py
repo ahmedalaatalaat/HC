@@ -459,6 +459,10 @@ class Hospital(models.Model):
     def __str__(self):
         return str(self.hospital)
 
+    @property
+    def get_Specialization(self):
+        return HospitalSpecialization.objects.filter(hospital=self)
+
 # -- ** Insurance Tables ** --
 
 
@@ -842,7 +846,7 @@ class HospitalSpecialization(models.Model):
         verbose_name_plural = 'Hospital Specializations'
 
     def __str__(self):
-        return self.hospital
+        return str(self.hospital)
 
 
 class ClinicSpecialization(models.Model):
