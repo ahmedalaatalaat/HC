@@ -34,38 +34,12 @@
                 <header>
                     Basic Information
                 </header>
-                <button class="mdl-button mdl-js-button mdl-button--icon pull-right" data-upgraded=",MaterialButton" id="panel-button">
-                    <i class="material-icons">
-                        more_vert
-                    </i>
-                </button>
-                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" data-mdl-for="panel-button">
-                    <li class="mdl-menu__item">
-                        <i class="material-icons">
-                            assistant_photo
-                        </i>
-                        Action
-                    </li>
-                    <li class="mdl-menu__item">
-                        <i class="material-icons">
-                            print
-                        </i>
-                        Another action
-                    </li>
-                    <li class="mdl-menu__item">
-                        <i class="material-icons">
-                            favorite
-                        </i>
-                        Something else
-                        here
-                    </li>
-                </ul>
             </div>
             <form method='POST' enctype="multipart/form-data" id="add_form"> {% csrf_token %}
                 <div class="card-body row">
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" name="type_name" id="txtname" type="text" value="{{insurance_type.type_name}}" />
+                            <input class="mdl-textfield__input" name="type_name" id="txtname" type="text" value="{{insurance_type.type_name}}" required />
                             <label class="mdl-textfield__label">
                                 Name
                             </label>
@@ -73,7 +47,7 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" id="txtname" name="company" type="text" value="{{insurance_type.company}}" />
+                            <input class="mdl-textfield__input" id="txtname" name="company" type="text" value="{{insurance_type.company}}" required readonly />
                             <label class="mdl-textfield__label">
                                 Insurance Company ID
                             </label>
@@ -86,17 +60,13 @@
                         </label>
                     </div>
                 </div>
-                <div class="col-lg-12 p-t-20">
-                    <div class="col-lg-12 p-t-20 text-center">
-                        <div class="col-lg-12 p-t-20 text-center">
-                            <button class="btn btn-circle btn-success" type="submit">
-                                Submit!
-                            </button>
-                            <button class="btn btn-circle btn-danger" type="reset">
-                                Cancel
-                            </button>
-                        </div>
-                    </div>
+                <div class="col-lg-12 p-t-20 text-center">
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-pink" type="submit">
+                        Submit
+                    </button>
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default" type="button" id="add_form_Cancel_button">
+                        Cancel
+                    </button>
                 </div>
             </form>
         </div>

@@ -2415,11 +2415,31 @@ def Insurance_Type_add(request):
 
 
 def Insurance_Type_edit(request, id):
-    pass
+    insurance_type = get_object_or_404(InsuranceTypes, type_id=id)
+    if request.is_ajax():
+        if request.method == "POST":
+            hide = True if request.POST.get('hide') == 'on' else False
+            insurance_type.type_name = request.POST.get('type_name')
+            insurance_type.hide = hide
+
+            insurance_type.save()
+
+            return HttpResponse()
+
+    context = {
+        'insurance_type': insurance_type,
+    }
+    return render(request, 'cpanel/Insurance Company/Insurance_Type_edit.html', context)
 
 
 def Insurance_Type_list(request):
-    insurance_types = InsuranceTypes.objects.all()
+    insurance_types = InsuranceTypes.objects.all().filter(hide=False)
+    if request.method == 'POST':
+        InsuranceType = get_object_or_none(InsuranceTypes, type_id=request.POST.get('id'))
+        if InsuranceType:
+            InsuranceType.hide = True
+            InsuranceType.save()
+
     context = {
         "insurance_types": insurance_types,
     }
