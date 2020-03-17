@@ -505,7 +505,7 @@ class InsuranceCompaniesPhone(models.Model):
         verbose_name_plural = 'Insurance Company Phones'
 
     def __str__(self):
-        return self.company
+        return str(self.company)
 
 
 class InsuranceCompaniesAddress(models.Model):
@@ -519,7 +519,7 @@ class InsuranceCompaniesAddress(models.Model):
         verbose_name_plural = 'Insurance Company Addresses'
 
     def __str__(self):
-        return self.company
+        return str(self.company)
 
 
 class InsuranceTypes(models.Model):
