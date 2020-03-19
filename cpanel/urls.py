@@ -51,7 +51,7 @@ urlpatterns = [
     path('pharmacy_list/', views.Pharmacy_list, name='pharmacy_list'),
     # Physician Clinic Working Time URLs
     path('physician_clinic_working_time_add/', views.Physician_Clinic_Working_Time_add, name='physician_clinic_working_time_add'),
-    path('physician_clinic_working_time_edit/', views.Physician_Clinic_Working_Time_edit, name='physician_clinic_working_time_edit'),
+    path('physician_clinic_working_time_edit/<id>/', views.Physician_Clinic_Working_Time_edit, name='physician_clinic_working_time_edit'),
     path('physician_clinic_working_time_list/', views.Physician_Clinic_Working_Time_list, name='physician_clinic_working_time_list'),
     # Hospital URLs
     path('hospital_add/', views.Hospital_add, name='hospital_add'),
@@ -59,7 +59,7 @@ urlpatterns = [
     path('hospital_list/', views.Hospital_list, name='hospital_list'),
     # Physician Hospital Working Time URLs
     path('physician_hospital_working_time_add/', views.Physician_Hospital_Working_Time_add, name='physician_hospital_working_time_add'),
-    path('physician_hospital_working_time_edit/', views.Physician_Hospital_Working_Time_edit, name='physician_hospital_working_time_edit'),
+    path('physician_hospital_working_time_edit/<id>/', views.Physician_Hospital_Working_Time_edit, name='physician_hospital_working_time_edit'),
     path('physician_hospital_working_time_list/', views.Physician_Hospital_Working_Time_list, name='physician_hospital_working_time_list'),
 
     # Insurance Company URLS

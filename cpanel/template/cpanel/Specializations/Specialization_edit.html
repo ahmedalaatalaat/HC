@@ -5,7 +5,7 @@
     <div class="page-title-breadcrumb">
         <div class="pull-left">
             <div class="page-title">
-                Add Specialization
+                Edit Specialization
             </div>
         </div>
         <ol class="breadcrumb page-breadcrumb pull-right">
@@ -19,7 +19,7 @@
                 </i>
             </li>
             <li class="active">
-                Add Specialization
+                Edit Specialization
             </li>
         </ol>
     </div>
@@ -37,7 +37,7 @@
                 <div class="card-body row">
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" type="number" name="specialization_id" required />
+                            <input class="mdl-textfield__input" type="number" name="specialization_id" required readonly value="{{specialization.specialization_id}}" />
                             <label class="mdl-textfield__label">
                                 ID
                             </label>
@@ -45,7 +45,7 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" type="text" name="name" required maxlength="120" />
+                            <input class="mdl-textfield__input" type="text" name="name" required maxlength="120" value="{{specialization.name}}"/>
                             <label class="mdl-textfield__label">
                                 Name
                             </label>
@@ -54,7 +54,7 @@
                     <div class="col-lg-12 p-t-20">
                         <span>Hide:</span>
                         <label style="display: inline; margin-left: 10px;" class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-8" id="switch_label">
-                            <input class="mdl-switch__input" id="switch-8" type="checkbox" name="hide" />
+                            <input class="mdl-switch__input" id="switch-8" type="checkbox" {% if specialization.hide%}checked{%endif%} name="hide" />
                         </label>
                     </div>
                     <div class="col-lg-12 p-t-20 text-center">

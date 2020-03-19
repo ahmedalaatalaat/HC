@@ -1,6 +1,6 @@
 {% extends "cpanel/Base.html" %}
- {% load staticfiles %} 
- {% block content %}
+{% load staticfiles %}
+{% block content %}
 <!-- Part One -->
 <div class="page-bar">
     <div class="page-title-breadcrumb">
@@ -56,7 +56,7 @@
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6 col-xs-6">
                                             <div class="btn-group">
-                                                <a class="btn btn-info" href="add_doctor_material.html" id="addRow">
+                                                <a class="btn btn-info" href="{% url 'cpanel:specialization_add' %}" id="addRow">
                                                     Add New
                                                     <i class="fa fa-plus">
                                                     </i>
@@ -68,64 +68,41 @@
                                         <table class="table table-hover table-checkable order-column full-width" id="example4">
                                             <thead>
                                                 <tr>
-
-                                 <th>
-
-                                </th>
-                                <th>
-                                    Name
-                                </th>
-
-
-
-
-                                <th>
-                                    ID
-                                </th>
-                                <th>
-                                    Action
-                                </th>
-                            </tr>
+                                                    <th>
+                                                        ID
+                                                    </th>
+                                                    <th>
+                                                        Name
+                                                    </th>
+                                                    <th>
+                                                        Action
+                                                    </th>
+                                                </tr>
                                             </thead>
                                             <tbody>
-                                             {% for specialization in specializations %}
-                            <tr class="odd gradeX">
-                                <td>
-
-
-                                </td>
-                                <td>
-                                    <p>{{specialization.name}} </p>
-                                </td>
-
-
-
-
-
-
-
-                                <td class="left">
-                                    <p>
-                                        {{ specialization.specialization_id}}
-                                        <p>
-                                </td>
-                                <form method="POST" action=""> {% csrf_token %}
-                                    <td>
-                                        <a class="btn btn-primary btn-xs" href="../edit_specialization/?nn={{instance.specialization_id}}">
-                                            <i class="fa fa-pencil">
-                        </i>
-                                        </a>
-
-
-                                        <button name="delete_btn" class="btn btn-danger btn-xs" type="submit" value="{{instance.specialization_id}}">
-                                        
-                        <i class="fa fa-trash-o">
-                        </i>
-                       </button>
-                                    </td>
-                                </form>
-                            </tr>
-                            {% endfor %}
+                                                {% for specialization in specializations %}
+                                                <tr class="odd gradeX" id="{{specialization.specialization_id}}">
+                                                    <td class="left">
+                                                        <p>
+                                                            {{ specialization.specialization_id}}
+                                                            <p>
+                                                    </td>
+                                                    <td>
+                                                        <p>{{specialization.name}} </p>
+                                                    </td>
+                                                    <form method="POST" action=""> {% csrf_token %}
+                                                        <td>
+                                                            <a class="btn btn-primary btn-xs" href="{% url 'cpanel:specialization_edit' specialization.specialization_id %}">
+                                                                <i class="fa fa-pencil">
+                                                                </i>
+                                                            </a>
+                                                            <a class="btn btn-danger btn-xs" onclick="delete_item({{specialization.specialization_id}})">
+                                                                <i class="fa fa-trash-o"></i>
+                                                            </a>
+                                                        </td>
+                                                    </form>
+                                                </tr>
+                                                {% endfor %}
                                             </tbody>
                                         </table>
                                     </div>
@@ -139,4 +116,4 @@
     </div>
 </div>
 <!-- End Part Two -->
- {% endblock content %}
+{% endblock content %}

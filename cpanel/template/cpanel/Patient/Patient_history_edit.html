@@ -6,7 +6,7 @@
     <div class="page-title-breadcrumb">
         <div class="pull-left">
             <div class="page-title">
-                Add Patient History
+                Edit Patient History
             </div>
         </div>
         <ol class="breadcrumb page-breadcrumb pull-right">
@@ -20,7 +20,7 @@
                 </i>
             </li>
             <li class="active">
-                Add Patient History
+                Edit Patient History
             </li>
         </ol>
     </div>
@@ -39,7 +39,7 @@
                 <div class="card-body row">
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" name="patient_nn" required type="text" />
+                            <input class="mdl-textfield__input" name="patient_nn" required type="text" value="{{patient_history.patient_nn}}" readonly />
                             <label class="mdl-textfield__label">
                                 Patient National Number
                             </label>
@@ -47,7 +47,7 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" name="physician_nn" required maxlength="20" type="text" />
+                            <input class="mdl-textfield__input" name="physician_nn" required maxlength="20" value="{{patient_history.physician_nn}}" type="text" readonly />
                             <label class="mdl-textfield__label">
                                 Physician National Number
                             </label>
@@ -55,7 +55,7 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width" id="datetime_add">
-                            <input class="form_datetime mdl-textfield__input" type="text" name="date_time" reuqired autocomplete="off" onfocusout="datetime_val()" />
+                            <input class="form_datetime mdl-textfield__input" type="text" value="{{patient_history.date_time|date:'Y-m-d H:i'}}" name="date_time" reuqired autocomplete="off" onfocusout="datetime_val()" readonly />
                             <label class="mdl-textfield__label">
                                 Visitation Date & Time
                             </label>
@@ -63,7 +63,7 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" required maxlength="360" name="diagnouse" id="txtdiagnouse" type="text" />
+                            <input class="mdl-textfield__input" required maxlength="360" value="{{patient_history.diagnouse}}" name="diagnouse" id="txtdiagnouse" type="text" />
                             <label class="mdl-textfield__label">
                                 Diagnouse
                             </label>
@@ -71,7 +71,7 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield txt-full-width">
-                            <textarea class="mdl-textfield__input" id="text7" rows="4" name="physician_comments"></textarea>
+                            <textarea class="mdl-textfield__input" id="text7" rows="4" name="physician_comments">{{patient_history.physician_comments}}</textarea>
                             <label class="mdl-textfield__label" for="text7">
                                 Comments
                             </label>
@@ -79,7 +79,7 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield txt-full-width">
-                            <textarea class="mdl-textfield__input" id="text7" rows="4" name="prescription"></textarea>
+                            <textarea class="mdl-textfield__input" id="text7" rows="4" name="prescription">{{patient_history.prescription}}</textarea>
                             <label class="mdl-textfield__label" for="text7">
                                 Prescription
                             </label>
@@ -87,7 +87,7 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
-                            <input class="mdl-textfield__input" required id="sample2" readonly="" tabindex="-1" type="text" value="Medium" name="disease_priority" />
+                            <input class="mdl-textfield__input" required id="sample2" readonly="" tabindex="-1" type="text" name="disease_priority" value="{{patient_history.disease_priority}}" />
                             <label class="pull-right margin-0" for="sample2">
                                 <i class="mdl-icon-toggle__label material-icons">
                                     keyboard_arrow_down
@@ -114,7 +114,7 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
-                            <input class="mdl-textfield__input" required id="list3" readonly="" tabindex="-1" type="text" value="Normal" name="visitation_type" />
+                            <input class="mdl-textfield__input" required id="list3" readonly="" value="{{patient_history.visitation_type}}" tabindex="-1" type="text" name="visitation_type" />
                             <label class="pull-right margin-0" for="list3">
                                 <i class="mdl-icon-toggle__label material-icons">
                                     keyboard_arrow_down
@@ -144,7 +144,7 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" id="txt5" name="analysis_radiology" maxlength="360" type="text" />
+                            <input class="mdl-textfield__input" id="txt5" name="analysis_radiology" maxlength="360" type="text" value="{{patient_history.analysis_radiology}}" />
                             <label class="mdl-textfield__label">
                                 Analysis and Radiology
                             </label>
@@ -153,7 +153,7 @@
                     <div class="col-lg-12 p-t-20">
                         <span>Hide:</span>
                         <label style="display: inline; margin-left: 10px;" class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-8" id="switch_label">
-                            <input class="mdl-switch__input" id="switch-8" type="checkbox" name="hide" />
+                            <input class="mdl-switch__input" id="switch-8" type="checkbox" name="hide" {% if patient_history.hide%}checked {%endif%} />
                         </label>
                     </div>
                     <div class="col-lg-12 p-t-20 text-center">

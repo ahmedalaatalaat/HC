@@ -404,12 +404,12 @@ def Patient_history_add(request):
             hide = True if request.POST.get('hide') == 'on' else False
 
             if not get_object_or_none(Patient, patient_nn=request.POST.get('patient_nn')):
-                return HttpResponseNotFound("This Patient national number not exist")
+                return HttpResponseNotFound("This Patient national number not exists")
             else:
                 patient = get_object_or_none(Patient, patient_nn=request.POST.get('patient_nn'))
 
             if not get_object_or_none(Physician, physician_nn=request.POST.get('physician_nn')):
-                return HttpResponseNotFound("This physician national number not exist")
+                return HttpResponseNotFound("This physician national number not exists")
             else:
                 physician = get_object_or_none(Physician, physician_nn=request.POST.get('physician_nn'))
 
@@ -430,12 +430,37 @@ def Patient_history_add(request):
     return render(request, 'cpanel/Patient/Patient_History_add.html')
 
 
-def Patient_history_edit(request, NN):
-    pass
+def Patient_history_edit(request, id):
+    patient_history = get_object_or_404(PatientHistory, id=id)
+    if request.is_ajax():
+        if request.method == "POST":
+            # data preprocessing
+            hide = True if request.POST.get('hide') == 'on' else False
+
+            patient_history.date_time = request.POST.get('date_time')
+            patient_history.visitation_type = request.POST.get('visitation_type')
+            patient_history.prescription = request.POST.get('prescription')
+            patient_history.physician_comments = request.POST.get('physician_comments')
+            patient_history.diagnouse = request.POST.get('diagnouse')
+            patient_history.analysis_radiology = request.POST.get('analysis_radiology')
+            patient_history.disease_priority = request.POST.get('disease_priority')
+            patient_history.hide = hide
+
+            patient_history.save()
+
+    context = {
+        'patient_history': patient_history
+    }
+    return render(request, 'cpanel/Patient/Patient_History_edit.html', context)
 
 
 def Patient_history_list(request):
-    patients_history = PatientHistory.objects.all()
+    patients_history = PatientHistory.objects.all().filter(hide=False)
+    if request.method == 'POST':
+        history = get_object_or_none(PatientHistory, id=request.POST.get('id'))
+        if history:
+            history.hide = True
+            history.save()
     context = {
         "patients_history": patients_history,
     }
@@ -1170,7 +1195,21 @@ def Specialization_add(request):
 
 
 def Specialization_edit(request, id):
-    pass
+    specialization = get_object_or_404(Specialization, specialization_id=id)
+    if request.is_ajax():
+        if request.method == "POST":
+            # data preprocessing
+            hide = True if request.POST.get('hide') == 'on' else False
+
+            specialization.name = request.POST.get('name')
+            specialization.hide = hide
+
+            specialization.save()
+
+    context = {
+        "specialization": specialization,
+    }
+    return render(request, 'cpanel/Specializations/Specialization_edit.html', context)
 
 
 def Specialization_list(request):
@@ -1636,11 +1675,9 @@ def Pharmacy_edit(request, id):
             for instance in delete_address:
                 instance.delete()
 
-            print('hi')
             # Pharmacy Handle
             pharmacy.pharmacy_type = request.POST.get('pharmacy_type')
             owner = get_object_or_none(Pharmacist, pharmacist_nn=request.POST.get('owner'))
-            print(owner)
             if not owner:
                 return HttpResponseNotFound("This Pharmacist data is not stored")
             pharmacy.owner = owner
@@ -1984,11 +2021,11 @@ def Physician_Clinic_Working_Time_add(request):
         if request.method == 'POST':
             physician = get_object_or_none(Physician, physician_nn=request.POST.get('physician_nn'))
             if not physician:
-                return HttpResponseNotFound("This doctor data is not stored")
+                return HttpResponseNotFound("This Doctor national number not exists")
 
             clinic = get_object_or_none(Clinic, clinic=request.POST.get('clinic'))
             if not clinic:
-                return HttpResponseNotFound("This clinic data is not stored")
+                return HttpResponseNotFound("This Clinic ID number not exists")
 
             for day in request.POST.getlist('week_day'):
                 work_day = PhysicianClinicWorkingTime.objects.filter(
@@ -2018,12 +2055,34 @@ def Physician_Clinic_Working_Time_add(request):
     return render(request, 'cpanel/Clinic/Physician_Clinic_working_time_add.html')
 
 
-def Physician_Clinic_Working_Time_edit(request):
-    pass
+def Physician_Clinic_Working_Time_edit(request, id):
+    work_time = get_object_or_404(PhysicianClinicWorkingTime, id=id)
+    if request.is_ajax():
+        if request.method == 'POST':
+            # print(request.POST)
+            hide = True if request.POST.get('hide') == 'on' else False
+
+            work_time.start_time = request.POST.get('start_time')
+            work_time.end_time = request.POST.get('end_time')
+            print(work_time.end_time)
+            work_time.fee = request.POST.get('fee')
+            work_time.hide = hide
+
+            work_time.save()
+
+    context = {
+        'work_time': work_time
+    }
+    return render(request, 'cpanel/Clinic/Physician_Clinic_working_time_edit.html', context)
 
 
 def Physician_Clinic_Working_Time_list(request):
-    physician_clinic_working_times = PhysicianClinicWorkingTime.objects.all()
+    physician_clinic_working_times = PhysicianClinicWorkingTime.objects.all().filter(hide=False)
+    if request.method == 'POST':
+        work_time = get_object_or_none(PhysicianClinicWorkingTime, id=request.POST.get('id'))
+        if work_time:
+            work_time.hide = True
+            work_time.save()
     context = {
         "physician_clinic_working_times": physician_clinic_working_times,
     }
@@ -2256,12 +2315,33 @@ def Physician_Hospital_Working_Time_add(request):
     return render(request, 'cpanel/Hospital/Physician_Hospital_working_time_add.html')
 
 
-def Physician_Hospital_Working_Time_edit(request):
-    pass
+def Physician_Hospital_Working_Time_edit(request, id):
+    work_time = get_object_or_404(PhysicianHospitalWorkingTime, id=id)
+    if request.is_ajax():
+        if request.method == 'POST':
+            hide = True if request.POST.get('hide') == 'on' else False
+
+            work_time.start_time = request.POST.get('start_time')
+            work_time.end_time = request.POST.get('end_time')
+            work_time.fee = request.POST.get('fee')
+            work_time.hide = hide
+
+            work_time.save()
+
+    context = {
+        'work_time': work_time
+    }
+    return render(request, 'cpanel/Hospital/Physician_Hospital_working_time_edit.html', context)
 
 
 def Physician_Hospital_Working_Time_list(request):
-    physician_hospital_working_times = PhysicianHospitalWorkingTime.objects.all()
+    physician_hospital_working_times = PhysicianHospitalWorkingTime.objects.all().filter(hide=False)
+    if request.method == 'POST':
+        work_time = get_object_or_none(physician_hospital_working_times, id=request.POST.get('id'))
+        if work_time:
+            work_time.hide = True
+            work_time.save()
+
     context = {
         "physician_hospital_working_times": physician_hospital_working_times,
     }

@@ -34,97 +34,75 @@
                 <header>
                     Basic Information
                 </header>
-                <button class="mdl-button mdl-js-button mdl-button--icon pull-right" data-upgraded=",MaterialButton" id="panel-button">
-                    <i class="material-icons">
-                        more_vert
-                    </i>
-                </button>
-                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" data-mdl-for="panel-button">
-                    <li class="mdl-menu__item">
-                        <i class="material-icons">
-                            assistant_photo
-                        </i>
-                        Action
-                    </li>
-                    <li class="mdl-menu__item">
-                        <i class="material-icons">
-                            print
-                        </i>
-                        Another action
-                    </li>
-                    <li class="mdl-menu__item">
-                        <i class="material-icons">
-                            favorite
-                        </i>
-                        Something else
-                        here
-                    </li>
-                </ul>
             </div>
             <form method='POST' enctype="multipart/form-data" id="add_form"> {% csrf_token %}
                 <div class="card-body row">
                     <div class="col-lg-12 p-t-20">
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                        <input class="mdl-textfield__input" name="physician_nn" id="txtfee" type="text" />
-                        <label class="mdl-textfield__label">
-                            Physician National Number
-                        </label>
-                    </div>
-                </div>
-                <div class="col-lg-12 p-t-20">
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                        <input class="mdl-textfield__input" name="hospital" id="txtfee" type="text" />
-                        <label class="mdl-textfield__label">
-                            Hospital ID
-                        </label>
-                    </div>
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                        <input class="mdl-textfield__input" name="fee" id="txtfee" type="text" />
-                        <label class="mdl-textfield__label">
-                            Fee
-                        </label>
-                    </div>
-                </div>
-                <div class="col-lg-12 p-t-20">
-                    <label style="color: #999999">Working Days</label>
-                    <select class="form-control" multiple="multiple" id="my-select" style="height:150px" name="week_day">
-                        <option>Saturday</option>
-                        <option>Sunday</option>
-                        <option>Monday</option>
-                        <option>Tuseday</option>
-                        <option>Wednesday</option>
-                        <option>Thursday</option>
-                        <option>Friday</option>
-                    </select>
-                </div>
-                <div class="col-lg-12 p-t-20">
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                        <input class="mdl-textfield__input" type="time" name="start_time" value="13:30" />
-                        <label class="mdl-textfield__label">
-                            Start Time
-                        </label>
-                    </div>
-                </div>
-                <div class="col-lg-12 p-t-20">
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                        <input class="mdl-textfield__input" type="time" name="end_time" value="13:30" />
-                        <label class="mdl-textfield__label">
-                            End Time
-                        </label>
-                    </div>
-                </div>
-                <div class="col-lg-12 p-t-20">
-                    <div class="col-lg-12 p-t-20 text-center">
-                        <div class="col-lg-12 p-t-20 text-center">
-                            <button class="btn btn-circle btn-success" type="submit">
-                                Submit!
-                            </button>
-                            <button class="btn btn-circle btn-danger" type="reset">
-                                Cancel
-                            </button>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <input class="mdl-textfield__input" name="physician_nn" id="txtfee" type="text" required />
+                            <label class="mdl-textfield__label">
+                                Physician National Number
+                            </label>
                         </div>
                     </div>
-                </div>
+                    <div class="col-lg-12 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <input class="mdl-textfield__input" name="hospital" id="txtfee" type="text" required />
+                            <label class="mdl-textfield__label">
+                                Hospital ID
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <input class="mdl-textfield__input" name="fee" id="txtfee" type="text" required />
+                            <label class="mdl-textfield__label">
+                                Fee
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 p-t-20">
+                        <label style="color: #999999">Working Days</label>
+                        <select class="form-control" multiple="multiple" id="my-select" style="height:150px" name="week_day">
+                            <option>Saturday</option>
+                            <option>Sunday</option>
+                            <option>Monday</option>
+                            <option>Tuseday</option>
+                            <option>Wednesday</option>
+                            <option>Thursday</option>
+                            <option>Friday</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-12 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <input class="mdl-textfield__input" type="time" name="start_time" value="13:30" required />
+                            <label class="mdl-textfield__label">
+                                Start Time
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <input class="mdl-textfield__input" type="time" name="end_time" value="13:30" required />
+                            <label class="mdl-textfield__label">
+                                End Time
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 p-t-20">
+                        <span>Hide:</span>
+                        <label style="display: inline; margin-left: 10px;" class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-8" id="switch_label">
+                            <input class="mdl-switch__input" id="switch-8" type="checkbox" name="hide" />
+                        </label>
+                    </div>
+                    <div class="col-lg-12 p-t-20 text-center">
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-pink" type="submit">
+                            Submit
+                        </button>
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default" type="button" id="add_form_Cancel_button">
+                            Cancel
+                        </button>
+                    </div>
                 </div>
             </form>
         </div>

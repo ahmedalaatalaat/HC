@@ -6,7 +6,7 @@
     <div class="page-title-breadcrumb">
         <div class="pull-left">
             <div class="page-title">
-                Add Physician Clinic Working Time
+                Edit Physician Hospital Working Time
             </div>
         </div>
         <ol class="breadcrumb page-breadcrumb pull-right">
@@ -20,7 +20,7 @@
                 </i>
             </li>
             <li class="active">
-                Add Physician Clinic Working Time
+                Edit Physician Hospital Working Time
             </li>
         </ol>
     </div>
@@ -39,7 +39,7 @@
                 <div class="card-body row">
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" name="physician_nn" id="txtfee" type="text" required />
+                            <input class="mdl-textfield__input" name="physician_nn" id="txtfee" type="text" required value="{{work_time.physician_nn}}" readonly/>
                             <label class="mdl-textfield__label">
                                 Physician National Number
                             </label>
@@ -47,33 +47,31 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" name="clinic" id="txtfee" type="text" required />
+                            <input class="mdl-textfield__input" name="hospital" id="txtfee" type="text" required value="{{work_time.hospital}}" readonly/>
                             <label class="mdl-textfield__label">
-                                Clinic ID
+                                Hospital ID
                             </label>
                         </div>
+                    </div>
+                    <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" name="fee" id="txtfee" type="number" min="0" required />
+                            <input class="mdl-textfield__input" name="week_day" id="txtfee" type="text" required value="{{work_time.week_day}}" readonly />
+                            <label class="mdl-textfield__label">
+                                Work Day
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 p-t-20">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                            <input class="mdl-textfield__input" name="fee" id="txtfee" type="number" min="0" required value="{{work_time.fee}}"/>
                             <label class="mdl-textfield__label">
                                 Fee
                             </label>
                         </div>
                     </div>
                     <div class="col-lg-12 p-t-20">
-                        <label style="color: #999999">Working Days</label>
-                        <select class="form-control" multiple="multiple" id="my-select" style="height:150px" name="week_day" required>
-                            <option>Saturday</option>
-                            <option>Sunday</option>
-                            <option>Monday</option>
-                            <option>Tuseday</option>
-                            <option>Wednesday</option>
-                            <option>Thursday</option>
-                            <option>Friday</option>
-                        </select>
-                    </div>
-                    <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" type="time" name="start_time" value="13:30" required />
+                            <input class="mdl-textfield__input" type="time" name="start_time" value="{{work_time.start_time|date:'H:i'}}" required />
                             <label class="mdl-textfield__label">
                                 Start Time
                             </label>
@@ -81,7 +79,7 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" type="time" name="end_time" value="13:30" required />
+                            <input class="mdl-textfield__input" type="time" name="end_time" value="{{work_time.end_time|date:'H:i'}}" required />
                             <label class="mdl-textfield__label">
                                 End Time
                             </label>
@@ -90,7 +88,7 @@
                     <div class="col-lg-12 p-t-20">
                         <span>Hide:</span>
                         <label style="display: inline; margin-left: 10px;" class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-8" id="switch_label">
-                            <input class="mdl-switch__input" id="switch-8" type="checkbox" name="hide" />
+                            <input class="mdl-switch__input" id="switch-8" type="checkbox" {% if work_time.hide%}checked{%endif%} name="hide" />
                         </label>
                     </div>
                     <div class="col-lg-12 p-t-20 text-center">

@@ -28,6 +28,9 @@ $('#add_form').submit(function(e) {
             error: function(error_data) {
                 if (error_data.responseText.includes('already stored')) {
                     var message = error_data.responseText
+                }
+                else if(error_data.responseText.includes('number not exists')){
+                    var message = error_data.responseText
                 } else {
                     var message = "New data faild to be added";
                 }

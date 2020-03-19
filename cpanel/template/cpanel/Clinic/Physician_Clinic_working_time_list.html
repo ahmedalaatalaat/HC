@@ -1,6 +1,6 @@
 {% extends "cpanel/Base.html" %}
- {% load staticfiles %} 
- {% block content %}
+{% load staticfiles %}
+{% block content %}
 <!-- Part One -->
 <div class="page-bar">
     <div class="page-title-breadcrumb">
@@ -56,7 +56,7 @@
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6 col-xs-6">
                                             <div class="btn-group">
-                                                <a class="btn btn-info" href="add_doctor_material.html" id="addRow">
+                                                <a class="btn btn-info" href="{% url 'cpanel:physician_clinic_working_time_add' %}" id="addRow">
                                                     Add New
                                                     <i class="fa fa-plus">
                                                     </i>
@@ -67,85 +67,80 @@
                                     <div class="table-scrollable">
                                         <table class="table table-hover table-checkable order-column full-width" id="example4">
                                             <thead>
-                                                 <tr>
-                                <th>
-                                </th>
-                                <th>
-                                    Clinic Name
-                                </th>
-                                <th>
-                                    Physician Name
-                                </th>
-                                <th>
-                                    Fee
-                                </th>
-                                <th>
-                                    Start Time
-                                </th>
-                                <th>
-                                    End Time
-                                </th>
-                                <th>
-                                    Working Days
-                                </th>
-
-
-
-
-                                <th>
-                                    Action
-                                </th>
-                            </tr>
+                                                <tr>
+                                                    <th>
+                                                    </th>
+                                                    <th>
+                                                        Clinic ID
+                                                    </th>
+                                                    <th>
+                                                        Clinic Name
+                                                    </th>
+                                                    <th>
+                                                        Physician NN
+                                                    </th>
+                                                    <th>
+                                                        Physician Name
+                                                    </th>
+                                                    <th>
+                                                        Fee
+                                                    </th>
+                                                    <th>
+                                                        Start Time
+                                                    </th>
+                                                    <th>
+                                                        End Time
+                                                    </th>
+                                                    <th>
+                                                        Working Day
+                                                    </th>
+                                                    <th>
+                                                        Action
+                                                    </th>
+                                                </tr>
                                             </thead>
                                             <tbody>
                                                 {% for physician_clinic_working_time in physician_clinic_working_times %}
-                            <tr class="odd gradeX">
-                                <td class="patient-img">
-
-
-                                </td>
-                                <td>
-                                    {{physician_clinic_working_time.clinic.clinic.institution_name}}
-                                </td>
-
-                                <td>
-                                    {{physician_clinic_working_time.physician_nn.physician_nn.stakeholder_name}}
-                                </td>
-                                <td class="left">
-                                    {{physician_clinic_working_time.fee}}
-                                </td>
-                                <td class="left">
-                                    {{physician_clinic_working_time.start_time}}
-
-                                </td>
-                                <td class="left">
-                                    {{physician_clinic_working_time.end_time}}
-                                </td>
-
-                                <td class="left">
-                                    {{physician_clinic_working_time.week_day}}
-                                </td>
-
-
-
-
-                                <form method="POST" action=""> {% csrf_token %}
-                                    <td>
-                                        <a class="btn btn-primary btn-xs" href="../edit_clinic_working_time/?nn={{instance.id}}">
-                                            <i class="fa fa-pencil">
-                        </i>
-                                        </a>
-
-
-                                        <button name="delete_btn" class="btn btn-danger btn-xs" type="submit" value="{{instance.id}}">
-                                        
-                        <i class="fa fa-trash-o">
-                        </i>
-                       </button>
-                                    </td>
-                                </form>
-                            </tr>
-                            {% endfor %}
+                                                <tr class="odd gradeX" id="{{physician_clinic_working_time.id}}">
+                                                    <td class="patient-img">
+                                                    </td>
+                                                    <td>
+                                                        {{physician_clinic_working_time.clinic.clinic}}
+                                                    </td>
+                                                    <td>
+                                                        {{physician_clinic_working_time.clinic.clinic.institution_name}}
+                                                    </td>
+                                                    <td>
+                                                        {{physician_clinic_working_time.physician_nn.physician_nn}}
+                                                    </td>
+                                                    <td>
+                                                        {{physician_clinic_working_time.physician_nn.physician_nn.stakeholder_name}}
+                                                    </td>
+                                                    <td class="left">
+                                                        {{physician_clinic_working_time.fee}}
+                                                    </td>
+                                                    <td class="left">
+                                                        {{physician_clinic_working_time.start_time}}
+                                                    </td>
+                                                    <td class="left">
+                                                        {{physician_clinic_working_time.end_time}}
+                                                    </td>
+                                                    <td class="left">
+                                                        {{physician_clinic_working_time.week_day}}
+                                                    </td>
+                                                    <form method="POST" action=""> {% csrf_token %}
+                                                        <td>
+                                                            <a class="btn btn-primary btn-xs" href="{% url 'cpanel:physician_clinic_working_time_edit' physician_clinic_working_time.id %}">
+                                                                <i class="fa fa-pencil">
+                                                                </i>
+                                                            </a>
+                                                            <a class="btn btn-danger btn-xs" onclick="delete_item({{physician_clinic_working_time.id}})">
+                                                                <i class="fa fa-trash-o"></i>
+                                                            </a>
+                                                        </td>
+                                                    </form>
+                                                </tr>
+                                                {% endfor %}
                                             </tbody>
                                         </table>
                                     </div>
@@ -159,4 +154,4 @@
     </div>
 </div>
 <!-- End Part Two -->
- {% endblock content %}
+{% endblock content %}
