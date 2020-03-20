@@ -6,6 +6,19 @@ from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
 
 
+# login Views
+def login(request):
+    return render(request, 'cpanel/login.html')
+
+
+def forgot_password(request):
+    return render(request, 'cpanel/forgot_password.html')
+
+
+def lock_screen(request):
+    return render(request, 'cpanel/lock_screen.html')
+
+
 # Specialization Views
 def Specialization_add(request):
     if request.is_ajax():

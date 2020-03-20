@@ -1,0 +1,60 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="Bluecare" name="author" />
+    <title>
+        Bluecare System | 500
+    </title>
+    <!-- google font -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&amp;subset=all" rel="stylesheet" type="text/css" />
+    <!-- icons -->
+    <link href="{% static 'cpanel/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'cpanel/assets/bundles/iconic/css/material-design-iconic-font.min.css' %}" rel="stylesheet" />
+    <!-- bootstrap -->
+    <link href="{% static 'cpanel/assets/bundles/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+    <!-- style -->
+    <link href="{% static 'cpanel/css/extra_pages.css' %}" rel="stylesheet" />
+    <!-- favicon -->
+    <link href="{% static 'cpanel/img/favicon.svg' %}" rel="shortcut icon">
+</head>
+
+<body>
+    <div class="limiter">
+        <div class="container-login100 page-background">
+            <div class="wrap-login100">
+                <form class="form-404">
+                    <span class="login100-form-logo">
+                        <img alt="" src="{% static 'cpanel/img/hospital.png' %}" />
+                    </span>
+                    <span class="form404-title p-b-34 p-t-27">
+                        Error 500
+                    </span>
+                    <p class="content-404">
+                        Oops, Something went wrong.
+                    </p>
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn">
+                            Go to home page
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- start js include path -->
+    <script src="{% static 'cpanel/assets/bundles/jquery/jquery.min.js' %}">
+    </script>
+    <!-- bootstrap -->
+    <script src="{% static 'cpanel/assets/bundles/bootstrap/js/bootstrap.min.js' %}">
+    </script>
+    <script src="{% static 'cpanel/assets/login-data.js' %}">
+    </script>
+    <!-- end js include path -->
+</body>
+
+</html>

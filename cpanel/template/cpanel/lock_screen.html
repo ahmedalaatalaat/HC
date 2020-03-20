@@ -1,0 +1,70 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="Bluecare" name="author" />
+    <title>
+        Bluecare System | Lockscreen
+    </title>
+    <!-- google font -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&amp;subset=all" rel="stylesheet" type="text/css" />
+    <!-- icons -->
+    <link href="{% static 'cpanel/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'cpanel/assets/bundles/iconic/css/material-design-iconic-font.min.css' %}" rel="stylesheet" />
+    <!-- bootstrap -->
+    <link href="{% static 'cpanel/assets/bundles/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+    <!-- style -->
+    <link href="{% static 'cpanel/css/extra_pages.css' %}" rel="stylesheet" />
+    <!-- favicon -->
+    <link href="{% static 'cpanel/img/favicon.svg' %}" rel="shortcut icon">
+</head>
+
+<body>
+    <div class="limiter">
+        <div class="container-login100 page-background">
+            <div class="wrap-login100">
+                <form class="login100-form validate-form">
+                    <span class="login100-form-logo">
+                        <img alt="John Doe" class="imgroundcorners" src="{% static 'cpanel/img/dp.jpg' %}" />
+                    </span>
+                    <span class="login100-form-title p-t-27">
+                        Dr. Kiran Patel
+                    </span>
+                    <p class="text-center txt-locked">
+                        Locked
+                    </p>
+                    <div class="wrap-input100 validate-input" data-validate="Enter password">
+                        <input class="input100" name="pass" placeholder="Password" type="password" />
+                        <span class="focus-input100" data-placeholder="">
+                        </span>
+                    </div>
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn">
+                            Login
+                        </button>
+                    </div>
+                    <div class="text-center p-t-27">
+                        <a class="txt1" href="{% url 'cpanel:login' %}">
+                            sign in as a different user
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- start js include path -->
+    <script src="{% static 'cpanel/assets/bundles/jquery/jquery.min.js' %}">
+    </script>
+    <!-- bootstrap -->
+    <script src="{% static 'cpanel/assets/bundles/bootstrap/js/bootstrap.min.js' %}">
+    </script>
+    <script src="{% static 'cpanel/assets/login-data.js' %}">
+    </script>
+    <!-- end js include path -->
+</body>
+
+</html>
