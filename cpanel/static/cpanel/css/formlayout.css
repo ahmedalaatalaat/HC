@@ -1,8 +1,7 @@
 
 /*
  *  Document   : formlayout.css
- *  Author     : RedStar Theme
- *  Description: form control related stylesheet	
+ *  Description: form control related stylesheet
  */
 
 .form-control {
@@ -143,10 +142,10 @@
 	line-height: 30px
 }
 
-/************************************************* 
+/*************************************************
 
-					advance form 
-			
+					advance form
+
 ****************************************************/
 
 /*************** Toggle Button ***************/
@@ -561,8 +560,8 @@ color: #F39C12;
 display: block;
 color: #000000;
 }
- 
- 
+
+
 /* Spinner control */
 
 .input-group-btn-vertical {

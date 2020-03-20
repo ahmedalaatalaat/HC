@@ -1,10 +1,3 @@
-/**
- *  Document   : theme-color.js
- *  Author     : redstar
- *  Description: Core script to handle the entire theme and core functions
- *
- **/
-
 jQuery(document).ready(function() {
    jQuery(document).on("click",".sidebar-theme a",function() {
 	   var sidebar_color = jQuery(this).attr('data-theme')+"-sidebar-color";

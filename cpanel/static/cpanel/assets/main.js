@@ -265,3 +265,4 @@ function analysis_and_radiology_add(){
 function analysis_and_radiology_delete(num) {
     $('#analysis_and_radiology_' + num).remove();
 }
+

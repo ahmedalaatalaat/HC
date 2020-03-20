@@ -1,6 +1,5 @@
 /*
  *  Document   : inbox.min.css
- *  Author     : RedStar Theme
  *  Description: Email inbox stylesheet
  */
 
@@ -127,7 +126,7 @@
 }
 
 .inbox .inbox-body,.inbox .inbox-sidebar {
-	
+
 	border: 1px solid #e7ecf1;
 	border-radius: 4px;
     margin-top: 14px;

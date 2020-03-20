@@ -7,10 +7,9 @@
     <meta charset="utf-8" />
     <meta content="IE=edge" http-equiv="X-UA-Compatible" />
     <meta content="width=device-width, initial-scale=1" name="viewport">
-    <meta content="Responsive Admin Template" name="description" />
-    <meta content="RedstarHospital" name="author" />
+    <meta content="Bluecare system" name="author" />
     <title>
-        Redstar Hospital | Bootstrap Responsive Hospital Admin Template
+        BlueCare Cpanel
     </title>
     <!-- google font -->
     <link href="{% static 'cpanel/assets/bundles/material/fonts.css' %}" rel="stylesheet" />
@@ -48,7 +47,7 @@
     <!-- SweetAlert -->
     <link href="{% static 'cpanel/assets/bundles/sweet-alert/sweetalert.min.css' %}" rel="stylesheet" type="text/css">
     <!-- favicon -->
-    <link href="{% static 'cpanel/img/favicon.ico' %}" rel="shortcut icon" />
+    <link href="{% static 'cpanel/img/favicon.svg' %}" rel="shortcut icon" />
     </link>
     </link>
     </link>
@@ -65,9 +64,11 @@
                 <div class="page-logo">
                     <a href="index.html">
                         <span class="logo-icon fa fa-stethoscope fa-rotate-45">
+
                         </span>
+
                         <span class="logo-default">
-                            REDSTAR
+                            BlueCare
                         </span>
                     </a>
                 </div>
@@ -80,17 +81,6 @@
                         </a>
                     </li>
                 </ul>
-                <form action="#" class="search-form-opened" method="GET">
-                    <div class="input-group">
-                        <input class="form-control" name="query" placeholder="Search..." type="text" />
-                        <span class="input-group-btn">
-                            <a class="btn submit" href="javascript:;">
-                                <i class="icon-magnifier">
-                                </i>
-                            </a>
-                        </span>
-                    </div>
-                </form>
                 <!-- start mobile menu -->
                 <a class="menu-toggler responsive-toggler" data-target=".navbar-collapse" data-toggle="collapse" href="javascript:;">
                     <span>
@@ -110,286 +100,13 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a class="deutsch">
-                                        <img alt="" src="{% static 'cpanel/img/flags/de.png' %}" />
-                                        Deutsch
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="ukrainian">
-                                        <img alt="" src="{% static 'cpanel/img/flags/ua.png' %}" />
-                                        Українська
-                                    </a>
-                                </li>
-                                <li>
                                     <a class="english">
                                         <img alt="" src="{% static 'cpanel/img/flags/gb.png' %}" />
                                         English
                                     </a>
                                 </li>
-                                <li>
-                                    <a class="espana">
-                                        <img alt="" src="{% static 'cpanel/img/flags/es.png' %}" />
-                                        España
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="russian">
-                                        <img alt="" src="{% static 'cpanel/img/flags/ru.png' %}" />
-                                        Русский
-                                    </a>
-                                </li>
                             </ul>
                         </li>
-                        <!-- end language menu -->
-                        <!-- start notification dropdown -->
-                        <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
-                            <a class="dropdown-toggle" data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href="javascript:;">
-                                <i class="fa fa-bell-o">
-                                </i>
-                                <span class="badge headerBadgeColor1">
-                                    6
-                                </span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="external">
-                                    <h3>
-                                        <span class="bold">
-                                            Notifications
-                                        </span>
-                                    </h3>
-                                    <span class="notification-label purple-bgcolor">
-                                        New 6
-                                    </span>
-                                </li>
-                                <li>
-                                    <ul class="dropdown-menu-list small-slimscroll-style" data-handle-color="#637283">
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">
-                                                    just now
-                                                </span>
-                                                <span class="details">
-                                                    <span class="notification-icon circle deepPink-bgcolor">
-                                                        <i class="fa fa-check">
-                                                        </i>
-                                                    </span>
-                                                    Congratulations!.
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">
-                                                    3 mins
-                                                </span>
-                                                <span class="details">
-                                                    <span class="notification-icon circle purple-bgcolor">
-                                                        <i class="fa fa-user o">
-                                                        </i>
-                                                    </span>
-                                                    <b>
-                                                        John Micle
-                                                    </b>
-                                                    is now following you.
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">
-                                                    7 mins
-                                                </span>
-                                                <span class="details">
-                                                    <span class="notification-icon circle blue-bgcolor">
-                                                        <i class="fa fa-comments-o">
-                                                        </i>
-                                                    </span>
-                                                    <b>
-                                                        Sneha Jogi
-                                                    </b>
-                                                    sent you a message.
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">
-                                                    12 mins
-                                                </span>
-                                                <span class="details">
-                                                    <span class="notification-icon circle pink">
-                                                        <i class="fa fa-heart">
-                                                        </i>
-                                                    </span>
-                                                    <b>
-                                                        Ravi Patel
-                                                    </b>
-                                                    like your photo.
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">
-                                                    15 mins
-                                                </span>
-                                                <span class="details">
-                                                    <span class="notification-icon circle yellow">
-                                                        <i class="fa fa-warning">
-                                                        </i>
-                                                    </span>
-                                                    Warning!
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">
-                                                    10 hrs
-                                                </span>
-                                                <span class="details">
-                                                    <span class="notification-icon circle red">
-                                                        <i class="fa fa-times">
-                                                        </i>
-                                                    </span>
-                                                    Application error.
-                                                </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    <div class="dropdown-menu-footer">
-                                        <a href="javascript:void(0)">
-                                            All notifications
-                                        </a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-                        <!-- end notification dropdown -->
-                        <!-- start message dropdown -->
-                        <li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar">
-                            <a class="dropdown-toggle" data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href="javascript:;">
-                                <i class="fa fa-envelope-o">
-                                </i>
-                                <span class="badge headerBadgeColor2">
-                                    2
-                                </span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="external">
-                                    <h3>
-                                        <span class="bold">
-                                            Messages
-                                        </span>
-                                    </h3>
-                                    <span class="notification-label cyan-bgcolor">
-                                        New 2
-                                    </span>
-                                </li>
-                                <li>
-                                    <ul class="dropdown-menu-list small-slimscroll-style" data-handle-color="#637283">
-                                        <li>
-                                            <a href="#">
-                                                <span class="photo">
-                                                    <img alt="" class="img-circle" src="{% static 'cpanel/img/doc/doc2.jpg' %}" />
-                                                </span>
-                                                <span class="subject">
-                                                    <span class="from">
-                                                        Sarah Smith
-                                                    </span>
-                                                    <span class="time">
-                                                        Just Now
-                                                    </span>
-                                                </span>
-                                                <span class="message">
-                                                    Jatin I found you on LinkedIn...
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="photo">
-                                                    <img alt="" class="img-circle" src="{% static 'cpanel/img/doc/doc3.jpg' %}" />
-                                                </span>
-                                                <span class="subject">
-                                                    <span class="from">
-                                                        John Deo
-                                                    </span>
-                                                    <span class="time">
-                                                        16 mins
-                                                    </span>
-                                                </span>
-                                                <span class="message">
-                                                    Fwd: Important Notice Regarding Your Domain
-                                                    Name...
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="photo">
-                                                    <img alt="" class="img-circle" src="{% static 'cpanel/img/doc/doc1.jpg' %}" />
-                                                </span>
-                                                <span class="subject">
-                                                    <span class="from">
-                                                        Rajesh
-                                                    </span>
-                                                    <span class="time">
-                                                        2 hrs
-                                                    </span>
-                                                </span>
-                                                <span class="message">
-                                                    pls take a print of attachments.
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="photo">
-                                                    <img alt="" class="img-circle" src="{% static 'cpanel/img/doc/doc8.jpg' %}" />
-                                                </span>
-                                                <span class="subject">
-                                                    <span class="from">
-                                                        Lina Smith
-                                                    </span>
-                                                    <span class="time">
-                                                        40 mins
-                                                    </span>
-                                                </span>
-                                                <span class="message">
-                                                    Apply for Ortho Surgeon
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="photo">
-                                                    <img alt="" class="img-circle" src="{% static 'cpanel/img/doc/doc5.jpg' %}" />
-                                                </span>
-                                                <span class="subject">
-                                                    <span class="from">
-                                                        Jacob Ryan
-                                                    </span>
-                                                    <span class="time">
-                                                        46 mins
-                                                    </span>
-                                                </span>
-                                                <span class="message">
-                                                    Request for leave application.
-                                                </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    <div class="dropdown-menu-footer">
-                                        <a href="#">
-                                            All Messages
-                                        </a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-                        <!-- end message dropdown -->
                         <!-- start manage user dropdown -->
                         <li class="dropdown dropdown-user">
                             <a class="dropdown-toggle" data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href="javascript:;">
@@ -409,20 +126,6 @@
                                         Profile
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="icon-settings">
-                                        </i>
-                                        Settings
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="icon-directions">
-                                        </i>
-                                        Help
-                                    </a>
-                                </li>
                                 <li class="divider">
                                 </li>
                                 <li>
@@ -440,14 +143,6 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li>
-                        <!-- end manage user dropdown -->
-                        <li class="dropdown dropdown-quick-sidebar-toggler">
-                            <a class="mdl-button mdl-js-button mdl-button--icon pull-right" data-upgraded=",MaterialButton" id="headerSettingButton">
-                                <i class="material-icons">
-                                    more_vert
-                                </i>
-                            </a>
                         </li>
                     </ul>
                 </div>
@@ -661,964 +356,170 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link nav-toggle" href="#">
-                                    <i class="material-icons">
-                                        dashboard
-                                    </i>
+                                    <i class="fas fa-tachometer-alt"></i>
                                     <span class="title">
                                         Dashboard
                                     </span>
-                                    <span class="arrow">
-                                    </span>
                                 </a>
-                                <ul class="sub-menu">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="index.html">
-                                            <span class="title">
-                                                Dashboard 1
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="dashboard2.html">
-                                            <span class="title">
-                                                Dashboard 2
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="dashboard3.html">
-                                            <span class="title">
-                                                Dashboard 3
-                                            </span>
-                                        </a>
-                                    </li>
-                                </ul>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link nav-toggle" href="#">
-                                    <i class="material-icons">
-                                        email
-                                    </i>
+                            <li class="nav-item {% if 'stakeholder' in request.path%}active{% endif %}">
+                                <a class="nav-link nav-toggle" href="{% url 'cpanel:stakeholder_list' %}" >
+                                    <i class="fas fa-users"></i>
                                     <span class="title">
-                                        Email
-                                    </span>
-                                    <span class="arrow">
-                                    </span>
-                                    <span class="label label-rouded label-menu deepPink-bgcolor">
-                                        3
+                                        Stakeholders
                                     </span>
                                 </a>
-                                <ul class="sub-menu">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="email_inbox.html">
-                                            <span class="title">
-                                                Inbox
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="email_view.html">
-                                            <span class="title">
-                                                View Mail
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="email_compose.html">
-                                            <span class="title">
-                                                Compose Mail
-                                            </span>
-                                        </a>
-                                    </li>
-                                </ul>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link nav-toggle" href="#">
-                                    <i class="material-icons">
-                                        assignment
-                                    </i>
-                                    <span class="title">
-                                        Appointment
-                                    </span>
-                                    <span class="arrow">
-                                    </span>
-                                </a>
-                                <ul class="sub-menu">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="schedule.html">
-                                            <span class="title">
-                                                Doctor
-                                                Schedule
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="book_appointment.html">
-                                            <span class="title">
-                                                Book
-                                                Appointment
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="book_appointment_material.html">
-                                            <span class="title">
-                                                Book Appointment Material
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="edit_appointment.html">
-                                            <span class="title">
-                                                Edit
-                                                Appointment
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="view_appointment.html">
-                                            <span class="title">
-                                                View All
-                                                Appointment
-                                            </span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item active open">
-                                <a class="nav-link nav-toggle" href="#">
-                                    <i class="material-icons">
-                                        person
-                                    </i>
+                            <li class="nav-item {% if 'doctor' in request.path%}active{% endif %}">
+                                <a class="nav-link nav-toggle" href="{% url 'cpanel:doctor_list' %}" >
+                                    <i class="fa  fa-user-md"></i>
                                     <span class="title">
                                         Doctors
                                     </span>
-                                    <span class="selected">
-                                    </span>
-                                    <span class="arrow open">
-                                    </span>
                                 </a>
-                                <ul class="sub-menu">
-                                    <li class="nav-item active open">
-                                        <a class="nav-link" href="all_doctors.html">
-                                            <span class="title">
-                                                All
-                                                Doctor
-                                            </span>
-                                            <span class="selected">
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="add_doctor.html">
-                                            <span class="title">
-                                                Add
-                                                Doctor
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="add_doctor_material.html">
-                                            <span class="title">
-                                                Add
-                                                Doctor Material
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="edit_doctor.html">
-                                            <span class="title">
-                                                Edit
-                                                Doctor
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="doctor_profile.html">
-                                            <span class="title">
-                                                About
-                                                Doctor
-                                            </span>
-                                        </a>
-                                    </li>
-                                </ul>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link nav-toggle" href="#">
-                                    <i class="material-icons">
-                                        group
-                                    </i>
-                                    <span class="title">
-                                        Other Staff
-                                    </span>
-                                    <span class="arrow">
-                                    </span>
-                                </a>
-                                <ul class="sub-menu">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="all_staffs.html">
-                                            <span class="title">
-                                                All
-                                                Staff
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="add_staff.html">
-                                            <span class="title">
-                                                Add Staff
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="add_staff_material.html">
-                                            <span class="title">
-                                                Add
-                                                Staff Material
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="edit_staff.html">
-                                            <span class="title">
-                                                Edit
-                                                Staff
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="staff_profile.html">
-                                            <span class="title">
-                                                Staff
-                                                Profile
-                                            </span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link nav-toggle" href="#">
-                                    <i class="material-icons">
-                                        accessible
-                                    </i>
+                            <li class="nav-item {% if 'patient' in request.path%}active{% endif %}">
+                                <a class="nav-link nav-toggle" href="{% url 'cpanel:patient_list' %}" >
+                                    <i class="fas fa-wheelchair"></i>
                                     <span class="title">
                                         Patients
                                     </span>
-                                    <span class="arrow">
-                                    </span>
                                 </a>
-                                <ul class="sub-menu">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="all_patients.html">
-                                            <span class="title">
-                                                All
-                                                Patients
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="add_patient.html">
-                                            <span class="title">
-                                                Add
-                                                Patient
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="add_patient_material.html">
-                                            <span class="title">
-                                                Add
-                                                Patient Material
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="edit_patient.html">
-                                            <span class="title">
-                                                Edit
-                                                Patient
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="patient_profile.html">
-                                            <span class="title">
-                                                Patient
-                                                Profile
-                                            </span>
-                                        </a>
-                                    </li>
-                                </ul>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link nav-toggle" href="#">
-                                    <i class="material-icons">
-                                        hotel
-                                    </i>
+                            <li class="nav-item {% if 'nurse' in request.path%}active{% endif %}">
+                                <a class="nav-link nav-toggle" href="{% url 'cpanel:nurse_list' %}" >
+                                    <i class="fas fa-user-nurse"></i>
                                     <span class="title">
-                                        Room Allotment
-                                    </span>
-                                    <span class="arrow">
+                                        Nurses
                                     </span>
                                 </a>
-                                <ul class="sub-menu">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="room_allotment.html">
-                                            <span class="title">
-                                                Alloted
-                                                Rooms
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="add_room_allotment.html">
-                                            <span class="title">
-                                                New
-                                                Allotment
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="add_room_allotment_material.html">
-                                            <span class="title">
-                                                New Allotment Material
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="edit_room_allotment.html">
-                                            <span class="title">
-                                                Edit
-                                                Allotment
-                                            </span>
-                                        </a>
-                                    </li>
-                                </ul>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link nav-toggle" href="#">
-                                    <i class="material-icons">
-                                        monetization_on
-                                    </i>
+                            <li class="nav-item {% if 'paramedic' in request.path%}active{% endif %}">
+                                <a class="nav-link nav-toggle" href="{% url 'cpanel:paramedic_list' %}" >
+                                    <i class="fa fa-ambulance"></i>
                                     <span class="title">
-                                        Payments
-                                    </span>
-                                    <span class="arrow">
+                                        Paramedics
                                     </span>
                                 </a>
-                                <ul class="sub-menu">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="payments.html">
-                                            <span class="title">
-                                                Payments
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="add_payment.html">
-                                            <span class="title">
-                                                Add
-                                                Payments
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="invoice_payment.html">
-                                            <span class="title">
-                                                Patient
-                                                Invoice
-                                            </span>
-                                        </a>
-                                    </li>
-                                </ul>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link nav-toggle" href="widget.html">
-                                    <i class="material-icons">
-                                        widgets
-                                    </i>
+                            <li class="nav-item {% if 'specialist' in request.path%}active{% endif %}">
+                                <a class="nav-link nav-toggle" href="{% url 'cpanel:specialist_list' %}" >
+                                    <i class="fa fa-medkit"></i>
                                     <span class="title">
-                                        Widget
+                                        Specialists
                                     </span>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link nav-toggle" href="#">
-                                    <i class="material-icons">
-                                        dvr
-                                    </i>
+                            <li class="nav-item {% if 'pharmacist' in request.path%}active{% endif %}">
+                                <a class="nav-link nav-toggle" href="{% url 'cpanel:pharmacist_list' %}" >
+                                    <i class="fas fa-tablets"></i>
                                     <span class="title">
-                                        UI Elements
-                                    </span>
-                                    <span class="label label-rouded label-menu">
-                                        10
-                                    </span>
-                                    <span class="arrow">
+                                        Pharmacists
                                     </span>
                                 </a>
-                                <ul class="sub-menu">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="ui_buttons.html">
-                                            <span class="title">
-                                                Buttons
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="ui_tabs_accordions_navs.html">
-                                            <span class="title">
-                                                Tabs &amp; Accordions
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="sweet_alert.html">
-                                            <span class="title">
-                                                Alert
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="ui_typography.html">
-                                            <span class="title">
-                                                Typography
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="ui_icons.html">
-                                            <span class="title">
-                                                Icons
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="ui_modal.html">
-                                            <span class="title">
-                                                Modals
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="ui_panels.html">
-                                            <span class="title">
-                                                Panels
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="ui_grid.html">
-                                            <span class="title">
-                                                Grids
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="calendar.html">
-                                            <span class="title">
-                                                Calender
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="ui_tree.html">
-                                            <span class="title">
-                                                Tree View
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="ui_carousel.html">
-                                            <span class="title">
-                                                Carousel
-                                            </span>
-                                        </a>
-                                    </li>
-                                </ul>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link nav-toggle" href="#">
-                                    <i class="material-icons">
-                                        store
-                                    </i>
+                            <li class="nav-item {% if 'medical_institution' in request.path%}active{% endif %}" >
+                                <a class="nav-link nav-toggle" href="{% url 'cpanel:medical_institution_list' %}" >
+                                    <i class="fas fa-hospital-alt"></i>
                                     <span class="title">
-                                        Material Elements
-                                    </span>
-                                    <span class="label label-rouded label-menu deepPink-bgcolor">
-                                        14
-                                    </span>
-                                    <span class="arrow">
+                                        Medical Institutions
                                     </span>
                                 </a>
-                                <ul class="sub-menu">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="material_button.html">
-                                            <span class="title">
-                                                Buttons
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="material_tab.html">
-                                            <span class="title">
-                                                Tabs
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="material_chips.html">
-                                            <span class="title">
-                                                Chips
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="material_grid.html">
-                                            <span class="title">
-                                                Grid
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="material_icons.html">
-                                            <span class="title">
-                                                Icon
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="material_form.html">
-                                            <span class="title">
-                                                Form
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="material_datepicker.html">
-                                            <span class="title">
-                                                DatePicker
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="material_select.html">
-                                            <span class="title">
-                                                Select Item
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="material_loading.html">
-                                            <span class="title">
-                                                Loading
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="material_menu.html">
-                                            <span class="title">
-                                                Menu
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="material_slider.html">
-                                            <span class="title">
-                                                Slider
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="material_tables.html">
-                                            <span class="title">
-                                                Tables
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="material_toggle.html">
-                                            <span class="title">
-                                                Toggle
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="material_badges.html">
-                                            <span class="title">
-                                                Badges
-                                            </span>
-                                        </a>
-                                    </li>
-                                </ul>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link nav-toggle" href="javascript:;">
-                                    <i class="material-icons">
-                                        subtitles
-                                    </i>
+                            <li class="nav-item {% if 'lab' in request.path%}active{% endif %}">
+                                <a class="nav-link nav-toggle" href="{% url 'cpanel:lab_list' %}" >
+                                    <i class="fas fa-vial"></i>
                                     <span class="title">
-                                        cpanel
-                                    </span>
-                                    <span class="arrow">
+                                        Labs
                                     </span>
                                 </a>
-                                <ul class="sub-menu">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="layouts_form.html">
-                                            <span class="title">
-                                                Form Layout
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="advance_form.html">
-                                            <span class="title">
-                                                Advance Component
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="wizard_form.html">
-                                            <span class="title">
-                                                Form Wizard
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="validation_form.html">
-                                            <span class="title">
-                                                Form Validation
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="editable_form.html">
-                                            <span class="title">
-                                                Editor
-                                            </span>
-                                        </a>
-                                    </li>
-                                </ul>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link nav-toggle" href="javascript:;">
-                                    <i class="material-icons">
-                                        list
-                                    </i>
+                            <li class="nav-item {% if 'clinic' in request.path and 'working' not in request.path %}active{% endif %}">
+                                <a class="nav-link nav-toggle" href="{% url 'cpanel:clinic_list' %}" >
+                                    <i class="fas fa-clinic-medical"></i>
                                     <span class="title">
-                                        Data Tables
-                                    </span>
-                                    <span class="arrow">
+                                        Clinics
                                     </span>
                                 </a>
-                                <ul class="sub-menu">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="basic_table.html">
-                                            <span class="title">
-                                                Basic Tables
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="advanced_table.html">
-                                            <span class="title">
-                                                Advance Tables
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="export_table.html">
-                                            <span class="title">
-                                                Export Tables
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="child_row_table.html">
-                                            <span class="title">
-                                                Child Row Tables
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="group_table.html">
-                                            <span class="title">
-                                                Grouping
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="tableData.html">
-                                            <span class="title">
-                                                Tables With Sourced Data
-                                            </span>
-                                        </a>
-                                    </li>
-                                </ul>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link nav-toggle" href="javascript:;">
-                                    <i class="material-icons">
-                                        timeline
-                                    </i>
+                            <li class="nav-item {% if 'hospital' in request.path and 'working' not in request.path %}active{% endif %}">
+                                <a class="nav-link nav-toggle" href="{% url 'cpanel:hospital_list' %}" >
+                                    <i class="fas fa-hospital"></i>
                                     <span class="title">
-                                        Charts
-                                    </span>
-                                    <span class="arrow">
+                                        Hospitals
                                     </span>
                                 </a>
-                                <ul class="sub-menu">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="charts_echarts.html">
-                                            <span class="title">
-                                                eCharts
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="charts_morris.html">
-                                            <span class="title">
-                                                Morris Charts
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="charts_chartjs.html">
-                                            <span class="title">
-                                                Chartjs
-                                            </span>
-                                        </a>
-                                    </li>
-                                </ul>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link nav-toggle" href="javascript:;">
-                                    <i class="material-icons">
-                                        map
-                                    </i>
+                            <li class="nav-item {% if 'pharmacy' in request.path%}active{% endif %}">
+                                <a class="nav-link nav-toggle" href="{% url 'cpanel:pharmacy_list' %}" >
+                                    <i class="fas fa-prescription-bottle-alt"></i>
                                     <span class="title">
-                                        Maps
-                                    </span>
-                                    <span class="arrow">
+                                        Pharmacies
                                     </span>
                                 </a>
-                                <ul class="sub-menu">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="google_maps.html">
-                                            <span class="title">
-                                                Google Maps
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="vector_maps.html">
-                                            <span class="title">
-                                                Vector Maps
-                                            </span>
-                                        </a>
-                                    </li>
-                                </ul>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link nav-toggle" href="javascript:;">
-                                    <i class="material-icons">
-                                        description
-                                    </i>
+                            <li class="nav-item {% if 'insurance_company' in request.path%}active{% endif %}">
+                                <a class="nav-link nav-toggle" href="{% url 'cpanel:insurance_company_list' %}" >
+                                    <i class="fas fa-shield-alt"></i>
                                     <span class="title">
-                                        Extra pages
-                                    </span>
-                                    <span class="label label-rouded label-menu purple-bgcolor">
-                                        7
-                                    </span>
-                                    <span class="arrow">
+                                        Insurance Companies
                                     </span>
                                 </a>
-                                <ul class="sub-menu">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="login.html">
-                                            <span class="title">
-                                                Login
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="sign_up.html">
-                                            <span class="title">
-                                                Sign Up
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="forgot_password.html">
-                                            <span class="title">
-                                                Forgot
-                                                Password
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="user_profile.html">
-                                            <span class="title">
-                                                Profile
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="contact.html">
-                                            <span class="title">
-                                                Contact Us
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="lock_screen.html">
-                                            <span class="title">
-                                                Lock
-                                                Screen
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="page-404.html">
-                                            <span class="title">
-                                                404 Page
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="page-500.html">
-                                            <span class="title">
-                                                500 Page
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="blank_page.html">
-                                            <span class="title">
-                                                Blank
-                                                Page
-                                            </span>
-                                        </a>
-                                    </li>
-                                </ul>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link nav-toggle" href="javascript:;">
-                                    <i class="material-icons">
-                                        slideshow
-                                    </i>
+                            <li class="nav-item {% if 'insurance_type' in request.path%}active{% endif %}">
+                                <a class="nav-link nav-toggle" href="{% url 'cpanel:insurance_type_list' %}" >
+                                    <i class="fa fa-dot-circle-o"></i>
                                     <span class="title">
-                                        Multi Level Menu
-                                    </span>
-                                    <span class="arrow">
+                                        Insurance Types
                                     </span>
                                 </a>
-                                <ul class="sub-menu">
-                                    <li class="nav-item">
-                                        <a class="nav-link nav-toggle" href="javascript:;">
-                                            <i class="fa fa-university">
-                                            </i>
-                                            Item 1
-                                            <span class="arrow">
-                                            </span>
-                                        </a>
-                                        <ul class="sub-menu">
-                                            <li class="nav-item">
-                                                <a class="nav-link nav-toggle" href="javascript:;">
-                                                    <i class="fa fa-bell-o">
-                                                    </i>
-                                                    Arrow Toggle
-                                                    <span class="arrow">
-                                                    </span>
-                                                </a>
-                                                <ul class="sub-menu">
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="javascript:;">
-                                                            <i class="fa fa-calculator">
-                                                            </i>
-                                                            Sample Link 1
-                                                        </a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="#">
-                                                            <i class="fa fa-clone">
-                                                            </i>
-                                                            Sample Link 2
-                                                        </a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="#">
-                                                            <i class="fa fa-cogs">
-                                                            </i>
-                                                            Sample Link 3
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#">
-                                                    <i class="fa fa-file-pdf-o">
-                                                    </i>
-                                                    Sample Link 1
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#">
-                                                    <i class="fa fa-rss">
-                                                    </i>
-                                                    Sample Link 2
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#">
-                                                    <i class="fa fa-hdd-o">
-                                                    </i>
-                                                    Sample Link 3
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link nav-toggle" href="javascript:;">
-                                            <i class="fa fa-gavel">
-                                            </i>
-                                            Arrow Toggle
-                                            <span class="arrow">
-                                            </span>
-                                        </a>
-                                        <ul class="sub-menu">
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#">
-                                                    <i class="fa fa-paper-plane">
-                                                    </i>
-                                                    Sample Link 1
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#">
-                                                    <i class="fa fa-power-off">
-                                                    </i>
-                                                    Sample Link 1
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#">
-                                                    <i class="fa fa-recycle">
-                                                    </i>
-                                                    Sample Link 1
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">
-                                            <i class="fa fa-volume-up">
-                                            </i>
-                                            Item 3
-                                        </a>
-                                    </li>
-                                </ul>
                             </li>
+                            <li class="nav-item {% if 'specialization' in request.path%}active{% endif %}">
+                                <a class="nav-link nav-toggle" href="{% url 'cpanel:specialization_list' %}" >
+                                    <i class="fas fa-certificate"></i>
+                                    <span class="title">
+                                        Specializations
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="nav-item {% if 'patient_history' in request.path%}active{% endif %}">
+                                <a class="nav-link nav-toggle" href="{% url 'cpanel:patient_history_list' %}" >
+                                    <i class="fas fa-book-medical"></i>
+                                    <span class="title">
+                                        Patient History
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="nav-item {% if 'physician_clinic_working_time' in request.path%}active{% endif %}">
+                                <a class="nav-link nav-toggle" href="{% url 'cpanel:physician_clinic_working_time_list' %}" >
+                                    <i class="fas fa-business-time"></i>
+                                    <span class="title">
+                                        Clinic Working Times
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="nav-item {% if 'physician_hospital_working_time' in request.path%}active{% endif %}">
+                                <a class="nav-link nav-toggle" href="{% url 'cpanel:physician_hospital_working_time_list' %}" >
+                                    <i class="fas fa-business-time"></i>
+                                    <span class="title">
+                                        Hospital Working Times
+                                    </span>
+                                </a>
+                            </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         </ul>
                     </div>
                 </div>
@@ -1639,9 +540,9 @@
         <!-- start footer -->
         <div class="page-footer">
             <div class="page-footer-inner">
-                2020 © RedStar Hospital Theme By
+                2020 © BlueCare System By
                 <a class="makerCss" href="#" target="_top">
-                    Ahmed El-kady
+                    Group A (Ahmed Alaa - Mohamed Hatem - Amr Haitham - Abdallah Mohamed - Mai Mohamed - Mahmoud Samir)
                 </a>
             </div>
             <div class="scroll-to-top">
@@ -1722,6 +623,7 @@
     <script src="{% static 'cpanel/assets/main.js' %}">
     </script>
     <!-- end js include path -->
+    <script src="{% static 'cpanel/assets/fa.js' %}"></script>
 </body>
 
 </html>

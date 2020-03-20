@@ -1,11 +1,10 @@
 /*
  *  Document   : extra_pages.css
- *  Author     : RedStar Theme
- *  Description: this style sheet for extra page like login, logout, page_404, page_500 etc.. 
- 
+ *  Description: this style sheet for extra page like login, logout, page_404, page_500 etc..
+
  			[Table of contents]
- 			
- 			1. BODY 
+
+ 			1. BODY
  			2. FORM TITLE
  			3. LOGIN FORM
  			4. CUSTOM CHECKBOX
@@ -14,8 +13,8 @@
  */
 
 * {
-	margin: 0px; 
-	padding: 0px; 
+	margin: 0px;
+	padding: 0px;
 	box-sizing: border-box;
 }
 
@@ -136,7 +135,7 @@ iframe {
 }
 
 .container-login100 {
-  width: 100%;  
+  width: 100%;
   min-height: 100vh;
   display: -webkit-box;
   display: -webkit-flex;
@@ -152,7 +151,7 @@ iframe {
   background-position: center;
   background-size: cover;
   position: relative;
-  z-index: 1;  
+  z-index: 1;
 }
 .page-background{
 	background-image: url('../img/bg-01.jpg');
@@ -190,7 +189,7 @@ iframe {
 }
 
 .login100-form-logo {
-  font-size: 60px; 
+  font-size: 60px;
   color: #333333;
   display: -webkit-box;
   display: -webkit-flex;
@@ -249,7 +248,7 @@ iframe {
   padding: 0 5px 0 38px;
 }
 
-/*---------------------------------------------*/ 
+/*---------------------------------------------*/
 .focus-input100 {
   position: absolute;
   display: block;
@@ -524,7 +523,7 @@ iframe {
     padding-top: 27px;
 }
 .p-b-20{
-	padding-bottom: 20px;	
+	padding-bottom: 20px;
 }
 .p-t-90 {
     padding-top: 90px;

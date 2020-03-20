@@ -1,9 +1,3 @@
-/**
- *  Document   : layout.js
- *  Author     : redstar
- *  Description: Core script to handle the entire theme and core functions
- *
- **/
 var Layout = function () {
 
     var layoutImgPath = 'img/';
@@ -59,7 +53,7 @@ var Layout = function () {
 
     // Handle sidebar menu links
     var handleSidebarMenuActiveLink = function(mode, el) {
-        var url = location.hash.toLowerCase();    
+        var url = location.hash.toLowerCase();
 
         var menu = $('.sidemenu');
 
@@ -67,11 +61,11 @@ var Layout = function () {
             el = $(el);
         } else if (mode === 'match') {
             menu.find("li > a").each(function() {
-                var path = $(this).attr("href").toLowerCase();       
-                // url match condition         
+                var path = $(this).attr("href").toLowerCase();
+                // url match condition
                 if (path.length > 1 && url.substr(1, path.length - 1) == path.substr(1)) {
                     el = $(this);
-                    return; 
+                    return;
                 }
             });
         }
@@ -82,7 +76,7 @@ var Layout = function () {
 
         if (el.attr('href').toLowerCase() === 'javascript:;' || el.attr('href').toLowerCase() === '#') {
             return;
-        }        
+        }
 
         var slideSpeed = parseInt(menu.data("slide-speed"),10);
         var keepExpand = menu.data("keep-expanded");
@@ -105,7 +99,7 @@ var Layout = function () {
                 $(this).removeClass('open');
                 $(this).find('> a > .arrow.open').removeClass('open');
                 $(this).find('> .sub-menu').slideUp();
-            });  
+            });
         } else {
              menu.find('li.open').removeClass('open');
         }
@@ -121,14 +115,14 @@ var Layout = function () {
             if ($(this).parent('ul.sidemenu').length === 1) {
                 $(this).find('> a').append('<span class="selected"></span>');
             }
-            
+
             if ($(this).children('ul.sub-menu').length === 1) {
                 $(this).addClass('open');
             }
         });
 
         if (mode === 'click') {
-            if (App.getViewPort().width < resBreakpointMd && $('.sidemenu-container').hasClass("in")) { // close the menu on mobile view while laoding a page 
+            if (App.getViewPort().width < resBreakpointMd && $('.sidemenu-container').hasClass("in")) { // close the menu on mobile view while laoding a page
                 $('.page-header .responsive-toggler').click();
             }
         }
@@ -136,8 +130,8 @@ var Layout = function () {
 
     // Handle sidebar menu
     var handleSidebarMenu = function () {
-        // offcanvas mobile menu 
-        
+        // offcanvas mobile menu
+
         // handle sidebar link click
         $('.sidemenu').on('click', 'li > a.nav-toggle, li > a > span.nav-toggle', function (e) {
             var that = $(this).closest('.nav-item').children('.nav-link');
@@ -153,7 +147,7 @@ var Layout = function () {
             }
 
             if (hasSubMenu === false) {
-                if (App.getViewPort().width < resBreakpointMd && $('.sidemenu-container').hasClass("in")) { // close the menu on mobile view while laoding a page 
+                if (App.getViewPort().width < resBreakpointMd && $('.sidemenu-container').hasClass("in")) { // close the menu on mobile view while laoding a page
                     $('.page-header .responsive-toggler').click();
                 }
                 return;
@@ -167,7 +161,7 @@ var Layout = function () {
             var autoScroll = menu.data("auto-scroll");
             var slideSpeed = parseInt(menu.data("slide-speed"),10);
             var keepExpand = menu.data("keep-expanded");
-            
+
             if (!keepExpand) {
                 parent.children('li.open').children('a').children('.arrow').removeClass('open');
                 parent.children('li.open').children('.sub-menu:not(.always-open)').slideUp(slideSpeed);
@@ -196,10 +190,10 @@ var Layout = function () {
 
         // handle scrolling to top on responsive menu toggler click when header is fixed for mobile view
         $(document).on('click', '.page-header-fixed-mobile .page-header .responsive-toggler', function(){
-            App.scrollTop(); 
-        });      
-     
-        // handle sidebar hover effect        
+            App.scrollTop();
+        });
+
+        // handle sidebar hover effect
         handleFixedSidebarHoverEffect();
 
         // handle the search bar close
@@ -340,7 +334,7 @@ var Layout = function () {
             new_link.find("a:first").append('<span class="selected"></span>');
         });
 
-        // handle search box expand/collapse        
+        // handle search box expand/collapse
         $('.page-header').on('click', '.search-form', function (e) {
             $(this).addClass("open");
             $(this).find('.form-control').focus();
@@ -366,7 +360,7 @@ var Layout = function () {
             $(this).closest('.search-form').submit();
         });
 
-        
+
         $(document).on('click', '.mega-menu-dropdown .dropdown-menu', function (e) {
             e.stopPropagation();
         });
@@ -393,7 +387,7 @@ var Layout = function () {
                     $('.scroll-to-top').fadeOut(duration);
                 }
             });
-        } else {  // general 
+        } else {  // general
             $(window).scroll(function() {
                 if ($(this).scrollTop() > offset) {
                     $('.scroll-to-top').fadeIn(duration);
@@ -402,7 +396,7 @@ var Layout = function () {
                 }
             });
         }
-        
+
 		$(document).on('click','.scroll-to-top',function(e) {
             e.preventDefault();
             $('html, body').animate({scrollTop: 0}, duration);
@@ -426,8 +420,8 @@ var Layout = function () {
             if (target.hasClass('portlet')) {
                 var portletBody = target.find('.portlet-body');
 
-                App.destroySlimScroll(portletBody.find('.full-height-content-body')); // destroy slimscroll 
-                
+                App.destroySlimScroll(portletBody.find('.full-height-content-body')); // destroy slimscroll
+
                 height = height -
                     target.find('.portlet-title').outerHeight(true) -
                     parseInt(target.find('.portlet-body').css('padding-top'),10) -
@@ -441,7 +435,7 @@ var Layout = function () {
                     portletBody.css('min-height', height);
                 }
             } else {
-               App.destroySlimScroll(target.find('.full-height-content-body')); // destroy slimscroll 
+               App.destroySlimScroll(target.find('.full-height-content-body')); // destroy slimscroll
 
                 if (App.getViewPort().width >= resBreakpointMd && target.hasClass("full-height-content-scrollable")) {
                     height = height - 35;
@@ -451,13 +445,13 @@ var Layout = function () {
                     target.css('min-height', height);
                 }
             }
-        });        
+        });
     };
 
     return {
         // Main init methods to initialize the layout
         initHeader: function() {
-            handleHorizontalMenu(); // handles horizontal menu    
+            handleHorizontalMenu(); // handles horizontal menu
         },
 
         setSidebarMenuActiveLink: function(mode, el) {
@@ -479,14 +473,14 @@ var Layout = function () {
             handleTabs(); // handle bootstrah tabs
 
             App.addResizeHandler(handleSidebarAndContentHeight); // recalculate sidebar & content height on window resize
-            App.addResizeHandler(handle100HeightContent); // reinitialize content height on window resize 
+            App.addResizeHandler(handle100HeightContent); // reinitialize content height on window resize
         },
 
         initFooter: function() {
             handleGoTop(); //handles scroll to top functionality in the footer
         },
 
-        init: function () {            
+        init: function () {
             this.initHeader();
             this.initSidebar();
             this.initContent();
@@ -494,18 +488,18 @@ var Layout = function () {
         },
 
         loadAjaxContent: function(url, sidebarMenuLink) {
-            var pageContent = $('.page-content .page-content-body');    
+            var pageContent = $('.page-content .page-content-body');
 
             App.startPageLoading({animate: true});
-            
+
             $.ajax({
                 type: "GET",
                 cache: false,
                 url: url,
                 dataType: "html",
-                success: function (res) {    
+                success: function (res) {
                     App.stopPageLoading();
-                                    
+
                     for (var i = 0; i < ajaxContentSuccessCallbacks.length; i++) {
                         ajaxContentSuccessCallbacks[i].call(res);
                     }
@@ -524,7 +518,7 @@ var Layout = function () {
 
                     for (var i = 0; i < ajaxContentErrorCallbacks.length; i++) {
                         ajaxContentSuccessCallbacks[i].call(res);
-                    }                    
+                    }
                 }
             });
         },
@@ -561,6 +555,6 @@ var Layout = function () {
 
 }();
 
-    jQuery(document).ready(function() {    
+    jQuery(document).ready(function() {
     	 Layout.init(); // init core componets
     });

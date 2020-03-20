@@ -96,7 +96,7 @@ class Patient(models.Model):
         verbose_name_plural = 'Patients'
 
     def __str__(self):
-        return (self.patient_nn.national_number)
+        return str(self.patient_nn.national_number)
 
     @property
     def get_phone(self):
@@ -108,8 +108,7 @@ class Patient(models.Model):
 
     @property
     def get_PatientRelativesPhones(self):
-        patient = get_object_or_none(Patient, patient_nn=self.patient_nn)
-        return PatientRelativesPhones.objects.filter(patient_nn=patient)
+        return PatientRelativesPhones.objects.filter(patient_nn=self)
 
 
 class PatientRelativesPhones(models.Model):
@@ -150,8 +149,7 @@ class Physician(models.Model):
 
     @property
     def get_Specialization(self):
-        physician = get_object_or_none(Physician, physician_nn=self.physician_nn)
-        return PhysicianSpecialization.objects.filter(physician_nn=physician)
+        return PhysicianSpecialization.objects.filter(physician_nn=self)
 
 
 class Nurse(models.Model):
@@ -168,8 +166,7 @@ class Nurse(models.Model):
 
     @property
     def get_Specialization(self):
-        nurse = get_object_or_none(Nurse, nurse_nn=self.nurse_nn)
-        return NurseSpecialization.objects.filter(nurse_nn=nurse)
+        return NurseSpecialization.objects.filter(nurse_nn=self)
 
     @property
     def get_phone(self):
@@ -216,8 +213,7 @@ class Specialist(models.Model):
 
     @property
     def get_Specialization(self):
-        specialist = get_object_or_none(Specialist, specialist_nn=self.specialist_nn)
-        return SpecialistSpecialization.objects.filter(specialist_nn=specialist)
+        return SpecialistSpecialization.objects.filter(specialist_nn=self)
 
     @property
     def get_phone(self):
@@ -265,8 +261,7 @@ class Pharmacist(models.Model):
 
     @property
     def get_Specialization(self):
-        pharmacist = get_object_or_none(Pharmacist, pharmacist_nn=self.pharmacist_nn)
-        return PharmacistSpecialization.objects.filter(pharmacist_nn=pharmacist)
+        return PharmacistSpecialization.objects.filter(pharmacist_nn=self)
 
 
 class PharmacistSpecialization(models.Model):
@@ -283,7 +278,7 @@ class PharmacistSpecialization(models.Model):
         return str(self.pharmacist_nn)
 
     def get_value(self):
-        return self.specialization
+        return str(self.specialization)
 
 
 # -- ** Medical Institutions And Related Tables ** --
@@ -648,7 +643,7 @@ class PhysicianRating(models.Model):
         verbose_name_plural = 'Physician Ratings'
 
     def __str__(self):
-        return self.physician_nn
+        return str(self.physician_nn)
 
 
 class LabRating(models.Model):
@@ -663,7 +658,7 @@ class LabRating(models.Model):
         verbose_name_plural = 'Lab Ratings'
 
     def __str__(self):
-        return self.lab
+        return str(self.lab)
 
 
 class ClinicRating(models.Model):
@@ -678,7 +673,7 @@ class ClinicRating(models.Model):
         verbose_name_plural = 'Clinic Ratings'
 
     def __str__(self):
-        return self.clinic
+        return str(self.clinic)
 
 
 class HospitalRating(models.Model):
@@ -693,7 +688,7 @@ class HospitalRating(models.Model):
         verbose_name_plural = 'Hospital Ratings'
 
     def __str__(self):
-        return self.hospital
+        return str(self.hospital)
 
 
 # -- ## Working Relation ##
@@ -815,7 +810,7 @@ class PhysicianSpecialization(models.Model):
         return str(self.physician_nn)
 
     def get_value(self):
-        return self.specialization.name
+        return str(self.specialization.name)
 
 
 class NurseSpecialization(models.Model):
@@ -832,7 +827,7 @@ class NurseSpecialization(models.Model):
         return str(self.nurse_nn)
 
     def get_value(self):
-        return self.specialization.name
+        return str(self.specialization.name)
 
 
 class HospitalSpecialization(models.Model):
@@ -876,7 +871,7 @@ class LabsInsuranceDeals(models.Model):
         verbose_name_plural = 'Labs Insurance Deals'
 
     def __str__(self):
-        return self.lab
+        return str(self.lab)
 
 
 class ClinicsInsuranceDeals(models.Model):
@@ -891,7 +886,7 @@ class ClinicsInsuranceDeals(models.Model):
         verbose_name_plural = 'Clinics Insurance Deals'
 
     def __str__(self):
-        return self.clinic
+        return str(self.clinic)
 
 
 class HospitalInsuranceDeals(models.Model):
@@ -906,7 +901,7 @@ class HospitalInsuranceDeals(models.Model):
         verbose_name_plural = 'Hospitals Insurance Deals'
 
     def __str__(self):
-        return self.hospital
+        return str(self.hospital)
 
 
 class PharmacyInsuranceDeals(models.Model):
@@ -921,7 +916,7 @@ class PharmacyInsuranceDeals(models.Model):
         verbose_name_plural = 'Pharmacies Insurance Deals'
 
     def __str__(self):
-        return self.pharmacy
+        return str(self.pharmacy)
 
 
 # -- ## Other Relations ##
@@ -937,4 +932,4 @@ class PatientInsurance(models.Model):
         verbose_name_plural = 'Patient Insurances'
 
     def __str__(self):
-        return self.patient_nn
+        return str(self.patient_nn)
