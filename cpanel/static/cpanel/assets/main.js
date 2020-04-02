@@ -34,7 +34,6 @@ $('#add_form').submit(function(e) {
                 } else {
                     var message = "New data faild to be added";
                 }
-                console.log(error_data.responseText);
                 $.growl.error({ title: "Error Notice", message: message });
             }
         });

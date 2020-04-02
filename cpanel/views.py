@@ -1,14 +1,36 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from main.utils import get_object_or_none
 from django.http import HttpResponse, HttpResponseNotFound
 from .models import *
 from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
+from django.contrib.auth import login
+from django.contrib.auth.forms import AuthenticationForm
 
 
 # login Views
-def login(request):
-    return render(request, 'cpanel/login.html')
+def loginView(request):
+    form = AuthenticationForm()
+    error = False
+    if request.method == 'POST':
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            group = Group.objects.filter(user=user).first()
+            if request.POST.get('login_as') == str(group):
+                login(request, user)
+                return redirect('cpanel:doctor_add')
+            elif (str(group) == 'Clinic' or str(group) == 'Hospital' or str(group) == 'Lab' or str(group) == 'Pharmacy') and request.POST.get('login_as') == 'Medical Institution':
+                login(request, user)
+                return redirect('cpanel:doctor_add')
+            else:
+                error = True
+
+    context = {
+        'form': form,
+        'error': error,
+    }
+    return render(request, 'cpanel/login.html', context)
 
 
 def forgot_password(request):

@@ -1,5 +1,6 @@
 {% extends "cpanel/Base.html" %}
 {% load staticfiles %}
+{% load myTags %}
 {% block content %}
 <!-- Part One -->
 <div class="page-bar">
@@ -53,6 +54,7 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
+                                    {% if request.user.groups.all.first|into_str in 'Admin'|into_list %}
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6 col-xs-6">
                                             <div class="btn-group">
@@ -64,6 +66,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    {% endif %}
                                     <div class="table-scrollable">
                                         <table class="table table-hover table-checkable order-column full-width" id="example4">
                                             <thead>

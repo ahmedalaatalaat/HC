@@ -4,8 +4,11 @@ from django.http import HttpResponse, HttpResponseNotFound
 from cpanel.models import *
 from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
+from cpanel.decorators import *
+from django.db.models import Q
 
 
+# @allowed_users(['Stakeholder', 'Lab', 'Clinic', 'Hospital'])
 def Patient_add(request):
     if request.is_ajax():
         if request.method == 'POST':
@@ -257,8 +260,15 @@ def Patient_history_edit(request, id):
     return render(request, 'cpanel/Patient/Patient_History_edit.html', context)
 
 
+@allowed_users(['Admin', 'Patient'])
 def Patient_history_list(request):
-    patients_history = PatientHistory.objects.all().filter(hide=False)
+    if str(request.user.groups.all().first()) == 'Patient':
+        user = user.request
+        patients_history = PatientHistory.objects.all().filter(
+            Q(hide=False) &
+            Q(patient_nn__patient_nn__user=user)).distinct()
+    else:
+        patients_history = PatientHistory.objects.all().filter(hide=False)
     if request.method == 'POST':
         history = get_object_or_none(PatientHistory, id=request.POST.get('id'))
         if history:

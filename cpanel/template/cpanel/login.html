@@ -30,38 +30,52 @@
     <div class="limiter">
         <div class="container-login100 page-background">
             <div class="wrap-login100">
-                <form class="login100-form validate-form">
+                <form method="POST" class="login100-form validate-form"> {% csrf_token %}
                     <span class="login100-form-logo">
                         <img alt="" src="{% static 'cpanel/img/hospital.png' %}" />
                     </span>
                     <span class="login100-form-title p-b-34 p-t-27">
                         Log in
                     </span>
+                    {% if form.errors or error %}
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        Invalid username or password or login as
+                        <button aria-label="Close" class="close" data-dismiss="alert" type="button">
+                            <span aria-hidden="true">
+                                ×
+                            </span>
+                        </button>
+                    </div>
+                    <br />
+                    {% endif %}
                     <div class="wrap-input100 validate-input" data-validate="Enter username">
-                        <input class="input100" name="username" placeholder="Username" type="text" />
+                        <input class="input100" name="username" placeholder="Username" type="text" required="" />
                         <span class="focus-input100" data-placeholder="">
                         </span>
                     </div>
                     <div class="wrap-input100 validate-input" data-validate="Enter password">
-                        <input class="input100" name="pass" placeholder="Password" type="password" />
+                        <input class="input100" name="password" placeholder="Password" type="password" required="" />
                         <span class="focus-input100" data-placeholder="">
                         </span>
                     </div>
-                    <div class="contact100-form-checkbox">
-                        <input class="input-checkbox100" id="ckb1" name="remember-me" type="checkbox" />
-                        <label class="label-checkbox100" for="ckb1">
-                            Remember me
-                        </label>
+                    <div class="validate-input" data-validate="Choose">
+                        <select class="input100" name="login_as" required="">
+                            <option disabled="" selected="" value="">Login As</option>
+                            <option style="color: black" value="Stakeholder">Admin/Clerk/Editor</option>
+                            <option style="color: black" value="Patient">Patient</option>
+                            <option style="color: black" value="Physician">Doctor</option>
+                            <option style="color: black" value="Nurse">Nurse</option>
+                            <option style="color: black" value="Paramedic">Paramedic</option>
+                            <option style="color: black" value="Pharmacist">Pharmacist</option>
+                            <option style="color: black" value="Medical Institution">Medical inistitution</option>
+                            <option style="color: black" value="Insurance Company">Insurance company</option>
+                        </select>
                     </div>
+                    <br />
                     <div class="container-login100-form-btn">
                         <button class="login100-form-btn">
                             Login
                         </button>
-                    </div>
-                    <div class="text-center p-t-30">
-                        <a class="txt1" href="{% url 'cpanel:forgot_password' %}">
-                            Forgot Password?
-                        </a>
                     </div>
                 </form>
             </div>

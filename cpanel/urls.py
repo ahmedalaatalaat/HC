@@ -6,7 +6,7 @@ from ._views import doctor_views, clinic_views, hospital_views, insurance_compan
 app_name = 'cpanel'
 urlpatterns = [
     # Others
-    path('login/', views.login, name='login'),
+    path('login/', views.loginView, name='login'),
     path('forgot_password/', views.forgot_password, name='forgot_password'),
     path('lock_screen/', views.lock_screen, name='lock_screen'),
     # Doctors URLs
