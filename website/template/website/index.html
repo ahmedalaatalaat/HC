@@ -1,0 +1,634 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required Meta Tags -->
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport" />
+    <meta content="ie=edge" http-equiv="x-ua-compatible" />
+    <title>
+        Bluecare :: Home
+    </title>
+    <link href="{% static 'website/images/favicon.png' %}" rel="icon" type="image/png" />
+    <!--Core CSS -->
+    <link href="{% static 'website/css/bulma.css' %}" rel="stylesheet" />
+    <link href="{% static 'website/css/app.css' %}" rel="stylesheet" />
+    <link href="{% static 'website/css/core_deep-blue.css' %}" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="pageloader">
+    </div>
+    <div class="infraloader is-active">
+    </div>
+    <!-- Hero and nav -->
+    <div class="hero hero-wavy is-relative is-theme-primary huge-pb">
+        <canvas id="canvas">
+        </canvas>
+        <nav class="navbar navbar-wrapper navbar-fade navbar-light is-transparent" style="height: 110px;">
+            <div class="container">
+                <!-- Brand -->
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="/">
+                        <img style="max-height: 100% !important; height: 65px; margin-right: 20px;" alt="" class="light-logo" src="{% static 'website/images/logos/logo-white.svg' %}"/>
+                        <img style="max-height: 100% !important; height: 65px; margin-right: 20px; " alt="" class="dark-logo" src="{% static 'website/images/logos/logo-color.svg' %}" />
+                    </a>
+                </div>
+                <!-- Navbar menu -->
+                <div class="navbar-menu">
+                    <!-- Navbar Start -->
+                    <div class="navbar-start">
+                        <!-- Navbar item -->
+                        <a class="navbar-item is-slide" style="font-size: 18px" href="#">
+                            Browse
+                        </a>
+
+                    </div>
+                    <!-- Navbar end -->
+                    <div class="navbar-end">
+                        <!-- Signup button -->
+                        <div class="navbar-item">
+                            <a style="font-size: 18px" class="button button-signup btn-outlined is-bold btn-align light-btn rounded raised" href="/admin" id="#signup-btn">
+                                Login
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- Hero image -->
+        <div class="hero-body" id="main-hero">
+            <div class="container has-text-centered">
+                <div class="columns is-vcentered">
+                    <!-- Caption -->
+                    <div class="column is-5 hero-caption">
+                        <h1 class="title big-landing-title text-bold is-2">
+                            Heard of Bluecare Healthcare ?
+                        </h1>
+                        <h2 class="subtitle is-5 light-text pt-10 pb-10">
+                            Discover a full featured Healthcare support platform that will make you happy.
+                        </h2>
+                        <p class="pt-10 pb-10">
+                            <a class="button button-cta light-btn btn-outlined is-bold rounded z-index-2" href="#services">
+                                Get Started
+                            </a>
+                        </p>
+                    </div>
+                    <!-- Hero image -->
+                    <div class="column is-9">
+                        <figure class="image">
+                            <img alt="" class="levitate" src="{% static 'website/images/illustrations/mockups/landing2/macbook-chat.png' %}" />
+                        </figure>
+                    </div>
+                    <!-- /Hero image -->
+                </div>
+            </div>
+            <!-- Floating little avatars -->
+            <div class="floating-avatars is-hidden-mobile">
+                <img alt="" class="avatar avatar-1st levitate delay-1" data-demo-src="{% static 'website/images/avatars/helen.jpg' %}" src="https://via.placeholder.com/250x250" />
+                <img alt="" class="avatar avatar-2nd levitate delay-3" data-demo-src="{% static 'website/images/avatars/anthony.jpg' %}" src="https://via.placeholder.com/250x250" />
+                <img alt="" class="avatar avatar-3rd levitate delay-8" data-demo-src="{% static 'website/images/avatars/lakisha.jpg' %}" src="https://via.placeholder.com/250x250" />
+                <img alt="" class="avatar avatar-4th levitate delay-6" data-demo-src="{% static 'website/images/avatars/elie.jpg' %}" src="https://via.placeholder.com/250x250" />
+                <img alt="" class="avatar avatar-5th levitate delay-4" data-demo-src="{% static 'website/images/avatars/thomas.jpg' %}" src="https://via.placeholder.com/250x250" />
+                <img alt="" class="avatar avatar-6th levitate delay-2" data-demo-src="{% static 'website/images/avatars/alex.jpg' %}" src="https://via.placeholder.com/250x250" />
+                <img alt="" class="avatar avatar-7th levitate delay-1" data-demo-src="{% static 'website/images/avatars/henry.jpg' %}" src="https://via.placeholder.com/250x250" />
+                <img alt="" class="avatar avatar-8th levitate delay-8" data-demo-src="{% static 'website/images/avatars/melany.jpg' %}" src="https://via.placeholder.com/250x250" />
+            </div>
+            <!-- /Floating little avatars -->
+        </div>
+        <!-- /Hero image -->
+    </div>
+    <!-- /Hero and nav -->
+    <!-- Services section -->
+    <section class="section is-medium" id="services">
+        <div class="container">
+            <!-- Title -->
+            <div class="section-title-wrapper has-text-centered">
+                <div class="bg-number">
+                    1
+                </div>
+                <h2 class="section-title-landing">
+                    Don't struggle anymore
+                </h2>
+                <h4>
+                    Discover a seamless experience in Project Management
+                </h4>
+            </div>
+            <!-- /Title -->
+            <div class="content-wrapper">
+                <div class="columns is-vcentered is-multiline has-text-centered">
+                    <!-- Icon block -->
+                    <div class="column is-3">
+                        <div class="chat-icon-box">
+                            <div>
+                                <i class="im im-icon-Ticket">
+                                </i>
+                            </div>
+                            <div class="box-title">
+                                Booking
+                            </div>
+                            <p class="box-content is-tablet-padded">
+                                You can now book your doctors, hospitals and labs in just few clicks and all of the data we be saved and ready for you.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Icon block -->
+                    <div class="column is-3">
+                        <div class="chat-icon-box">
+                            <div>
+                                <i class="im im-icon-File-Copy2">
+                                </i>
+                            </div>
+                            <div class="box-title">
+                                Medical history
+                            </div>
+                            <p class="box-content is-tablet-padded">
+                                All your medical history is now accessible by you and your doctor anywhere and anytime but still secured.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Icon block -->
+                    <div class="column is-3">
+                        <div class="chat-icon-box">
+                            <div>
+                                <i class="im im-icon-Brain-2">
+                                </i>
+                            </div>
+                            <div class="box-title">
+                                Artificial intelligence
+                            </div>
+                            <p class="box-content is-tablet-padded">
+                                Now our system uses the latest A.I. technology to analyze your data for any potential disease for your safety.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Icon block -->
+                    <div class="column is-3">
+                        <div class="chat-icon-box">
+                            <div>
+                                <i class="im im-icon-Upload-toCloud">
+                                </i>
+                            </div>
+                            <div class="box-title">
+                                Online data
+                            </div>
+                            <p class="box-content is-tablet-padded">
+                                Now we use cloud technology to upload your data to the cloud so it can be accessed by you any time or to find more about your illness.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="has-text-centered is-title-reveal pt-40 pb-40">
+                    <a class="button button-cta primary-btn rounded raised" href="#section_2">
+                        Learn more
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /Services section -->
+    <!-- Feature -->
+    <section class="section is-medium" id="section_2">
+        <div class="container">
+            <div class="columns is-vcentered">
+                <div class="column is-6 has-text-centered">
+                    <!-- Featured illustration -->
+                    <img alt="" class="featured-svg levitate" src="{% static 'website/images/illustrations/drawings/communicate.svg' %}" />
+                    <!-- /Featured illustration -->
+                </div>
+                <!-- Content -->
+                <div class="column is-4 is-offset-1">
+                    <div class="icon-subtitle">
+                        <i class="im im-icon-Doctor">
+                        </i>
+                    </div>
+                    <h2 class="title quick-feature is-handwritten">
+                        Book your doctor in Secounds
+                        <span class="bg-number text-bold">
+                            2
+                        </span>
+                    </h2>
+                    <div class="title-divider is-small">
+                    </div>
+                    <span class="section-feature-description">
+                        you can find the nearest doctor for you and book him in just few secounds.
+                    </span>
+                    <div class="pt-10 pb-10">
+                        <a class="button btn-align btn-more is-link color-primary" href="#">
+                            Book Doctor Now
+                            <i class="sl sl-icon-arrow-right">
+                            </i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /Feature -->
+    <!-- Feature -->
+    <section class="section section-feature-grey is-medium is-relative is-skewed-sm">
+        <!-- Floating chat bubbles -->
+        <div class="floating-bubbles">
+            <div class="bubble">
+                <img alt="" class="bubble-1st levitate" src="{% static 'website/images/illustrations/drawings/bub-purple.svg' %}" />
+            </div>
+            <div class="bubble">
+                <img alt="" class="bubble-2nd levitate" src="{% static 'website/images/illustrations/drawings/bub-blue.svg' %}" />
+            </div>
+            <div class="bubble">
+                <img alt="" class="bubble-3rd levitate" src="{% static 'website/images/illustrations/drawings/bub-blue.svg' %}" />
+            </div>
+            <div class="bubble">
+                <img alt="" class="bubble-4th levitate" src="{% static 'website/images/illustrations/drawings/bub-blue.svg' %}" />
+            </div>
+        </div>
+        <!-- /Floating chat bubbles -->
+        <div class="container is-reverse-skewed-sm">
+            <!-- Feature -->
+            <div class="columns is-vcentered">
+                <!-- Content -->
+                <div class="column is-4 is-offset-2">
+                    <div class="icon-subtitle">
+                        <i class="im im-icon-Share-Window">
+                        </i>
+                    </div>
+                    <h2 class="title quick-feature is-handwritten">
+                        Access form anywhere
+                        <span class="bg-number text-bold">
+                            3
+                        </span>
+                    </h2>
+                    <div class="title-divider is-small">
+                    </div>
+                    <span class="section-feature-description">
+                        Access your medical data and history from anywhere and anytime.
+                    </span>
+                    <div class="pt-10 pb-10">
+                        <a class="button btn-align btn-more is-link color-primary" href="/admin">
+                            Login
+                            <i class="sl sl-icon-arrow-right">
+                            </i>
+                        </a>
+                    </div>
+                </div>
+                <div class="column is-6 has-text-centered">
+                    <!-- Featured illustration -->
+                    <img alt="" class="featured-svg levitate" src="{% static 'website/images/illustrations/drawings/learn.svg' %}" />
+                    <!-- /Featured illustration -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /Feature -->
+    <!-- Feature -->
+    <section class="section is-medium">
+        <div class="container">
+            <!-- Feature -->
+            <div class="columns is-vcentered">
+                <div class="column is-6 has-text-centered">
+                    <!-- Featured illustration -->
+                    <img alt="" class="featured-svg levitate" src="{% static 'website/images/illustrations/drawings/support-team.svg' %}" />
+                    <!-- /Featured illustration -->
+                </div>
+                <!-- Content -->
+                <div class="column is-4 is-offset-1">
+                    <div class="icon-subtitle">
+                        <i class="im im-icon-Life-Safer">
+                        </i>
+                    </div>
+                    <h2 class="title quick-feature is-handwritten">
+                        Optimized for the users
+                        <span class="bg-number text-bold">
+                            4
+                        </span>
+                    </h2>
+                    <div class="title-divider is-small">
+                    </div>
+                    <span class="section-feature-description">
+                        In bluecare our first priority is to make it easy for the patients and users.
+                    </span>
+                    <div class="pt-10 pb-10">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /Feature -->
+    <!-- Feature -->
+    <section class="section section-feature-grey is-relative is-medium is-skewed-sm" id="features">
+        <!-- Floating chat bubbles -->
+        <div class="floating-bubbles">
+            <div class="bubble">
+                <img alt="" class="bubble-5th levitate" src="{% static 'website/images/illustrations/drawings/bub-blue.svg' %}" />
+                <img alt="" class="bubble-6th levitate" src="{% static 'website/images/illustrations/drawings/bub-purple.svg' %}" />
+                <img alt="" class="bubble-7th levitate" src="{% static 'website/images/illustrations/drawings/bub-purple.svg' %}" />
+                <img alt="" class="bubble-8th levitate" src="{% static 'website/images/illustrations/drawings/bub-purple.svg' %}" />
+                <img alt="" class="bubble-9th levitate" src="{% static 'website/images/illustrations/drawings/bub-blue.svg' %}" />
+            </div>
+        </div>
+        <!-- /Floating chat bubbles -->
+        <div class="container is-reverse-skewed-sm">
+            <div class="columns is-vcentered">
+                <!-- Content -->
+                <div class="column is-4 is-offset-2">
+                    <div class="icon-subtitle">
+                        <i class="im im-icon-Smartphone-4">
+                        </i>
+                    </div>
+                    <h2 class="title quick-feature is-handwritten">
+                        Stay mobile
+                        <span class="bg-number text-bold">
+                            5
+                        </span>
+                    </h2>
+                    <div class="title-divider is-small">
+                    </div>
+                    <span class="section-feature-description">
+                        Carry all your medical data and history in the palm of your hands.
+                    </span>
+
+                </div>
+                <div class="column is-6 has-text-centered">
+                    <!-- Featured illustration -->
+                    <img alt="" class="featured-svg levitate" src="{% static 'website/images/illustrations/drawings/mobile-chat.svg' %}" />
+                    <!-- /Featured illustration -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /Feature -->
+    <!-- Learn more -->
+    <section class="section is-medium is-relative">
+        <div class="container has-text-centered">
+            <div class="columns is-vcentered">
+                <div class="column is-6 is-offset-3 has-text-centered">
+                    <!-- Title -->
+                    <div class="section-title-wrapper has-text-centered">
+                        <div class="bg-number">
+                            6
+                        </div>
+                        <h2 class="section-title-landing">
+                            That's not all !
+                        </h2>
+                        <h4>
+                            Discover more Features
+                        </h4>
+                    </div>
+                    <!-- /Title -->
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- /Learn more -->
+    <!-- UI Feature -->
+    <section class="section is-medium section-feature-grey">
+        <div class="container">
+            <div class="columns is-vcentered">
+                <!-- Animated svg -->
+                <div class="column is-6">
+                    <div class="vivus-svg" id="chat-widget-ui">
+                        <img alt="" class="chat" src="{% static 'website/images/illustrations/1.svg' %}" />
+                    </div>
+                </div>
+                <!-- /Animated svg -->
+                <div class="column is-4 is-offset-1">
+                    <!-- Title -->
+                    <div class="title-wrapper">
+                        <h6 class="top-subtitle">
+                            You just need one click
+                        </h6>
+                        <h2 class="title is-landing quick-feature">
+                            Beautiful User Interface
+                        </h2>
+                        <div class="title-divider is-small">
+                        </div>
+                    </div>
+                    <!-- /Title -->
+                    <span class="section-feature-description">
+                        Because in bluecare our first priority is to make it easy for you we are very concerned about the user interface that you are using.
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /UI Feature -->
+    <!-- UI Feature -->
+    <section class="section is-medium">
+        <div class="container">
+            <div class="columns is-vcentered">
+                <div class="column is-4 is-offset-2">
+                    <!-- Title -->
+                    <div class="title-wrapper">
+                        <h6 class="top-subtitle">
+                            Comprehensive design
+                        </h6>
+                        <h2 class="title is-landing quick-feature">
+                            User Experience
+                        </h2>
+                        <div class="title-divider is-small">
+                        </div>
+                    </div>
+                    <!-- /Title -->
+                    <span class="section-feature-description">
+                        And to make it easier we use the best user experience tools to help user easy interaction with the system.
+                    </span>
+                </div>
+                <!-- Animated svg -->
+                <div class="column is-6 is-offset-1">
+                    <div class="vivus-svg" id="chat-ui">
+                        <img src="{% static 'website/images/illustrations/2.svg' %}">
+                    </div>
+                </div>
+                <!-- Animated svg -->
+            </div>
+        </div>
+    </section>
+    <!-- /UI Feature -->
+    <!-- /UI Feature -->
+    <section class="section section-feature-grey is-medium">
+        <div class="container">
+            <div class="columns is-vcentered">
+                <div class="column is-5 is-offset-1">
+                    <!-- Video block -->
+                    <div class="side-block is-title-reveal">
+                        <div class="background-wrapper">
+                            <div class="video-wrapper" data-url="https://www.youtube.com/watch?v=ylP789zhYuc" id="video-embed">
+                                <div class="video-overlay">
+                                </div>
+                                <div class="playbutton">
+                                    <div class="icon-play">
+                                        <i class="im im-icon-Play-Music">
+                                        </i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Video block -->
+                </div>
+                <div class="column is-4 is-offset-1">
+                    <!-- Title -->
+                    <div class="title-wrapper">
+                        <h6 class="top-subtitle">
+                            Watch the video and
+                        </h6>
+                        <h2 class="title is-landing quick-feature">
+                            Get started fast
+                        </h2>
+                        <div class="title-divider is-small">
+                        </div>
+                    </div>
+                    <!-- /Title -->
+                    <span class="section-feature-description">
+                        A Breif Video Show you our mission And how we want imporve the healthcare system.
+                    </span>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /UI Feature -->
+
+
+
+    <!-- /Contact form  section-->
+    <!-- Footer light -->
+    <footer class="footer footer-light">
+        <div class="container">
+            <div class="columns footer-columns is-flex-mobile">
+
+                <div class="column is-half-mobile">
+                    <div class="footer-column">
+                        <div class="footer-header">
+                            <h3>
+                                Company
+                            </h3>
+                        </div>
+                        <ul class="link-list">
+                            <li>
+                                <a href="#">
+                                    Browse
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/admin">
+                                    Login
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Column -->
+                <div class="column is-half-mobile">
+                    <div class="footer-column">
+                        <div class="footer-header">
+                            <h3>
+                                Browse Bluecare
+                            </h3>
+                        </div>
+                        <ul class="link-list">
+                            <li>
+                                <a href="contact.html">
+                                    Browse Doctors
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Browse Hospitals
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Browse Clinics
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Browse Labs
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Browse Pharmacies
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Column -->
+                <div class="column is-half-mobile">
+                    <div class="footer-column">
+                        <div class="footer-logo">
+                            <img alt="" src="{% static 'website/images/logos/logo-color.svg' %}"  />
+                        </div>
+                        <div class="footer-header">
+                            <nav class="level is-mobile">
+                                <div class="level-left level-social">
+                                    <a class="level-item">
+                                        <span class="icon">
+                                            <i class="fa fa-facebook">
+                                            </i>
+                                        </span>
+                                    </a>
+                                    <a class="level-item">
+                                        <span class="icon">
+                                            <i class="fa fa-twitter">
+                                            </i>
+                                        </span>
+                                    </a>
+                                    <a class="level-item">
+                                        <span class="icon">
+                                            <i class="fa fa-linkedin">
+                                            </i>
+                                        </span>
+                                    </a>
+                                    <a class="level-item">
+                                        <span class="icon">
+                                            <i class="fa fa-dribbble">
+                                            </i>
+                                        </span>
+                                    </a>
+                                    <a class="level-item">
+                                        <span class="icon">
+                                            <i class="fa fa-github">
+                                            </i>
+                                        </span>
+                                    </a>
+                                </div>
+                            </nav>
+                        </div>
+                        <div class="copyright">
+                            <span class="moto dark-text">
+                                Designed and coded with
+                                <i class="fa fa-heart color-red">
+                                </i>
+                                by Group A Computer science 2020.
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- /Footer light -->
+    <!-- Back To Top Button -->
+    <div id="backtotop">
+        <a href="#">
+        </a>
+    </div>
+    <!-- Concatenated jQuery and plugins -->
+    <script src="{% static 'website/js/app.js' %}">
+    </script>
+    <!-- Bulkit js -->
+    <script src="{% static 'website/js/landingv2.js' %}">
+    </script>
+    <script src="{% static 'website/js/auth.js' %}">
+    </script>
+    <script src="{% static 'website/js/main.js' %}">
+    </script>
+</body>
+
+</html>
