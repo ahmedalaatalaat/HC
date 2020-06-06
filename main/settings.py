@@ -33,7 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # Our Apps
     'cpanel',
-    'diagnostic',
+    'ai',
     'vezeeta',
     'website',
     # Django Apps
@@ -63,7 +63,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR, "cpanel/template"),
-            os.path.join(BASE_DIR, "diagnostic/template"),
+            os.path.join(BASE_DIR, "ai/template"),
             os.path.join(BASE_DIR, "vezeeta/template"),
             os.path.join(BASE_DIR, "website/template")],
         'APP_DIRS': True,
@@ -127,7 +127,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'ETC/GMT-2'
+TIME_ZONE = 'Etc/GMT+2'
 
 USE_I18N = True
 
@@ -144,7 +144,7 @@ MEDIA_URL = '/media/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "cpanel/static"),
-    os.path.join(BASE_DIR, "diagnostic/static"),
+    os.path.join(BASE_DIR, "ai/static"),
     os.path.join(BASE_DIR, "vezeeta/static"),
     os.path.join(BASE_DIR, "website/static")
 ]

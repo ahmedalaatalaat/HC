@@ -1,7 +1,11 @@
 from django.urls import path
+from django.contrib import admin
 from . import views
 from . import autodb
 from ._views import doctor_views, clinic_views, hospital_views, insurance_company_views, lab_views, medical_institution_views, nurse_views, paramedic_views, patient_views, pharmacist_views, pharmacy_views, specialist_views, stakeholder_views
+
+admin.site.site_header = "BlueCare System"
+admin.site.site_title = "BlueCare"
 
 app_name = 'cpanel'
 urlpatterns = [

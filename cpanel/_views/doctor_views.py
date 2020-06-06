@@ -4,7 +4,8 @@ from django.http import HttpResponse, HttpResponseNotFound
 from cpanel.models import *
 from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
-
+from django.db.models import Q
+from cpanel.decorators import *
 
 def Doctor_add(request):
     specializations = Specialization.objects.all()
@@ -187,9 +188,18 @@ def Doctor_edit(request, NN):
     }
     return render(request, 'cpanel/Doctor/Doctor_edit.html', context)
 
-
+@allowed_users(['Admin', 'Patient'])
 def Doctor_list(request):
-    doctors = Physician.objects.all().filter(hide=False)
+    if str(request.user.groups.all().first()) == 'Patient':
+        doctors = set()
+        user = request.user
+        patient_history = PatientHistory.objects.all().filter(
+            Q(hide=False) &
+            Q(patient_nn__patient_nn__user=user)).distinct()
+        for history in patient_history:
+            doctors.add(history.physician_nn)
+    else : 
+        doctors = Physician.objects.all().filter(hide=False)
     if request.method == 'POST':
         doctor = get_object_or_none(Physician, physician_nn=request.POST.get('id'))
         if doctor:

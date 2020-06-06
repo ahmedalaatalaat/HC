@@ -4,6 +4,8 @@ from django.http import HttpResponse, HttpResponseNotFound
 from cpanel.models import *
 from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
+from django.db.models import Q
+from cpanel.decorators import *
 
 
 def Clinic_add(request):
@@ -178,9 +180,37 @@ def Clinic_edit(request, id):
 
     return render(request, 'cpanel/Clinic/Clinic_edit.html', context)
 
-
+@allowed_users(['Admin', 'Physician' , 'Nurse' , 'Specialist','Pharmacist','Clinic'])
 def Clinic_list(request):
-    clinics = Clinic.objects.all().filter(hide=False)
+    if str(request.user.groups.all().first()) == 'Physician':
+        clinics = set()
+        user = request.user
+        physicianClinic =PhysicianClinicWorkingTime.objects.all().filter(
+            Q(hide=False) &
+            Q(physician_nn__physician_nn__user=user)).distinct()
+        for physicians in physicianClinic:
+            clinics.add(physicians.clinic)
+
+    elif str(request.user.groups.all().first()) == 'Specialist':
+        clinics = set()
+        user = request.user
+        clinicSpecialists =ClinicSpecialists.objects.all().filter(
+           # Q(hide=False) &
+            Q(specialist_nn__specialist_nn__user=user)).distinct()
+        for specialists in clinicSpecialists:
+            clinics.add(specialists.clinic)
+
+    elif str(request.user.groups.all().first()) == 'Nurse':
+        clinics = set()
+        user = request.user
+        clinicNurses =ClinicNurses.objects.all().filter(
+           # Q(hide=False) &
+            Q(nurse_nn__nurse_nn__user=user)).distinct()
+        for nurses in clinicNurses:
+            clinics.add(nurses.clinic)
+
+    else :
+        clinics = Clinic.objects.all().filter(hide=False)
     if request.method == 'POST':
         clinic = get_object_or_none(Clinic, clinic=request.POST.get('id'))
         if clinic:

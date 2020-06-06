@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('', include('website.urls')),
     path('cpanel/', include('cpanel.urls')),
-    path('diagnouse/', include('diagnostic.urls')),
+    path('ai_panel/', include('ai.urls')),
     path('browse/', include('vezeeta.urls')),
     path('admin/', admin.site.urls),
 ]

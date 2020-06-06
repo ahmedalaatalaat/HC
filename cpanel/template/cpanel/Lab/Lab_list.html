@@ -1,4 +1,5 @@
 {% extends "cpanel/Base.html" %}
+{% load myTags %}
 {% load staticfiles %}
 {% block content %}
 <!-- Part One -->
@@ -53,6 +54,7 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
+                                    {% if request.user.groups.all.first|into_str in 'Admin,Hospital'|into_list %}
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6 col-xs-6">
                                             <div class="btn-group">
@@ -64,6 +66,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    {% endif %}
                                     <div class="table-scrollable">
                                         <table class="table table-hover table-checkable order-column full-width" id="example4">
                                             <thead>
@@ -117,6 +120,7 @@
                                                     </td>
                                                     <form method="POST" action=""> {% csrf_token %}
                                                         <td>
+                                                            {% if request.user.groups.all.first|into_str in 'Admin,Hospital'|into_list %}
                                                             <a class="btn btn-primary btn-xs" href="{% url 'cpanel:lab_edit' lab %}">
                                                                 <i class="fa fa-pencil">
                                                                 </i>
@@ -124,6 +128,7 @@
                                                             <a class="btn btn-danger btn-xs" onclick="delete_item({{lab}})">
                                                                 <i class="fa fa-trash-o"></i>
                                                             </a>
+                                                            {% endif %}
                                                         </td>
                                                     </form>
                                                 </tr>

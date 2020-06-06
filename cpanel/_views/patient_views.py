@@ -188,9 +188,28 @@ def Patient_edit(request, NN):
     }
     return render(request, 'cpanel/Patient/Patient_edit.html', context)
 
-
+@allowed_users(['Admin', 'Physician','Hospital'])
 def Patient_list(request):
-    patients = Patient.objects.all().filter(hide=False)
+    if str(request.user.groups.all().first()) == 'Physician' :
+        patients = set()
+        user = request.user
+        patient_history = PatientHistory.objects.all().filter(
+            Q(hide=False) &
+            Q(physician_nn__physician_nn__user=user)).distinct()
+        for history in patient_history:
+            patients.add(history.patient_nn)
+
+    elif str(request.user.groups.all().first()) == 'Hospital' :
+        patients = set()
+        user = request.user
+        hospitals = HospitalRating.objects.all().filter(
+            Q(hospital__hospital__user=user)).distinct()
+        for hospital in hospitals:
+            patients.add(hospital.patient_nn)
+
+    else :                
+        patients = Patient.objects.all().filter(hide=False)
+    
     if request.method == 'POST':
         patient = get_object_or_none(Patient, patient_nn=request.POST.get('id'))
         if patient:
@@ -257,18 +276,28 @@ def Patient_history_edit(request, id):
     context = {
         'patient_history': patient_history
     }
-    return render(request, 'cpanel/Patient/Patient_History_edit.html', context)
+    return render(request, 'cpanel/Patient/Patient_history_edit.html', context)
 
 
-@allowed_users(['Admin', 'Patient'])
+@allowed_users(['Admin', 'Patient' , 'Physician' ,'Paramedic'])
 def Patient_history_list(request):
     if str(request.user.groups.all().first()) == 'Patient':
-        user = user.request
+        user = request.user
         patients_history = PatientHistory.objects.all().filter(
             Q(hide=False) &
             Q(patient_nn__patient_nn__user=user)).distinct()
+
+    elif str(request.user.groups.all().first()) == 'Physician' :
+        patients = set()
+        user = request.user
+        patients_history = PatientHistory.objects.all().filter(
+            Q(hide=False) &
+            Q(physician_nn__physician_nn__user=user)).distinct()
+        for history in patients_history:
+            patients.add(history.patient_nn)
     else:
         patients_history = PatientHistory.objects.all().filter(hide=False)
+        
     if request.method == 'POST':
         history = get_object_or_none(PatientHistory, id=request.POST.get('id'))
         if history:

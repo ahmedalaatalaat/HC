@@ -1,5 +1,6 @@
 {% extends "cpanel/Base.html" %}
 {% load staticfiles %}
+{% load myTags %}
 {% block content %}
 <!-- Part One -->
 <div class="page-bar">
@@ -63,7 +64,8 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                            <input class="mdl-textfield__input" required maxlength="360" value="{{patient_history.diagnouse}}" name="diagnouse" id="txtdiagnouse" type="text" />
+                            <input class="mdl-textfield__input" required maxlength="360" value="{{patient_history.diagnouse}}" name="diagnouse" id="txtdiagnouse" type="text" 
+                            {% if request.user.groups.all.first|into_str in 'Paramedic'|into_list %} readonly {% endif %}/>
                             <label class="mdl-textfield__label">
                                 Diagnouse
                             </label>
@@ -71,7 +73,9 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield txt-full-width">
-                            <textarea class="mdl-textfield__input" id="text7" rows="4" name="physician_comments">{{patient_history.physician_comments}}</textarea>
+                            <textarea class="mdl-textfield__input" id="text7" rows="4" name="physician_comments"
+                            {% if request.user.groups.all.first|into_str in 'Paramedic'|into_list %} readonly {% endif %}
+                            >{{patient_history.physician_comments}}</textarea>
                             <label class="mdl-textfield__label" for="text7">
                                 Comments
                             </label>
@@ -79,7 +83,9 @@
                     </div>
                     <div class="col-lg-12 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield txt-full-width">
-                            <textarea class="mdl-textfield__input" id="text7" rows="4" name="prescription">{{patient_history.prescription}}</textarea>
+                            <textarea class="mdl-textfield__input" id="text7" rows="4" name="prescription"
+                            {% if request.user.groups.all.first|into_str in 'Paramedic'|into_list %} readonly {% endif %}
+                            >{{patient_history.prescription}}</textarea>
                             <label class="mdl-textfield__label" for="text7">
                                 Prescription
                             </label>
@@ -156,14 +162,18 @@
                             <input class="mdl-switch__input" id="switch-8" type="checkbox" name="hide" {% if patient_history.hide%}checked {%endif%} />
                         </label>
                     </div>
+                    
                     <div class="col-lg-12 p-t-20 text-center">
+                        {% if not request.user.groups.all.first|into_str in 'Paramedic'|into_list %}
                         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-pink" type="submit">
                             Submit
                         </button>
                         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default" type="button" id="add_form_Cancel_button">
                             Cancel
                         </button>
+                        {% endif %}
                     </div>
+                    
                 </div>
             </form>
         </div>

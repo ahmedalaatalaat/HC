@@ -4,6 +4,8 @@ from django.http import HttpResponse, HttpResponseNotFound
 from cpanel.models import *
 from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
+from django.db.models import Q
+from cpanel.decorators import *
 
 
 def Hospital_add(request):
@@ -178,9 +180,37 @@ def Hospital_edit(request, id):
     }
     return render(request, 'cpanel/Hospital/Hospital_edit.html', context)
 
-
+@allowed_users(['Admin', 'Physician' ,'Nurse' ,'Specialist','Pharmacist'])
 def Hospital_list(request):
-    hospitals = Hospital.objects.all().filter(hide=False)
+    if str(request.user.groups.all().first()) == 'Physician':
+        hospitals = set()
+        user = request.user
+        physicianHospital =PhysicianHospitalWorkingTime.objects.all().filter(
+            Q(hide=False) &
+            Q(physician_nn__physician_nn__user=user)).distinct()
+        for physicians in physicianHospital:
+            hospitals.add(physicians.hospital)
+
+    elif str(request.user.groups.all().first()) == 'Nurse':
+        hospitals = set()
+        user = request.user
+        hospitalNurses =HospitalNurses.objects.all().filter(
+            #Q(hide=False) &
+            Q(nurse_nn__nurse_nn__user=user)).distinct()
+        for nurses in hospitalNurses:
+            hospitals.add(nurses.hospital)
+
+    elif str(request.user.groups.all().first()) == 'Specialist':
+        hospitals = set()
+        user = request.user
+        hospitalSpecialists =HospitalSpecialists.objects.all().filter(
+            #Q(hide=False) &
+            Q(specialist_nn__specialist_nn__user=user)).distinct()
+        for specialists in hospitalSpecialists:
+            hospitals.add(specialists.hospital)
+            
+    else :
+        hospitals = Hospital.objects.all().filter(hide=False)
     if request.method == 'POST':
         hospital = get_object_or_none(Hospital, hospital=request.POST.get('id'))
         if hospital:

@@ -732,7 +732,7 @@ class LabNurses(models.Model):
         verbose_name_plural = 'Lab Nurses'
 
     def __str__(self):
-        return f'Nurse:{self.nurse_nn} works in {self.Lab}'
+        return f'Nurse:{self.nurse_nn} works in {self.lab}'
 
 
 # -- Specialists

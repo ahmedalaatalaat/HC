@@ -54,7 +54,7 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    {% if request.user.groups.all.first|into_str in 'Admin'|into_list %}
+                                    {% if request.user.groups.all.first|into_str in 'Admin,Clinic,Lab'|into_list %}
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6 col-xs-6">
                                             <div class="btn-group">
@@ -117,13 +117,18 @@
                                                     </td>
                                                     <form method="POST" action=""> {% csrf_token %}
                                                         <td>
+                                                            {% if request.user.groups.all.first|into_str in 'Admin,Physcian,Patient,Clinic,Lab,Paramedic'|into_list %}
                                                             <a class="btn btn-primary btn-xs" href="{% url 'cpanel:patient_history_edit' patient_history.id%}">
                                                                 <i class="fa fa-pencil">
                                                                 </i>
                                                             </a>
+                                                                {% endif %}
+
+                                                                {% if request.user.groups.all.first|into_str in 'Admin,Physcian,Patient,Clinic,Lab'|into_list %}
                                                             <a class="btn btn-danger btn-xs" onclick="delete_item({{patient_history.id}})">
                                                                 <i class="fa fa-trash-o"></i>
                                                             </a>
+                                                            {% endif %}
                                                         </td>
                                                     </form>
                                                 </tr>

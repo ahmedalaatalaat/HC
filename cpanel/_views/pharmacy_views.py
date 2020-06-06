@@ -4,6 +4,8 @@ from django.http import HttpResponse, HttpResponseNotFound
 from cpanel.models import *
 from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
+from django.db.models import Q
+from cpanel.decorators import *
 
 
 def Pharmacy_add(request):
@@ -145,7 +147,7 @@ def Pharmacy_edit(request, id):
     }
     return render(request, 'cpanel/Pharmacy/Pharmacy_edit.html', context)
 
-
+@allowed_users(['Admin','Pharmacy'])
 def Pharmacy_list(request):
     pharmacies = Pharmacy.objects.all().filter(hide=False)
     if request.method == 'POST':

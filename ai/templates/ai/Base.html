@@ -1,0 +1,504 @@
+{% load staticfiles %}
+{% load myTags %}
+<!DOCTYPE html>
+<html lang="en">
+<!-- BEGIN HEAD -->
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="Bluecare system" name="author" />
+    <title>
+        BlueCare AI panel
+    </title>
+    <!-- google font -->
+    <link href="{% static 'cpanel/assets/bundles/material/fonts.css' %}" rel="stylesheet" />
+    <!-- <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&amp;subset=all" rel="stylesheet" type="text/css" /> -->
+    <!-- icons -->
+    <link href="{% static 'cpanel/assets/bundles/simple-line-icons/simple-line-icons.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'cpanel/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'cpanel/assets/bundles/material/material-icon.css' %}" rel="stylesheet" />
+    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" /> -->
+    <!--bootstrap -->
+    <link href="{% static 'cpanel/assets/bundles/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+    <!-- data tables -->
+    <link href="{% static 'cpanel/assets/bundles/datatables/plugins/bootstrap/dataTables.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+    <!-- Material Design Lite CSS -->
+    <link href="{% static 'cpanel/assets/bundles/material/material.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'cpanel/css/material_style.css' %}" rel="stylesheet" />
+    <link href="{% static 'cpanel/css/main.css' %}" rel="stylesheet" />
+    <!-- Theme Styles -->
+    <link href="{% static 'cpanel/css/theme_style.css' %}" id="rt_style_components" rel="stylesheet" type="text/css">
+    <link href="{% static 'cpanel/css/style.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'cpanel/css/plugins.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'cpanel/css/responsive.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'cpanel/css/theme-color.css' %}" rel="stylesheet" type="text/css" />
+    <!-- dropzone -->
+    <link href="{% static 'cpanel/assets/bundles/dropzone/dropzone.css' %}" media="screen" rel="stylesheet" />
+    <!-- Date Time item CSS -->
+    <link href="{% static 'cpanel/assets/bundles/jquery.growl/stylesheets/jquery.growl.css' %}" rel="stylesheet">
+    <!-- Growl CSS -->
+    <link href="{% static 'cpanel/assets/bundles/material-datetimepicker/bootstrap-material-datetimepicker.css' %}" rel="stylesheet">
+    <!-- Datapicker -->
+    <link href="{% static 'cpanel/assets/bundles/bootstrap-datepicker/datepicker.css' %}" rel="stylesheet" />
+    <!--select2-->
+    <link href="{% static 'cpanel/assets/bundles/select2/css/select2.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'cpanel/assets/bundles/select2/css/select2-bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+    <!-- SweetAlert -->
+    <link href="{% static 'cpanel/assets/bundles/sweet-alert/sweetalert.min.css' %}" rel="stylesheet" type="text/css">
+    <!-- favicon -->
+    <link href="{% static 'cpanel/img/favicon.svg' %}" rel="shortcut icon" />
+    </link>
+    </link>
+    </link>
+    </meta>
+</head>
+<!-- END HEAD -->
+
+<body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-white white-sidebar-color logo-indigo">
+    <div class="page-wrapper">
+        <!-- start header -->
+        <div class="page-header navbar navbar-fixed-top">
+            <div class="page-header-inner">
+                <!-- logo start -->
+                <div class="page-logo">
+                    <a href="index.html">
+                        <span class="logo-icon fa fa-stethoscope fa-rotate-45">
+                        </span>
+                        <span class="logo-default">
+                            BlueCare AI
+                        </span>
+                    </a>
+                </div>
+                <!-- logo end -->
+                <ul class="nav navbar-nav navbar-left in">
+                    <li>
+                        <a class="menu-toggler sidebar-toggler" href="#">
+                            <i class="icon-menu">
+                            </i>
+                        </a>
+                    </li>
+                </ul>
+                <!-- start mobile menu -->
+                <a class="menu-toggler responsive-toggler" data-target=".navbar-collapse" data-toggle="collapse" href="javascript:;">
+                    <span>
+                    </span>
+                </a>
+                <!-- end mobile menu -->
+                <!-- start header menu -->
+                <div class="top-menu">
+                    <ul class="nav navbar-nav pull-right">
+                        <!-- start language menu -->
+                        <li class="dropdown language-switch">
+                            <a aria-expanded="false" class="dropdown-toggle" data-toggle="dropdown">
+                                <img alt="" class="position-left" src="{% static 'cpanel/img/flags/gb.png' %}" />
+                                English
+                                <span class="fa fa-angle-down">
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="english">
+                                        <img alt="" src="{% static 'cpanel/img/flags/gb.png' %}" />
+                                        English
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- start manage user dropdown -->
+                        <li class="dropdown dropdown-user">
+                            <a class="dropdown-toggle" data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href="javascript:;">
+                                <img alt="" class="img-circle" src="{% static 'cpanel/img/dp.jpg' %}">
+                                <span class="username username-hide-on-mobile">
+                                    Kiran
+                                </span>
+                                <i class="fa fa-angle-down">
+                                </i>
+                                </img>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-default">
+                                <li>
+                                    <a href="user_profile.html">
+                                        <i class="icon-user">
+                                        </i>
+                                        Profile
+                                    </a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="lock_screen.html">
+                                        <i class="icon-lock">
+                                        </i>
+                                        Lock
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="login.html">
+                                        <i class="icon-logout">
+                                        </i>
+                                        Log Out
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- end header -->
+        <!-- start color quick setting -->
+        <div class="settingSidebar">
+            <a class="settingPanelToggle" href="javascript:void(0)">
+                <i class="fa fa-spin fa-cog">
+                </i>
+            </a>
+            <div class="settingSidebar-body ps-container ps-theme-default">
+                <div class="fade show active">
+                    <div class="setting-panel-header">
+                        Setting Panel
+                    </div>
+                    <div class="quick-setting slimscroll-style">
+                        <ul id="themecolors">
+                            <li>
+                                <p class="sidebarSettingTitle">
+                                    Sidebar Color
+                                </p>
+                            </li>
+                            <li class="complete">
+                                <div class="theme-color sidebar-theme">
+                                    <a data-theme="white" href="#">
+                                        <span class="head">
+                                        </span>
+                                        <span class="cont">
+                                        </span>
+                                    </a>
+                                    <a data-theme="dark" href="#">
+                                        <span class="head">
+                                        </span>
+                                        <span class="cont">
+                                        </span>
+                                    </a>
+                                    <a data-theme="blue" href="#">
+                                        <span class="head">
+                                        </span>
+                                        <span class="cont">
+                                        </span>
+                                    </a>
+                                    <a data-theme="indigo" href="#">
+                                        <span class="head">
+                                        </span>
+                                        <span class="cont">
+                                        </span>
+                                    </a>
+                                    <a data-theme="cyan" href="#">
+                                        <span class="head">
+                                        </span>
+                                        <span class="cont">
+                                        </span>
+                                    </a>
+                                    <a data-theme="green" href="#">
+                                        <span class="head">
+                                        </span>
+                                        <span class="cont">
+                                        </span>
+                                    </a>
+                                    <a data-theme="red" href="#">
+                                        <span class="head">
+                                        </span>
+                                        <span class="cont">
+                                        </span>
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <p class="sidebarSettingTitle">
+                                    Header Brand color
+                                </p>
+                            </li>
+                            <li class="theme-option">
+                                <div class="theme-color logo-theme">
+                                    <a data-theme="logo-white" href="#">
+                                        <span class="head">
+                                        </span>
+                                        <span class="cont">
+                                        </span>
+                                    </a>
+                                    <a data-theme="logo-dark" href="#">
+                                        <span class="head">
+                                        </span>
+                                        <span class="cont">
+                                        </span>
+                                    </a>
+                                    <a data-theme="logo-blue" href="#">
+                                        <span class="head">
+                                        </span>
+                                        <span class="cont">
+                                        </span>
+                                    </a>
+                                    <a data-theme="logo-indigo" href="#">
+                                        <span class="head">
+                                        </span>
+                                        <span class="cont">
+                                        </span>
+                                    </a>
+                                    <a data-theme="logo-cyan" href="#">
+                                        <span class="head">
+                                        </span>
+                                        <span class="cont">
+                                        </span>
+                                    </a>
+                                    <a data-theme="logo-green" href="#">
+                                        <span class="head">
+                                        </span>
+                                        <span class="cont">
+                                        </span>
+                                    </a>
+                                    <a data-theme="logo-red" href="#">
+                                        <span class="head">
+                                        </span>
+                                        <span class="cont">
+                                        </span>
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <p class="sidebarSettingTitle">
+                                    Header color
+                                </p>
+                            </li>
+                            <li class="theme-option">
+                                <div class="theme-color header-theme">
+                                    <a data-theme="header-white" href="#">
+                                        <span class="head">
+                                        </span>
+                                        <span class="cont">
+                                        </span>
+                                    </a>
+                                    <a data-theme="header-dark" href="#">
+                                        <span class="head">
+                                        </span>
+                                        <span class="cont">
+                                        </span>
+                                    </a>
+                                    <a data-theme="header-blue" href="#">
+                                        <span class="head">
+                                        </span>
+                                        <span class="cont">
+                                        </span>
+                                    </a>
+                                    <a data-theme="header-indigo" href="#">
+                                        <span class="head">
+                                        </span>
+                                        <span class="cont">
+                                        </span>
+                                    </a>
+                                    <a data-theme="header-cyan" href="#">
+                                        <span class="head">
+                                        </span>
+                                        <span class="cont">
+                                        </span>
+                                    </a>
+                                    <a data-theme="header-green" href="#">
+                                        <span class="head">
+                                        </span>
+                                        <span class="cont">
+                                        </span>
+                                    </a>
+                                    <a data-theme="header-red" href="#">
+                                        <span class="head">
+                                        </span>
+                                        <span class="cont">
+                                        </span>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end color quick setting -->
+        <!-- start page container -->
+        <div class="page-container">
+            <!-- start sidebar menu -->
+            <div class="sidebar-container">
+                <div class="sidemenu-container navbar-collapse collapse fixed-menu">
+                    <div class="left-sidemenu" id="remove-scroll">
+                        <ul class="sidemenu page-header-fixed slimscroll-style" data-auto-scroll="true" data-keep-expanded="false" data-slide-speed="200" style="padding-top: 20px">
+                            <li class="sidebar-toggler-wrapper hide">
+                                <div class="sidebar-toggler">
+                                    <span>
+                                    </span>
+                                </div>
+                            </li>
+                            <li class="sidebar-user-panel">
+                                <div class="user-panel">
+                                    <div class="pull-left image">
+                                        <img alt="User Image" class="img-circle user-img-circle" src="{% static 'cpanel/img/dp.jpg' %}">
+                                        </img>
+                                    </div>
+                                    <div class="pull-left info">
+                                        <p>
+                                            Dr.Kiran Patel
+                                        </p>
+                                        <a href="#">
+                                            <i class="fa fa-circle user-online">
+                                            </i>
+                                            <span class="txtOnline">
+                                                Online
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="nav-item {% if '/ai_panel/breast_cancer_detection/' == request.get_full_path %}active{% endif %}">
+                                <a class="nav-link nav-toggle" href="{% url 'ai:breast_cancer_detection' %}">
+                                    <i class="fas fa-disease"></i>
+                                    <span class="title">
+                                        Breast Cancer Detection
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="nav-item {% if '/ai_panel/female_diabetes_detection/' == request.get_full_path %}active{% endif %}">
+                                <a class="nav-link nav-toggle" href="{% url 'ai:female_diabetes_detection' %}">
+                                    <i class="fas fa-syringe"></i>
+                                    <span class="title">
+                                        Female Diabetes Detection
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="nav-item {% if '/ai_panel/DNA_Classification/' == request.get_full_path %}active{% endif %}">
+                                <a class="nav-link nav-toggle" href="{% url 'ai:DNA_Classification' %}">
+                                    <i class="fas fa-dna"></i>
+                                    <span class="title">
+                                        DNA Classification
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="nav-item {% if '/ai_panel/heart_disease_prediction/' == request.get_full_path %}active{% endif %}">
+                                <a class="nav-link nav-toggle" href="{% url 'ai:heart_disease_prediction' %}">
+                                    <i class="fas fa-heartbeat"></i>
+                                    <span class="title">
+                                        Heart Disease Prediction
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="nav-item {% if '/ai_panel/pneumonia_detection/' == request.get_full_path %}active{% endif %}">
+                                <a class="nav-link nav-toggle" href="{% url 'ai:pneumonia_detection' %}">
+                                    <i class="fas fa-lungs-virus"></i>
+                                    <span class="title">
+                                        Pneumonia Detection
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- end sidebar menu -->
+            <!-- start page content -->
+            <div class="page-content-wrapper">
+                <div class="page-content">
+                    <!-- Your Code Goes Here -->
+                    {% block content %}
+                    {% endblock content%}
+                    <!-- End code -->
+                </div>
+            </div>
+            <!-- end page content -->
+        </div>
+        <!-- end page container -->
+        <!-- start footer -->
+        <div class="page-footer">
+            <div class="page-footer-inner">
+                2020 © BlueCare System By
+                <a class="makerCss" href="#" target="_top">
+                    Group A (Ahmed Alaa - Mohamed Hatem - Amr Haitham - Abdallah Mohamed - Mai Mohamed - Mahmoud Samir)
+                </a>
+            </div>
+            <div class="scroll-to-top">
+                <i class="icon-arrow-up">
+                </i>
+            </div>
+        </div>
+        <!-- end footer -->
+    </div>
+    <!-- start js include path -->
+    <script src="{% static 'cpanel/assets/bundles/jquery/jquery.min.js' %}">
+    </script>
+    <script src="{% static 'cpanel/assets/bundles/popper/popper.js' %}">
+    </script>
+    <script src="{% static 'cpanel/assets/bundles/jquery-blockUI/jquery.blockui.min.js' %}">
+    </script>
+    <script src="{% static 'cpanel/assets/bundles/jquery.slimscroll/jquery.slimscroll.js' %}">
+    </script>
+    <!-- bootstrap -->
+    <script src="{% static 'cpanel/assets/bundles/bootstrap/js/bootstrap.min.js' %}">
+    </script>
+    <script src="{% static 'cpanel/assets/bundles/bootstrap-switch/js/bootstrap-switch.min.js' %}">
+    </script>
+    <!-- data tables -->
+    <script src="{% static 'cpanel/assets/bundles/datatables/jquery.dataTables.min.js' %}">
+    </script>
+    <script src="{% static 'cpanel/assets/bundles/datatables/plugins/bootstrap/dataTables.bootstrap4.min.js' %}">
+    </script>
+    <script src="{% static 'cpanel/assets/data/table-data.js' %}">
+    </script>
+    <!-- Common js-->
+    <script src="{% static 'cpanel/assets/app.js' %}">
+    </script>
+    <script src="{% static 'cpanel/assets/layout.js' %}">
+    </script>
+    <script src="{% static 'cpanel/assets/theme-color.js' %}">
+    </script>
+    <!-- Material -->
+    <script src="{% static 'cpanel/assets/bundles/material/material.min.js' %}">
+    </script>
+    <script src="{% static 'cpanel/assets/data/getmdl-select.js' %}">
+    </script>
+    <script src="{% static 'cpanel/assets/bundles/material-datetimepicker/moment-with-locales.min.js' %}">
+    </script>
+    <script src="{% static 'cpanel/assets/bundles/material-datetimepicker/bootstrap-material-datetimepicker.js' %}">
+    </script>
+    <script src="{% static 'cpanel/assets/bundles/material-datetimepicker/datetimepicker.js' %}">
+    </script>
+    <!-- dropzone -->
+    <script src="{% static 'cpanel/assets/bundles/dropzone/dropzone.js' %}">
+    </script>
+    <script src="{% static 'cpanel/assets/bundles/dropzone/dropzone-call.js' %}">
+    </script>
+    <!-- growl -->
+    <script src="{% static 'cpanel/assets/bundles/jquery.growl/javascripts/jquery.growl.js' %}">
+    </script>
+    <!-- Datepicker -->
+    <script src="{% static 'cpanel/assets/bundles/bootstrap-datepicker/bootstrap-datepicker.js' %}">
+    </script>
+    <script src="{% static 'cpanel/assets/data/datepicker-init.js' %}">
+    </script>
+    <!-- Datetime picker -->
+    <link href="{% static 'cpanel/assets/bundles/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css' %}" media="screen" rel="stylesheet" />
+    <!-- Datetime picker -->
+    <script charset="UTF-8" src="{% static 'cpanel/assets/bundles/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js' %}">
+    </script>
+    <script charset="UTF-8" src="{% static 'cpanel/assets/data/bootstrap-datetimepicker-init.js' %}">
+    </script>
+    <!--select2-->
+    <script src="{% static 'cpanel/assets/bundles/select2/js/select2.js' %}">
+    </script>
+    <script src="{% static 'cpanel/assets/data/select2-data.js' %}">
+    </script>
+    <!-- SweetAlert -->
+    <script src="{% static 'cpanel/assets/bundles/sweet-alert/sweetalert.min.js' %}">
+    </script>
+    <!-- Main Script -->
+    <script src="{% static 'cpanel/assets/main.js' %}">
+    </script>
+    <script src="{% static 'ai/js/main.js' %}">
+    </script>
+    <!-- end js include path -->
+    <script src="{% static 'cpanel/assets/fa.js' %}"></script>
+</body>
+
+</html>
