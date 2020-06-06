@@ -4,6 +4,19 @@ import os
 import sys
 
 
+def create_model(neuron1, neuron2):
+    # create model
+    model = Sequential()
+    model.add(Dense(neuron1, input_dim=8, kernel_initializer='uniform', activation='linear'))
+    model.add(Dense(neuron2, input_dim=neuron1, kernel_initializer='uniform', activation='linear'))
+    model.add(Dense(1, activation='sigmoid'))
+
+    # compile the model
+    adam = Adam(lr=0.001)
+    model.compile(loss='binary_crossentropy', optimizer=adam, metrics=['accuracy'])
+    return model
+
+
 def main():
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'main.settings')
     try:
