@@ -1,3 +1,4 @@
+from django.urls import reverse_lazy
 """
 Django settings for main project.
 
@@ -31,6 +32,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # Third Party Apps
+    'jet.dashboard',
+    'jet',
     # Our Apps
     'cpanel',
     'ai',
@@ -49,6 +53,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -62,6 +67,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
+            os.path.join(BASE_DIR, "main/template"),
             os.path.join(BASE_DIR, "cpanel/template"),
             os.path.join(BASE_DIR, "ai/template"),
             os.path.join(BASE_DIR, "vezeeta/template"),
@@ -152,3 +158,107 @@ STATICFILES_DIRS = [
 # To make the static that server manage them
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_root")
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media_root")
+
+
+# Admin Customization
+JET_THEMES = [
+    {
+        'theme': 'default',  # theme folder name
+        'color': '#47bac1',  # color of the theme's button in user menu
+        'title': 'Default'  # theme title
+    },
+    {
+        'theme': 'green',
+        'color': '#44b78b',
+        'title': 'Green'
+    },
+    {
+        'theme': 'light-green',
+        'color': '#2faa60',
+        'title': 'Light Green'
+    },
+    {
+        'theme': 'light-violet',
+        'color': '#a464c4',
+        'title': 'Light Violet'
+    },
+    {
+        'theme': 'light-blue',
+        'color': '#5EADDE',
+        'title': 'Light Blue'
+    },
+    {
+        'theme': 'light-gray',
+        'color': '#222',
+        'title': 'Light Gray'
+    }
+]
+
+JET_DEFAULT_THEME = 'default'
+JET_SIDE_MENU_COMPACT = True
+JET_CHANGE_FORM_SIBLING_LINKS = True
+JET_INDEX_DASHBOARD = 'Dashboard.DefaultIndexDashboard'
+
+JET_SIDE_MENU_ITEMS = [  # A list of application or custom item dicts
+    {'label': ('administration'), 'app_label': 'auth', 'items': [
+        {'label': ('User Profile'), 'url': 'http://127.0.0.1:8000/admin/profile/', 'url_blank': True},
+        {'name': 'auth.user'},
+        {'name': 'auth.group'},
+        {'name': 'admin.logentry'}
+    ]},
+    {'label': ('System Panels'), 'app_label': 'pages', 'items': [
+        {'label': ('Cpanel'), 'url': 'http://127.0.0.1:8000/cpanel/doctor_list/', 'url_blank': True},
+        {'label': ('AI panel'), 'url': 'http://127.0.0.1:8000/cpanel/doctor_list/', 'url_blank': True},
+    ]},
+    {'label': ('Applications'), 'app_label': 'cpanel', 'items': [
+        {'name': 'cpanel.stakeholders'},
+        {'name': 'cpanel.stakeholdersphones'},
+        {'name': 'cpanel.stakeholdersaddress'},
+        {'name': 'cpanel.patient'},
+        {'name': 'cpanel.patientrelativesphones'},
+        {'name': 'cpanel.physician'},
+        {'name': 'cpanel.nurse'},
+        {'name': 'cpanel.nursespecialization'},
+        {'name': 'cpanel.paramedic'},
+        {'name': 'cpanel.specialist'},
+        {'name': 'cpanel.specialistspecialization'},
+        {'name': 'cpanel.pharmacist'},
+        {'name': 'cpanel.pharmacistspecialization'},
+        {'name': 'cpanel.medicalinstitutions'},
+        {'name': 'cpanel.medicalinstitutionsphone'},
+        {'name': 'cpanel.medicalinstitutionsaddress'},
+        {'name': 'cpanel.labs'},
+        {'name': 'cpanel.labsanalysisandradiology'},
+        {'name': 'cpanel.clinic'},
+        {'name': 'cpanel.pharmacy'},
+        {'name': 'cpanel.hospital'},
+        {'name': 'cpanel.insurancecompanies'},
+        {'name': 'cpanel.insurancecompaniesphone'},
+        {'name': 'cpanel.insurancecompaniesaddress'},
+        {'name': 'cpanel.insurancetypes'},
+        {'name': 'cpanel.specialization'},
+        {'name': 'cpanel.patienthistory'},
+        {'name': 'cpanel.physicianpatientappointment'},
+        {'name': 'cpanel.physicianhospitalworkingtime'},
+        {'name': 'cpanel.physicianclinicworkingtime'},
+        {'name': 'cpanel.physicianrating'},
+        {'name': 'cpanel.labrating'},
+        {'name': 'cpanel.clinicrating'},
+        {'name': 'cpanel.hospitalrating'},
+        {'name': 'cpanel.hospitalnurses'},
+        {'name': 'cpanel.clinicnurses'},
+        {'name': 'cpanel.labnurses'},
+        {'name': 'cpanel.labspecialists'},
+        {'name': 'cpanel.hospitalspecialists'},
+        {'name': 'cpanel.clinicspecialists'},
+        {'name': 'cpanel.pharmacypharmacists'},
+        {'name': 'cpanel.physicianspecialization'},
+        {'name': 'cpanel.hospitalspecialization'},
+        {'name': 'cpanel.clinicspecialization'},
+        {'name': 'cpanel.labsinsurancedeals'},
+        {'name': 'cpanel.clinicsinsurancedeals'},
+        {'name': 'cpanel.hospitalinsurancedeals'},
+        {'name': 'cpanel.pharmacyinsurancedeals'},
+        {'name': 'cpanel.patientinsurance'},
+    ]},
+]

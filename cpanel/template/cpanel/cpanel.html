@@ -1,0 +1,10 @@
+{% extends "cpanel/Base.html" %}
+{% load staticfiles %}
+{% load myTags %}
+{% block content %}
+<div class="row" style="margin: auto; text-align: center; margin-top: 23%">
+    <div class="col-sm-12">
+        <h1 class="text-muted font-weight-bolder" style="font-weight: 1000; font-size: 40px !important" >Welcome {{request.user|get_name}} <br /> To Bluecare Healthcare System</h1>
+    </div>
+</div>
+{% endblock content %}

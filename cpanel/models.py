@@ -470,6 +470,7 @@ class InsuranceCompanies(models.Model):
     hide = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)  # new
     updated_at = models.DateTimeField(auto_now=True)  # new
+    image = models.ImageField(upload_to="IC/images", default='ic.png')
     user = models.OneToOneField(User, models.DO_NOTHING, db_column="user")
 
     class Meta:

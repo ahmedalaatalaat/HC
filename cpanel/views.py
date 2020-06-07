@@ -8,6 +8,14 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import AuthenticationForm
 
 
+def cpanel(request):
+    stakeholder = get_object_or_404(Stakeholders, user=request.user)
+    context = {
+        'stakeholder': stakeholder,
+    }
+    return render(request, 'cpanel/cpanel.html', context)
+
+
 # login Views
 def loginView(request):
     form = AuthenticationForm()
