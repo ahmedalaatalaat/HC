@@ -23,7 +23,6 @@ from django.shortcuts import render
 # def breast_cancer_detection(request):
 #     if request.is_ajax():
 #         if request.method == 'POST':
-#             print(request.POST)
 
 #             # get file path
 #             module_dir = os.path.dirname(__file__)  # get current directory
@@ -67,7 +66,6 @@ from django.shortcuts import render
 #     if request.is_ajax():
 #         if request.method == 'POST':
 
-#             print(request.POST)
 #             module_dir = os.path.dirname(__file__)  # get current directory
 #             file_path = os.path.join(module_dir, 'ai_models/diabetes_onset_detection_model.pkl')
 #             with open(file_path, 'rb') as file:
@@ -102,7 +100,6 @@ from django.shortcuts import render
 # def DNA_Classification(request):
 #     if request.is_ajax():
 #         if request.method == 'POST':
-#             print(request.POST)
 #             module_dir = os.path.dirname(__file__)  # get current directory
 #             file_path = os.path.join(module_dir, 'ai_models/dna_classification_model.pkl')
 #             with open(file_path, 'rb') as my_file:
@@ -157,7 +154,6 @@ from django.shortcuts import render
 # def heart_disease_prediction(request):
 #     if request.is_ajax():
 #         if request.method == 'POST':
-#             print(request.POST)
 #             module_dir = os.path.dirname(__file__)  # get current directory
 #             file_path = os.path.join(module_dir, 'ai_models/heart_disease_prediction_model.pkl')
 #             with open(file_path, 'rb') as my_file:
@@ -185,7 +181,6 @@ from django.shortcuts import render
 #                 measures = df.to_numpy()
 #                 measures = measures.reshape(len(measures), -1)
 #                 predictions = np.round(model.predict(measures)).astype(int)
-#                 print(predictions)
 
 #                 if predictions[0][0] == 0:
 #                     result = 'You are Normal'
@@ -222,7 +217,6 @@ from django.shortcuts import render
 #             x = np.expand_dims(x, axis=0)
 #             img_data = preprocess_input(x)
 #             classes = model.predict(img_data)
-#             print(round(classes[0][0]))
 
 #             os.remove(img_path)
 

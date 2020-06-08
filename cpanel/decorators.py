@@ -6,11 +6,9 @@ def allowed_users(allowed_roles=[]):
     def decorator(view):
         def wrapper(request, *args, **kwargs):
 
-            group = None
-            if request.user.groups.exists():
-                group = request.user.groups.all()[0].name
+            group = request.user.groups.filter(name__in=allowed_roles).exists()
 
-            if group in allowed_roles:
+            if group:
                 return view(request, *args, **kwargs)
             else:
                 return HttpResponse('You are not authorized to view this page')

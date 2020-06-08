@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Thrid-party Apps
 ]
 
 MIDDLEWARE = [
@@ -212,18 +211,12 @@ JET_SIDE_MENU_ITEMS = [  # A list of application or custom item dicts
     ]},
     {'label': ('Applications'), 'app_label': 'cpanel', 'items': [
         {'name': 'cpanel.stakeholders'},
-        {'name': 'cpanel.stakeholdersphones'},
-        {'name': 'cpanel.stakeholdersaddress'},
         {'name': 'cpanel.patient'},
-        {'name': 'cpanel.patientrelativesphones'},
         {'name': 'cpanel.physician'},
         {'name': 'cpanel.nurse'},
-        {'name': 'cpanel.nursespecialization'},
         {'name': 'cpanel.paramedic'},
         {'name': 'cpanel.specialist'},
-        {'name': 'cpanel.specialistspecialization'},
         {'name': 'cpanel.pharmacist'},
-        {'name': 'cpanel.pharmacistspecialization'},
         {'name': 'cpanel.medicalinstitutions'},
         {'name': 'cpanel.medicalinstitutionsphone'},
         {'name': 'cpanel.medicalinstitutionsaddress'},

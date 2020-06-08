@@ -38,8 +38,11 @@ def into_int(value):
 
 @register.filter
 def into_list(value):
-    value = value.split(',')
-    return value
+    try:
+        value = value.split(',')
+        return value
+    except Exception:
+        return value
 
 
 @register.filter
@@ -57,12 +60,6 @@ def label(value):
     value = value.capitalize().split('_')
     value = ' '.join(value)
     return value
-
-
-@register.filter
-def test(value):
-    print(type(value))
-    # return value
 
 
 @register.filter
@@ -100,3 +97,14 @@ def get_image_url(value):
             if insurance_company:
                 image = insurance_company.image.url
     return image
+
+
+@register.filter
+def allowed_users(user, allowed_groups):
+    user = get_object_or_none(User, username=user)
+    allowed_roles = allowed_groups.split(',')
+
+    if user:
+        group = user.groups.filter(name__in=allowed_roles).exists()
+        return group
+    return None

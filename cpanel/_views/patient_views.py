@@ -22,7 +22,8 @@ def Patient_add(request):
                 # Add User to django
                 user = User.objects.create_user(
                     username=request.POST.get('national_number'),
-                    password=request.POST.get('password')
+                    password=request.POST.get('password'),
+                    is_staff=True
                 )
 
                 # Add user to the group
@@ -188,9 +189,10 @@ def Patient_edit(request, NN):
     }
     return render(request, 'cpanel/Patient/Patient_edit.html', context)
 
-@allowed_users(['Admin', 'Physician','Hospital'])
+
+@allowed_users(['Admin', 'Physician', 'Hospital'])
 def Patient_list(request):
-    if str(request.user.groups.all().first()) == 'Physician' :
+    if str(request.user.groups.all().first()) == 'Physician':
         patients = set()
         user = request.user
         patient_history = PatientHistory.objects.all().filter(
@@ -199,7 +201,7 @@ def Patient_list(request):
         for history in patient_history:
             patients.add(history.patient_nn)
 
-    elif str(request.user.groups.all().first()) == 'Hospital' :
+    elif str(request.user.groups.all().first()) == 'Hospital':
         patients = set()
         user = request.user
         hospitals = HospitalRating.objects.all().filter(
@@ -207,9 +209,9 @@ def Patient_list(request):
         for hospital in hospitals:
             patients.add(hospital.patient_nn)
 
-    else :                
+    else:
         patients = Patient.objects.all().filter(hide=False)
-    
+
     if request.method == 'POST':
         patient = get_object_or_none(Patient, patient_nn=request.POST.get('id'))
         if patient:
@@ -279,7 +281,7 @@ def Patient_history_edit(request, id):
     return render(request, 'cpanel/Patient/Patient_history_edit.html', context)
 
 
-@allowed_users(['Admin', 'Patient' , 'Physician' ,'Paramedic'])
+@allowed_users(['Admin', 'Patient', 'Physician', 'Paramedic'])
 def Patient_history_list(request):
     if str(request.user.groups.all().first()) == 'Patient':
         user = request.user
@@ -287,7 +289,7 @@ def Patient_history_list(request):
             Q(hide=False) &
             Q(patient_nn__patient_nn__user=user)).distinct()
 
-    elif str(request.user.groups.all().first()) == 'Physician' :
+    elif str(request.user.groups.all().first()) == 'Physician':
         patients = set()
         user = request.user
         patients_history = PatientHistory.objects.all().filter(
@@ -297,7 +299,7 @@ def Patient_history_list(request):
             patients.add(history.patient_nn)
     else:
         patients_history = PatientHistory.objects.all().filter(hide=False)
-        
+
     if request.method == 'POST':
         history = get_object_or_none(PatientHistory, id=request.POST.get('id'))
         if history:

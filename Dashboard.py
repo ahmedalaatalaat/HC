@@ -1,7 +1,7 @@
 from importlib import import_module
 try:
     from django.core.urlresolvers import reverse
-except ImportError:  # Django 1.11
+except ImportError:
     from django.urls import reverse
 
 from django.template.loader import render_to_string
@@ -55,7 +55,7 @@ class DefaultIndexDashboard(Dashboard):
         # append an app list module for "Applications"
         self.children.append(modules.AppList(
             _('Applications'),
-            exclude=('admin.*', 'auth.*'),
+            exclude=('admin.*', 'auth.*', 'cpanel.StakeholdersPhones', 'cpanel.StakeholdersAddress', 'cpanel.PatientRelativesPhones', 'cpanel.NurseSpecialization', 'cpanel.SpecialistSpecialization', 'cpanel.PharmacistSpecialization'),
             column=0,
             order=1
         ))

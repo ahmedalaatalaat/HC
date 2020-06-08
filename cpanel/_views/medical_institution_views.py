@@ -19,7 +19,8 @@ def Medical_Institution_add(request):
                 # Add User to django
                 user = User.objects.create_user(
                     username=request.POST.get('institution_id'),
-                    password=request.POST.get('password')
+                    password=request.POST.get('password'),
+                    is_staff=True,
                 )
 
                 # Add user to the group

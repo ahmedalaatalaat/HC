@@ -9,4 +9,3 @@ def base(request):
 
 def Index(request):
     return render(request, "website/index.html")
-    # return HttpResponse("<H1>Home Page</H1>")

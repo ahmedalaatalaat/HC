@@ -346,7 +346,7 @@
                                     </div>
                                 </div>
                             </li>
-                            {% if request.user.groups.all.first|into_str in 'Admin,Patient,Physician,Nurse,Paramedic,Specialist,Pharmacist,Hospital,Pharmacy,Clinic,Lab'|into_list %}
+                            {% if request.user|allowed_users:'Admin,Patient,Physician,Nurse,Paramedic,Specialist,Pharmacist,Hospital,Pharmacy,Clinic,Lab'|into_list %}
                             <li class="nav-item {% if '/cpanel/' == request.get_full_path%}active{% endif %}">
                                 <a class="nav-link nav-toggle" href="{% url 'cpanel:home' %}">
                                     <i class="fas fa-tachometer-alt"></i>
@@ -356,7 +356,7 @@
                                 </a>
                             </li>
                             {% endif %}
-                            {% if request.user.groups.all.first|into_str in 'Admin'|into_list %}
+                            {% if request.user|allowed_users:'Admin'|into_list %}
                             <li class="nav-item {% if 'stakeholder' in request.path%}active{% endif %}">
                                 <a class="nav-link nav-toggle" href="{% url 'cpanel:stakeholder_list' %}">
                                     <i class="fas fa-users"></i>
@@ -366,7 +366,7 @@
                                 </a>
                             </li>
                             {% endif %}
-                            {% if request.user.groups.all.first|into_str in 'Admin,Patient'|into_list %}
+                            {% if request.user|allowed_users:'Admin,Patient' %}
                             <li class="nav-item {% if 'doctor' in request.path%}active{% endif %}">
                                 <a class="nav-link nav-toggle" href="{% url 'cpanel:doctor_list' %}">
                                     <i class="fa  fa-user-md"></i>
@@ -376,7 +376,7 @@
                                 </a>
                             </li>
                             {% endif %}
-                            {% if request.user.groups.all.first|into_str in 'Admin,Physician,Hospital'|into_list %}
+                            {% if request.user|allowed_users:'Admin,Physician,Hospital'|into_list %}
                             <li class="nav-item {% if 'patient' in request.path%}active{% endif %}">
                                 <a class="nav-link nav-toggle" href="{% url 'cpanel:patient_list' %}">
                                     <i class="fas fa-wheelchair"></i>
@@ -386,7 +386,7 @@
                                 </a>
                             </li>
                             {% endif %}
-                            {% if request.user.groups.all.first|into_str in 'Admin'|into_list %}
+                            {% if request.user|allowed_users:'Admin'|into_list %}
                             <li class="nav-item {% if 'nurse' in request.path%}active{% endif %}">
                                 <a class="nav-link nav-toggle" href="{% url 'cpanel:nurse_list' %}">
                                     <i class="fas fa-user-nurse"></i>
@@ -396,7 +396,7 @@
                                 </a>
                             </li>
                             {% endif %}
-                            {% if request.user.groups.all.first|into_str in 'Admin'|into_list %}
+                            {% if request.user|allowed_users:'Admin'|into_list %}
                             <li class="nav-item {% if 'paramedic' in request.path%}active{% endif %}">
                                 <a class="nav-link nav-toggle" href="{% url 'cpanel:paramedic_list' %}">
                                     <i class="fa fa-ambulance"></i>
@@ -406,7 +406,7 @@
                                 </a>
                             </li>
                             {% endif %}
-                            {% if request.user.groups.all.first|into_str in 'Admin'|into_list %}
+                            {% if request.user|allowed_users:'Admin'|into_list %}
                             <li class="nav-item {% if 'specialist' in request.path%}active{% endif %}">
                                 <a class="nav-link nav-toggle" href="{% url 'cpanel:specialist_list' %}">
                                     <i class="fa fa-medkit"></i>
@@ -416,7 +416,7 @@
                                 </a>
                             </li>
                             {% endif %}
-                            {% if request.user.groups.all.first|into_str in 'Admin'|into_list %}
+                            {% if request.user|allowed_users:'Admin'|into_list %}
                             <li class="nav-item {% if 'pharmacist' in request.path%}active{% endif %}">
                                 <a class="nav-link nav-toggle" href="{% url 'cpanel:pharmacist_list' %}">
                                     <i class="fas fa-tablets"></i>
@@ -426,7 +426,7 @@
                                 </a>
                             </li>
                             {% endif %}
-                            {% if request.user.groups.all.first|into_str in 'Admin'|into_list %}
+                            {% if request.user|allowed_users:'Admin'|into_list %}
                             <li class="nav-item {% if 'medical_institution' in request.path%}active{% endif %}">
                                 <a class="nav-link nav-toggle" href="{% url 'cpanel:medical_institution_list' %}">
                                     <i class="fas fa-hospital-alt"></i>
@@ -436,7 +436,7 @@
                                 </a>
                             </li>
                             {% endif %}
-                            {% if request.user.groups.all.first|into_str in 'Admin,Physician,Nurse,Specialist,Labs'|into_list %}
+                            {% if request.user|allowed_users:'Admin,Physician,Nurse,Specialist,Labs'|into_list %}
                             <li class="nav-item {% if 'lab' in request.path%}active{% endif %}">
                                 <a class="nav-link nav-toggle" href="{% url 'cpanel:lab_list' %}">
                                     <i class="fas fa-vial"></i>
@@ -446,7 +446,7 @@
                                 </a>
                             </li>
                             {% endif %}
-                            {% if request.user.groups.all.first|into_str in 'Admin,Physician,Nurse,Specialist,Pharmacist,Clinic'|into_list %}
+                            {% if request.user|allowed_users:'Admin,Physician,Nurse,Specialist,Pharmacist,Clinic'|into_list %}
                             <li class="nav-item {% if 'clinic' in request.path and 'working' not in request.path %}active{% endif %}">
                                 <a class="nav-link nav-toggle" href="{% url 'cpanel:clinic_list' %}">
                                     <i class="fas fa-clinic-medical"></i>
@@ -456,7 +456,7 @@
                                 </a>
                             </li>
                             {% endif %}
-                            {% if request.user.groups.all.first|into_str in 'Admin,Physician,Nurse,Specialist,Pharmacist'|into_list %}
+                            {% if request.user|allowed_users:'Admin,Physician,Nurse,Specialist,Pharmacist'|into_list %}
                             <li class="nav-item {% if 'hospital' in request.path and 'working' not in request.path %}active{% endif %}">
                                 <a class="nav-link nav-toggle" href="{% url 'cpanel:hospital_list' %}">
                                     <i class="fas fa-hospital"></i>
@@ -466,7 +466,7 @@
                                 </a>
                             </li>
                             {% endif %}
-                            {% if request.user.groups.all.first|into_str in 'Admin,Pharmacy'|into_list %}
+                            {% if request.user|allowed_users:'Admin,Pharmacy'|into_list %}
                             <li class="nav-item {% if 'pharmacy' in request.path%}active{% endif %}">
                                 <a class="nav-link nav-toggle" href="{% url 'cpanel:pharmacy_list' %}">
                                     <i class="fas fa-prescription-bottle-alt"></i>
@@ -476,7 +476,7 @@
                                 </a>
                             </li>
                             {% endif %}
-                            {% if request.user.groups.all.first|into_str in 'Admin'|into_list %}
+                            {% if request.user|allowed_users:'Admin'|into_list %}
                             <li class="nav-item {% if 'insurance_company' in request.path%}active{% endif %}">
                                 <a class="nav-link nav-toggle" href="{% url 'cpanel:insurance_company_list' %}">
                                     <i class="fas fa-shield-alt"></i>
@@ -486,7 +486,7 @@
                                 </a>
                             </li>
                             {% endif %}
-                            {% if request.user.groups.all.first|into_str in 'Admin,Pharmacist'|into_list %}
+                            {% if request.user|allowed_users:'Admin,Pharmacist'|into_list %}
                             <li class="nav-item {% if 'insurance_type' in request.path%}active{% endif %}">
                                 <a class="nav-link nav-toggle" href="{% url 'cpanel:insurance_type_list' %}">
                                     <i class="fa fa-dot-circle-o"></i>
@@ -496,7 +496,7 @@
                                 </a>
                             </li>
                             {% endif %}
-                            {% if request.user.groups.all.first|into_str in 'Admin'|into_list %}
+                            {% if request.user|allowed_users:'Admin'|into_list %}
                             <li class="nav-item {% if 'specialization' in request.path%}active{% endif %}">
                                 <a class="nav-link nav-toggle" href="{% url 'cpanel:specialization_list' %}">
                                     <i class="fas fa-certificate"></i>
@@ -506,7 +506,7 @@
                                 </a>
                             </li>
                             {% endif %}
-                            {% if request.user.groups.all.first|into_str in 'Admin,Patient,Physician,Paramedic'|into_list %}
+                            {% if request.user|allowed_users:'Admin,Patient,Physician,Paramedic'|into_list %}
                             <li class="nav-item {% if 'patient_history' in request.path%}active{% endif %}">
                                 <a class="nav-link nav-toggle" href="{% url 'cpanel:patient_history_list' %}">
                                     <i class="fas fa-book-medical"></i>
@@ -516,7 +516,7 @@
                                 </a>
                             </li>
                             {% endif %}
-                            {% if request.user.groups.all.first|into_str in 'Admin'|into_list %}
+                            {% if request.user|allowed_users:'Admin'|into_list %}
                             <li class="nav-item {% if 'physician_clinic_working_time' in request.path%}active{% endif %}">
                                 <a class="nav-link nav-toggle" href="{% url 'cpanel:physician_clinic_working_time_list' %}">
                                     <i class="fas fa-business-time"></i>
@@ -526,7 +526,7 @@
                                 </a>
                             </li>
                             {% endif %}
-                            {% if request.user.groups.all.first|into_str in 'Admin'|into_list %}
+                            {% if request.user|allowed_users:'Admin'|into_list %}
                             <li class="nav-item {% if 'physician_hospital_working_time' in request.path%}active{% endif %}">
                                 <a class="nav-link nav-toggle" href="{% url 'cpanel:physician_hospital_working_time_list' %}">
                                     <i class="fas fa-business-time"></i>

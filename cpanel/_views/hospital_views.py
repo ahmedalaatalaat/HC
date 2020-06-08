@@ -23,7 +23,8 @@ def Hospital_add(request):
                 # Add User to django
                 user = User.objects.create_user(
                     username=request.POST.get('institution_id'),
-                    password=request.POST.get('password')
+                    password=request.POST.get('password'),
+                    is_staff=True
                 )
 
                 # Add user to the group
@@ -180,12 +181,13 @@ def Hospital_edit(request, id):
     }
     return render(request, 'cpanel/Hospital/Hospital_edit.html', context)
 
-@allowed_users(['Admin', 'Physician' ,'Nurse' ,'Specialist','Pharmacist'])
+
+@allowed_users(['Admin', 'Physician', 'Nurse', 'Specialist', 'Pharmacist'])
 def Hospital_list(request):
     if str(request.user.groups.all().first()) == 'Physician':
         hospitals = set()
         user = request.user
-        physicianHospital =PhysicianHospitalWorkingTime.objects.all().filter(
+        physicianHospital = PhysicianHospitalWorkingTime.objects.all().filter(
             Q(hide=False) &
             Q(physician_nn__physician_nn__user=user)).distinct()
         for physicians in physicianHospital:
@@ -194,8 +196,8 @@ def Hospital_list(request):
     elif str(request.user.groups.all().first()) == 'Nurse':
         hospitals = set()
         user = request.user
-        hospitalNurses =HospitalNurses.objects.all().filter(
-            #Q(hide=False) &
+        hospitalNurses = HospitalNurses.objects.all().filter(
+            # Q(hide=False) &
             Q(nurse_nn__nurse_nn__user=user)).distinct()
         for nurses in hospitalNurses:
             hospitals.add(nurses.hospital)
@@ -203,13 +205,13 @@ def Hospital_list(request):
     elif str(request.user.groups.all().first()) == 'Specialist':
         hospitals = set()
         user = request.user
-        hospitalSpecialists =HospitalSpecialists.objects.all().filter(
-            #Q(hide=False) &
+        hospitalSpecialists = HospitalSpecialists.objects.all().filter(
+            # Q(hide=False) &
             Q(specialist_nn__specialist_nn__user=user)).distinct()
         for specialists in hospitalSpecialists:
             hospitals.add(specialists.hospital)
-            
-    else :
+
+    else:
         hospitals = Hospital.objects.all().filter(hide=False)
     if request.method == 'POST':
         hospital = get_object_or_none(Hospital, hospital=request.POST.get('id'))

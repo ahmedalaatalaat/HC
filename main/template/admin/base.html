@@ -38,6 +38,12 @@
                 document.getElementsByClassName('vDateField')[0].setAttribute("autocomplete", "off");
                 document.getElementsByClassName('vTimeField')[0].setAttribute("autocomplete", "off");
             }catch(err){}
+            var side_links = document.getElementsByClassName('sidebar-link')
+            for (var i=0; i<side_links.length; i++){
+                if(side_links[i].href == ""){
+                    side_links[i].parentElement.setAttribute("style", "display:none");
+                }
+            }
         };
     </script>
 {% endblock %}

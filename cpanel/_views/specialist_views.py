@@ -18,7 +18,8 @@ def Specialist_add(request):
             if not stakeholder:
                 user = User.objects.create_user(
                     username=request.POST.get('national_number'),
-                    password=request.POST.get('password')
+                    password=request.POST.get('password'),
+                    is_staff=True
                 )
 
                 # Add user to the group

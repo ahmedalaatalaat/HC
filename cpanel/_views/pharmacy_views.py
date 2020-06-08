@@ -20,7 +20,8 @@ def Pharmacy_add(request):
                 # Add User to django
                 user = User.objects.create_user(
                     username=request.POST.get('institution_id'),
-                    password=request.POST.get('password')
+                    password=request.POST.get('password'),
+                    is_staff=True
                 )
 
                 # Add user to the group
@@ -147,7 +148,8 @@ def Pharmacy_edit(request, id):
     }
     return render(request, 'cpanel/Pharmacy/Pharmacy_edit.html', context)
 
-@allowed_users(['Admin','Pharmacy'])
+
+@allowed_users(['Admin', 'Pharmacy'])
 def Pharmacy_list(request):
     pharmacies = Pharmacy.objects.all().filter(hide=False)
     if request.method == 'POST':

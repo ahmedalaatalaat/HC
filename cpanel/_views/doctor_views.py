@@ -7,6 +7,7 @@ from django.contrib.auth.models import Group
 from django.db.models import Q
 from cpanel.decorators import *
 
+
 def Doctor_add(request):
     specializations = Specialization.objects.all()
     if request.is_ajax():
@@ -24,7 +25,8 @@ def Doctor_add(request):
                 # Add User to django
                 user = User.objects.create_user(
                     username=request.POST.get('national_number'),
-                    password=request.POST.get('password')
+                    password=request.POST.get('password'),
+                    is_staff=True
                 )
 
                 # Add user to the group
@@ -188,6 +190,7 @@ def Doctor_edit(request, NN):
     }
     return render(request, 'cpanel/Doctor/Doctor_edit.html', context)
 
+
 @allowed_users(['Admin', 'Patient'])
 def Doctor_list(request):
     if str(request.user.groups.all().first()) == 'Patient':
@@ -198,7 +201,7 @@ def Doctor_list(request):
             Q(patient_nn__patient_nn__user=user)).distinct()
         for history in patient_history:
             doctors.add(history.physician_nn)
-    else : 
+    else:
         doctors = Physician.objects.all().filter(hide=False)
     if request.method == 'POST':
         doctor = get_object_or_none(Physician, physician_nn=request.POST.get('id'))

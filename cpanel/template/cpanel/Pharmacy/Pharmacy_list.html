@@ -54,7 +54,7 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    {% if request.user.groups.all.first|into_str in 'Admin,Hospital'|into_list %}
+                                    {% if request.user|allowed_users:'Admin,Hospital'|into_list %}
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6 col-xs-6">
                                             <div class="btn-group">
@@ -124,7 +124,7 @@
                                                     </td>
                                                     <form method="POST" action="">{% csrf_token %}
                                                         <td>
-                                                            {% if request.user.groups.all.first|into_str in 'Admin,Hospital'|into_list %}
+                                                            {% if request.user|allowed_users:'Admin,Hospital'|into_list %}
                                                             <a class="btn btn-primary btn-xs" href="{% url 'cpanel:pharmacy_edit' pharmacy %}">
                                                                 <i class="fa fa-pencil">
                                                                 </i>

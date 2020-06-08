@@ -16,7 +16,8 @@ def Insurance_Company_add(request):
 
             user = User.objects.create_user(
                 username=request.POST.get('company_id'),
-                password=request.POST.get('password')
+                password=request.POST.get('password'),
+                is_staff=True
             )
 
             # Add user to the group

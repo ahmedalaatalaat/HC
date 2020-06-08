@@ -7,6 +7,7 @@ from django.contrib.auth.models import Group
 from django.db.models import Q
 from cpanel.decorators import *
 
+
 def Lab_add(request):
     if request.is_ajax():
         if request.method == 'POST':
@@ -20,7 +21,8 @@ def Lab_add(request):
                 # Add User to django
                 user = User.objects.create_user(
                     username=request.POST.get('institution_id'),
-                    password=request.POST.get('password')
+                    password=request.POST.get('password'),
+                    is_staff=True
                 )
 
                 # Add user to the group
@@ -162,24 +164,25 @@ def Lab_edit(request, id):
 
     return render(request, 'cpanel/Lab/Labs_edit.html', context)
 
-@allowed_users(['Admin', 'Physician' , 'Nurse' , 'Specialist','Labs'])
+
+@allowed_users(['Admin', 'Physician', 'Nurse', 'Specialist', 'Labs'])
 def Lab_list(request):
     if str(request.user.groups.all().first()) == 'Nurse':
         labs = set()
         user = request.user
-        labNurses =LabNurses.objects.all().filter(
+        labNurses = LabNurses.objects.all().filter(
             Q(nurse_nn__nurse_nn__user=user)).distinct()
         for nurses in labNurses:
             labs.add(nurses.lab)
 
-    elif str(request.user.groups.all().first()) ==  'Specialist':
+    elif str(request.user.groups.all().first()) == 'Specialist':
         labs = set()
         user = request.user
-        labSpecialists =LabSpecialists.objects.all().filter(
+        labSpecialists = LabSpecialists.objects.all().filter(
             Q(specialist_nn__specialist_nn__user=user)).distinct()
         for specialists in labSpecialists:
             labs.add(specialists.lab)
-    else :    
+    else:
         labs = Labs.objects.all().filter(hide=False)
 
     if request.method == 'POST':

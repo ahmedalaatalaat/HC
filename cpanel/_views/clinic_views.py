@@ -23,7 +23,8 @@ def Clinic_add(request):
                 # Add User to django
                 user = User.objects.create_user(
                     username=request.POST.get('institution_id'),
-                    password=request.POST.get('password')
+                    password=request.POST.get('password'),
+                    is_staff=True
                 )
 
                 # Add user to the group
@@ -180,12 +181,13 @@ def Clinic_edit(request, id):
 
     return render(request, 'cpanel/Clinic/Clinic_edit.html', context)
 
-@allowed_users(['Admin', 'Physician' , 'Nurse' , 'Specialist','Pharmacist','Clinic'])
+
+@allowed_users(['Admin', 'Physician', 'Nurse', 'Specialist', 'Pharmacist', 'Clinic'])
 def Clinic_list(request):
     if str(request.user.groups.all().first()) == 'Physician':
         clinics = set()
         user = request.user
-        physicianClinic =PhysicianClinicWorkingTime.objects.all().filter(
+        physicianClinic = PhysicianClinicWorkingTime.objects.all().filter(
             Q(hide=False) &
             Q(physician_nn__physician_nn__user=user)).distinct()
         for physicians in physicianClinic:
@@ -194,8 +196,8 @@ def Clinic_list(request):
     elif str(request.user.groups.all().first()) == 'Specialist':
         clinics = set()
         user = request.user
-        clinicSpecialists =ClinicSpecialists.objects.all().filter(
-           # Q(hide=False) &
+        clinicSpecialists = ClinicSpecialists.objects.all().filter(
+            # Q(hide=False) &
             Q(specialist_nn__specialist_nn__user=user)).distinct()
         for specialists in clinicSpecialists:
             clinics.add(specialists.clinic)
@@ -203,13 +205,13 @@ def Clinic_list(request):
     elif str(request.user.groups.all().first()) == 'Nurse':
         clinics = set()
         user = request.user
-        clinicNurses =ClinicNurses.objects.all().filter(
-           # Q(hide=False) &
+        clinicNurses = ClinicNurses.objects.all().filter(
+            # Q(hide=False) &
             Q(nurse_nn__nurse_nn__user=user)).distinct()
         for nurses in clinicNurses:
             clinics.add(nurses.clinic)
 
-    else :
+    else:
         clinics = Clinic.objects.all().filter(hide=False)
     if request.method == 'POST':
         clinic = get_object_or_none(Clinic, clinic=request.POST.get('id'))

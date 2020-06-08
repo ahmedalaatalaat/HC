@@ -55,7 +55,7 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    {% if request.user.groups.all.first|into_str in 'Admin,Physician'|into_list %}
+                                    {% if request.user|allowed_users:'Admin,Physician'|into_list %}
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6 col-xs-6">
                                             <div class="btn-group">
@@ -131,7 +131,7 @@
                                                         {{ doctor.physician_nn.created_at|date:"F d, Y"}}
                                                     </td>
                                                     <td>
-                                                        {% if request.user.groups.all.first|into_str in 'Admin,Physician'|into_list %}
+                                                        {% if request.user|allowed_users:'Admin,Physician'|into_list %}
                                                         <a class="btn btn-primary btn-xs" href="{% url 'cpanel:doctor_edit' doctor.physician_nn %}">
                                                             <i class="fa fa-pencil">
                                                             </i>
