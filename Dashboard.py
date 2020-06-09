@@ -55,7 +55,7 @@ class DefaultIndexDashboard(Dashboard):
         # append an app list module for "Applications"
         self.children.append(modules.AppList(
             _('Applications'),
-            exclude=('admin.*', 'auth.*', 'cpanel.StakeholdersPhones', 'cpanel.StakeholdersAddress', 'cpanel.PatientRelativesPhones', 'cpanel.NurseSpecialization', 'cpanel.SpecialistSpecialization', 'cpanel.PharmacistSpecialization'),
+            exclude=('admin.*', 'auth.*', 'cpanel.StakeholdersPhones', 'cpanel.StakeholdersAddress', 'cpanel.PatientRelativesPhones', 'cpanel.NurseSpecialization', 'cpanel.SpecialistSpecialization', 'cpanel.PharmacistSpecialization', 'cpanel.MedicalInstitutionsPhone', 'cpanel.MedicalInstitutionsAddress', 'cpanel.LabsAnalysisAndRadiology', 'cpanel.InsuranceCompaniesPhone', 'cpanel.InsuranceCompaniesAddress', 'InsuranceTypes', 'cpanel.PhysicianHospitalWorkingTime', 'cpanel.PhysicianClinicWorkingTime', 'cpanel.PhysicianRating', 'cpanel.LabRating', 'cpanel.ClinicRating', 'cpanel.HospitalRating', 'cpanel.HospitalNurses', 'cpanel.ClinicNurses', 'cpanel.LabNurses', 'cpanel.LabSpecialists', 'cpanel.HospitalSpecialists', 'cpanel.ClinicSpecialists', 'cpanel.PharmacyPharmacists', 'cpanel.PhysicianSpecialization', 'cpanel.NurseSpecialization', 'cpanel.HospitalSpecialization', 'cpanel.LabsInsuranceDeals', 'cpanel.ClinicsInsuranceDeals', 'cpanel.HospitalInsuranceDeals', 'cpanel.PharmacyInsuranceDeals', 'cpanel.PatientInsurance', 'cpanel.ClinicSpecialization', 'cpanel.InsuranceTypes'),
             column=0,
             order=1
         ))

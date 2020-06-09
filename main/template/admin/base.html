@@ -5,47 +5,8 @@
     <!-- Favicons-->
     <link href="{% static 'cpanel/img/favicon.svg' %}" rel="shortcut icon" />
 
-    <style>
-        a, label, li, body{
-            font-size: 15px;
-        }
+    <link href="{% static 'main/style.css' %}" rel="stylesheet" type="text/css" />
 
-        .breadcrumbs{
-            font-size: 15px !important;
-        }
-        .sidebar-link-label{
-            font-size: 15px !important;
-        }
-
-        td {
-            color: #454545;
-        }
-        input[type="text"], input[type="email"], input[type="password"], input[type="url"], input[type="number"], textarea, select, .vTextField {
-            border: 0.07143rem solid #bac1cc;
-        }
-
-        .select2-container--jet .select2-selection{
-            border: 0.07143rem solid #bac1cc;
-        }
-        }
-        div.initialized a, div.initialized a:visited {
-            color: #a3b4c4 !important;
-        }
-    </style>
-    <script type="text/javascript">
-        window.onload = function(){
-            try{
-                document.getElementsByClassName('vDateField')[0].setAttribute("autocomplete", "off");
-                document.getElementsByClassName('vTimeField')[0].setAttribute("autocomplete", "off");
-            }catch(err){}
-            var side_links = document.getElementsByClassName('sidebar-link')
-            for (var i=0; i<side_links.length; i++){
-                if(side_links[i].href == ""){
-                    side_links[i].parentElement.setAttribute("style", "display:none");
-                }
-            }
-        };
-    </script>
 {% endblock %}
 
 {% block userlinks %}
@@ -64,4 +25,10 @@ function to_english(){
     location.replace(english_URL);
 }
 </script>
+{% endblock %}
+
+{% block footer %}
+    {{block.super}}
+    <script src="{% static 'main/main.js' %}"></script>
+
 {% endblock %}

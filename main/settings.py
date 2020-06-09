@@ -148,6 +148,7 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
 STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "main/static"),
     os.path.join(BASE_DIR, "cpanel/static"),
     os.path.join(BASE_DIR, "ai/static"),
     os.path.join(BASE_DIR, "vezeeta/static"),
@@ -158,6 +159,7 @@ STATICFILES_DIRS = [
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_root")
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media_root")
 
+AUTH_PROFILE_MODULE = "cpanel.Stakeholders"
 
 # Admin Customization
 JET_THEMES = [
@@ -200,14 +202,14 @@ JET_INDEX_DASHBOARD = 'Dashboard.DefaultIndexDashboard'
 
 JET_SIDE_MENU_ITEMS = [  # A list of application or custom item dicts
     {'label': ('administration'), 'app_label': 'auth', 'items': [
-        {'label': ('User Profile'), 'url': 'http://127.0.0.1:8000/admin/profile/', 'url_blank': True},
+        {'label': ('User Profile'), 'url': 'http://127.0.0.1:8000/cpanel/user_profile/', 'url_blank': True},
         {'name': 'auth.user'},
         {'name': 'auth.group'},
         {'name': 'admin.logentry'}
     ]},
     {'label': ('System Panels'), 'app_label': 'pages', 'items': [
-        {'label': ('Cpanel'), 'url': 'http://127.0.0.1:8000/cpanel/doctor_list/', 'url_blank': True},
-        {'label': ('AI panel'), 'url': 'http://127.0.0.1:8000/cpanel/doctor_list/', 'url_blank': True},
+        {'label': ('Cpanel'), 'url': 'http://127.0.0.1:8000/cpanel/', 'url_blank': True},
+        {'label': ('AI panel'), 'url': 'http://127.0.0.1:8000/ai_panel/', 'url_blank': True},
     ]},
     {'label': ('Applications'), 'app_label': 'cpanel', 'items': [
         {'name': 'cpanel.stakeholders'},
@@ -218,40 +220,13 @@ JET_SIDE_MENU_ITEMS = [  # A list of application or custom item dicts
         {'name': 'cpanel.specialist'},
         {'name': 'cpanel.pharmacist'},
         {'name': 'cpanel.medicalinstitutions'},
-        {'name': 'cpanel.medicalinstitutionsphone'},
-        {'name': 'cpanel.medicalinstitutionsaddress'},
         {'name': 'cpanel.labs'},
-        {'name': 'cpanel.labsanalysisandradiology'},
         {'name': 'cpanel.clinic'},
         {'name': 'cpanel.pharmacy'},
         {'name': 'cpanel.hospital'},
         {'name': 'cpanel.insurancecompanies'},
-        {'name': 'cpanel.insurancecompaniesphone'},
-        {'name': 'cpanel.insurancecompaniesaddress'},
-        {'name': 'cpanel.insurancetypes'},
         {'name': 'cpanel.specialization'},
         {'name': 'cpanel.patienthistory'},
         {'name': 'cpanel.physicianpatientappointment'},
-        {'name': 'cpanel.physicianhospitalworkingtime'},
-        {'name': 'cpanel.physicianclinicworkingtime'},
-        {'name': 'cpanel.physicianrating'},
-        {'name': 'cpanel.labrating'},
-        {'name': 'cpanel.clinicrating'},
-        {'name': 'cpanel.hospitalrating'},
-        {'name': 'cpanel.hospitalnurses'},
-        {'name': 'cpanel.clinicnurses'},
-        {'name': 'cpanel.labnurses'},
-        {'name': 'cpanel.labspecialists'},
-        {'name': 'cpanel.hospitalspecialists'},
-        {'name': 'cpanel.clinicspecialists'},
-        {'name': 'cpanel.pharmacypharmacists'},
-        {'name': 'cpanel.physicianspecialization'},
-        {'name': 'cpanel.hospitalspecialization'},
-        {'name': 'cpanel.clinicspecialization'},
-        {'name': 'cpanel.labsinsurancedeals'},
-        {'name': 'cpanel.clinicsinsurancedeals'},
-        {'name': 'cpanel.hospitalinsurancedeals'},
-        {'name': 'cpanel.pharmacyinsurancedeals'},
-        {'name': 'cpanel.patientinsurance'},
     ]},
 ]

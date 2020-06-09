@@ -65,6 +65,172 @@ class InlineInsuranceTypes(admin.TabularInline):
     extra = 0
 
 
+class InlinePhysicianHospitalWorkingTime(admin.TabularInline):
+    model = PhysicianHospitalWorkingTime
+    extra = 0
+
+
+class InlinePhysicianClinicWorkingTime(admin.TabularInline):
+    model = PhysicianClinicWorkingTime
+    extra = 0
+
+
+class InlinePhysicianRating_For_Physician(admin.TabularInline):
+    model = PhysicianRating
+    extra = 0
+    readonly_fields = ['patient_nn', 'rate', 'patient_comment']
+
+    def has_add_permission(self, request, obj):
+        return False
+
+    def has_delete_permission(self, request, obj):
+        return False
+
+    def has_change_permission(self, request, obj):
+        return False
+
+
+class InlineLabRating_For_Lab(admin.TabularInline):
+    model = LabRating
+    extra = 0
+    readonly_fields = ['patient_nn', 'rate', 'patient_comment']
+
+    def has_add_permission(self, request, obj):
+        return False
+
+    def has_delete_permission(self, request, obj):
+        return False
+
+    def has_change_permission(self, request, obj):
+        return False
+
+
+class InlineClinicRating_For_Clinic(admin.TabularInline):
+    model = ClinicRating
+    extra = 0
+    readonly_fields = ['patient_nn', 'rate', 'patient_comment']
+
+    def has_add_permission(self, request, obj):
+        return False
+
+    def has_delete_permission(self, request, obj):
+        return False
+
+    def has_change_permission(self, request, obj):
+        return False
+
+
+class InlineHospitalRating_For_Hospital(admin.TabularInline):
+    model = HospitalRating
+    extra = 0
+    readonly_fields = ['patient_nn', 'rate', 'patient_comment']
+
+    def has_add_permission(self, request, obj):
+        return False
+
+    def has_delete_permission(self, request, obj):
+        return False
+
+    def has_change_permission(self, request, obj):
+        return False
+
+
+class InlinePhysicianRating_For_Patient(admin.TabularInline):
+    model = PhysicianRating
+    extra = 0
+
+
+class InlineLabRating_For_Patient(admin.TabularInline):
+    model = LabRating
+    extra = 0
+
+
+class InlineClinicRating_For_Patient(admin.TabularInline):
+    model = ClinicRating
+    extra = 0
+
+
+class InlineHospitalRating_For_Patient(admin.TabularInline):
+    model = HospitalRating
+    extra = 0
+
+
+class InlineHospitalNurses(admin.TabularInline):
+    model = HospitalNurses
+    extra = 0
+
+
+class InlineClinicNurses(admin.TabularInline):
+    model = ClinicNurses
+    extra = 0
+
+
+class InlineLabNurses(admin.TabularInline):
+    model = LabNurses
+    extra = 0
+
+
+class InlineLabSpecialists(admin.TabularInline):
+    model = LabSpecialists
+    extra = 0
+
+
+class InlineHospitalSpecialists(admin.TabularInline):
+    model = HospitalSpecialists
+    extra = 0
+
+
+class InlineClinicSpecialists(admin.TabularInline):
+    model = ClinicSpecialists
+    extra = 0
+
+
+class InlinePharmacyPharmacists(admin.TabularInline):
+    model = PharmacyPharmacists
+    extra = 0
+
+
+class InlinePhysicianSpecialization(admin.TabularInline):
+    model = PhysicianSpecialization
+    extra = 0
+
+
+class InlineHospitalSpecialization(admin.TabularInline):
+    model = HospitalSpecialization
+    extra = 0
+
+
+class InlineClinicSpecialization(admin.TabularInline):
+    model = ClinicSpecialization
+    extra = 0
+
+
+class InlineLabsInsuranceDeals(admin.TabularInline):
+    model = LabsInsuranceDeals
+    extra = 0
+
+
+class InlineClinicsInsuranceDeals(admin.TabularInline):
+    model = ClinicsInsuranceDeals
+    extra = 0
+
+
+class InlineHospitalInsuranceDeals(admin.TabularInline):
+    model = HospitalInsuranceDeals
+    extra = 0
+
+
+class InlinePharmacyInsuranceDeals(admin.TabularInline):
+    model = PharmacyInsuranceDeals
+    extra = 0
+
+
+class InlinePatientInsurance(admin.TabularInline):
+    model = PatientInsurance
+    extra = 0
+
+
+# ---------------------------------------- Start Admin Models
 class Stakeholders_admin(admin.ModelAdmin):
     inlines = [InlineStakeholdersPhones, InlineStakeholdersAddress]
     list_display = ['national_number', 'stakeholder_name', 'stakeholder_last_name', 'gender', 'nationality', 'hide']
@@ -88,7 +254,7 @@ class StakeholdersAddress_admin(admin.ModelAdmin):
 
 
 class Patient_admin(admin.ModelAdmin):
-    inlines = [InlinePatientRelativesPhones]
+    inlines = [InlinePatientRelativesPhones, InlinePhysicianRating_For_Patient, InlineLabRating_For_Patient, InlineClinicRating_For_Patient, InlineHospitalRating_For_Patient, InlinePatientInsurance]
     list_display = ['patient_nn', 'patient_name', 'chronic_diseases_name', 'chronic_diseases_type', 'blood_type', 'hide']
     list_filter = [('patient_nn__birthday', DateRangeFilter), 'patient_nn__gender', 'hide']
     search_fields = ['patient_nn__national_number', 'patient_nn__stakeholder_name']
@@ -112,6 +278,7 @@ class PatientRelativesPhones_admin(admin.ModelAdmin):
 
 
 class Physician_admin(admin.ModelAdmin):
+    inlines = [InlinePhysicianHospitalWorkingTime, InlinePhysicianClinicWorkingTime, InlinePhysicianRating_For_Physician, InlinePhysicianSpecialization]
     list_display = ['physician_nn', 'physician_name', 'rate', 'title', 'hide']
     list_filter = ['title', 'rate', 'hide']
     search_fields = ['physician_nn__national_number', 'physician_nn__stakeholder_name']
@@ -219,8 +386,16 @@ class PharmacistSpecialization_admin(admin.ModelAdmin):
 
 class MedicalInstitutions_admin(admin.ModelAdmin):
     inlines = [InlineMedicalInstitutionsPhone, InlineMedicalInstitutionsAddress]
-    list_display = ['institution_id', 'image', 'institution_name', 'created_at', 'updated_at', 'user', 'hide']
+    list_display = ['institution_id', 'institution_name', 'hide']
+    list_filter = ['hide']
     search_fields = ['institution_name', 'institution_id']
+
+    def save_model(self, request, obj, form, change):
+        obj.user.is_staff = True
+        group = Group.objects.get(name='Medical Institution')
+        group.user_set.add(obj.user)
+        obj.user.save()
+        return super().save_model(request, obj, form, change)
 
 
 class MedicalInstitutionsPhone_admin(admin.ModelAdmin):
@@ -228,7 +403,9 @@ class MedicalInstitutionsPhone_admin(admin.ModelAdmin):
     search_fields = ['institution__institution_id', 'phone', 'institution__institution_name']
 
     def medicalInstitutions_name(self, obj):
-        return obj.institution.institution_name
+        if obj.institution.institution_name:
+            return obj.institution.institution_name
+        return None
 
 
 class MedicalInstitutionsAddres_admin(admin.ModelAdmin):
@@ -236,14 +413,26 @@ class MedicalInstitutionsAddres_admin(admin.ModelAdmin):
     search_fields = ['institution__institution_id', 'address', 'institution__institution_name']
 
     def medicalInstitutions_name(self, obj):
-        return obj.institution.institution_name
+        if obj.institution.institution_name:
+            return obj.institution.institution_name
+        return None
 
 
 class Labs_admin(admin.ModelAdmin):
-    inlines = [InlineLabsAnalysisAndRadiology]
-    list_display = ['lab', 'email', 'fax', 'hide']
-    list_filter = ['email']
-    search_fields = ['lab__institution_id', 'email', 'fax']
+    inlines = [InlineLabsAnalysisAndRadiology, InlineLabRating_For_Lab, InlineLabNurses, InlineLabSpecialists, InlineLabsInsuranceDeals]
+    list_display = ['lab', 'name', 'email', 'fax', 'hide']
+    list_filter = ['hide']
+    search_fields = ['lab__institution_id', 'lab__institution_name', 'email', 'fax']
+
+    def save_model(self, request, obj, form, change):
+        obj.lab.user.is_staff = True
+        group = Group.objects.get(name='Lab')
+        group.user_set.add(obj.lab.user)
+        obj.lab.user.save()
+        return super().save_model(request, obj, form, change)
+
+    def name(self, obj):
+        return obj.lab.institution_name
 
 
 class LabsAnalysisAndRadiology_admin(admin.ModelAdmin):
@@ -252,28 +441,73 @@ class LabsAnalysisAndRadiology_admin(admin.ModelAdmin):
 
 
 class Clinic_admin(admin.ModelAdmin):
-    list_display = ['clinic', 'email', 'fax', 'er_availability', 'hide']
-    list_filter = ['email']
-    search_fields = ['clinic__institution_id', 'email', 'fax']
+    inlines = [InlineClinicRating_For_Clinic, InlineClinicNurses, InlineClinicSpecialists, InlineClinicSpecialization, InlineClinicsInsuranceDeals]
+    list_display = ['clinic', 'name', 'email', 'fax', 'er_availability', 'hide']
+    list_filter = ['er_availability', 'hide']
+    search_fields = ['clinic__institution_id', 'clinic__institution_name', 'email', 'fax']
+
+    def name(self, obj):
+        return obj.clinic.institution_name
+
+    def save_model(self, request, obj, form, change):
+        obj.clinic.user.is_staff = True
+        group = Group.objects.get(name='Clinic')
+        group.user_set.add(obj.clinic.user)
+        obj.clinic.user.save()
+        return super().save_model(request, obj, form, change)
 
 
 class Pharmacy_admin(admin.ModelAdmin):
-    list_display = ['pharmacy', 'pharmacy_type', 'owner', 'hide']
-    list_filter = ['pharmacy_type']
-    search_fields = ['pharmacy__institution_id', 'pharmacy_type']
+    inlines = [InlinePharmacyPharmacists, InlinePharmacyInsuranceDeals]
+    list_display = ['pharmacy', 'name', 'pharmacy_type', 'Owner', 'hide']
+    list_filter = ['pharmacy_type', 'hide']
+    search_fields = ['pharmacy__institution_id', 'pharmacy__institution_name', 'pharmacy_type']
+
+    def save_model(self, request, obj, form, change):
+        obj.pharmacy.user.is_staff = True
+        group = Group.objects.get(name='Pharmacy')
+        group.user_set.add(obj.pharmacy.user)
+        obj.pharmacy.user.save()
+        return super().save_model(request, obj, form, change)
+
+    def name(self, obj):
+        return obj.pharmacy.institution_name
+
+    def Owner(self, obj):
+        if obj.owner.pharmacist_nn.stakeholder_name:
+            return obj.owner.pharmacist_nn.stakeholder_name
+        return obj.owner
 
 
 class Hospital_admin(admin.ModelAdmin):
-    list_display = ['hospital', 'email', 'fax', 'er_availability', 'hospital_type', 'manager', 'hide']
-    list_filter = ['hospital_type']
-    search_fields = ['hospital__institution_id', 'hospital_type']
+    inlines = [InlineHospitalRating_For_Hospital, InlineHospitalNurses, InlineHospitalSpecialists, InlineHospitalSpecialization, InlineHospitalInsuranceDeals]
+    list_display = ['hospital', 'name', 'email', 'fax', 'hospital_type', 'manager', 'er_availability', 'hide']
+    list_filter = ['hospital_type', 'er_availability', 'hide']
+    search_fields = ['hospital__institution_id', 'hospital__institution_name']
+
+    def save_model(self, request, obj, form, change):
+        obj.hospital.user.is_staff = True
+        group = Group.objects.get(name='Hospital')
+        group.user_set.add(obj.hospital.user)
+        obj.hospital.user.save()
+        return super().save_model(request, obj, form, change)
+
+    def name(self, obj):
+        return obj.hospital.institution_name
 
 
 class InsuranceCompanies_admin(admin.ModelAdmin):
     inlines = [InlineInsuranceCompaniesPhone, InlineInsuranceCompaniesAddress, InlineInsuranceTypes]
-    list_display = ['company_id', 'company_name', 'company_type', 'email', 'fax', 'created_at', 'updated_at', 'user', 'hide']
-    list_filter = ['company_name', 'email']
-    search_fields = ['company_id', 'company_name', 'company_type', 'email']
+    list_display = ['company_id', 'company_name', 'company_type', 'email', 'fax', 'hide']
+    list_filter = ['hide', 'company_type']
+    search_fields = ['company_id', 'company_name']
+
+    def save_model(self, request, obj, form, change):
+        obj.user.is_staff = True
+        group = Group.objects.get(name='Insurance Company')
+        group.user_set.add(obj.user)
+        obj.user.save()
+        return super().save_model(request, obj, form, change)
 
 
 class InsuranceCompaniesPhone_admin(admin.ModelAdmin):
@@ -294,112 +528,246 @@ class InsuranceCompaniesAddress_admin(admin.ModelAdmin):
 
 class InsuranceTypes_admin(admin.ModelAdmin):
     list_display = ['type_id', 'company', 'type_name', 'hide']
+    list_filter = ['hide']
     search_fields = ['type_id', 'company', 'type_name']
 
 
 class Specialization_admin(admin.ModelAdmin):
     list_display = ['specialization_id', 'name', 'hide']
+    list_filter = ['hide']
     search_fields = ['specialization_id', 'name']
 
 
 class PatientHistory_admin(admin.ModelAdmin):
-    list_display = ['id', 'patient_nn', 'physician_nn', 'date_time', 'visitation_type', 'prescription', 'physician_comments', 'diagnouse', 'analysis_radiology', 'disease_priority', 'hide']
-    search_fields = ['id', 'disease_priority']
-    list_filter = ['diagnouse']
+    list_display = ['patient_nn', 'patient_name', 'physician_nn', 'physician_name', 'date_time', 'visitation_type', 'prescription', 'diagnouse', 'disease_priority', 'hide']
+    search_fields = ['id', 'patient_nn', 'physician_nn', 'disease_priority']
+    list_filter = ['hide', 'disease_priority', ('date_time', DateRangeFilter), 'visitation_type']
+
+    def patient_name(self, obj):
+        if obj.patient_nn.patient_nn.stakeholder_name:
+            return f'{obj.patient_nn.patient_nn.stakeholder_name} {obj.patient_nn.patient_nn.stakeholder_last_name}'
+        return None
+
+    def physician_name(self, obj):
+        if obj.physician_nn.physician_nn.stakeholder_name:
+            return f'{obj.physician_nn.physician_nn.stakeholder_name} {obj.physician_nn.physician_nn.stakeholder_last_name}'
+        return None
 
 
 class PhysicianPatientAppointment_admin(admin.ModelAdmin):
-    list_display = ['patient_nn', 'physician_nn', 'date_time', 'place']
-    list_filter = ['date_time']
+    list_display = ['patient_nn', 'patient_name', 'physician_nn', 'physician_name', 'date_time', 'place']
+    list_filter = [('date_time', DateRangeFilter), 'date_time']
     search_fields = ['patient_nn__patient_nn__national_number', 'physician_nn__physician_nn__national_number']
+
+    def patient_name(self, obj):
+        if obj.patient_nn.patient_nn.stakeholder_name:
+            return f'{obj.patient_nn.patient_nn.stakeholder_name} {obj.patient_nn.patient_nn.stakeholder_last_name}'
+        return None
+
+    def physician_name(self, obj):
+        if obj.physician_nn.physician_nn.stakeholder_name:
+            return f'{obj.physician_nn.physician_nn.stakeholder_name} {obj.physician_nn.physician_nn.stakeholder_last_name}'
+        return None
 
 
 class PhysicianHospitalWorkingTime_admin(admin.ModelAdmin):
-    list_display = ['physician_nn', 'hospital', 'week_day', 'start_time', 'end_time', 'fee', 'hide']
-    list_filter = ['start_time', 'end_time']
+    list_display = ['physician_nn', 'physician_name', 'hospital', 'hospital_name', 'week_day', 'start_time', 'end_time', 'fee', 'hide']
+    list_filter = ['start_time', 'end_time', 'hide', 'week_day']
     search_fields = ['physician_nn__physician_nn__national_number', 'hospital__hospital__institution_id']
+
+    def physician_name(self, obj):
+        if obj.physician_nn.physician_nn.stakeholder_name:
+            return f'{obj.physician_nn.physician_nn.stakeholder_name} {obj.physician_nn.physician_nn.stakeholder_last_name}'
+        return None
+
+    def hospital_name(self, obj):
+        if obj.hospital.hospital.institution_name:
+            return obj.hospital.hospital.institution_name
+        return None
 
 
 class PhysicianClinicWorkingTime_admin(admin.ModelAdmin):
-    list_display = ['physician_nn', 'clinic', 'week_day', 'start_time', 'end_time', 'fee', 'hide']
-    list_filter = ['start_time', 'end_time']
+    list_display = ['physician_nn', 'physician_name', 'clinic', 'clinic_name', 'week_day', 'start_time', 'end_time', 'fee', 'hide']
+    list_filter = ['start_time', 'end_time', 'hide', 'week_day']
     search_fields = ['physician_nn__physician_nn__national_number', 'clinic__clinic__institution_id']
+
+    def physician_name(self, obj):
+        if obj.physician_nn.physician_nn.stakeholder_name:
+            return f'{obj.physician_nn.physician_nn.stakeholder_name} {obj.physician_nn.physician_nn.stakeholder_last_name}'
+        return None
+
+    def clinic_name(self, obj):
+        if obj.clinic.clinic.institution_name:
+            return obj.clinic.clinic.institution_name
+        return None
 
 
 class PhysicianRating_admin(admin.ModelAdmin):
-    list_display = ['patient_nn', 'physician_nn', 'patient_comment']
+    list_display = ['patient_nn', 'patient_name', 'physician_nn', 'physician_name', 'rate', 'Patient_comment']
+    list_filter = ['rate']
     search_fields = ['physician_nn__physician_nn__national_number', 'patient_nn__patient_nn__national_number']
+
+    def Patient_comment(self, obj):
+        if obj.patient_comment:
+            return obj.patient_comment
+        return None
+
+    def patient_name(self, obj):
+        if obj.patient_nn.patient_nn.stakeholder_name:
+            return f'{obj.patient_nn.patient_nn.stakeholder_name} {obj.patient_nn.patient_nn.stakeholder_last_name}'
+        return None
+
+    def physician_name(self, obj):
+        if obj.physician_nn.physician_nn.stakeholder_name:
+            return f'{obj.physician_nn.physician_nn.stakeholder_name} {obj.physician_nn.physician_nn.stakeholder_last_name}'
+        return None
 
 
 class LabRating_admin(admin.ModelAdmin):
-    list_display = ['patient_nn', 'lab', 'patient_comment']
+    list_display = ['patient_nn', 'patient_name', 'lab', 'lab_name', 'Patient_comment']
     search_fields = ['patient_nn__patient_nn__national_number', 'lab__lab__institution_id']
+
+    def Patient_comment(self, obj):
+        if obj.patient_comment:
+            return obj.patient_comment
+        return None
+
+    def patient_name(self, obj):
+        if obj.patient_nn.patient_nn.stakeholder_name:
+            return f'{obj.patient_nn.patient_nn.stakeholder_name} {obj.patient_nn.patient_nn.stakeholder_last_name}'
+        return None
+
+    def lab_name(self, obj):
+        if obj.lab.lab.institution_name:
+            return obj.lab.lab.institution_name
+        return None
 
 
 class ClinicRating_admin(admin.ModelAdmin):
-    list_display = ['patient_nn', 'clinic', 'patient_comment']
+    list_display = ['patient_nn', 'patient_name', 'clinic', 'clinic_name', 'Patient_comment']
     search_fields = ['patient_nn__patient_nn__national_number', 'clinic__clinic__institution_id']
+
+    def Patient_comment(self, obj):
+        if obj.patient_comment:
+            return obj.patient_comment
+        return None
+
+    def patient_name(self, obj):
+        if obj.patient_nn.patient_nn.stakeholder_name:
+            return f'{obj.patient_nn.patient_nn.stakeholder_name} {obj.patient_nn.patient_nn.stakeholder_last_name}'
+        return None
+
+    def clinic_name(self, obj):
+        if obj.clinic.clinic.institution_name:
+            return obj.clinic.clinic.institution_name
+        return None
 
 
 class HospitalRating_admin(admin.ModelAdmin):
-    list_display = ['patient_nn', 'hospital', 'patient_comment']
+    list_display = ['patient_nn', 'patient_name', 'hospital', 'hospital_name', 'Patient_comment']
     search_fields = ['patient_nn__patient_nn__national_number', 'hospital__hospital__institution_id']
+
+    def Patient_comment(self, obj):
+        if obj.patient_comment:
+            return obj.patient_comment
+        return None
+
+    def patient_name(self, obj):
+        if obj.patient_nn.patient_nn.stakeholder_name:
+            return f'{obj.patient_nn.patient_nn.stakeholder_name} {obj.patient_nn.patient_nn.stakeholder_last_name}'
+        return None
+
+    def hospital_name(self, obj):
+        if obj.hospital.hospital.institution_name:
+            return obj.hospital.hospital.institution_name
+        return None
 
 
 class HospitalNurses_admin(admin.ModelAdmin):
-    list_display = ['hospital', 'nurse_name', 'nurse_nn']
+    list_display = ['hospital', 'hospital_name', 'nurse_name', 'nurse_nn']
     search_fields = ['nurse_nn__nurse_nn__national_number', 'hospital__hospital__institution_id']
 
     def nurse_name(self, obj):
         return f'{obj.nurse_nn.nurse_nn.stakeholder_name} {obj.nurse_nn.nurse_nn.stakeholder_last_name}'
 
+    def hospital_name(self, obj):
+        if obj.hospital.hospital.institution_name:
+            return obj.hospital.hospital.institution_name
+        return None
+
 
 class ClinicNurses_admin(admin.ModelAdmin):
-    list_display = ['clinic', 'nurse_name', 'nurse_nn']
+    list_display = ['clinic', 'clinic_name', 'nurse_nn', 'nurse_name']
     search_fields = ['nurse_nn__nurse_nn__national_number', 'clinic__clinic__institution_id']
 
     def nurse_name(self, obj):
         return f'{obj.nurse_nn.nurse_nn.stakeholder_name} {obj.nurse_nn.nurse_nn.stakeholder_last_name}'
 
+    def clinic_name(self, obj):
+        if obj.clinic.clinic.institution_name:
+            return obj.clinic.clinic.institution_name
+        return None
+
 
 class LabNurses_admin(admin.ModelAdmin):
-    list_display = ['lab', 'nurse_name', 'nurse_nn']
+    list_display = ['lab', 'lab_name', 'nurse_nn', 'nurse_name']
     search_fields = ['nurse_nn__nurse_nn__national_number', 'lab__lab__institution_id']
 
     def nurse_name(self, obj):
         return f'{obj.nurse_nn.nurse_nn.stakeholder_name} {obj.nurse_nn.nurse_nn.stakeholder_last_name}'
 
+    def lab_name(self, obj):
+        if obj.lab.lab.institution_name:
+            return obj.lab.lab.institution_name
+        return None
+
 
 class LabSpecialists_admin(admin.ModelAdmin):
-    list_display = ['lab', 'specialist_name', 'specialist_nn']
+    list_display = ['lab', 'lab_name', 'specialist_nn', 'specialist_name']
     search_fields = ['lab__lab__institution_id', 'specialist_nn__specialist_nn__national_number']
+
+    def lab_name(self, obj):
+        return obj.lab.lab.institution_name
 
     def specialist_name(self, obj):
         return f'{obj.specialist_nn.specialist_nn.stakeholder_name} {obj.specialist_nn.specialist_nn.stakeholder_last_name}'
 
 
 class HospitalSpecialists_admin(admin.ModelAdmin):
-    list_display = ['hospital', 'specialist_name', 'specialist_nn']
+    list_display = ['hospital', 'hospital_name', 'specialist_nn', 'specialist_name']
     search_fields = ['hospital__hospital__institution_id', 'specialist_nn__specialist_nn__national_number']
 
+    def hospital_name(self, obj):
+        return obj.hospital.hospital.institution_name
+
     def specialist_name(self, obj):
-        return f'{obj.specialist_nn.specialist_nn.stakeholder_name} {obj.specialist_nn.specialist_nn.stakeholder_last_name}'
+        if obj.specialist_nn.specialist_nn.stakeholder_name:
+            return f'{obj.specialist_nn.specialist_nn.stakeholder_name} {obj.specialist_nn.specialist_nn.stakeholder_last_name}'
+        return None
 
 
 class ClinicSpecialists_admin(admin.ModelAdmin):
-    list_display = ['clinic', 'specialist_name', 'specialist_nn']
+    list_display = ['clinic', 'clinic_name', 'specialist_nn', 'specialist_name']
     search_fields = ['clinic__clinic__institution_id', 'specialist_nn__specialist_nn__national_number']
+
+    def clinic_name(self, obj):
+        return obj.clinic.clinic.institution_name
 
     def specialist_name(self, obj):
         return f'{obj.specialist_nn.specialist_nn.stakeholder_name} {obj.specialist_nn.specialist_nn.stakeholder_last_name}'
 
 
 class PharmacyPharmacists_admin(admin.ModelAdmin):
-    list_display = ['pharmacy', 'pharmacists_name', 'pharmacist_nn']
+    list_display = ['pharmacy', 'pharmacy_name', 'pharmacist_nn', 'pharmacist_name']
     search_fields = ['pharmacist_nn__pharmacist_nn__national_number', 'pharmacy__pharmacy__institution_id']
 
-    def pharmacists_name(self, obj):
-        return f'{obj.pharmacist_nn.pharmacist_nn.stakeholder_name} {obj.pharmacist_nn.pharmacist_nn.stakeholder_last_name}'
+    def pharmacy_name(self, obj):
+        return obj.pharmacy.pharmacy.institution_name
+
+    def pharmacist_name(self, obj):
+        if obj.pharmacist_nn.pharmacist_nn.stakeholder_name:
+            if obj.pharmacist_nn.pharmacist_nn.stakeholder_name:
+                return f'{obj.pharmacist_nn.pharmacist_nn.stakeholder_name} {obj.pharmacist_nn.pharmacist_nn.stakeholder_last_name}'
 
 
 class PhysicianSpecialization_admin(admin.ModelAdmin):
@@ -408,52 +776,94 @@ class PhysicianSpecialization_admin(admin.ModelAdmin):
     search_fields = ['physician_nn__physician_nn__national_number']
 
     def physician_name(self, obj):
-        return f'{obj.physician_nn.physician_nn.stakeholder_name} {obj.physician_nn.physician_nn.stakeholder_last_name}'
+        if obj.physician_nn.physician_nn.stakeholder_name:
+            return f'{obj.physician_nn.physician_nn.stakeholder_name} {obj.physician_nn.physician_nn.stakeholder_last_name}'
+        return None
 
 
 class HospitalSpecialization_admin(admin.ModelAdmin):
-    list_display = ['hospital', 'specialization']
+    list_display = ['hospital', 'hospital_name', 'specialization']
     list_filter = ['specialization']
     search_fields = ['hospital__hospital__institution_id']
+
+    def hospital_name(self, obj):
+        return obj.hospital.hospital.institution_name
 
 
 class ClinicSpecialization_admin(admin.ModelAdmin):
-    list_display = ['clinic', 'specialization']
+    list_display = ['clinic', 'clinic_name', 'specialization']
     list_filter = ['specialization']
     search_fields = ['clinic__clinic__institution_id']
 
+    def clinic_name(self, obj):
+        return obj.clinic.clinic.institution_name
+
 
 class LabsInsuranceDeals_admin(admin.ModelAdmin):
-    list_display = ['lab', 'insurance_type', 'discount']
-    list_filter = ['insurance_type', 'discount']
-    search_fields = ['lab__lab__institution_id']
+    list_display = ['lab', 'lab_name', 'insurance_type', 'insurance_company', 'insurance_type_name', 'discount']
+    search_fields = ['lab__lab__institution_id', 'insurance_type__company__company_id', 'insurance_type__company__company_name']
+
+    def lab_name(self, obj):
+        return obj.lab.lab.institution_name
+
+    def insurance_company(self, obj):
+        return obj.insurance_type.company.company_name
+
+    def insurance_type_name(self, obj):
+        return obj.insurance_type.type_name
 
 
 class ClinicsInsuranceDeals_admin(admin.ModelAdmin):
-    list_display = ['clinic', 'insurance_type', 'discount']
-    list_filter = ['insurance_type', 'discount']
-    search_fields = ['clinic__clinic__institution_id']
+    list_display = ['clinic', 'clinic_name', 'insurance_type', 'insurance_company', 'insurance_type_name', 'discount']
+    search_fields = ['clinic__clinic__institution_id', 'insurance_type__company__company_id', 'insurance_type__company__company_name']
+
+    def clinic_name(self, obj):
+        return obj.clinic.clinic.institution_name
+
+    def insurance_company(self, obj):
+        return obj.insurance_type.company.company_name
+
+    def insurance_type_name(self, obj):
+        return obj.insurance_type.type_name
 
 
 class HospitalInsuranceDeals_admin(admin.ModelAdmin):
-    list_display = ['hospital', 'insurance_type', 'discount']
-    list_filter = ['insurance_type', 'discount']
-    search_fields = ['hospital__hospital__institution_id']
+    list_display = ['hospital', 'hospital_name', 'insurance_type', 'insurance_company', 'insurance_type_name', 'discount']
+    search_fields = ['hospital__hospital__institution_id', 'insurance_type__company__company_id', 'insurance_type__company__company_name']
+
+    def hospital_name(self, obj):
+        return obj.hospital.hospital.institution_name
+
+    def insurance_company(self, obj):
+        return obj.insurance_type.company.company_name
+
+    def insurance_type_name(self, obj):
+        return obj.insurance_type.type_name
 
 
 class PharmacyInsuranceDeals_admin(admin.ModelAdmin):
-    list_display = ['pharmacy', 'insurance_type', 'discount']
-    list_filter = ['insurance_type', 'discount']
-    search_fields = ['pharmacy__pharmacy__institution_id']
+    list_display = ['pharmacy', 'pharmacy_name', 'insurance_type', 'insurance_company', 'insurance_type_name', 'discount']
+    search_fields = ['pharmacy__pharmacy__institution_id', 'insurance_type__company__company_id', 'insurance_type__company__company_name']
+
+    def pharmacy_name(self, obj):
+        return obj.pharmacy.pharmacy.institution_name
+
+    def insurance_company(self, obj):
+        return obj.insurance_type.company.company_name
+
+    def insurance_type_name(self, obj):
+        return obj.insurance_type.type_name
 
 
 class PatientInsurance_admin(admin.ModelAdmin):
-    list_display = ['patient_nn', 'patient_name', 'insurance_type_id']
-    list_filter = ['insurance_type_id']
-    search_fields = ['patient_nn__patient_nn__national_number', 'insurance_type_id']
+    list_display = ['patient_nn', 'patient_name', 'insurance_company', 'insurance_type']
+    search_fields = ['patient_nn__patient_nn__national_number', 'insurance_type__company__company_id', 'insurance_type__company__company_name']
 
     def patient_name(self, obj):
         return f'{obj.patient_nn.patient_nn.stakeholder_name} {obj.patient_nn.patient_nn.stakeholder_last_name}'
+
+    def insurance_company(self, obj):
+        return obj.insurance_type.company.company_name
 
 
 my_admin_site.register(Stakeholders, Stakeholders_admin)

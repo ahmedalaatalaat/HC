@@ -77,6 +77,11 @@ class LogEntry_admin(admin.ModelAdmin):
         return flags[obj.action_flag]
 
 
+class InlineUserProfile(admin.TabularInline):
+    model = User
+    extra = 0
+
+
 my_admin_site = HC_AdminSite()
 
 my_admin_site.register(LogEntry, LogEntry_admin)

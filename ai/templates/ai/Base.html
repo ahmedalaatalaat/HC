@@ -109,9 +109,9 @@
                         <!-- start manage user dropdown -->
                         <li class="dropdown dropdown-user">
                             <a class="dropdown-toggle" data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href="javascript:;">
-                                <img alt="" class="img-circle" src="{% static 'cpanel/img/dp.jpg' %}">
+                                <img alt="" class="img-circle" src="{{request.user|get_image_url}}">
                                 <span class="username username-hide-on-mobile">
-                                    Kiran
+                                    {{request.user|get_name}}
                                 </span>
                                 <i class="fa fa-angle-down">
                                 </i>
@@ -126,13 +126,6 @@
                                     </a>
                                 </li>
                                 <li class="divider">
-                                </li>
-                                <li>
-                                    <a href="lock_screen.html">
-                                        <i class="icon-lock">
-                                        </i>
-                                        Lock
-                                    </a>
                                 </li>
                                 <li>
                                     <a href="login.html">
@@ -336,12 +329,12 @@
                             <li class="sidebar-user-panel">
                                 <div class="user-panel">
                                     <div class="pull-left image">
-                                        <img alt="User Image" class="img-circle user-img-circle" src="{% static 'cpanel/img/dp.jpg' %}">
+                                        <img alt="User Image" class="img-circle user-img-circle" src="{{request.user|get_image_url}}">
                                         </img>
                                     </div>
                                     <div class="pull-left info">
                                         <p>
-                                            Dr.Kiran Patel
+                                            {{request.user|get_name}}
                                         </p>
                                         <a href="#">
                                             <i class="fa fa-circle user-online">

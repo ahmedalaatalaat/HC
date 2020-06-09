@@ -18,6 +18,8 @@ Patient_Visitation_Type = [('Normal', 'Normal'), ('Consultation', 'Consultation'
 Patient_Disease_Priority = [('Very High', 'Very High'), ('High', 'High'), ('Medium', 'Medium'), ('Low', 'Low')]
 
 Week_Day = [("Monday", "Monday"), ("Tuesday", "Tuesday"), ("Wednesday", "Wednesday"), ("Thursday", "Thursday"), ("Friday", "Friday"), ("Saturday", "Saturday"), ("Sunday", "Sunday")]
+
+rating = [('0', '0'), ('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5')]
 # -- ** StakeHolders And Related Tables ** --
 
 
@@ -531,7 +533,7 @@ class InsuranceTypes(models.Model):
         verbose_name_plural = 'Insurance Types'
 
     def __str__(self):
-        return str(self.type_id)
+        return f'{self.company.company_name}: {self.type_name}'
 
 
 # -- ** Other Tables ** --
@@ -560,8 +562,8 @@ class PatientHistory(models.Model):
     visitation_type = models.CharField(db_column='Visitation_Type', max_length=12, blank=True, null=True, choices=Patient_Visitation_Type)
     prescription = models.TextField(db_column='Prescription', blank=True, null=True)
     physician_comments = models.TextField(db_column='Physician_Comments', blank=True, null=True)
-    diagnouse = models.CharField(db_column='Diagnouse', max_length=360, blank=True, null=True)
-    analysis_radiology = models.CharField(db_column='Analysis_Radiology', max_length=360, blank=True, null=True)
+    diagnouse = models.TextField(db_column='Diagnouse', blank=True, null=True)
+    analysis_radiology = models.TextField(db_column='Analysis_Radiology', blank=True, null=True)
     disease_priority = models.CharField(db_column='Disease_Priority', max_length=9, blank=True, null=True, choices=Patient_Disease_Priority)
     hide = models.BooleanField(default=False)
 
@@ -579,7 +581,7 @@ class PhysicianPatientAppointment(models.Model):
     patient_nn = models.ForeignKey(Patient, models.DO_NOTHING, db_column='Patient_NN')
     physician_nn = models.ForeignKey(Physician, models.DO_NOTHING, db_column='Physician_NN')
     date_time = models.DateTimeField(db_column='Date_Time')
-    place = models.CharField(db_column='Place', max_length=120, blank=True, null=True)
+    place = models.CharField(db_column='Place', max_length=360, blank=True, null=True)
 
     class Meta:
         db_table = 'physician_patient_appointment'
@@ -635,6 +637,7 @@ class PhysicianClinicWorkingTime(models.Model):
 class PhysicianRating(models.Model):
     patient_nn = models.ForeignKey(Patient, models.DO_NOTHING, db_column='Patient_NN')
     physician_nn = models.ForeignKey(Physician, models.DO_NOTHING, db_column='Physician_NN')
+    rate = models.CharField(max_length=1, choices=rating)
     patient_comment = models.TextField(db_column='Patient_comment', blank=True, null=True)
 
     class Meta:
@@ -650,6 +653,7 @@ class PhysicianRating(models.Model):
 class LabRating(models.Model):
     patient_nn = models.ForeignKey(Patient, models.DO_NOTHING, db_column='Patient_NN')
     lab = models.ForeignKey(Labs, models.DO_NOTHING, db_column='Lab_ID')
+    rate = models.CharField(max_length=1, choices=rating)
     patient_comment = models.TextField(db_column='Patient_comment', blank=True, null=True)
 
     class Meta:
@@ -665,6 +669,7 @@ class LabRating(models.Model):
 class ClinicRating(models.Model):
     patient_nn = models.ForeignKey(Patient, models.DO_NOTHING, db_column='Patient_NN')
     clinic = models.ForeignKey(Clinic, models.DO_NOTHING, db_column='Clinic_ID')
+    rate = models.CharField(max_length=1, choices=rating)
     patient_comment = models.TextField(db_column='Patient_comment', blank=True, null=True)
 
     class Meta:
@@ -680,6 +685,7 @@ class ClinicRating(models.Model):
 class HospitalRating(models.Model):
     patient_nn = models.ForeignKey(Patient, models.DO_NOTHING, db_column='Patient_NN')
     hospital = models.ForeignKey(Hospital, models.DO_NOTHING, db_column='Hospital_ID')
+    rate = models.CharField(max_length=1, choices=rating)
     patient_comment = models.TextField(db_column='Patient_comment', blank=True, null=True)
 
     class Meta:
@@ -792,7 +798,7 @@ class PharmacyPharmacists(models.Model):
         verbose_name_plural = 'Pharmacy Specialists'
 
     def __str__(self):
-        return f'Specialist:{self.specialist_nn} works in {self.pharmacy}'
+        return f'Pharmacist:{self.pharmacist_nn} works in {self.pharmacy}'
 
 # -- ## Specialization Relations ##
 
@@ -924,11 +930,10 @@ class PharmacyInsuranceDeals(models.Model):
 
 class PatientInsurance(models.Model):
     patient_nn = models.ForeignKey(Patient, models.DO_NOTHING, db_column='Patient_NN')
-    insurance_type_id = models.IntegerField(db_column='Insurance_Type_ID')
+    insurance_type = models.ForeignKey(InsuranceTypes, models.CASCADE, db_column='Insurance_Type')
 
     class Meta:
         db_table = 'patient_insurance'
-        unique_together = (('patient_nn', 'insurance_type_id'),)
         verbose_name = 'Patient Insurance'
         verbose_name_plural = 'Patient Insurances'
 
