@@ -6,8 +6,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
 from django.db.models import Q
 from cpanel.decorators import *
+from django.contrib.auth.decorators import login_required
 
 
+@login_required(login_url='cpanel:login')
 def Lab_add(request):
     if request.is_ajax():
         if request.method == 'POST':
@@ -73,6 +75,7 @@ def Lab_add(request):
     return render(request, 'cpanel/Lab/Labs_add.html')
 
 
+@login_required(login_url='cpanel:login')
 def Lab_edit(request, id):
     institution = get_object_or_404(MedicalInstitutions, institution_id=id)
     institution_numbers = institution.get_phone
@@ -165,6 +168,7 @@ def Lab_edit(request, id):
     return render(request, 'cpanel/Lab/Labs_edit.html', context)
 
 
+@login_required(login_url='cpanel:login')
 @allowed_users(['Admin', 'Physician', 'Nurse', 'Specialist', 'Labs'])
 def Lab_list(request):
     if str(request.user.groups.all().first()) == 'Nurse':

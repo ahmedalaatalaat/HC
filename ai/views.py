@@ -11,8 +11,10 @@ import os
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from main.settings import MEDIA_ROOT
+from django.contrib.auth.decorators import login_required
 
 
+@login_required(login_url='cpanel:login')
 def base(request):
     context = {
 
@@ -20,10 +22,12 @@ def base(request):
     return render(request, 'ai/Base.html', context)
 
 
+@login_required(login_url='cpanel:login')
 def ai_panel(request):
     return render(request, 'ai/ai_panel.html')
 
 
+@login_required(login_url='cpanel:login')
 def breast_cancer_detection(request):
     if request.is_ajax():
         if request.method == 'POST':
@@ -66,6 +70,7 @@ def breast_cancer_detection(request):
     return render(request, 'ai/Breast_Cancer_Detection.html', context)
 
 
+@login_required(login_url='cpanel:login')
 def female_diabetes_detection(request):
     if request.is_ajax():
         if request.method == 'POST':
@@ -101,6 +106,7 @@ def female_diabetes_detection(request):
     return render(request, 'ai/Female_Diabetes_Detection.html', context)
 
 
+@login_required(login_url='cpanel:login')
 def DNA_Classification(request):
     if request.is_ajax():
         if request.method == 'POST':
@@ -155,6 +161,7 @@ def DNA_Classification(request):
     return render(request, 'ai/DNA_Classification.html', context)
 
 
+@login_required(login_url='cpanel:login')
 def heart_disease_prediction(request):
     if request.is_ajax():
         if request.method == 'POST':
@@ -204,6 +211,7 @@ def heart_disease_prediction(request):
     return render(request, 'ai/Heart_Disease_Prediction.html', context)
 
 
+@login_required(login_url='cpanel:login')
 def pneumonia_detection(request):
     if request.is_ajax():
         if request.method == 'POST':
@@ -224,7 +232,7 @@ def pneumonia_detection(request):
 
             os.remove(img_path)
 
-            result = 'Noraml' if round(classes[0][0]) == 1 else 'Pneumonia'
+            result = 'Normal' if round(classes[0][0]) == 1 else 'Pneumonia'
 
             results = {
                 'result': result

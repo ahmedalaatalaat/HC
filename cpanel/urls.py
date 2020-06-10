@@ -7,11 +7,13 @@ from ._views import doctor_views, clinic_views, hospital_views, insurance_compan
 app_name = 'cpanel'
 urlpatterns = [
     path('', views.cpanel, name='home'),
+    path('error/', views.error, name='error'),
     path('user_profile/', views.user_profile, name='user_profile'),
     # Others
     path('login/', views.loginView, name='login'),
-    path('forgot_password/', views.forgot_password, name='forgot_password'),
-    path('lock_screen/', views.lock_screen, name='lock_screen'),
+    path('logout/', views.logoutView, name='logout'),
+    # path('forgot_password/', views.forgot_password, name='forgot_password'),
+    # path('lock_screen/', views.lock_screen, name='lock_screen'),
     # Doctors URLs
     path('doctor_add/', doctor_views.Doctor_add, name='doctor_add'),
     path('doctor_edit/<NN>/', doctor_views.Doctor_edit, name='doctor_edit'),

@@ -6,8 +6,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
 from django.db.models import Q
 from cpanel.decorators import *
+from django.contrib.auth.decorators import login_required
 
 
+@login_required(login_url='cpanel:login')
 def Clinic_add(request):
     specializations = Specialization.objects.all()
     if request.is_ajax():
@@ -81,6 +83,7 @@ def Clinic_add(request):
     return render(request, 'cpanel/Clinic/Clinic_add.html', context)
 
 
+@login_required(login_url='cpanel:login')
 def Clinic_edit(request, id):
     specializations = Specialization.objects.all()
     institution = get_object_or_404(MedicalInstitutions, institution_id=id)
@@ -182,6 +185,7 @@ def Clinic_edit(request, id):
     return render(request, 'cpanel/Clinic/Clinic_edit.html', context)
 
 
+@login_required(login_url='cpanel:login')
 @allowed_users(['Admin', 'Physician', 'Nurse', 'Specialist', 'Pharmacist', 'Clinic'])
 def Clinic_list(request):
     if str(request.user.groups.all().first()) == 'Physician':

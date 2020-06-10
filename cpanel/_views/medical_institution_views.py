@@ -4,8 +4,10 @@ from django.http import HttpResponse, HttpResponseNotFound
 from cpanel.models import *
 from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
+from django.contrib.auth.decorators import login_required
 
 
+@login_required(login_url='cpanel:login')
 def Medical_Institution_add(request):
     if request.is_ajax():
         if request.method == 'POST':
@@ -59,6 +61,7 @@ def Medical_Institution_add(request):
     return render(request, 'cpanel/Medical Institutions/Medical_institution_add.html')
 
 
+@login_required(login_url='cpanel:login')
 def Medical_Institution_edit(request, id):
     institution = get_object_or_404(MedicalInstitutions, institution_id=id)
     institution_numbers = institution.get_phone
@@ -125,6 +128,7 @@ def Medical_Institution_edit(request, id):
     return render(request, 'cpanel/Medical Institutions/Medical_institution_edit.html', context)
 
 
+@login_required(login_url='cpanel:login')
 def Medical_Institution_list(request):
     medical_institutions = MedicalInstitutions.objects.all().filter(hide=False)
     if request.method == 'POST':

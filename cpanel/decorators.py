@@ -1,5 +1,6 @@
 from django.shortcuts import redirect
 from django.http import HttpResponse
+from django.shortcuts import render
 
 
 def allowed_users(allowed_roles=[]):
@@ -11,6 +12,6 @@ def allowed_users(allowed_roles=[]):
             if group:
                 return view(request, *args, **kwargs)
             else:
-                return HttpResponse('You are not authorized to view this page')
+                return render(request, 'cpanel/Error/unauthorized-Error.html')
         return wrapper
     return decorator

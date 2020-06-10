@@ -6,9 +6,11 @@ from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
 from cpanel.decorators import *
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
 
 
 # @allowed_users(['Stakeholder', 'Lab', 'Clinic', 'Hospital'])
+@login_required(login_url='cpanel:login')
 def Patient_add(request):
     if request.is_ajax():
         if request.method == 'POST':
@@ -81,6 +83,7 @@ def Patient_add(request):
     return render(request, 'cpanel/Patient/Patient_add.html')
 
 
+@login_required(login_url='cpanel:login')
 def Patient_edit(request, NN):
     stakeholder = get_object_or_404(Stakeholders, national_number=NN)
     stakeholder_numbers = stakeholder.get_phone
@@ -190,6 +193,7 @@ def Patient_edit(request, NN):
     return render(request, 'cpanel/Patient/Patient_edit.html', context)
 
 
+@login_required(login_url='cpanel:login')
 @allowed_users(['Admin', 'Physician', 'Hospital'])
 def Patient_list(request):
     if str(request.user.groups.all().first()) == 'Physician':
@@ -224,6 +228,7 @@ def Patient_list(request):
 
 
 # Patient History Views
+@login_required(login_url='cpanel:login')
 def Patient_history_add(request):
     if request.is_ajax():
         if request.method == 'POST':
@@ -257,6 +262,7 @@ def Patient_history_add(request):
     return render(request, 'cpanel/Patient/Patient_History_add.html')
 
 
+@login_required(login_url='cpanel:login')
 def Patient_history_edit(request, id):
     patient_history = get_object_or_404(PatientHistory, id=id)
     if request.is_ajax():
@@ -281,9 +287,13 @@ def Patient_history_edit(request, id):
     return render(request, 'cpanel/Patient/Patient_history_edit.html', context)
 
 
+@login_required(login_url='cpanel:login')
 @allowed_users(['Admin', 'Patient', 'Physician', 'Paramedic'])
 def Patient_history_list(request):
-    if str(request.user.groups.all().first()) == 'Patient':
+    if request.user.groups.filter(name__in=['Paramedic', 'Admin']):
+        patients_history = PatientHistory.objects.all().filter(hide=False)
+
+    elif str(request.user.groups.all().first()) == 'Patient':
         user = request.user
         patients_history = PatientHistory.objects.all().filter(
             Q(hide=False) &

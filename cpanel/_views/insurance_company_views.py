@@ -4,8 +4,10 @@ from django.http import HttpResponse, HttpResponseNotFound
 from cpanel.models import *
 from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
+from django.contrib.auth.decorators import login_required
 
 
+@login_required(login_url='cpanel:login')
 def Insurance_Company_add(request):
     if request.is_ajax():
         if request.method == 'POST':
@@ -50,6 +52,7 @@ def Insurance_Company_add(request):
     return render(request, 'cpanel/Insurance Company/Insurance_Company_add.html')
 
 
+@login_required(login_url='cpanel:login')
 def Insurance_Company_edit(request, id):
     insurance_company = get_object_or_404(InsuranceCompanies, company_id=id)
     insurance_company_numbers = insurance_company.get_phone
@@ -116,6 +119,7 @@ def Insurance_Company_edit(request, id):
     return render(request, 'cpanel/Insurance Company/Insurance_Company_edit.html', context)
 
 
+@login_required(login_url='cpanel:login')
 def Insurance_Company_list(request):
     insurance_companies = InsuranceCompanies.objects.all().filter(hide=False)
     if request.method == 'POST':
@@ -131,6 +135,7 @@ def Insurance_Company_list(request):
 
 
 # Insurance Type Views
+@login_required(login_url='cpanel:login')
 def Insurance_Type_add(request):
     if request.is_ajax():
         if request.method == 'POST':
@@ -152,6 +157,7 @@ def Insurance_Type_add(request):
     return render(request, 'cpanel/Insurance Company/Insurance_Type_add.html')
 
 
+@login_required(login_url='cpanel:login')
 def Insurance_Type_edit(request, id):
     insurance_type = get_object_or_404(InsuranceTypes, type_id=id)
     if request.is_ajax():
@@ -170,6 +176,7 @@ def Insurance_Type_edit(request, id):
     return render(request, 'cpanel/Insurance Company/Insurance_Type_edit.html', context)
 
 
+@login_required(login_url='cpanel:login')
 def Insurance_Type_list(request):
     insurance_types = InsuranceTypes.objects.all().filter(hide=False)
     if request.method == 'POST':

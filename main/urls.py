@@ -4,6 +4,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls.i18n import i18n_patterns
 from .admin import *
+from django.conf.urls import handler400, handler403, handler404, handler500
+from cpanel.views import error_400, error_403, error_404, error_500
 
 
 urlpatterns = [
@@ -26,3 +28,9 @@ urlpatterns += i18n_patterns(
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+handler400 = error_400
+handler403 = error_403
+handler404 = error_404
+handler500 = error_500

@@ -49,7 +49,7 @@
                     <div class="navbar-end">
                         <!-- Signup button -->
                         <div class="navbar-item">
-                            <a style="font-size: 18px" class="button button-signup btn-outlined is-bold btn-align light-btn rounded raised" href="/admin" id="#signup-btn">
+                            <a style="font-size: 18px" class="button button-signup btn-outlined is-bold btn-align light-btn rounded raised" href="{% url 'cpanel:login' %}" id="#signup-btn">
                                 Login
                             </a>
                         </div>
@@ -265,7 +265,7 @@
                         Access your medical data and history from anywhere and anytime.
                     </span>
                     <div class="pt-10 pb-10">
-                        <a class="button btn-align btn-more is-link color-primary" href="/admin">
+                        <a class="button btn-align btn-more is-link color-primary" href="{% url 'cpanel:login' %}">
                             Login
                             <i class="sl sl-icon-arrow-right">
                             </i>
@@ -514,7 +514,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="/admin">
+                                <a href="{% url 'cpanel:login' %}">
                                     Login
                                 </a>
                             </li>
@@ -531,7 +531,7 @@
                         </div>
                         <ul class="link-list">
                             <li>
-                                <a href="contact.html">
+                                <a href="#">
                                     Browse Doctors
                                 </a>
                             </li>

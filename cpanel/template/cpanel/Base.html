@@ -63,7 +63,7 @@
             <div class="page-header-inner">
                 <!-- logo start -->
                 <div class="page-logo">
-                    <a href="index.html">
+                    <a href="{% url 'cpanel:home' %}">
                         <span class="logo-icon fa fa-stethoscope fa-rotate-45">
                         </span>
                         <span class="logo-default">
@@ -119,7 +119,7 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-default">
                                 <li>
-                                    <a href="user_profile.html">
+                                    <a href="{% url 'cpanel:user_profile' %}">
                                         <i class="icon-user">
                                         </i>
                                         Profile
@@ -128,7 +128,7 @@
                                 <li class="divider">
                                 </li>
                                 <li>
-                                    <a href="login.html">
+                                    <a href="{% url 'cpanel:logout' %}">
                                         <i class="icon-logout">
                                         </i>
                                         Log Out
@@ -356,6 +356,22 @@
                                 </a>
                             </li>
                             {% endif %}
+                            <li class="nav-item">
+                                <a class="nav-link nav-toggle" href="{% url 'admin:index' %}" target="_blank">
+                                    <i class="fas fa-user-cog"></i>
+                                    <span class="title">
+                                        Admin Panel
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link nav-toggle" href="{% url 'ai:ai_panel' %}" target="_blank">
+                                    <i class="fas fa-brain"></i>
+                                    <span class="title">
+                                        AI Panel
+                                    </span>
+                                </a>
+                            </li>
                             {% if request.user|allowed_users:'Admin'|into_list %}
                             <li class="nav-item {% if 'stakeholder' in request.path%}active{% endif %}">
                                 <a class="nav-link nav-toggle" href="{% url 'cpanel:stakeholder_list' %}">

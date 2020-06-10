@@ -4,10 +4,12 @@ from django.http import HttpResponse, HttpResponseNotFound
 from .models import *
 from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.decorators import login_required
 
 
+@login_required(login_url='cpanel:login')
 def cpanel(request):
     stakeholder = get_object_or_404(Stakeholders, user=request.user)
     context = {
@@ -16,6 +18,7 @@ def cpanel(request):
     return render(request, 'cpanel/cpanel.html', context)
 
 
+@login_required(login_url='cpanel:login')
 def user_profile(request):
     stakeholder = get_object_or_404(Stakeholders, user=request.user)
     stakeholder_numbers = stakeholder.get_phone
@@ -98,32 +101,39 @@ def user_profile(request):
         'main_address': address,
         'address': stakeholder_address[1:],
     }
-    return render(request, 'cpanel/user_profile.html', context)
+    return render(request, 'cpanel/Other/user_profile.html', context)
 
 
 # login Views
 def loginView(request):
+    if request.user.is_authenticated:
+        if request.GET.get('next'):
+            return redirect(request.GET.get('next'))
+        return redirect('cpanel:home')
+
     form = AuthenticationForm()
     error = False
     if request.method == 'POST':
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
             user = form.get_user()
-            group = Group.objects.filter(user=user).first()
-            if request.POST.get('login_as') == str(group):
-                login(request, user)
-                return redirect('cpanel:doctor_add')
-            elif (str(group) == 'Clinic' or str(group) == 'Hospital' or str(group) == 'Lab' or str(group) == 'Pharmacy') and request.POST.get('login_as') == 'Medical Institution':
-                login(request, user)
-                return redirect('cpanel:doctor_add')
-            else:
-                error = True
+            login(request, user)
+            if request.GET.get('next'):
+                return redirect(request.GET.get('next'))
+            return redirect('cpanel:home')
+        else:
+            error = True
 
     context = {
         'form': form,
         'error': error,
     }
-    return render(request, 'cpanel/login.html', context)
+    return render(request, 'cpanel/Other/login.html', context)
+
+
+def logoutView(request):
+    logout(request)
+    return redirect('cpanel:login')
 
 
 def forgot_password(request):
@@ -135,6 +145,7 @@ def lock_screen(request):
 
 
 # Specialization Views
+@login_required(login_url='cpanel:login')
 def Specialization_add(request):
     if request.is_ajax():
         if request.method == 'POST':
@@ -150,6 +161,7 @@ def Specialization_add(request):
     return render(request, 'cpanel/Specializations/Specialization_add.html')
 
 
+@login_required(login_url='cpanel:login')
 def Specialization_edit(request, id):
     specialization = get_object_or_404(Specialization, specialization_id=id)
     if request.is_ajax():
@@ -168,9 +180,30 @@ def Specialization_edit(request, id):
     return render(request, 'cpanel/Specializations/Specialization_edit.html', context)
 
 
+@login_required(login_url='cpanel:login')
 def Specialization_list(request):
     specializations = Specialization.objects.all()
     context = {
         "specializations": specializations,
     }
     return render(request, 'cpanel/Specializations/Specialization_list.html', context)
+
+
+def error(request):
+    return render(request, 'cpanel/Error/page-404.html')
+
+
+def error_400(request, exception):
+    return render(request, 'cpanel/Error/page-400.html')
+
+
+def error_403(request, exception):
+    return render(request, 'cpanel/Error/page-403.html')
+
+
+def error_404(request, exception):
+    return render(request, 'cpanel/Error/page-404.html')
+
+
+def error_500(request):
+    return render(request, 'cpanel/Error/page-500.html')

@@ -8,7 +8,7 @@
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <meta content="Bluecare" name="author" />
     <title>
-        Bluecare System | 404
+        Bluecare System | 400
     </title>
     <!-- google font -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&amp;subset=all" rel="stylesheet" type="text/css" />
@@ -32,15 +32,15 @@
                         <img alt="" src="{% static 'cpanel/img/hospital.png' %}" />
                     </span>
                     <span class="form404-title p-b-34 p-t-27">
-                        Error 404
+                        Error 400
                     </span>
                     <p class="content-404">
-                        The page you are looking for does't exist or an other error occurred.
+                        Bad Request Error.
                     </p>
                     <div class="container-login100-form-btn">
-                        <button class="login100-form-btn">
+                        <a class="login100-form-btn" href="{% url 'cpanel:home' %}">
                             Go to home page
-                        </button>
+                        </a>
                     </div>
                 </form>
             </div>

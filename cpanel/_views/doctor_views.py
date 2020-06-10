@@ -6,8 +6,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
 from django.db.models import Q
 from cpanel.decorators import *
+from django.contrib.auth.decorators import login_required
 
 
+@login_required(login_url='cpanel:login')
 def Doctor_add(request):
     specializations = Specialization.objects.all()
     if request.is_ajax():
@@ -85,6 +87,7 @@ def Doctor_add(request):
     return render(request, 'cpanel/Doctor/Doctor_add.html', context)
 
 
+@login_required(login_url='cpanel:login')
 def Doctor_edit(request, NN):
     # Passed Data
     specializations = Specialization.objects.all()
@@ -191,6 +194,7 @@ def Doctor_edit(request, NN):
     return render(request, 'cpanel/Doctor/Doctor_edit.html', context)
 
 
+@login_required(login_url='cpanel:login')
 @allowed_users(['Admin', 'Patient'])
 def Doctor_list(request):
     if str(request.user.groups.all().first()) == 'Patient':
@@ -214,6 +218,7 @@ def Doctor_list(request):
     return render(request, 'cpanel/Doctor/Doctor_list.html', context)
 
 
+@login_required(login_url='cpanel:login')
 def Physician_Clinic_Working_Time_add(request):
     if request.is_ajax():
         if request.method == 'POST':
@@ -253,6 +258,7 @@ def Physician_Clinic_Working_Time_add(request):
     return render(request, 'cpanel/Clinic/Physician_Clinic_working_time_add.html')
 
 
+@login_required(login_url='cpanel:login')
 def Physician_Clinic_Working_Time_edit(request, id):
     work_time = get_object_or_404(PhysicianClinicWorkingTime, id=id)
     if request.is_ajax():
@@ -274,6 +280,7 @@ def Physician_Clinic_Working_Time_edit(request, id):
     return render(request, 'cpanel/Clinic/Physician_Clinic_working_time_edit.html', context)
 
 
+@login_required(login_url='cpanel:login')
 def Physician_Clinic_Working_Time_list(request):
     physician_clinic_working_times = PhysicianClinicWorkingTime.objects.all().filter(hide=False)
     if request.method == 'POST':
@@ -287,6 +294,7 @@ def Physician_Clinic_Working_Time_list(request):
     return render(request, 'cpanel/Clinic/Physician_Clinic_working_time_list.html', context)
 
 
+@login_required(login_url='cpanel:login')
 def Physician_Hospital_Working_Time_add(request):
     if request.is_ajax():
         if request.method == 'POST':
@@ -326,6 +334,7 @@ def Physician_Hospital_Working_Time_add(request):
 
 
 # Physician Hospital Working Time Views
+@login_required(login_url='cpanel:login')
 def Physician_Hospital_Working_Time_edit(request, id):
     work_time = get_object_or_404(PhysicianHospitalWorkingTime, id=id)
     if request.is_ajax():
@@ -345,6 +354,7 @@ def Physician_Hospital_Working_Time_edit(request, id):
     return render(request, 'cpanel/Hospital/Physician_Hospital_working_time_edit.html', context)
 
 
+@login_required(login_url='cpanel:login')
 def Physician_Hospital_Working_Time_list(request):
     physician_hospital_working_times = PhysicianHospitalWorkingTime.objects.all().filter(hide=False)
     if request.method == 'POST':

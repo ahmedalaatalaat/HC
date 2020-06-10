@@ -4,8 +4,10 @@ from django.http import HttpResponse, HttpResponseNotFound
 from cpanel.models import *
 from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
+from django.contrib.auth.decorators import login_required
 
 
+@login_required(login_url='cpanel:login')
 def Stakeholder_add(request):
     if request.is_ajax():
         if request.method == 'POST':
@@ -67,6 +69,7 @@ def Stakeholder_add(request):
     return render(request, 'cpanel/Stakeholders/Stakeholders_add.html')
 
 
+@login_required(login_url='cpanel:login')
 def Stakeholder_edit(request, NN):
     stakeholder = get_object_or_404(Stakeholders, national_number=NN)
     stakeholder_numbers = stakeholder.get_phone
@@ -142,6 +145,7 @@ def Stakeholder_edit(request, NN):
     return render(request, 'cpanel/Stakeholders/Stakeholders_edit.html', context)
 
 
+@login_required(login_url='cpanel:login')
 def Stakeholder_list(request):
     stakeholders = Stakeholders.objects.all().filter(hide=False)
     if request.method == 'POST':

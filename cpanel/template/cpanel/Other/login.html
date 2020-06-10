@@ -39,7 +39,7 @@
                     </span>
                     {% if form.errors or error %}
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        Invalid username or password or login as
+                        Invalid username or password
                         <button aria-label="Close" class="close" data-dismiss="alert" type="button">
                             <span aria-hidden="true">
                                 ×
@@ -57,19 +57,6 @@
                         <input class="input100" name="password" placeholder="Password" type="password" required="" />
                         <span class="focus-input100" data-placeholder="">
                         </span>
-                    </div>
-                    <div class="validate-input" data-validate="Choose">
-                        <select class="input100" name="login_as" required="">
-                            <option disabled="" selected="" value="">Login As</option>
-                            <option style="color: black" value="Stakeholder">Admin/Clerk/Editor</option>
-                            <option style="color: black" value="Patient">Patient</option>
-                            <option style="color: black" value="Physician">Doctor</option>
-                            <option style="color: black" value="Nurse">Nurse</option>
-                            <option style="color: black" value="Paramedic">Paramedic</option>
-                            <option style="color: black" value="Pharmacist">Pharmacist</option>
-                            <option style="color: black" value="Medical Institution">Medical inistitution</option>
-                            <option style="color: black" value="Insurance Company">Insurance company</option>
-                        </select>
                     </div>
                     <br />
                     <div class="container-login100-form-btn">

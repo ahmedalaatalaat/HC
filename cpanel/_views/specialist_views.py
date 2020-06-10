@@ -4,8 +4,10 @@ from django.http import HttpResponse, HttpResponseNotFound
 from cpanel.models import *
 from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
+from django.contrib.auth.decorators import login_required
 
 
+@login_required(login_url='cpanel:login')
 def Specialist_add(request):
     if request.is_ajax():
         if request.method == 'POST':
@@ -74,6 +76,7 @@ def Specialist_add(request):
     return render(request, 'cpanel/Specialist/Specialist_add.html')
 
 
+@login_required(login_url='cpanel:login')
 def Specialist_edit(request, NN):
     stakeholder = get_object_or_404(Stakeholders, national_number=NN)
     stakeholder_numbers = stakeholder.get_phone
@@ -173,6 +176,7 @@ def Specialist_edit(request, NN):
     return render(request, 'cpanel/Specialist/Specialist_edit.html', context)
 
 
+@login_required(login_url='cpanel:login')
 def Specialist_list(request):
     specialists = Specialist.objects.all().filter(hide=False)
     if request.method == 'POST':

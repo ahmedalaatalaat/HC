@@ -4,9 +4,11 @@ from django.http import HttpResponse, HttpResponseNotFound
 from cpanel.models import *
 from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
+from django.contrib.auth.decorators import login_required
 
 
 # Nurse Views
+@login_required(login_url='cpanel:login')
 def Nurse_add(request):
     specializations = Specialization.objects.all()
     if request.is_ajax():
@@ -81,6 +83,7 @@ def Nurse_add(request):
     return render(request, 'cpanel/Nurse/Nurse_add.html', context)
 
 
+@login_required(login_url='cpanel:login')
 def Nurse_edit(request, NN):
     specializations = Specialization.objects.all()
     stakeholder = get_object_or_404(Stakeholders, national_number=NN)
@@ -185,6 +188,7 @@ def Nurse_edit(request, NN):
     return render(request, 'cpanel/Nurse/Nurse_edit.html', context)
 
 
+@login_required(login_url='cpanel:login')
 def Nurse_list(request):
     nurses = Nurse.objects.all().filter(hide=False)
     if request.method == 'POST':
