@@ -154,11 +154,21 @@ def Lab_edit(request, id):
             for instance in delete_analysis_and_radiologies:
                 instance.delete()
 
+    try:
+        phone = institution_numbers[0].phone
+    except Exception:
+        phone = None
+
+    try:
+        address = institution_address[0].address
+    except Exception:
+        address = None
+
     context = {
         'institution': institution,
-        'main_phone': institution_numbers[0].phone,
+        'main_phone': phone,
         'phones': institution_numbers[1:],
-        'main_address': institution_address[0].address,
+        'main_address': address,
         'address': institution_address[1:],
         'Lab': lab,
         'main_analysis_and_radiologies': analysis_and_radiologies[0].analysis_and_radiology,

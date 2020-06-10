@@ -144,11 +144,22 @@ def Paramedic_edit(request, NN):
             paramedic.ambulance_palte_number = request.POST.get('ambulance_palte_number')
 
             paramedic.save()
+
+    try:
+        phone = stakeholder_numbers[0].phone
+    except Exception:
+        phone = None
+
+    try:
+        address = stakeholder_address[0].address
+    except Exception:
+        address = None
+
     context = {
         'stakeholder': stakeholder,
-        'main_phone': stakeholder_numbers[0].phone,
+        'main_phone': phone,
         'phones': stakeholder_numbers[1:],
-        'main_address': stakeholder_address[0].address,
+        'main_address': address,
         'address': stakeholder_address[1:],
         'paramedic': paramedic,
     }

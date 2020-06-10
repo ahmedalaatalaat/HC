@@ -163,13 +163,28 @@ def Specialist_edit(request, NN):
             for instance in delete_specialization:
                 instance.delete()
 
+    try:
+        phone = stakeholder_numbers[0].phone
+    except Exception:
+        phone = None
+
+    try:
+        address = stakeholder_address[0].address
+    except Exception:
+        address = None
+
+    try:
+        main_specialist_specialization = specialist_specialization[0]
+    except Exception:
+        main_specialist_specialization = None
+
     context = {
         'stakeholder': stakeholder,
-        'main_phone': stakeholder_numbers[0].phone,
+        'main_phone': phone,
         'phones': stakeholder_numbers[1:],
-        'main_address': stakeholder_address[0].address,
+        'main_address': address,
         'address': stakeholder_address[1:],
-        'main_specialization': specialist_specialization[0],
+        'main_specialization': main_specialist_specialization,
         'specializations': specialist_specialization[1:],
         'specialist': specialist,
     }

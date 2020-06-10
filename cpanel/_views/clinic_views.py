@@ -170,11 +170,21 @@ def Clinic_edit(request, id):
                     specialization=instance
                 ).delete()
 
+    try:
+        phone = institution_numbers[0].phone
+    except Exception:
+        phone = None
+
+    try:
+        address = institution_address[0].address
+    except Exception:
+        address = None
+
     context = {
         'institution': institution,
-        'main_phone': institution_numbers[0].phone,
+        'main_phone': phone,
         'phones': institution_numbers[1:],
-        'main_address': institution_address[0].address,
+        'main_address': address,
         'address': institution_address[1:],
         'clinic': clinic,
         'specializations': specializations,

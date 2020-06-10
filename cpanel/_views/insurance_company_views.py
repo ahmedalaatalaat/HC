@@ -108,11 +108,21 @@ def Insurance_Company_edit(request, id):
             for instance in delete_address:
                 instance.delete()
 
+    try:
+        phone = insurance_company_numbers[0].phone
+    except Exception:
+        phone = None
+
+    try:
+        address = insurance_company_address[0].address
+    except Exception:
+        address = None
+
     context = {
         'insurance_company': insurance_company,
-        'main_phone': insurance_company_numbers[0].phone,
+        'main_phone': phone,
         'phones': insurance_company_numbers[1:],
-        'main_address': insurance_company_address[0].address,
+        'main_address': address,
         'address': insurance_company_address[1:],
 
     }

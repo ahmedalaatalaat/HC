@@ -180,13 +180,28 @@ def Patient_edit(request, NN):
             for instance in delete_phones:
                 instance.delete()
 
+    try:
+        phone = stakeholder_numbers[0].phone
+    except Exception:
+        phone = None
+
+    try:
+        address = stakeholder_address[0].address
+    except Exception:
+        address = None
+
+    try:
+        relatives_phones = patient_relatives_phones[0].phone
+    except Exception:
+        relatives_phones = None
+
     context = {
         'stakeholder': stakeholder,
-        'main_phone': stakeholder_numbers[0].phone,
+        'main_phone': phone,
         'phones': stakeholder_numbers[1:],
-        'main_relative_phone': patient_relatives_phones[0].phone,
+        'main_relative_phone': relatives_phones,
         'relative_phones': patient_relatives_phones[1:],
-        'main_address': stakeholder_address[0].address,
+        'main_address': address,
         'address': stakeholder_address[1:],
         'patient': patient,
     }
