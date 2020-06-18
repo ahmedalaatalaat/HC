@@ -1,6 +1,6 @@
-from tensorflow.keras.applications.vgg16 import preprocess_input
-from tensorflow.keras.preprocessing import image
-from tensorflow.keras.models import load_model
+# from tensorflow.keras.applications.vgg16 import preprocess_input
+# from tensorflow.keras.preprocessing import image
+# from tensorflow.keras.models import load_model
 from django.http import JsonResponse
 from django.shortcuts import render
 import pandas as pd

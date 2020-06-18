@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     # Third Party Apps
     'jet.dashboard',
     'jet',
+    'import_export',
     # Our Apps
     'cpanel',
     'ai',
