@@ -38,13 +38,7 @@
                 <!-- Navbar menu -->
                 <div class="navbar-menu">
                     <!-- Navbar Start -->
-                    <div class="navbar-start">
-                        <!-- Navbar item -->
-                        <a class="navbar-item is-slide" style="font-size: 18px" href="#">
-                            Browse
-                        </a>
 
-                    </div>
                     <!-- Navbar end -->
                     <div class="navbar-end">
                         <!-- Signup button -->
@@ -215,11 +209,7 @@
                         you can find the nearest doctor for you and book him in just few secounds.
                     </span>
                     <div class="pt-10 pb-10">
-                        <a class="button btn-align btn-more is-link color-primary" href="#">
-                            Book Doctor Now
-                            <i class="sl sl-icon-arrow-right">
-                            </i>
-                        </a>
+
                     </div>
                 </div>
             </div>
@@ -509,11 +499,6 @@
                         </div>
                         <ul class="link-list">
                             <li>
-                                <a href="#">
-                                    Browse
-                                </a>
-                            </li>
-                            <li>
                                 <a href="{% url 'cpanel:login' %}">
                                     Login
                                 </a>
@@ -526,35 +511,26 @@
                     <div class="footer-column">
                         <div class="footer-header">
                             <h3>
-                                Browse Bluecare
+                                Bluecare Panels
                             </h3>
                         </div>
                         <ul class="link-list">
                             <li>
-                                <a href="#">
-                                    Browse Doctors
+                                <a href="{% url 'cpanel:home' %}" target="_blank">
+                                    Cpanel
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
-                                    Browse Hospitals
+                                <a href="{% url 'admin:index' %}" target="_blank">
+                                    Admin Panel
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
-                                    Browse Clinics
+                                <a href="{% url 'ai:ai_panel' %}" target="_blank">
+                                    AI Panel
                                 </a>
                             </li>
-                            <li>
-                                <a href="#">
-                                    Browse Labs
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Browse Pharmacies
-                                </a>
-                            </li>
+
                         </ul>
                     </div>
                 </div>
