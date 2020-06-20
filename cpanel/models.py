@@ -635,10 +635,13 @@ class PhysicianClinicWorkingTime(models.Model):
 
 # -- ## Rating Relation ##
 class PhysicianRating(models.Model):
+    id = models.AutoField(db_column='ID', primary_key=True)
     patient_nn = models.ForeignKey(Patient, models.DO_NOTHING, db_column='Patient_NN')
     physician_nn = models.ForeignKey(Physician, models.DO_NOTHING, db_column='Physician_NN')
-    rate = models.CharField(max_length=1, choices=rating)
     patient_comment = models.TextField(db_column='Patient_comment', blank=True, null=True)
+    rate = models.IntegerField(db_column='rate', blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         db_table = 'physician_rating'
@@ -651,10 +654,13 @@ class PhysicianRating(models.Model):
 
 
 class LabRating(models.Model):
+    id = models.AutoField(db_column='ID', primary_key=True)
     patient_nn = models.ForeignKey(Patient, models.DO_NOTHING, db_column='Patient_NN')
     lab = models.ForeignKey(Labs, models.DO_NOTHING, db_column='Lab_ID')
-    rate = models.CharField(max_length=1, choices=rating)
+    rate = models.IntegerField(db_column='rate', blank=True, null=True)
     patient_comment = models.TextField(db_column='Patient_comment', blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         db_table = 'lab_rating'
@@ -683,10 +689,13 @@ class ClinicRating(models.Model):
 
 
 class HospitalRating(models.Model):
+    id = models.AutoField(db_column='ID', primary_key=True)
     patient_nn = models.ForeignKey(Patient, models.DO_NOTHING, db_column='Patient_NN')
     hospital = models.ForeignKey(Hospital, models.DO_NOTHING, db_column='Hospital_ID')
-    rate = models.CharField(max_length=1, choices=rating)
+    rate = models.IntegerField(db_column='rate', blank=True, null=True)
     patient_comment = models.TextField(db_column='Patient_comment', blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         db_table = 'hospital_rating'
