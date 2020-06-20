@@ -410,6 +410,14 @@
                                     </span>
                                 </a>
                             </li>
+                            <li class="nav-item {% if '/ai_panel/recommend_to_me/' == request.get_full_path %}active{% endif %}">
+                                <a class="nav-link nav-toggle" href="{% url 'ai:recommend_to_me' %}">
+                                    <i class="fas fa-hand-holding-medical"></i>
+                                    <span class="title">
+                                        Recommend to me
+                                    </span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>

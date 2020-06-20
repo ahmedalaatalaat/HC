@@ -12,7 +12,6 @@ urlpatterns = [
     path('', include('website.urls')),
     path('cpanel/', include('cpanel.urls')),
     path('ai_panel/', include('ai.urls')),
-    path('browse/', include('vezeeta.urls')),
     path('jet/', include('jet.urls', 'jet')),
     path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
     # path('admin/', my_admin_site.urls),

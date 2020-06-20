@@ -12,6 +12,7 @@ from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from main.settings import MEDIA_ROOT
 from django.contrib.auth.decorators import login_required
+from .recommendation import *
 
 
 @login_required(login_url='cpanel:login')
@@ -243,3 +244,17 @@ def pneumonia_detection(request):
 
     }
     return render(request, 'ai/Pneumonia_Detection.html', context)
+
+
+def recommend_to_me(request):
+    if request.is_ajax():
+        if request.method == 'POST':
+            NN = request.POST.get('NN')
+            Save_All_Doctors_In_Recommendation_Data_Base(NN)
+            current_doctor_data = Return_Doctor_Details_For_Recommendation(NN)
+            KNN_List = main(current_doctor_data)
+
+    context = {
+
+    }
+    return render(request, 'ai/recommendation.html', context)

@@ -10,4 +10,5 @@ urlpatterns = [
     path('DNA_Classification/', views.DNA_Classification, name='DNA_Classification'),
     path('heart_disease_prediction/', views.heart_disease_prediction, name='heart_disease_prediction'),
     path('pneumonia_detection/', views.pneumonia_detection, name='pneumonia_detection'),
+    path('recommend_to_me/', views.recommend_to_me, name='recommend_to_me'),
 ]

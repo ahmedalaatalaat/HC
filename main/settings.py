@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     # Our Apps
     'cpanel',
     'ai',
-    'vezeeta',
     'website',
     # Django Apps
     'django.contrib.admin',
