@@ -1,6 +1,6 @@
-# from tensorflow.keras.applications.vgg16 import preprocess_input
-# from tensorflow.keras.preprocessing import image
-# from tensorflow.keras.models import load_model
+from tensorflow.keras.applications.vgg16 import preprocess_input
+from tensorflow.keras.preprocessing import image
+from tensorflow.keras.models import load_model
 from django.http import JsonResponse
 from django.shortcuts import render
 import pandas as pd
@@ -17,10 +17,7 @@ from .recommendation import *
 
 @login_required(login_url='cpanel:login')
 def base(request):
-    context = {
-
-    }
-    return render(request, 'ai/Base.html', context)
+    return render(request, 'ai/Base.html')
 
 
 @login_required(login_url='cpanel:login')
@@ -65,10 +62,7 @@ def breast_cancer_detection(request):
             }
             return JsonResponse(results)
 
-    context = {
-
-    }
-    return render(request, 'ai/Breast_Cancer_Detection.html', context)
+    return render(request, 'ai/Breast_Cancer_Detection.html')
 
 
 @login_required(login_url='cpanel:login')
@@ -101,10 +95,7 @@ def female_diabetes_detection(request):
             }
             return JsonResponse(results)
 
-    context = {
-
-    }
-    return render(request, 'ai/Female_Diabetes_Detection.html', context)
+    return render(request, 'ai/Female_Diabetes_Detection.html')
 
 
 @login_required(login_url='cpanel:login')
@@ -156,10 +147,7 @@ def DNA_Classification(request):
             }
             return JsonResponse(results)
 
-    context = {
-
-    }
-    return render(request, 'ai/DNA_Classification.html', context)
+    return render(request, 'ai/DNA_Classification.html')
 
 
 @login_required(login_url='cpanel:login')
@@ -206,10 +194,7 @@ def heart_disease_prediction(request):
             }
             return JsonResponse(results)
 
-    context = {
-
-    }
-    return render(request, 'ai/Heart_Disease_Prediction.html', context)
+    return render(request, 'ai/Heart_Disease_Prediction.html')
 
 
 @login_required(login_url='cpanel:login')
@@ -240,12 +225,10 @@ def pneumonia_detection(request):
             }
             return JsonResponse(results)
 
-    context = {
-
-    }
-    return render(request, 'ai/Pneumonia_Detection.html', context)
+    return render(request, 'ai/Pneumonia_Detection.html')
 
 
+@login_required(login_url='cpanel:login')
 def recommend_to_me(request):
     if request.is_ajax():
         if request.method == 'POST':
@@ -254,7 +237,15 @@ def recommend_to_me(request):
             current_doctor_data = Return_Doctor_Details_For_Recommendation(NN)
             KNN_List = main(current_doctor_data)
 
-    context = {
+            result = ""
+            for physician in KNN_List:
+                if not physician:
+                    continue
+                result += f'{physician.physician_nn}: Dr.{physician.physician_nn.stakeholder_name} <br />'
 
-    }
-    return render(request, 'ai/recommendation.html', context)
+            results = {
+                'result': result
+            }
+            return JsonResponse(results)
+
+    return render(request, 'ai/recommendation.html')

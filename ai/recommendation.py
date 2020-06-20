@@ -52,7 +52,7 @@ def Return_Doctor_Details_For_Recommendation(NN):
         rate = handle_rating(x, physicianrating_value, physicianrating_values)
     else:
         # note we should set a default hidden record for rating in database
-        x = PhysicianRating.objects.filter(physician_nn=100)
+        x = PhysicianRating.objects.filter(physician_nn=2)
         physicianrating_value = []
         rate = handle_rating(x, physicianrating_value, physicianrating_values)
     array_of_data.append(rate[0])
@@ -120,7 +120,7 @@ def Save_All_Doctors_In_Recommendation_Data_Base(NN):
             handle_rating(x, physicianrating_value, physicianrating_values)
         else:
             # note we should set a default hidden record for rating in database
-            x = PhysicianRating.objects.filter(physician_nn=100)
+            x = PhysicianRating.objects.filter(physician_nn=2)
             physicianrating_value = []
             handle_rating(x, physicianrating_value, physicianrating_values)
         physician_nn.append(i[0])
@@ -223,7 +223,7 @@ def calculate_euclidean_distance(instance1, instance2, length):
 # finding the neighbors of the test_instance after sorting them by distance
 
 
-def fetch_neighbors(training_set, test_instance, k):
+def fetch_neighbors(training_set, test_instance, k, current_doctor_data):
     distances = []
     length = len(test_instance) - 2
     counter = 0
@@ -243,7 +243,10 @@ def fetch_neighbors(training_set, test_instance, k):
 
     for x in range(k):
         try:
-            neighbors_list.append(distances[x + 1][0].physician_nn)
+            if int(distances[x][0].physician_nn.physician_nn.national_number) == int(current_doctor_data[0]):
+                pass
+            else:
+                neighbors_list.append(distances[x][0].physician_nn)
         except IndexError:
             neighbors_list.append(None)
     return neighbors_list
@@ -256,5 +259,5 @@ def main(current_doctor_data):
     k = 6
     test_set = current_doctor_data
     for x in range(len(test_set) - 2):
-        neighbors_list = fetch_neighbors(training_set, test_set, k,)
+        neighbors_list = fetch_neighbors(training_set, test_set, k, current_doctor_data)
     return neighbors_list
